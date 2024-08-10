@@ -7,18 +7,39 @@ import React, { useState } from "react";
 import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
-import CustomDateRangePicker from "components/DatePicker";
-import CustomSelect from "components/CustomSelect";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import {
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  Box,
+  Typography,
+} from "@mui/material";
 // Images
 import bgImage from "assets/images/homePage/header_bg.jpeg";
 import headerLogo from "assets/images/homePage/headerLogo.png";
 
 function HeaderOne() {
   const [value, setValue] = useState("");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+
+  const navItems = [
+    "Home",
+    "Tour Packages",
+    "Business Tours",
+    "About Us",
+    "Contact Us",
+  ];
 
   return (
     <MKBox position="relative" height="100%">
@@ -74,6 +95,42 @@ function HeaderOne() {
                 </MKBox>
               ))}
             </MKBox>
+            {/* Mobile View */}
+            {/* <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ display: { xs: "block", lg: "none" } }}
+            >
+              <MenuIcon />
+            </IconButton> */}
+            {/* <Drawer
+              anchor="right"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              sx={{
+                "& .MuiDrawer-paper": {
+                  width: 240,
+                },
+              }}
+            >
+              <IconButton
+                color="inherit"
+                aria-label="close drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+              >
+                <CloseIcon />
+              </IconButton>
+              <List>
+                {navItems.map((text) => (
+                  <ListItem button key={text}>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                ))}
+              </List>
+            </Drawer> */}
             <MKBox
               component="ul"
               display={{ xs: "none", lg: "flex" }}
@@ -133,17 +190,22 @@ function HeaderOne() {
           >
             Sri Lanka: Your Summer Escape in Paradise Awaits
           </MKTypography>
-          <Stack direction="row" spacing={1} mt={3} justifyContent="center">
+          <Grid justifyContent="center">
             <MKButton circular variant="outlined" color="white">
               Destinations
             </MKButton>
-            <MKButton circular variant="outlined" color="white">
+            <MKButton
+              sx={{ margin: 2 }}
+              circular
+              variant="outlined"
+              color="white"
+            >
               Tour Packages
             </MKButton>
             <MKButton circular variant="outlined" color="white">
               Business Tours
             </MKButton>
-          </Stack>
+          </Grid>
         </Grid>
         {/* <Grid
           container

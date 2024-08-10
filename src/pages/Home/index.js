@@ -211,7 +211,7 @@ function Home() {
   ];
 
   return (
-    <div>
+    <div style={{ backgroundColor: "#FEFDF5" }}>
       <View height="40rem">
         <HeaderOne />
       </View>
@@ -941,6 +941,7 @@ function Home() {
           paddingRight: "16px",
           marginBottom: "40px",
           backgroundColor: "#EEECE2",
+          margin: 0,
         }}
       >
         <Container
