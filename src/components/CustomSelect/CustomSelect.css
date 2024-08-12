@@ -1,0 +1,87 @@
+.custom-select-container {
+    position: relative; /* Ensures the dropdown menu is positioned correctly */
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    display: inline-block; /* Prevents affecting the surrounding layout */
+  }
+  
+  .custom-select-label {
+    position: absolute;
+    top: 14px; /* Adjust for proper positioning */
+    left: 15px; /* Adjust for proper positioning */
+    font-size: 16px;
+    color: #aaa;
+    transition: all 0.2s ease;
+    pointer-events: none;
+    background-color: #fff; /* Match input background */
+    padding: 0 4px; /* Ensure label stays clear of the input border */
+    z-index: 2; /* Ensure label is above input */
+  }
+  
+  .custom-select-label.shrink {
+    top: -8px; /* Adjust to align properly */
+    left: 15px; /* Adjust to align properly */
+    font-size: 12px;
+    color: #1976d2; /* Change this to your primary color */
+  }
+  
+  .custom-select-input {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+  }
+  
+  .custom-select-field {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    position: relative; /* Ensures proper stacking context */
+  }
+  
+  .custom-select-field.open {
+    border-color: #1976d2; /* Change to primary color for focus state */
+  }
+  
+  .custom-select-icon {
+    margin-right: 10px;
+  }
+  
+  .custom-select-value {
+    flex: 1;
+  }
+  
+  .custom-select-arrow {
+    margin-left: 10px;
+  }
+  
+  .custom-select-menu {
+    position: absolute;
+    top: 100%; /* Positions the menu below the input */
+    left: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 4px;
+    background: #fff;
+    z-index: 3; /* Ensure menu is above input */
+    overflow-y: auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Add shadow for better visibility */
+    display: none; /* Initially hidden */
+  }
+  
+  .custom-select-menu.open {
+    display:flex;
+    flex-direction: column; /* Show menu when open */
+  }
+  
+  .custom-select-item {
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  .custom-select-item:hover {
+    background-color: #f0f0f0;
+  }
+  

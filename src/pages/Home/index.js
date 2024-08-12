@@ -10,7 +10,7 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Icon from "@mui/material/Icon";
-
+import { useNavigate } from "react-router-dom";
 import ArrowForwardSharpIcon from "@mui/icons-material/ArrowForwardSharp";
 import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
 import HeaderOne from "layouts/sections/page-sections/page-headers/components/HeaderOne";
@@ -62,6 +62,7 @@ import {
 } from "@mui/material";
 
 function Home() {
+  const navigate = useNavigate();
   const travelSolutions = [
     {
       title: "Meetings & Conferences",
@@ -209,6 +210,10 @@ function Home() {
       link: "",
     },
   ];
+
+  const handleClick = () => {
+    navigate("/pages/tour-list"); // Change '/packages' to your desired route
+  };
 
   return (
     <div style={{ backgroundColor: "#FEFDF5" }}>
@@ -534,9 +539,17 @@ function Home() {
                     backgroundColor: "#FEFDF5",
                     borderWidth: 1,
                     borderColor: "#C9C5BA",
+                    display: "flex",
+                    flexDirection: "column",
                   }}
                 >
-                  <CardActionArea sx={{ height: "100%" }}>
+                  <CardActionArea
+                    sx={{
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
                     <CardMedia
                       component="img"
                       height="140px"
@@ -545,10 +558,11 @@ function Home() {
                         objectFit: "cover",
                         width: "100%",
                         margin: 0,
+                        padding: 0,
                       }}
                       alt="Image"
                     />
-                    <CardContent>
+                    <CardContent sx={{ flex: 1, padding: 1 }}>
                       <MKButton
                         style={{ marginTop: "10px", marginBottom: "20px" }}
                         size="small"
@@ -636,6 +650,7 @@ function Home() {
             marginTop: 5,
             marginBottom: 10,
           }}
+          onClick={handleClick}
         >
           See All Packages
         </MKButton>
@@ -872,9 +887,17 @@ function Home() {
                     backgroundColor: "#FEFDF5",
                     borderWidth: 1,
                     borderColor: "#C9C5BA",
+                    display: "flex",
+                    flexDirection: "column",
                   }}
                 >
-                  <CardActionArea sx={{ height: "100%" }}>
+                  <CardActionArea
+                    sx={{
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
                     <CardMedia
                       component="img"
                       height="140px"
@@ -883,10 +906,11 @@ function Home() {
                         objectFit: "cover",
                         width: "100%",
                         margin: 0,
+                        padding: 0,
                       }}
                       alt="Image"
                     />
-                    <CardContent>
+                    <CardContent sx={{ flex: 1, padding: 2 }}>
                       <Grid container alignItems="center">
                         <Typography
                           sx={{

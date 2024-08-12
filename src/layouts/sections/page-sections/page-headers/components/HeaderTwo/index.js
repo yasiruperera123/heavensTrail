@@ -20,12 +20,12 @@ import {
 } from "@mui/material";
 // Images
 import { UilUsersAlt, UilMapPinAlt } from "@iconscout/react-unicons";
-import bgImage from "assets/images/homePage/header_bg.jpeg";
+import bgImage from "assets/images/homePage/header2_bg.jpeg";
 import headerLogo from "assets/images/homePage/headerLogo.png";
 import CustomSelect from "components/CustomSelect";
 import CustomDateRangePicker from "components/CustomeDateRangerPicker";
 
-function HeaderOne() {
+function HeaderTwo() {
   const [value, setValue] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -191,79 +191,11 @@ function HeaderOne() {
               fontWeight: 400,
             })}
           >
-            Sri Lanka: Your Summer Escape in Paradise Awaits
+            Explore our round tours created just for you.
           </MKTypography>
           <Grid justifyContent="center">
             <MKButton circular variant="outlined" color="white">
-              Destinations
-            </MKButton>
-            <MKButton
-              sx={{ margin: 2 }}
-              circular
-              variant="outlined"
-              color="white"
-            >
               Tour Packages
-            </MKButton>
-            <MKButton circular variant="outlined" color="white">
-              Business Tours
-            </MKButton>
-          </Grid>
-        </Grid>
-        <Grid
-          container
-          item
-          xs={12}
-          lg={12}
-          alignItems="center"
-          justifyContent="center"
-          flexDirection={{ xs: "column", md: "row" }}
-          sx={{
-            mt: 3,
-            py: 3,
-            px: { xs: 2, md: 4 },
-            backgroundColor: "#FEFDF5",
-            borderRadius: 6,
-          }}
-        >
-          <Grid
-            sx={{ width: "100%" }}
-            item
-            xs={12}
-            md={4}
-            lg={3}
-            mb={{ xs: 2, md: 0 }}
-            px={1}
-          >
-            <CustomSelect
-              title={"How many people?"}
-              menuList={[
-                { label: "1", value: 1 },
-                { label: "2", value: 2 },
-                { label: "3", value: 3 },
-                { label: "4", value: 4 },
-              ]}
-              frontIcon={<UilUsersAlt />}
-            />
-          </Grid>
-          <Grid item xs={12} md={4} lg={3} mb={{ xs: 2, md: 0 }} px={1}>
-            <CustomSelect
-              title={"Which city do you want to start?"}
-              menuList={[
-                { label: "Colombo", value: "Colombo" },
-                { label: "Kandy", value: "Kandy" },
-                { label: "Jaffna", value: "Jaffna" },
-                { label: "Galle", value: "Galle" },
-              ]}
-              frontIcon={<UilMapPinAlt />}
-            />
-          </Grid>
-          <Grid item xs={12} md={8} lg={4} sx={{ marginBottom: 0.5 }}>
-            <CustomDateRangePicker />
-          </Grid>
-          <Grid item xs={12} md={8} lg={2} px={1}>
-            <MKButton circular variant="contained" color="black">
-              Plan Your Trip
             </MKButton>
           </Grid>
         </Grid>
@@ -272,4 +204,4 @@ function HeaderOne() {
   );
 }
 
-export default HeaderOne;
+export default HeaderTwo;

@@ -47,7 +47,8 @@ import AboutUs from "layouts/pages/landing-pages/about-us";
 import ContactUs from "layouts/pages/landing-pages/contact-us";
 import Author from "layouts/pages/landing-pages/author";
 import SignIn from "layouts/pages/authentication/sign-in";
-import Home from "layouts/pages/Home"
+import Home from "layouts/pages/Home";
+import TourListing from "pages/TourListing";
 
 // Sections
 import PageHeaders from "layouts/sections/page-sections/page-headers";
@@ -98,6 +99,11 @@ const routes = [
             name: "home",
             route: "/pages/Home",
             component: <Home />,
+          },
+          {
+            name: "tourList",
+            route: "/pages/tour-list",
+            component: <TourListing />,
           },
         ],
       },
