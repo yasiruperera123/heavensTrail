@@ -49,6 +49,7 @@ import Author from "layouts/pages/landing-pages/author";
 import SignIn from "layouts/pages/authentication/sign-in";
 import Home from "layouts/pages/Home";
 import TourListing from "pages/TourListing";
+import Destination from "pages/Destination";
 
 // Sections
 import PageHeaders from "layouts/sections/page-sections/page-headers";
@@ -104,6 +105,11 @@ const routes = [
             name: "tourList",
             route: "/pages/tour-list",
             component: <TourListing />,
+          },
+          {
+            name: "destinations",
+            route: "/pages/destinations",
+            component: <Destination />,
           },
         ],
       },

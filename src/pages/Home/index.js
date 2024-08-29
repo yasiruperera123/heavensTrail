@@ -213,7 +213,11 @@ function Home() {
   ];
 
   const handleClick = () => {
-    navigate("/pages/tour-list"); // Change '/packages' to your desired route
+    navigate("/pages/tour-list");
+  };
+
+  const handleOurPackageClick = () => {
+    navigate("/pages/destinations");
   };
 
   return (
@@ -494,7 +498,12 @@ function Home() {
             sx={{ textAlign: "center", marginBottom: "20px" }}
           >
             <Stack direction="row" spacing={1} mt={3}>
-              <MKButton circular variant="outlined" color="black">
+              <MKButton
+                circular
+                variant="outlined"
+                color="black"
+                onClick={handleOurPackageClick}
+              >
                 Our Packages
               </MKButton>
             </Stack>

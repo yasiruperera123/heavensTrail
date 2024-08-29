@@ -22,22 +22,11 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedIn from "@mui/icons-material/LinkedIn";
 import Instagram from "@mui/icons-material/Instagram";
 import {
-  UilPlaneDeparture,
-  UilTicket,
-  UilUtensils,
-  UilBedDouble,
+  UilMountains,
+  UilBookOpen,
+  UilTrees,
+  UilBuilding,
 } from "@iconscout/react-unicons";
-import bgImage from "assets/images/bg-coworking.jpeg";
-import avatar from "assets/images/avatar/avatar.jpeg";
-import meetingImg from "assets/images/homePage/meetings.jpeg";
-import exhibitionImg from "assets/images/homePage/exhibitions.jpeg";
-import weddingImg from "assets/images/homePage/wedding.jpeg";
-import tourImg from "assets/images/homePage/tours.jpeg";
-import adventureIcon1 from "assets/images/homePage/adventureIcon1.png";
-import adventureIcon2 from "assets/images/homePage/adventureIcon2.png";
-import adventureIcon3 from "assets/images/homePage/adventureIcon3.png";
-import adventureIcon4 from "assets/images/homePage/adventureIcon4.png";
-import coconutHllImg from "assets/images/homePage/coconut_hill.jpeg";
 import sigiriyaImg from "assets/images/homePage/sigiriya.jpeg";
 import soulmateImg from "assets/images/homePage/soulmate.jpeg";
 import yalaImg from "assets/images/homePage/yala.jpeg";
@@ -52,7 +41,6 @@ import hinduImg from "assets/images/homePage/hindu.jpeg";
 import galleImg from "assets/images/homePage/galle.jpeg";
 import firBall from "assets/images/homePage/fireball.jpeg";
 import buddhaSVG from "assets/images/homePage/Rectangle4.svg";
-
 import {
   Card,
   CardMedia,
@@ -66,206 +54,68 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
+import icon from "assets/theme/components/icon";
 
-function TourListing() {
-  const travelPcgs = [
+function Destination() {
+  const seaSideDes = [
     {
-      title: "Luxury Escape to the Southern Coast",
-      duration: "4 Nights, 6 Days",
-      path: [
-        "Airport",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-        <LiBeach
-          className="hover-svg"
-          sx={{
-            transition: "stroke 0.3s ease",
-          }}
-        />,
-      ],
-      img: coconutHllImg,
-    },
-    {
-      title: "Luxury Escape to the Misty Tea Country",
-      duration: "4 Nights, 6 Days",
-      path: [
-        "Airport",
-        "Sigiriya",
-        "Dambulla (2N)",
-        "Kandy",
-        "Hatton (2N)",
-        "Kithulgala",
-        "Colombo",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-        <LiBeach
-          className="hover-svg"
-          sx={{
-            transition: "stroke 0.3s ease",
-          }}
-        />,
-      ],
-      img: sigiriyaImg,
-    },
-    {
-      title: "Scenic Sri Lanka Trip -Soulmate Special",
-      duration: "6 Nights, 7 Days",
-      path: [
-        "Airport ",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-        <LiBeach
-          className="hover-svg"
-          sx={{
-            transition: "stroke 0.3s ease",
-          }}
-        />,
-      ],
-      img: soulmateImg,
-    },
-    {
-      title: "Hillside Trails in Nuwara Eliya, Ella, & Kandy",
-      duration: "6 Nights, 7 Days",
-      path: [
-        "Airport",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-      ],
-      img: archImg,
-    },
-    {
-      title: "The Archaeological Marvels Package",
-      duration: "6 Nights, 7 Days",
-      path: [
-        "Airport",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-      ],
-      img: buddha2Img,
-    },
-    {
-      title: "Divine Sri Lanka Getaway - Ramayana Edition",
-      duration: "6 Nights, 7 Days",
-      path: [
-        "Airport",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-      ],
-      img: hinduImg,
-    },
-  ];
-
-  const otherTravelPcgs = [
-    {
-      title: "Galle Day Tour with Heaven's Trail",
-      duration: "4 Nights, 6 Days",
-      path: [
-        "Airport",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-        <LiBeach
-          className="hover-svg"
-          sx={{
-            transition: "stroke 0.3s ease",
-          }}
-        />,
-      ],
+      title: "Mirissa",
+      description:
+        "Known for whale watching and its tranquil beach atmosphere.",
       img: galleImg,
     },
     {
-      title: "Visit Kandy for Temple of tooth & Vibrant Perahera",
-      duration: "4 Nights, 6 Days",
-      path: ["Airport", "Sigiriya", "Dambulla", "Hatton"],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-        <LiBeach
-          className="hover-svg"
-          sx={{
-            transition: "stroke 0.3s ease",
-          }}
-        />,
-      ],
-      img: firBall,
+      title: "Unawatuna",
+      description:
+        "Famous for its beautiful crescent-shaped beach and lively nightlife.",
+      img: galleImg,
     },
     {
-      title: "Experience the thrill of Colombo's casino scene",
-      duration: "6 Nights, 7 Days",
-      path: [
-        "Airport",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-        <LiBeach
-          className="hover-svg"
-          sx={{
-            transition: "stroke 0.3s ease",
-          }}
-        />,
-      ],
-      img: soulmateImg,
+      title: "Bentota",
+      description: "Ideal for water sports and luxurious beach resorts.",
+      img: galleImg,
+    },
+  ];
+
+  const hillSide = [
+    {
+      title: "Kandy",
+      description:
+        "Home to the sacred Temple of the Tooth and stunning botanical gardens.",
+      img: archImg,
+    },
+    {
+      title: "Nuwara Eliya",
+      description:
+        "Known as “Little England” for its colonial charm and lush tea estates.",
+      img: archImg,
+    },
+    {
+      title: "Ella",
+      description:
+        "Famous for its scenic train rides, hiking trails, and the iconic Nine Arches Bridge.",
+      img: archImg,
+    },
+  ];
+
+  const culturalSide = [
+    {
+      title: "Sigiriya",
+      description:
+        "Renowned for the ancient rock fortress and its breathtaking frescoes.",
+      img: sigiriyaImg,
+    },
+    {
+      title: "Anuradhapura",
+      description:
+        "A historic city known for its well-preserved ruins and sacred Bodhi tree.",
+      img: sigiriyaImg,
+    },
+    {
+      title: "Polonnaruwa",
+      description:
+        "Home to impressive ancient ruins and the iconic Gal Vihara sculptures.",
+      img: sigiriyaImg,
     },
   ];
 
@@ -312,8 +162,13 @@ function TourListing() {
 
   const btnArray = [
     {
-      title: "Tour Packages",
+      title: "Seaside",
+      icon: <LiBeach fill="white" />,
     },
+    { title: "Hill Country", icon: <UilMountains /> },
+    { title: "Cultural and Historical", icon: <UilBookOpen /> },
+    { title: "Wildlife and Nature", icon: <UilTrees /> },
+    { title: "Urban and Coastal", icon: <UilBuilding /> },
   ];
 
   return (
@@ -321,10 +176,12 @@ function TourListing() {
       <View height="40rem">
         <HeaderTwo
           buttonArray={btnArray}
-          title="Explore our round tours created just for you."
+          title="Famous Destinations
+in Sri Lanka"
         />
       </View>
-      {/* Explore our travel Packages */}
+
+      {/* SEASIDE DESTINATIONS */}
       <Grid
         container
         sx={{
@@ -352,11 +209,6 @@ function TourListing() {
             alignItems="center"
             sx={{ textAlign: "center", marginBottom: "20px" }}
           >
-            <Stack direction="row" spacing={1} mt={3}>
-              <MKButton circular variant="outlined" color="black">
-                Round Tours
-              </MKButton>
-            </Stack>
             <MKTypography
               variant="h1"
               color="black"
@@ -369,7 +221,7 @@ function TourListing() {
                 fontWeight: 400,
               })}
             >
-              Heaven’s Trail Round Tours
+              Seaside Destinations
             </MKTypography>
             <MKTypography
               variant="h6"
@@ -377,9 +229,9 @@ function TourListing() {
               color="black"
               sx={{ textAlign: "center", maxWidth: "90%" }}
             >
-              Crafting modern travel adventures that blend comfort with
-              excitement. Explore vibrant cultures and stunning landscapes,
-              creating lifelong memories!
+              Whether you're looking to relax on golden sands, engage in
+              thrilling water sports, or explore vibrant marine life, our
+              seaside destinations have something for everyone.
             </MKTypography>
           </Grid>
         </Container>
@@ -394,7 +246,7 @@ function TourListing() {
             }}
           >
             <Grid container spacing={2} justifyContent="center">
-              {travelPcgs.map((item, index) => (
+              {seaSideDes.map((item, index) => (
                 <Grid
                   item
                   key={index}
@@ -406,28 +258,13 @@ function TourListing() {
                 >
                   <Card
                     sx={{
-                      height: "650px",
-                      maxHeight: "745px",
+                      height: "100%",
                       boxShadow: "none",
                       backgroundColor: "#FEFDF5",
                       borderWidth: 1,
                       borderColor: "#C9C5BA",
                       display: "flex",
                       flexDirection: "column",
-                      "&:hover": {
-                        backgroundColor: "#EEECE2",
-                        "& .hover-button": {
-                          backgroundColor: "#AF4D06",
-                          color: "#FEFDF5",
-                        },
-                        "& .hover-icon": {
-                          color: "#929E03",
-                        },
-                        "& .hover-svg path, & .hover-svg line, & .hover-svg rect, & .hover-svg circle":
-                          {
-                            stroke: "#929E03",
-                          },
-                      },
                     }}
                   >
                     <CardActionArea
@@ -435,11 +272,12 @@ function TourListing() {
                         height: "100%",
                         display: "flex",
                         flexDirection: "column",
+                        justifyItems: "left",
                       }}
                     >
                       <CardMedia
                         component="img"
-                        height={"250px"}
+                        height={"500px"}
                         image={item?.img}
                         sx={{
                           objectFit: "cover",
@@ -449,86 +287,48 @@ function TourListing() {
                           borderBottomLeftRadius: 0,
                           borderBottomRightRadius: 0,
                         }}
-                        alt="SVG Image"
+                        alt="Image"
                       />
-                      <CardContent sx={{ flex: 1, padding: 1 }}>
-                        <MKButton
-                          className="hover-button"
-                          style={{ marginTop: "10px", marginBottom: "20px" }}
-                          size="small"
-                          circular
-                          variant="outlined"
-                          color="black"
+                      <Grid
+                        sx={{
+                          width: "100%",
+                          paddingLeft: 2,
+                          marginBottom: 5,
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            fontFamily: "Playfair Display, serif",
+                            fontSize: "25px",
+                            fontWeight: 400,
+                            marginBottom: 2,
+                          }}
+                          variant="h5"
                         >
-                          {item?.duration}
-                        </MKButton>
-
-                        <Grid container alignItems="center">
-                          <Typography
-                            sx={{
-                              fontFamily: "Playfair Display, serif",
-                              fontSize: "28px",
-                              fontWeight: 400,
-                            }}
-                            variant="h5"
-                          >
-                            {item?.title}
-                          </Typography>
-                        </Grid>
-                        <Divider variant="middle" component="li" />
-                        <Grid container alignItems="center">
-                          {item?.path &&
-                            item?.path.length > 0 &&
-                            item?.path.map((elemant, index) => {
-                              return (
-                                <Grid
-                                  display={"flex"}
-                                  alignItems={"center"}
-                                  flexDirection={"row"}
-                                  key={index}
-                                >
-                                  <MKTypography variant="subtitle2">
-                                    {elemant}
-                                  </MKTypography>
-                                  {index < item.path.length - 1 && (
-                                    <Icon sx={{ fontWeight: "bold" }}>
-                                      arrow_forward
-                                    </Icon>
-                                  )}
-                                </Grid>
-                              );
-                            })}
-                        </Grid>
-                        <Divider variant="middle" component="li" />
-                        {item?.iconSet &&
-                          item?.iconSet.map((icon) => {
-                            return icon;
-                          })}
-                        <MKTypography variant="subtitle2">
-                          Pricing starts at
+                          {item?.title}
+                        </Typography>
+                        <MKTypography
+                          variant="subtitle2"
+                          sx={{
+                            display: "-webkit-box",
+                            overflow: "hidden",
+                            WebkitBoxOrient: "vertical",
+                            WebkitLineClamp: 3,
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {item?.description}
                         </MKTypography>
-                        <Grid container display={"flex"} alignItems="center">
-                          <MKTypography
-                            sx={{
-                              fontWeight: "700",
-                              marginRight: 1,
-                              fontFamily: "Playfair Display, serif",
-                              fontSize: "20px",
-                            }}
-                            variant="body2"
-                            color="text.secondary"
-                          >
-                            AUD 1600.00
-                          </MKTypography>
-                          <MKTypography
-                            variant="subtitle2"
-                            color="text.secondary"
-                            mt={0.9}
-                          >
-                            + taxes and charges
-                          </MKTypography>
-                        </Grid>
-                      </CardContent>
+                        <MKTypography
+                          sx={{
+                            fontWeight: "500",
+                            textDecoration: "underline",
+                          }}
+                          variant="subtitle2"
+                        >
+                          Read More
+                        </MKTypography>
+                      </Grid>
                     </CardActionArea>
                   </Card>
                 </Grid>
@@ -538,7 +338,7 @@ function TourListing() {
         </Grid>
       </Grid>
 
-      {/* Discover Sri Lanka Through Our Travelers' Eyes SECTION */}
+      {/* HILL COUNTRY DESTINATIONS */}
       <Grid
         container
         sx={{
@@ -566,11 +366,6 @@ function TourListing() {
             alignItems="center"
             sx={{ textAlign: "center", marginBottom: "20px" }}
           >
-            <Stack direction="row" spacing={1} mt={3}>
-              <MKButton circular variant="outlined" color="black">
-                Day Tours
-              </MKButton>
-            </Stack>
             <MKTypography
               variant="h1"
               color="black"
@@ -583,7 +378,7 @@ function TourListing() {
                 fontWeight: 400,
               })}
             >
-              You may also like
+              Hill Country Destinations
             </MKTypography>
             <MKTypography
               variant="h6"
@@ -591,9 +386,9 @@ function TourListing() {
               color="black"
               sx={{ textAlign: "center", maxWidth: "90%" }}
             >
-              Crafting modern travel adventures that blend comfort with
-              excitement. Explore vibrant cultures and stunning landscapes,
-              creating lifelong memories!
+              Enjoy breath taking landscapes, tea plantations, and picturesque
+              waterfalls, making it a perfect retreat for nature lovers and
+              adventure enthusiasts.
             </MKTypography>
           </Grid>
         </Container>
@@ -608,7 +403,7 @@ function TourListing() {
             }}
           >
             <Grid container spacing={2} justifyContent="center">
-              {otherTravelPcgs.map((item, index) => (
+              {hillSide.map((item, index) => (
                 <Grid
                   item
                   key={index}
@@ -625,30 +420,12 @@ function TourListing() {
                       backgroundColor: "#EEECE2",
                       borderWidth: 1,
                       borderColor: "#C9C5BA",
-                      display: "flex",
-                      flexDirection: "column",
-                      "&:hover": {
-                        backgroundColor: "#FEFDF5",
-                        "& .hover-icon": {
-                          color: "#929E03",
-                        },
-                        "& .hover-svg path, & .hover-svg line, & .hover-svg rect, & .hover-svg circle":
-                          {
-                            stroke: "#929E03",
-                          },
-                      },
                     }}
                   >
-                    <CardActionArea
-                      sx={{
-                        height: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                      }}
-                    >
+                    <CardActionArea>
                       <CardMedia
                         component="img"
-                        height={"300px"}
+                        height="500px"
                         image={item?.img}
                         sx={{
                           objectFit: "cover",
@@ -658,85 +435,48 @@ function TourListing() {
                           borderBottomLeftRadius: 0,
                           borderBottomRightRadius: 0,
                         }}
-                        alt="SVG Image"
+                        alt="Image"
                       />
-                      <CardContent sx={{ flex: 1, padding: 1 }}>
-                        <MKButton
-                          style={{ marginTop: "10px", marginBottom: "20px" }}
-                          size="small"
-                          circular
-                          variant="outlined"
-                          color="black"
+                      <Grid
+                        sx={{
+                          width: "100%",
+                          padding: 2,
+                          paddingTop: 0, // Remove padding from the top to prevent shifting
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            fontFamily: "Playfair Display, serif",
+                            fontSize: "25px",
+                            fontWeight: 400,
+                            marginBottom: 2,
+                          }}
+                          variant="h5"
                         >
-                          {item?.duration}
-                        </MKButton>
-
-                        <Grid container alignItems="center">
-                          <Typography
-                            sx={{
-                              fontFamily: "Playfair Display, serif",
-                              fontSize: "28px",
-                              fontWeight: 400,
-                            }}
-                            variant="h5"
-                          >
-                            {item?.title}
-                          </Typography>
-                        </Grid>
-                        <Divider variant="middle" component="li" />
-                        <Grid container alignItems="center">
-                          {item?.path &&
-                            item?.path.length > 0 &&
-                            item?.path.map((elemant, index) => {
-                              return (
-                                <Grid
-                                  display={"flex"}
-                                  alignItems={"center"}
-                                  flexDirection={"row"}
-                                  key={index}
-                                >
-                                  <MKTypography variant="subtitle2">
-                                    {elemant}
-                                  </MKTypography>
-                                  {index < item.path.length - 1 && (
-                                    <Icon sx={{ fontWeight: "bold" }}>
-                                      arrow_forward
-                                    </Icon>
-                                  )}
-                                </Grid>
-                              );
-                            })}
-                        </Grid>
-                        <Divider variant="middle" component="li" />
-                        {item?.iconSet &&
-                          item?.iconSet.map((icon) => {
-                            return icon;
-                          })}
-                        <MKTypography variant="subtitle2">
-                          Pricing starts at
+                          {item?.title}
+                        </Typography>
+                        <MKTypography
+                          variant="subtitle2"
+                          sx={{
+                            display: "-webkit-box",
+                            overflow: "hidden",
+                            WebkitBoxOrient: "vertical",
+                            WebkitLineClamp: 3,
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {item?.description}
                         </MKTypography>
-                        <Grid container display={"flex"} alignItems="center">
-                          <MKTypography
-                            sx={{
-                              fontWeight: "700",
-                              marginRight: 1,
-                              fontFamily: "Playfair Display, serif",
-                              fontSize: "20px",
-                            }}
-                            variant="body2"
-                            color="text.secondary"
-                          >
-                            AUD 1600.00
-                          </MKTypography>
-                          <MKTypography
-                            variant="subtitle2"
-                            color="text.secondary"
-                            mt={0.9}
-                          >
-                            + taxes and charges
-                          </MKTypography>
-                        </Grid>
-                      </CardContent>
+                        <MKTypography
+                          sx={{
+                            fontWeight: "500",
+                            textDecoration: "underline",
+                          }}
+                          variant="subtitle2"
+                        >
+                          Read More
+                        </MKTypography>
+                      </Grid>
                     </CardActionArea>
                   </Card>
                 </Grid>
@@ -744,19 +484,154 @@ function TourListing() {
             </Grid>
           </Box>
         </Grid>
-        <MKButton
-          circular
-          variant="contained"
-          color="black"
+      </Grid>
+
+      {/* Culture  DESTINATIONS */}
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          paddingLeft: "16px",
+          paddingRight: "16px",
+          marginBottom: "40px",
+          backgroundColor: "#FEFDF5",
+        }}
+      >
+        <Container
           sx={{
-            paddingLeft: 5,
-            paddingRight: 5,
-            marginTop: 5,
-            marginBottom: 10,
+            display: "flex",
+            justifyContent: "center",
           }}
         >
-          See All Packages
-        </MKButton>
+          <Grid
+            container
+            item
+            xs={12}
+            lg={10}
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ textAlign: "center", marginBottom: "20px" }}
+          >
+            <MKTypography
+              variant="h1"
+              color="black"
+              sx={({ breakpoints, typography: { size } }) => ({
+                [breakpoints.down("md")]: {
+                  fontSize: size["3xl"],
+                },
+                fontFamily: "Playfair Display, serif",
+                fontSize: "60px",
+                fontWeight: 400,
+              })}
+            >
+              Cultural and Historical Destinations
+            </MKTypography>
+            <MKTypography
+              variant="h6"
+              fontWeight="regular"
+              color="black"
+              sx={{ textAlign: "center", maxWidth: "90%" }}
+            >
+              Explore ancient cities, majestic temples, and UNESCO World
+              Heritage Sites that tell the stories of a civilization spanning
+              over two millennia.
+            </MKTypography>
+          </Grid>
+        </Container>
+        <Grid container>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              width: "90%",
+              margin: "0 auto",
+              padding: 2,
+            }}
+          >
+            <Grid container spacing={2} justifyContent="center">
+              {culturalSide.map((item, index) => (
+                <Grid
+                  item
+                  key={index}
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={4} // Adjusted for a 3-column layout
+                  sx={{ flexShrink: 0 }}
+                >
+                  <Card
+                    sx={{
+                      height: "100%",
+                      boxShadow: "none",
+                      backgroundColor: "#FEFDF5",
+                      borderWidth: 1,
+                      borderColor: "#C9C5BA",
+                    }}
+                  >
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="500px"
+                        image={item?.img}
+                        sx={{
+                          objectFit: "cover",
+                          width: "100%",
+                          margin: 0,
+                          padding: 0,
+                          borderBottomLeftRadius: 0,
+                          borderBottomRightRadius: 0,
+                        }}
+                        alt="Image"
+                      />
+                      <Grid
+                        sx={{
+                          width: "100%",
+                          padding: 2,
+                          paddingTop: 0, // Remove padding from the top to prevent shifting
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            fontFamily: "Playfair Display, serif",
+                            fontSize: "25px",
+                            fontWeight: 400,
+                            marginBottom: 2,
+                          }}
+                          variant="h5"
+                        >
+                          {item?.title}
+                        </Typography>
+                        <MKTypography
+                          variant="subtitle2"
+                          sx={{
+                            display: "-webkit-box",
+                            overflow: "hidden",
+                            WebkitBoxOrient: "vertical",
+                            WebkitLineClamp: 3,
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {item?.description}
+                        </MKTypography>
+                        <MKTypography
+                          sx={{
+                            fontWeight: "500",
+                            textDecoration: "underline",
+                          }}
+                          variant="subtitle2"
+                        >
+                          Read More
+                        </MKTypography>
+                      </Grid>
+                    </CardActionArea>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </Grid>
       </Grid>
 
       {/* Your Questions Answered SECTION */}
@@ -1054,4 +929,4 @@ function TourListing() {
   );
 }
 
-export default TourListing;
+export default Destination;

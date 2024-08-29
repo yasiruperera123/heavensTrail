@@ -25,7 +25,7 @@ import headerLogo from "assets/images/homePage/Logo.svg";
 import CustomSelect from "components/CustomSelect";
 import CustomDateRangePicker from "components/CustomeDateRangerPicker";
 
-function HeaderTwo() {
+function HeaderTwo({ title, buttonArray }) {
   const [value, setValue] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -170,12 +170,25 @@ function HeaderTwo() {
               fontWeight: 400,
             })}
           >
-            Explore our round tours created just for you.
+            {title}
           </MKTypography>
           <Grid justifyContent="center">
-            <MKButton circular variant="outlined" color="white">
-              Tour Packages
-            </MKButton>
+            {buttonArray &&
+              buttonArray.length > 0 &&
+              buttonArray?.map((item) => {
+                console.log("asasasas", item);
+                return (
+                  <MKButton
+                    sx={{ marginLeft: 2 }}
+                    circular
+                    variant="outlined"
+                    color="white"
+                  >
+                    {item?.icon}
+                    {item.title}
+                  </MKButton>
+                );
+              })}
           </Grid>
         </Grid>
       </Grid>
