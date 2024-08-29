@@ -231,13 +231,18 @@ function HeaderOne() {
                 }}
               >
                 <Grid
+                  item
+                  xs={12}
+                  md={6}
                   sx={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     flexDirection: "column",
                     width: "100%",
-                    maxWidth: "28rem",
+                    maxWidth: { xs: "100%", md: "28rem" },
+                    textAlign: { xs: "center", md: "left" },
+                    mb: { xs: 3, md: 0 }, // Add margin for spacing between columns in mobile view
                   }}
                 >
                   <MKTypography
@@ -249,17 +254,17 @@ function HeaderOne() {
                       "&::before, &::after": {
                         content: '""',
                         position: "absolute",
-                        width: "250%", // Length of the lines
-                        height: "2px", // Thickness of the lines
-                        backgroundColor: "#FFFFFF", // Color of the lines
+                        width: { xs: "160%", md: "250%" }, // Adjust line length for mobile
+                        height: "2px",
+                        backgroundColor: "#FFFFFF",
                       },
                       "&::before": {
-                        left: "-180px", // Position before the text
+                        left: { xs: "-180%", md: "-180px" }, // Adjust position for mobile
                         top: "50%",
                         transform: "translateY(-50%)",
                       },
                       "&::after": {
-                        right: "-180px", // Position after the text
+                        right: { xs: "-180%", md: "-180px" }, // Adjust position for mobile
                         top: "50%",
                         transform: "translateY(-50%)",
                       },
@@ -297,17 +302,17 @@ function HeaderOne() {
                       "&::before, &::after": {
                         content: '""',
                         position: "absolute",
-                        width: "28%", // Length of the lines
-                        height: "2px", // Thickness of the lines
-                        backgroundColor: "#FFFFFF", // Color of the lines
+                        width: { xs: "7%", md: "28%" }, // Adjust line length for mobile
+                        height: "2px",
+                        backgroundColor: "#FFFFFF",
                       },
                       "&::before": {
-                        left: "-32%", // Position before the text
+                        left: { xs: "-10%", md: "-32%" }, // Adjust position for mobile
                         top: "50%",
                         transform: "translateY(-50%)",
                       },
                       "&::after": {
-                        right: "-32%", // Position after the text
+                        right: { xs: "-10%", md: "-32%" }, // Adjust position for mobile
                         top: "50%",
                         transform: "translateY(-50%)",
                       },
@@ -321,15 +326,20 @@ function HeaderOne() {
                   </MKTypography>
                 </Grid>
                 <Grid
+                  item
+                  xs={12}
+                  md={6}
                   sx={{
                     display: "flex",
                     flexDirection: "column",
-                    width: "30rem",
+                    width: "100%",
+                    maxWidth: { xs: "100%", md: "30rem" },
                     borderRadius: 5,
                     borderWidth: "1px",
                     padding: 2,
                     border: "solid",
                     borderColor: "#FFFFFF",
+                    textAlign: { xs: "center", md: "left" },
                   }}
                 >
                   <MKTypography
@@ -361,7 +371,7 @@ function HeaderOne() {
                     variant="middle"
                   />
                   <MKButton
-                    sx={{ width: "40%", backgroundColor: "none" }}
+                    sx={{ width: { xs: "60%", md: "40%" } }} // Center the button in mobile view
                     circular
                     variant="outlined"
                     color="white"
