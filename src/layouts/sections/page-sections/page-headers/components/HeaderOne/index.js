@@ -9,6 +9,8 @@ import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import Slider from "react-slick";
+import CustomPagination from "components/CustomPagination";
 import {
   Drawer,
   IconButton,
@@ -16,18 +18,22 @@ import {
   ListItem,
   ListItemText,
   Box,
-  Typography,
+  Divider,
 } from "@mui/material";
 // Images
 import { UilUsersAlt, UilMapPinAlt } from "@iconscout/react-unicons";
 import bgImage from "assets/images/homePage/header_bg.jpeg";
 import headerLogo from "assets/images/homePage/headerLogo.png";
+import footerBg from "assets/images/homePage/beach.jpeg";
+import Logo from "assets/images/homePage/Logo.svg";
 import CustomSelect from "components/CustomSelect";
 import CustomDateRangePicker from "components/CustomeDateRangerPicker";
+import NavBar from "components/NavBar";
 
 function HeaderOne() {
   const [value, setValue] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -44,230 +50,374 @@ function HeaderOne() {
     "Contact Us",
   ];
 
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: false,
+    autoplaySpeed: 3000,
+    customPaging: () => <MKBox />,
+    afterChange: (current) => setCurrentSlide(current),
+  };
+
+  const backgroundImages = [bgImage, footerBg, bgImage];
+
   return (
-    <MKBox position="relative" height="100%">
-      <MKBox component="nav" position="absolute" top="0.5rem" width="100%">
-        <Container>
-          <Grid container flexDirection="row" alignItems="center">
-            <MKBox
-              component="img"
-              src={headerLogo}
-              alt="Background"
+    <MKBox position="relative">
+      <Slider {...sliderSettings} style={{ height: "100%", width: "100%" }}>
+        {backgroundImages.map((item, index) => (
+          <MKBox key={index} position="relative" height="100%">
+            <Grid
+              container
+              flexDirection="row"
+              alignItems="center"
               sx={{
-                width: "100px",
-                height: "auto",
-                objectFit: "contain",
-                borderRadius: "8px",
-                boxShadow: "lg",
-              }}
-            />
-            <MKButton
-              variant="outlined"
-              color="white"
-              sx={{ display: { xs: "block", lg: "none" }, ml: "auto" }}
-            >
-              <MKBox component="i" color="white" className="fas fa-bars" />
-            </MKButton>
-            <MKBox
-              component="ul"
-              display={{ xs: "none", lg: "flex" }}
-              p={0}
-              my={0}
-              mx="auto"
-              sx={{ listStyle: "none" }}
-            >
-              {[
-                "Home",
-                "Tour Packages",
-                "Business Tours",
-                "About Us",
-                "Contact Us",
-              ].map((text) => (
-                <MKBox component="li" key={text}>
-                  <MKTypography
-                    component={Link}
-                    href="#"
-                    variant="button"
-                    color="white"
-                    fontWeight="regular"
-                    p={1}
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    {text}
-                  </MKTypography>
-                </MKBox>
-              ))}
-            </MKBox>
-            {/* Mobile View */}
-            {/* <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ display: { xs: "block", lg: "none" } }}
-            >
-              <MenuIcon />
-            </IconButton> */}
-            {/* <Drawer
-              anchor="right"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              sx={{
-                "& .MuiDrawer-paper": {
-                  width: 240,
-                },
+                padding: 2,
+                position: "absolute",
+                width: "100%",
+                display: { xs: "none", lg: "flex" },
               }}
             >
-              <IconButton
-                color="inherit"
-                aria-label="close drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
+              {/* First MKBox with 20% width */}
+              <Grid item xs={2} sx={{ display: "flex", alignItems: "center" }}>
+                <MKBox
+                  component="img"
+                  src={headerLogo}
+                  alt="Background"
+                  sx={{
+                    width: "100px",
+                    height: "auto",
+                    objectFit: "contain",
+                    borderRadius: "8px",
+                    boxShadow: "lg",
+                  }}
+                />
+              </Grid>
+
+              {/* Second MKBox with 60% width, centered */}
+              <Grid
+                item
+                xs={8}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
               >
-                <CloseIcon />
-              </IconButton>
-              <List>
-                {navItems.map((text) => (
-                  <ListItem button key={text}>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                ))}
-              </List>
-            </Drawer> */}
-            <MKBox
-              component="ul"
-              display={{ xs: "none", lg: "flex" }}
-              p={0}
-              m={0}
-              sx={{ listStyle: "none" }}
+                <MKBox
+                  component="ul"
+                  p={0}
+                  m={0}
+                  sx={{
+                    listStyle: "none",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {navItems.map((text) => (
+                    <MKBox component="li" key={text} sx={{ padding: 1 }}>
+                      <MKTypography
+                        component={Link}
+                        href="#"
+                        variant="button"
+                        color="white"
+                        fontWeight="regular"
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        {text}
+                      </MKTypography>
+                    </MKBox>
+                  ))}
+                </MKBox>
+              </Grid>
+
+              {/* Third MKBox with 20% width */}
+              <Grid
+                item
+                xs={2}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none" }}>
+                  <MKButton circular variant="contained" color="white">
+                    Plan a Trip
+                  </MKButton>
+                </MKBox>
+              </Grid>
+            </Grid>
+
+            <Grid
+              container
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              minHeight="100%"
+              sx={{
+                backgroundImage: ({
+                  palette: { gradients },
+                  functions: { linearGradient, rgba },
+                }) =>
+                  `${linearGradient(
+                    rgba(gradients.dark.main, 0.5),
+                    rgba(gradients.dark.state, 0.5)
+                  )}, url(${item})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                borderRadius: 5,
+                padding: { xs: 2, md: 4 },
+              }}
             >
-              <MKButton circular variant="contained" color="white">
-                Plan a Trip
-              </MKButton>
-            </MKBox>
-          </Grid>
-        </Container>
-      </MKBox>
-      <Grid
-        container
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        minHeight="100%"
+              <Grid
+                container
+                item
+                xs={12}
+                lg={10}
+                flexDirection="column"
+                justifyContent="center"
+                alignItems="center"
+                textAlign="center"
+                mt={8}
+              >
+                <MKTypography
+                  variant="h1"
+                  color="white"
+                  mb={3}
+                  sx={({ breakpoints, typography: { size } }) => ({
+                    [breakpoints.down("md")]: {
+                      fontSize: size["3xl"],
+                    },
+                    fontFamily: "Playfair Display, serif",
+                    fontSize: "90px",
+                    fontWeight: 400,
+                  })}
+                >
+                  Sri Lanka: Your Summer Escape in Paradise Awaits
+                </MKTypography>
+                <Grid justifyContent="center">
+                  <MKButton circular variant="outlined" color="white">
+                    Destinations
+                  </MKButton>
+                  <MKButton
+                    sx={{ margin: 2 }}
+                    circular
+                    variant="outlined"
+                    color="white"
+                  >
+                    Tour Packages
+                  </MKButton>
+                  <MKButton circular variant="outlined" color="white">
+                    Business Tours
+                  </MKButton>
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                item
+                xs={12}
+                lg={12}
+                alignItems="center"
+                justifyContent="space-between"
+                flexDirection={{ xs: "column", md: "row" }}
+                sx={{
+                  mt: 3,
+                  py: 3,
+                  px: { xs: 2, md: 4 },
+                  borderRadius: 6,
+                }}
+              >
+                <Grid
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                    width: "100%",
+                    maxWidth: "28rem",
+                  }}
+                >
+                  <MKTypography
+                    sx={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      color: "#FFFFFF",
+                      position: "relative",
+                      "&::before, &::after": {
+                        content: '""',
+                        position: "absolute",
+                        width: "250%", // Length of the lines
+                        height: "2px", // Thickness of the lines
+                        backgroundColor: "#FFFFFF", // Color of the lines
+                      },
+                      "&::before": {
+                        left: "-180px", // Position before the text
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                      },
+                      "&::after": {
+                        right: "-180px", // Position after the text
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                      },
+                      fontFamily: "Playfair Display, serif",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                      textAlign: "center",
+                    }}
+                  >
+                    Forbes
+                  </MKTypography>
+                  <MKTypography
+                    variant="h1"
+                    color="white"
+                    mb={3}
+                    sx={({ breakpoints, typography: { size } }) => ({
+                      [breakpoints.down("md")]: {
+                        fontSize: size["3xl"],
+                      },
+                      fontSize: "30px",
+                      fontFamily: "Playfair Display, serif",
+                      paddingLeft: 2,
+                      textAlign: "center",
+                    })}
+                  >
+                    “Sri Lanka is one of the Must-Visit Travel Destinations For
+                    Summer 2024”
+                  </MKTypography>
+                  <MKTypography
+                    sx={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      color: "#FFFFFF",
+                      position: "relative",
+                      "&::before, &::after": {
+                        content: '""',
+                        position: "absolute",
+                        width: "28%", // Length of the lines
+                        height: "2px", // Thickness of the lines
+                        backgroundColor: "#FFFFFF", // Color of the lines
+                      },
+                      "&::before": {
+                        left: "-32%", // Position before the text
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                      },
+                      "&::after": {
+                        right: "-32%", // Position after the text
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                      },
+                      fontFamily: "Playfair Display, serif",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                      textAlign: "center",
+                    }}
+                  >
+                    Kathleen Peddicord, Forbes
+                  </MKTypography>
+                </Grid>
+                <Grid
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "30rem",
+                    borderRadius: 5,
+                    borderWidth: "1px",
+                    padding: 2,
+                    border: "solid",
+                    borderColor: "#FFFFFF",
+                  }}
+                >
+                  <MKTypography
+                    sx={{
+                      display: "inline-flex",
+                      color: "#FFFFFF",
+                      fontFamily: "Poppins, sans-serif",
+                      fontSize: "20px",
+                    }}
+                  >
+                    Cover Image: Sigiriya, Visit this place in
+                  </MKTypography>
+                  <MKTypography
+                    variant="h1"
+                    color="white"
+                    mb={3}
+                    sx={({ breakpoints, typography: { size } }) => ({
+                      [breakpoints.down("md")]: {
+                        fontSize: size["3xl"],
+                      },
+                      fontSize: "25px",
+                      fontFamily: "Playfair Display, serif",
+                    })}
+                  >
+                    Peaceful Sri Lanka Trip -Sigiriya Special
+                  </MKTypography>
+                  <Divider
+                    sx={{ opacity: 1, backgroundColor: "#FFFFFF" }}
+                    variant="middle"
+                  />
+                  <MKButton
+                    sx={{ width: "40%", backgroundColor: "none" }}
+                    circular
+                    variant="outlined"
+                    color="white"
+                  >
+                    View Package
+                  </MKButton>
+                </Grid>
+              </Grid>
+            </Grid>
+          </MKBox>
+        ))}
+      </Slider>
+      <CustomPagination
+        currentSlide={currentSlide} // You will need to update this with actual slide index from Slider
+        slideCount={3} // Update this with the total number of slides
+      />
+      {/* Mobile Menu Drawer */}
+      <Drawer
+        anchor="left"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
         sx={{
-          backgroundImage: ({
-            palette: { gradients },
-            functions: { linearGradient, rgba },
-          }) =>
-            `${linearGradient(
-              rgba(gradients.dark.main, 0.5),
-              rgba(gradients.dark.state, 0.5)
-            )}, url(${bgImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          padding: { xs: 2, md: 4 },
+          display: { xs: "block", lg: "none" },
+          "& .MuiDrawer-paper": {
+            width: "240px",
+            boxSizing: "border-box",
+          },
         }}
       >
-        <Grid
-          container
-          item
-          xs={12}
-          lg={10}
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          textAlign="center"
+        <IconButton
+          onClick={handleDrawerToggle}
+          sx={{ margin: 2, justifyContent: "flex-end" }}
         >
-          <MKTypography
-            variant="h1"
-            color="white"
-            mb={3}
-            sx={({ breakpoints, typography: { size } }) => ({
-              [breakpoints.down("md")]: {
-                fontSize: size["3xl"],
-              },
-              fontFamily: "Playfair Display, serif",
-              fontSize: "90px",
-              fontWeight: 400,
-            })}
-          >
-            Sri Lanka: Your Summer Escape in Paradise Awaits
-          </MKTypography>
-          <Grid justifyContent="center">
-            <MKButton circular variant="outlined" color="white">
-              Destinations
-            </MKButton>
-            <MKButton
-              sx={{ margin: 2 }}
-              circular
-              variant="outlined"
-              color="white"
-            >
-              Tour Packages
-            </MKButton>
-            <MKButton circular variant="outlined" color="white">
-              Business Tours
-            </MKButton>
-          </Grid>
-        </Grid>
-        <Grid
-          container
-          item
-          xs={12}
-          lg={12}
-          alignItems="center"
-          justifyContent="center"
-          flexDirection={{ xs: "column", md: "row" }}
-          sx={{
-            mt: 3,
-            py: 3,
-            px: { xs: 2, md: 4 },
-            backgroundColor: "#FEFDF5",
-            borderRadius: 6,
-          }}
-        >
-          <Grid
-            sx={{ width: "100%" }}
-            item
-            xs={12}
-            md={4}
-            lg={3}
-            mb={{ xs: 2, md: 0 }}
-            px={1}
-          >
-            <CustomSelect
-              title={"How many people?"}
-              menuList={[
-                { label: "1", value: 1 },
-                { label: "2", value: 2 },
-                { label: "3", value: 3 },
-                { label: "4", value: 4 },
-              ]}
-              frontIcon={<UilUsersAlt />}
-            />
-          </Grid>
-          <Grid item xs={12} md={4} lg={3} mb={{ xs: 2, md: 0 }} px={1}>
-            <CustomSelect
-              title={"Which city do you want to start?"}
-              menuList={[
-                { label: "Colombo", value: "Colombo" },
-                { label: "Kandy", value: "Kandy" },
-                { label: "Jaffna", value: "Jaffna" },
-                { label: "Galle", value: "Galle" },
-              ]}
-              frontIcon={<UilMapPinAlt />}
-            />
-          </Grid>
-          <Grid item xs={12} md={8} lg={4} sx={{ marginBottom: 0.5 }}>
-            <CustomDateRangePicker />
-          </Grid>
-          <Grid item xs={12} md={8} lg={2} px={1}>
-            <MKButton circular variant="contained" color="black">
-              Plan Your Trip
-            </MKButton>
-          </Grid>
-        </Grid>
-      </Grid>
+          <CloseIcon />
+        </IconButton>
+        <List>
+          {navItems.map((text) => (
+            <ListItem button key={text}>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+
+      {/* Mobile Menu Button */}
+      <IconButton
+        onClick={handleDrawerToggle}
+        sx={{
+          display: { xs: "block", lg: "none" },
+          position: "absolute",
+          top: "16px",
+          right: "16px",
+        }}
+      >
+        <MenuIcon />
+      </IconButton>
     </MKBox>
   );
 }

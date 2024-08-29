@@ -21,7 +21,7 @@ import {
 // Images
 import { UilUsersAlt, UilMapPinAlt } from "@iconscout/react-unicons";
 import bgImage from "assets/images/homePage/header2_bg.jpeg";
-import headerLogo from "assets/images/homePage/headerLogo.png";
+import headerLogo from "assets/images/homePage/Logo.svg";
 import CustomSelect from "components/CustomSelect";
 import CustomDateRangePicker from "components/CustomeDateRangerPicker";
 

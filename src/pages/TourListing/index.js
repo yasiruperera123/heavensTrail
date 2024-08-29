@@ -10,7 +10,7 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Icon from "@mui/material/Icon";
-
+import { ReactComponent as LordBuddha } from "assets/images/homePage/Rectangle4.svg";
 import ArrowForwardSharpIcon from "@mui/icons-material/ArrowForwardSharp";
 import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
 import HeaderOne from "layouts/sections/page-sections/page-headers/components/HeaderOne";
@@ -51,6 +51,7 @@ import buddha2Img from "assets/images/homePage/buddha2.jpeg";
 import hinduImg from "assets/images/homePage/hindu.jpeg";
 import galleImg from "assets/images/homePage/galle.jpeg";
 import firBall from "assets/images/homePage/fireball.jpeg";
+import buddhaSVG from "assets/images/homePage/Rectangle4.svg";
 
 import {
   Card,
@@ -162,7 +163,7 @@ function TourListing() {
         <UilUtensils />,
         <UilBedDouble />,
       ],
-      img: buddha2Img,
+      img: "../../assets/images/homePage/Rectangle4.svg",
     },
     {
       title: "Divine Sri Lanka Getaway - Ramayana Edition",
@@ -431,7 +432,7 @@ function TourListing() {
                           margin: 0,
                           padding: 0,
                         }}
-                        alt="Image"
+                        alt="SVG Image"
                       />
                       <CardContent sx={{ flex: 1, padding: 1 }}>
                         <MKButton
@@ -618,17 +619,17 @@ function TourListing() {
                         flexDirection: "column",
                       }}
                     >
-                      <CardMedia
-                        component="img"
-                        height="140px"
-                        image={item?.img}
-                        sx={{
-                          objectFit: "cover",
+                      <img
+                        src={buddhaSVG}
+                        alt="SVG Image"
+                        style={{
                           width: "100%",
+                          height: "140px",
+                          objectFit: "cover",
+                          objectPosition: "top",
                           margin: 0,
                           padding: 0,
                         }}
-                        alt="Image"
                       />
                       <CardContent sx={{ flex: 1, padding: 1 }}>
                         <MKButton

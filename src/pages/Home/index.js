@@ -60,6 +60,7 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
+import NavBar from "components/NavBar";
 
 function Home() {
   const navigate = useNavigate();
@@ -217,10 +218,9 @@ function Home() {
 
   return (
     <div style={{ backgroundColor: "#FEFDF5" }}>
-      <View height="40rem">
+      <div style={{ padding: 15 }}>
         <HeaderOne />
-      </View>
-
+      </div>
       {/* Explore our travel solutions */}
       <Grid
         container
@@ -230,6 +230,7 @@ function Home() {
           paddingLeft: "16px",
           paddingRight: "16px",
         }}
+        mt={8}
       >
         <Container
           sx={{
@@ -336,7 +337,6 @@ function Home() {
           ))}
         </Grid>
       </Grid>
-
       {/* Create your own adventure SECTION */}
       <Grid
         container
@@ -397,59 +397,74 @@ function Home() {
             </MKTypography>
           </Grid>
         </Container>
-        <Grid lg={10} container spacing={2}>
-          {adventures.map((item, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
-              <Card
-                sx={{
-                  height: "350px",
-                  display: "flex",
-                  flexDirection: "column",
-                  padding: "16px",
-                  backgroundColor: "#EEECE2",
-                  boxShadow: "none",
-                  borderWidth: 1,
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  height="80px"
-                  image={item?.img}
-                  alt="Image"
-                  sx={{ objectFit: "contain", width: "70px" }}
-                />
-                <MKTypography
-                  color="#1A1814"
-                  mb={2}
-                  sx={{
-                    fontSize: "24px",
-                    fontFamily: "Playfair Display, serif",
-                    fontSize: "28px",
-                    fontWeight: 400,
-                  }}
-                >
-                  {item?.title}
-                </MKTypography>
-                <MKTypography variant="subtitle2">{item?.des}</MKTypography>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-        <MKButton
-          circular
-          variant="contained"
-          color="black"
+        <Container
           sx={{
-            paddingLeft: 5,
-            paddingRight: 5,
-            marginTop: 5,
-            marginBottom: 10,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          Create Your Customized Tour
-        </MKButton>
+          <Grid
+            sx={{
+              alignSelf: "center",
+            }}
+            container
+            spacing={2}
+          >
+            {adventures.map((item, index) => (
+              <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+                <Card
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: "16px",
+                    backgroundColor: "#EEECE2",
+                    boxShadow: "none",
+                    borderWidth: 1,
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="80px"
+                    image={item?.img}
+                    alt="Image"
+                    sx={{ objectFit: "contain", width: "70px" }}
+                  />
+                  <MKTypography
+                    color="#1A1814"
+                    mb={2}
+                    sx={{
+                      fontSize: "24px",
+                      fontFamily: "Playfair Display, serif",
+                      fontSize: "28px",
+                      fontWeight: 400,
+                    }}
+                  >
+                    {item?.title}
+                  </MKTypography>
+                  <MKTypography variant="subtitle2">{item?.des}</MKTypography>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+          <Grid>
+            <MKButton
+              circular
+              variant="contained"
+              color="black"
+              sx={{
+                paddingLeft: 5,
+                paddingRight: 5,
+                marginTop: 5,
+                marginBottom: 10,
+              }}
+            >
+              Create Your Customized Tour
+            </MKButton>
+          </Grid>
+        </Container>
       </Grid>
-
       {/* Explore our travel Packages */}
       <Grid
         container
@@ -509,31 +524,46 @@ function Home() {
             </MKTypography>
           </Grid>
         </Container>
-        <Grid container>
-          <Box
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <Grid
+            container
+            spacing={2}
             sx={{
-              display: "flex",
               overflowX: "auto",
-              padding: 2,
+              paddingX: 2,
               "&::-webkit-scrollbar": {
                 display: "none",
               },
               scrollbarWidth: "none",
+              flexWrap: "nowrap",
+              width: "100%",
+              gap: 2, // Adds spacing between cards horizontally
             }}
           >
             {travelPcgs.map((item, index) => (
               <Grid
                 item
                 key={index}
-                xs={12}
-                sm={6}
-                md={4}
-                lg={3}
-                sx={{ margin: 1, flexShrink: 0 }}
+                xs={12} // Full width on mobile
+                sm={6} // Half width on small screens
+                md={4} // One-third width on medium screens
+                lg={3.5} // Adjust to fit 3.5 items per row
+                sx={{
+                  flexShrink: 0,
+                  width: "calc(100% / 3.5)", // Ensure 3.5 items per row
+                  backgroundColor: "#FEFDF5",
+                }}
               >
                 <Card
                   sx={{
-                    maxWidth: 345,
                     height: "100%",
                     boxShadow: "none",
                     backgroundColor: "#FEFDF5",
@@ -541,6 +571,21 @@ function Home() {
                     borderColor: "#C9C5BA",
                     display: "flex",
                     flexDirection: "column",
+                    transition: "background-color 0.3s ease, color 0.3s ease",
+                    "&:hover": {
+                      backgroundColor: "#EEECE2",
+                      "& .hover-button": {
+                        backgroundColor: "#AF4D06",
+                        color: "#FEFDF5",
+                      },
+                      "& .hover-icon": {
+                        color: "#929E03",
+                      },
+                      "& .hover-svg path, & .hover-svg line, & .hover-svg rect, & .hover-svg circle":
+                        {
+                          stroke: "#929E03",
+                        },
+                    },
                   }}
                 >
                   <CardActionArea
@@ -552,19 +597,25 @@ function Home() {
                   >
                     <CardMedia
                       component="img"
-                      height="140px"
+                      height="40%"
                       image={item?.img}
                       sx={{
                         objectFit: "cover",
                         width: "100%",
                         margin: 0,
                         padding: 0,
+                        borderBottomLeftRadius: 0,
+                        borderBottomRightRadius: 0,
                       }}
                       alt="Image"
                     />
                     <CardContent sx={{ flex: 1, padding: 1 }}>
                       <MKButton
-                        style={{ marginTop: "10px", marginBottom: "20px" }}
+                        className="hover-button"
+                        style={{
+                          marginTop: "10px",
+                          marginBottom: "20px",
+                        }}
                         size="small"
                         circular
                         variant="outlined"
@@ -604,11 +655,16 @@ function Home() {
                         <MKTypography variant="subtitle2">Airport</MKTypography>
                       </Grid>
                       <Divider variant="middle" component="li" />
-                      <UilPlaneDeparture />
-                      <UilTicket />
-                      <UilUtensils />
-                      <UilBedDouble />
-                      <LiBeach />
+                      <UilPlaneDeparture className="hover-icon" />
+                      <UilTicket className="hover-icon" />
+                      <UilUtensils className="hover-icon" />
+                      <UilBedDouble className="hover-icon" />
+                      <LiBeach
+                        className="hover-svg"
+                        sx={{
+                          transition: "stroke 0.3s ease",
+                        }}
+                      />
                       <MKTypography variant="subtitle2">
                         Pricing starts at
                       </MKTypography>
@@ -638,22 +694,23 @@ function Home() {
                 </Card>
               </Grid>
             ))}
-          </Box>
-        </Grid>
-        <MKButton
-          circular
-          variant="contained"
-          color="black"
-          sx={{
-            paddingLeft: 5,
-            paddingRight: 5,
-            marginTop: 5,
-            marginBottom: 10,
-          }}
-          onClick={handleClick}
-        >
-          See All Packages
-        </MKButton>
+          </Grid>
+
+          <MKButton
+            circular
+            variant="contained"
+            color="black"
+            sx={{
+              paddingLeft: 5,
+              paddingRight: 5,
+              marginTop: 5,
+              marginBottom: 10,
+            }}
+            onClick={handleClick}
+          >
+            See All Packages
+          </MKButton>
+        </Box>
       </Grid>
 
       {/* Discover Sri Lanka Through Our Travelers' Eyes SECTION */}
@@ -797,23 +854,19 @@ function Home() {
           See All Packages
         </MKButton>
       </Grid>
-
       {/* Explore our Insights, Tips and More Packages */}
-      <Grid
-        container
+      <Box
         sx={{
-          display: "flex",
-          justifyContent: "center",
-          paddingLeft: "16px",
-          paddingRight: "16px",
-          marginBottom: "40px",
           backgroundColor: "#FEFDF5",
         }}
       >
-        <Container
+        <Grid
           sx={{
             display: "flex",
-            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: 0,
+            width: "100%",
           }}
         >
           <Grid
@@ -824,7 +877,8 @@ function Home() {
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            sx={{ textAlign: "center", marginBottom: "20px" }}
+            textAlign="center"
+            sx={{ marginBottom: { xs: 3, md: 5 } }}
           >
             <Stack direction="row" spacing={1} mt={3}>
               <MKButton circular variant="outlined" color="black">
@@ -838,9 +892,13 @@ function Home() {
                 [breakpoints.down("md")]: {
                   fontSize: size["3xl"],
                 },
+                [breakpoints.down("sm")]: {
+                  fontSize: size["xl"],
+                },
                 fontFamily: "Playfair Display, serif",
                 fontSize: "60px",
                 fontWeight: 400,
+                textAlign: "center",
               })}
             >
               Explore our Insights, Tips and More
@@ -849,69 +907,85 @@ function Home() {
               variant="h6"
               fontWeight="regular"
               color="black"
-              sx={{ textAlign: "center", maxWidth: "90%" }}
+              sx={{
+                textAlign: "center",
+                maxWidth: "90%",
+                margin: "0 auto",
+              }}
             >
               Dive deeper into the magic of Sri Lanka with our insightful blog!
               Discover hidden gems, cultural treasures, and adventure
               inspiration to fuel your travel dreams.
             </MKTypography>
           </Grid>
-        </Container>
-        <Grid container>
+
           <Box
             sx={{
               display: "flex",
-              overflowX: "auto",
-              padding: 2,
-              "&::-webkit-scrollbar": {
-                display: "none",
-              },
-              scrollbarWidth: "none",
+              flexDirection: "column",
+              alignItems: "center",
+              width: "100%",
             }}
           >
-            {blogs.map((item, index) => (
-              <Grid
-                item
-                key={index}
-                xs={12}
-                sm={6}
-                md={4}
-                lg={3}
-                sx={{ margin: 1, flexShrink: 0 }}
-              >
-                <Card
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                overflowX: "auto",
+                paddingX: 2,
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
+                scrollbarWidth: "none",
+                flexWrap: "nowrap",
+                width: "100%",
+                gap: 2,
+              }}
+            >
+              {blogs.map((item, index) => (
+                <Grid
+                  item
+                  key={index}
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3.5}
                   sx={{
-                    maxWidth: 345,
-                    height: "100%",
-                    boxShadow: "none",
-                    backgroundColor: "#FEFDF5",
-                    borderWidth: 1,
-                    borderColor: "#C9C5BA",
-                    display: "flex",
-                    flexDirection: "column",
+                    flexShrink: 0,
                   }}
                 >
-                  <CardActionArea
+                  <Card
                     sx={{
-                      height: "100%",
+                      boxShadow: "none",
+                      backgroundColor: "#FEFDF5",
+                      borderWidth: 1,
+                      borderColor: "#C9C5BA",
                       display: "flex",
                       flexDirection: "column",
+                      borderWidth: 0,
+                      height: "100%",
                     }}
                   >
-                    <CardMedia
-                      component="img"
-                      height="140px"
-                      image={item?.img}
+                    <CardActionArea
                       sx={{
-                        objectFit: "cover",
-                        width: "100%",
-                        margin: 0,
-                        padding: 0,
+                        display: "flex",
+                        flexDirection: "column",
+                        height: "100%",
                       }}
-                      alt="Image"
-                    />
-                    <CardContent sx={{ flex: 1, padding: 2 }}>
-                      <Grid container alignItems="center">
+                    >
+                      <CardMedia
+                        component="img"
+                        height="270px"
+                        image={item?.img}
+                        sx={{
+                          objectFit: "cover",
+                          width: "100%",
+                          margin: 0,
+                          padding: 0,
+                        }}
+                        alt="Image"
+                      />
+                      <CardContent sx={{ flex: 1, padding: 2 }}>
                         <Typography
                           sx={{
                             fontFamily: "Playfair Display, serif",
@@ -923,38 +997,50 @@ function Home() {
                         >
                           {item?.title}
                         </Typography>
-                      </Grid>
-                      <MKTypography variant="subtitle2">
-                        {item?.des}
-                      </MKTypography>
-                      <MKTypography
-                        sx={{ fontWeight: "500", textDecoration: "underline" }}
-                        variant="subtitle2"
-                      >
-                        Read More
-                      </MKTypography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Grid>
-            ))}
+                        <MKTypography
+                          variant="subtitle2"
+                          sx={{
+                            display: "-webkit-box",
+                            overflow: "hidden",
+                            WebkitBoxOrient: "vertical",
+                            WebkitLineClamp: 3,
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {item?.des}
+                        </MKTypography>
+                        <MKTypography
+                          sx={{
+                            fontWeight: "500",
+                            textDecoration: "underline",
+                          }}
+                          variant="subtitle2"
+                        >
+                          Read More
+                        </MKTypography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+
+            <MKButton
+              circular
+              variant="contained"
+              color="black"
+              sx={{
+                paddingX: 5,
+                marginTop: 5,
+                marginBottom: 10,
+              }}
+              onClick={handleClick}
+            >
+              View All Blogs
+            </MKButton>
           </Box>
         </Grid>
-        <MKButton
-          circular
-          variant="contained"
-          color="black"
-          sx={{
-            paddingLeft: 5,
-            paddingRight: 5,
-            marginTop: 5,
-            marginBottom: 10,
-          }}
-        >
-          View All Blogs
-        </MKButton>
-      </Grid>
-
+      </Box>
       {/* Your Questions Answered SECTION */}
       <Grid
         container
@@ -1103,7 +1189,6 @@ function Home() {
           </Grid>
         </Container>
       </MKBox>
-
       <Grid container sx={{ minHeight: "10rem" }}>
         <Grid
           item
