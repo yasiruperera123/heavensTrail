@@ -80,11 +80,16 @@ function TourListing() {
         "Airport",
       ],
       iconSet: [
-        <UilPlaneDeparture />,
-        <UilTicket />,
-        <UilUtensils />,
-        <UilBedDouble />,
-        <LiBeach />,
+        <UilPlaneDeparture className="hover-icon" />,
+        <UilTicket className="hover-icon" />,
+        <UilUtensils className="hover-icon" />,
+        <UilBedDouble className="hover-icon" />,
+        <LiBeach
+          className="hover-svg"
+          sx={{
+            transition: "stroke 0.3s ease",
+          }}
+        />,
       ],
       img: coconutHllImg,
     },
@@ -102,11 +107,16 @@ function TourListing() {
         "Airport",
       ],
       iconSet: [
-        <UilPlaneDeparture />,
-        <UilTicket />,
-        <UilUtensils />,
-        <UilBedDouble />,
-        <LiBeach />,
+        <UilPlaneDeparture className="hover-icon" />,
+        <UilTicket className="hover-icon" />,
+        <UilUtensils className="hover-icon" />,
+        <UilBedDouble className="hover-icon" />,
+        <LiBeach
+          className="hover-svg"
+          sx={{
+            transition: "stroke 0.3s ease",
+          }}
+        />,
       ],
       img: sigiriyaImg,
     },
@@ -121,11 +131,16 @@ function TourListing() {
         "Airport",
       ],
       iconSet: [
-        <UilPlaneDeparture />,
-        <UilTicket />,
-        <UilUtensils />,
-        <UilBedDouble />,
-        <LiBeach />,
+        <UilPlaneDeparture className="hover-icon" />,
+        <UilTicket className="hover-icon" />,
+        <UilUtensils className="hover-icon" />,
+        <UilBedDouble className="hover-icon" />,
+        <LiBeach
+          className="hover-svg"
+          sx={{
+            transition: "stroke 0.3s ease",
+          }}
+        />,
       ],
       img: soulmateImg,
     },
@@ -140,10 +155,10 @@ function TourListing() {
         "Airport",
       ],
       iconSet: [
-        <UilPlaneDeparture />,
-        <UilTicket />,
-        <UilUtensils />,
-        <UilBedDouble />,
+        <UilPlaneDeparture className="hover-icon" />,
+        <UilTicket className="hover-icon" />,
+        <UilUtensils className="hover-icon" />,
+        <UilBedDouble className="hover-icon" />,
       ],
       img: archImg,
     },
@@ -158,12 +173,12 @@ function TourListing() {
         "Airport",
       ],
       iconSet: [
-        <UilPlaneDeparture />,
-        <UilTicket />,
-        <UilUtensils />,
-        <UilBedDouble />,
+        <UilPlaneDeparture className="hover-icon" />,
+        <UilTicket className="hover-icon" />,
+        <UilUtensils className="hover-icon" />,
+        <UilBedDouble className="hover-icon" />,
       ],
-      img: "../../assets/images/homePage/Rectangle4.svg",
+      img: buddha2Img,
     },
     {
       title: "Divine Sri Lanka Getaway - Ramayana Edition",
@@ -176,10 +191,10 @@ function TourListing() {
         "Airport",
       ],
       iconSet: [
-        <UilPlaneDeparture />,
-        <UilTicket />,
-        <UilUtensils />,
-        <UilBedDouble />,
+        <UilPlaneDeparture className="hover-icon" />,
+        <UilTicket className="hover-icon" />,
+        <UilUtensils className="hover-icon" />,
+        <UilBedDouble className="hover-icon" />,
       ],
       img: hinduImg,
     },
@@ -197,11 +212,16 @@ function TourListing() {
         "Airport",
       ],
       iconSet: [
-        <UilPlaneDeparture />,
-        <UilTicket />,
-        <UilUtensils />,
-        <UilBedDouble />,
-        <LiBeach />,
+        <UilPlaneDeparture className="hover-icon" />,
+        <UilTicket className="hover-icon" />,
+        <UilUtensils className="hover-icon" />,
+        <UilBedDouble className="hover-icon" />,
+        <LiBeach
+          className="hover-svg"
+          sx={{
+            transition: "stroke 0.3s ease",
+          }}
+        />,
       ],
       img: galleImg,
     },
@@ -210,11 +230,16 @@ function TourListing() {
       duration: "4 Nights, 6 Days",
       path: ["Airport", "Sigiriya", "Dambulla", "Hatton"],
       iconSet: [
-        <UilPlaneDeparture />,
-        <UilTicket />,
-        <UilUtensils />,
-        <UilBedDouble />,
-        <LiBeach />,
+        <UilPlaneDeparture className="hover-icon" />,
+        <UilTicket className="hover-icon" />,
+        <UilUtensils className="hover-icon" />,
+        <UilBedDouble className="hover-icon" />,
+        <LiBeach
+          className="hover-svg"
+          sx={{
+            transition: "stroke 0.3s ease",
+          }}
+        />,
       ],
       img: firBall,
     },
@@ -229,51 +254,18 @@ function TourListing() {
         "Airport",
       ],
       iconSet: [
-        <UilPlaneDeparture />,
-        <UilTicket />,
-        <UilUtensils />,
-        <UilBedDouble />,
-        <LiBeach />,
+        <UilPlaneDeparture className="hover-icon" />,
+        <UilTicket className="hover-icon" />,
+        <UilUtensils className="hover-icon" />,
+        <UilBedDouble className="hover-icon" />,
+        <LiBeach
+          className="hover-svg"
+          sx={{
+            transition: "stroke 0.3s ease",
+          }}
+        />,
       ],
       img: soulmateImg,
-    },
-  ];
-
-  const reviews = [
-    {
-      title:
-        "Sri Lanka is a dream destination come true! The beaches were paradise, the food was amazing, and the people were so friendly. Our tour was perfectly planned, with something for everyone in our group.",
-    },
-    {
-      title:
-        "This trip to Sri Lanka was an adventure I'll never forget. We hiked through stunning mountains, learned about the fascinating culture, and even went on a thrilling safari! ",
-    },
-    {
-      title:
-        "We had the most relaxing and rejuvenating time in Sri Lanka. Our tour focused on wellness and mindfulness, and we had the opportunity to practice yoga, meditation, and Ayurveda treatments. ",
-    },
-  ];
-
-  const blogs = [
-    {
-      title: "Trek Sri Lanka's Thrilling Wildlife Adventures",
-      des: "Encounter Sri Lanka's diverse wildlife in its natural habitat. Learn about the island's national parks, fascinating creatures you might spot, and responsible wildlife viewing practices.",
-      img: tigerImg,
-    },
-    {
-      title: "Unveiling Culinary Delights: A Foodie's Guide",
-      des: "Embark on a delicious journey through Sri Lanka's vibrant culinary scene. Explore regional specialties, mouthwatering street food, and authentic cooking experiences.",
-      img: foodImg,
-    },
-    {
-      title: "Learn about Sri Lanka's Most Breathtaking Trails",
-      des: "Lace up your boots and explore Sri Lanka's stunning landscapes on foot. Discover scenic trails for all levels, from gentle hikes to challenging treks, offering breathtaking views and unforgettable experiences.",
-      img: archImg,
-    },
-    {
-      title: "Sri Lanka's Ancient Cities: A Journey Through History",
-      des: "Travel back in time and explore Sri Lanka's captivating ancient cities. Discover UNESCO World Heritage Sites, delve into rich cultural heritage, and uncover the island's fascinating past.",
-      img: buddhaImg,
     },
   ];
 
@@ -405,14 +397,28 @@ function TourListing() {
                 >
                   <Card
                     sx={{
-                      maxWidth: 345,
-                      height: "100%",
+                      height: "650px",
+                      maxHeight: "745px",
                       boxShadow: "none",
                       backgroundColor: "#FEFDF5",
                       borderWidth: 1,
                       borderColor: "#C9C5BA",
                       display: "flex",
                       flexDirection: "column",
+                      "&:hover": {
+                        backgroundColor: "#EEECE2",
+                        "& .hover-button": {
+                          backgroundColor: "#AF4D06",
+                          color: "#FEFDF5",
+                        },
+                        "& .hover-icon": {
+                          color: "#929E03",
+                        },
+                        "& .hover-svg path, & .hover-svg line, & .hover-svg rect, & .hover-svg circle":
+                          {
+                            stroke: "#929E03",
+                          },
+                      },
                     }}
                   >
                     <CardActionArea
@@ -424,18 +430,21 @@ function TourListing() {
                     >
                       <CardMedia
                         component="img"
-                        height="140px"
+                        height={"250px"}
                         image={item?.img}
                         sx={{
                           objectFit: "cover",
                           width: "100%",
                           margin: 0,
                           padding: 0,
+                          borderBottomLeftRadius: 0,
+                          borderBottomRightRadius: 0,
                         }}
                         alt="SVG Image"
                       />
                       <CardContent sx={{ flex: 1, padding: 1 }}>
                         <MKButton
+                          className="hover-button"
                           style={{ marginTop: "10px", marginBottom: "20px" }}
                           size="small"
                           circular
@@ -602,7 +611,6 @@ function TourListing() {
                 >
                   <Card
                     sx={{
-                      maxWidth: 345,
                       height: "100%",
                       boxShadow: "none",
                       backgroundColor: "#EEECE2",
@@ -610,6 +618,16 @@ function TourListing() {
                       borderColor: "#C9C5BA",
                       display: "flex",
                       flexDirection: "column",
+                      "&:hover": {
+                        backgroundColor: "#FEFDF5",
+                        "& .hover-icon": {
+                          color: "#929E03",
+                        },
+                        "& .hover-svg path, & .hover-svg line, & .hover-svg rect, & .hover-svg circle":
+                          {
+                            stroke: "#929E03",
+                          },
+                      },
                     }}
                   >
                     <CardActionArea
@@ -619,17 +637,19 @@ function TourListing() {
                         flexDirection: "column",
                       }}
                     >
-                      <img
-                        src={buddhaSVG}
-                        alt="SVG Image"
-                        style={{
-                          width: "100%",
-                          height: "140px",
+                      <CardMedia
+                        component="img"
+                        height={"300px"}
+                        image={item?.img}
+                        sx={{
                           objectFit: "cover",
-                          objectPosition: "top",
+                          width: "100%",
                           margin: 0,
                           padding: 0,
+                          borderBottomLeftRadius: 0,
+                          borderBottomRightRadius: 0,
                         }}
+                        alt="SVG Image"
                       />
                       <CardContent sx={{ flex: 1, padding: 1 }}>
                         <MKButton

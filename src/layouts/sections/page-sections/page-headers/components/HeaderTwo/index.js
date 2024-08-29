@@ -46,108 +46,87 @@ function HeaderTwo() {
 
   return (
     <MKBox position="relative" height="100%">
-      <MKBox component="nav" position="absolute" top="0.5rem" width="100%">
-        <Container>
-          <Grid container flexDirection="row" alignItems="center">
-            <MKBox
-              component="img"
-              src={headerLogo}
-              alt="Background"
-              sx={{
-                width: "100px",
-                height: "auto",
-                objectFit: "contain",
-                borderRadius: "8px",
-                boxShadow: "lg",
-              }}
-            />
-            <MKButton
-              variant="outlined"
-              color="white"
-              sx={{ display: { xs: "block", lg: "none" }, ml: "auto" }}
-            >
-              <MKBox component="i" color="white" className="fas fa-bars" />
+      <Grid
+        container
+        flexDirection="row"
+        alignItems="center"
+        sx={{
+          padding: 2,
+          position: "absolute",
+          width: "100%",
+          display: { xs: "none", lg: "flex" },
+        }}
+      >
+        {/* First MKBox with 20% width */}
+        <Grid item xs={2} sx={{ display: "flex", alignItems: "center" }}>
+          <MKBox
+            component="img"
+            src={headerLogo}
+            alt="Background"
+            sx={{
+              width: "100px",
+              height: "auto",
+              objectFit: "contain",
+              borderRadius: "8px",
+              boxShadow: "lg",
+            }}
+          />
+        </Grid>
+
+        {/* Second MKBox with 60% width, centered */}
+        <Grid
+          item
+          xs={8}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <MKBox
+            component="ul"
+            p={0}
+            m={0}
+            sx={{
+              listStyle: "none",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            {navItems.map((text) => (
+              <MKBox component="li" key={text} sx={{ padding: 1 }}>
+                <MKTypography
+                  component={Link}
+                  href="#"
+                  variant="button"
+                  color="white"
+                  fontWeight="regular"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  {text}
+                </MKTypography>
+              </MKBox>
+            ))}
+          </MKBox>
+        </Grid>
+
+        {/* Third MKBox with 20% width */}
+        <Grid
+          item
+          xs={2}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+          }}
+        >
+          <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none" }}>
+            <MKButton circular variant="contained" color="white">
+              Plan a Trip
             </MKButton>
-            <MKBox
-              component="ul"
-              display={{ xs: "none", lg: "flex" }}
-              p={0}
-              my={0}
-              mx="auto"
-              sx={{ listStyle: "none" }}
-            >
-              {[
-                "Home",
-                "Tour Packages",
-                "Business Tours",
-                "About Us",
-                "Contact Us",
-              ].map((text) => (
-                <MKBox component="li" key={text}>
-                  <MKTypography
-                    component={Link}
-                    href="#"
-                    variant="button"
-                    color="white"
-                    fontWeight="regular"
-                    p={1}
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    {text}
-                  </MKTypography>
-                </MKBox>
-              ))}
-            </MKBox>
-            {/* Mobile View */}
-            {/* <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ display: { xs: "block", lg: "none" } }}
-            >
-              <MenuIcon />
-            </IconButton> */}
-            {/* <Drawer
-              anchor="right"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              sx={{
-                "& .MuiDrawer-paper": {
-                  width: 240,
-                },
-              }}
-            >
-              <IconButton
-                color="inherit"
-                aria-label="close drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-              >
-                <CloseIcon />
-              </IconButton>
-              <List>
-                {navItems.map((text) => (
-                  <ListItem button key={text}>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                ))}
-              </List>
-            </Drawer> */}
-            <MKBox
-              component="ul"
-              display={{ xs: "none", lg: "flex" }}
-              p={0}
-              m={0}
-              sx={{ listStyle: "none" }}
-            >
-              <MKButton circular variant="contained" color="white">
-                Plan a Trip
-              </MKButton>
-            </MKBox>
-          </Grid>
-        </Container>
-      </MKBox>
+          </MKBox>
+        </Grid>
+      </Grid>
       <Grid
         container
         display="flex"
