@@ -1,26 +1,14 @@
 import React from "react";
-import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
-import BaseLayout from "layouts/sections/components/BaseLayout";
 import View from "layouts/sections/components/View";
-import { ArrowRight } from "@mui/icons-material";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
-import Icon from "@mui/material/Icon";
-import { ReactComponent as LordBuddha } from "assets/images/homePage/Rectangle4.svg";
-import ArrowForwardSharpIcon from "@mui/icons-material/ArrowForwardSharp";
 import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
-import HeaderOne from "layouts/sections/page-sections/page-headers/components/HeaderOne";
 import HeaderTwo from "layouts/sections/page-sections/page-headers/components/HeaderTwo";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import DefaultFooter from "../../examples/Footers/DefaultFooter";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import LinkedIn from "@mui/icons-material/LinkedIn";
-import Instagram from "@mui/icons-material/Instagram";
+import Footer from "components/Footer";
 import {
   UilMountains,
   UilBookOpen,
@@ -28,33 +16,18 @@ import {
   UilBuilding,
 } from "@iconscout/react-unicons";
 import sigiriyaImg from "assets/images/homePage/sigiriya.jpeg";
-import soulmateImg from "assets/images/homePage/soulmate.jpeg";
-import yalaImg from "assets/images/homePage/yala.jpeg";
-import tigerImg from "assets/images/homePage/tiger.jpeg";
-import foodImg from "assets/images/homePage/food.jpeg";
 import archImg from "assets/images/homePage/9arch.jpeg";
-import buddhaImg from "assets/images/homePage/buddha.jpeg";
-import footerBg from "assets/images/homePage/beach.jpeg";
-import footerLogo from "assets/images/homePage/footerlogo.png";
-import buddha2Img from "assets/images/homePage/buddha2.jpeg";
-import hinduImg from "assets/images/homePage/hindu.jpeg";
 import galleImg from "assets/images/homePage/galle.jpeg";
-import firBall from "assets/images/homePage/fireball.jpeg";
-import buddhaSVG from "assets/images/homePage/Rectangle4.svg";
 import {
   Card,
   CardMedia,
   CardActionArea,
-  CardContent,
-  Divider,
   Box,
   Typography,
-  Avatar,
   Accordion,
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
-import icon from "assets/theme/components/icon";
 
 function Destination() {
   const seaSideDes = [
@@ -139,24 +112,6 @@ function Destination() {
       title: "How can I get around Sri Lanka?",
       answer:
         "Lorem ipsum dolor sit amet consectetur. Ut in sed feugiat viverra commodo sed malesuada pharetra tempor. Tempor mauris morbi leo erat. Pellentesque ut convallis interdum condimentum id ultrices pretium. Faucibus lorem accumsan quis mauris ac pellentesque lectus.",
-    },
-  ];
-  const socials = [
-    {
-      icon: <Instagram />,
-      link: "",
-    },
-    {
-      icon: <LinkedIn />,
-      link: "",
-    },
-    {
-      icon: <TwitterIcon />,
-      link: "",
-    },
-    {
-      icon: <FacebookIcon />,
-      link: "",
     },
   ];
 
@@ -263,21 +218,12 @@ in Sri Lanka"
                       backgroundColor: "#FEFDF5",
                       borderWidth: 1,
                       borderColor: "#C9C5BA",
-                      display: "flex",
-                      flexDirection: "column",
                     }}
                   >
-                    <CardActionArea
-                      sx={{
-                        height: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyItems: "left",
-                      }}
-                    >
+                    <CardActionArea>
                       <CardMedia
                         component="img"
-                        height={"500px"}
+                        height="500px"
                         image={item?.img}
                         sx={{
                           objectFit: "cover",
@@ -292,8 +238,8 @@ in Sri Lanka"
                       <Grid
                         sx={{
                           width: "100%",
-                          paddingLeft: 2,
-                          marginBottom: 5,
+                          padding: 2,
+                          paddingTop: 0, // Remove padding from the top to prevent shifting
                         }}
                       >
                         <Typography
@@ -737,194 +683,7 @@ in Sri Lanka"
           </MKButton>
         </Grid>
       </Grid>
-      <MKBox
-        display="flex"
-        alignItems="center"
-        height="35rem"
-        minHeight="100%"
-        sx={{
-          backgroundImage: `url(${footerBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          margin: 1,
-          borderRadius: 5,
-        }}
-      >
-        <Grid
-          container
-          xs={12}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-          }}
-          flexDirection="column"
-          justifyContent="center"
-        >
-          <MKTypography
-            variant="h1"
-            color="white"
-            mb={3}
-            sx={({ breakpoints, typography: { size } }) => ({
-              [breakpoints.down("md")]: {
-                fontSize: size["3xl"],
-              },
-              fontSize: "80px",
-              fontFamily: "Playfair Display, serif",
-              width: "90%",
-              textAlign: "center",
-            })}
-          >
-            {`Where Will Your Journey Begin?`} <br />
-            {`Create your trip today.`}
-          </MKTypography>
-          <Stack direction="row" spacing={1} mt={3}>
-            <MKButton circular variant="contained" color="white">
-              Plan Your Trip
-            </MKButton>
-          </Stack>
-        </Grid>
-      </MKBox>
-
-      <Grid container sx={{ minHeight: "10rem" }}>
-        <Grid
-          item
-          xs={12}
-          sm="auto"
-          alignItems="center"
-          display={"flex"}
-          sx={{ marginLeft: 2 }}
-        >
-          <MKBox
-            component="img"
-            style={{ width: 120, height: 100 }}
-            src={footerLogo}
-            alt={"bgImage"}
-            mb={2}
-          />
-        </Grid>
-
-        <Grid item xs={12} sm={9} alignContent="center">
-          <Grid
-            sx={{ minHeight: "2rem" }}
-            display="flex"
-            flexDirection="row"
-            flexWrap="wrap"
-            justifyContent={"space-evenly"}
-          >
-            {[
-              "Home",
-              "Tours Packages",
-              "Business Tours",
-              "About Us",
-              "Contact Us",
-            ].map((text, index) => (
-              <React.Fragment key={text}>
-                <MKTypography
-                  variant="h6"
-                  fontWeight="regular"
-                  color="black"
-                  sx={{
-                    textAlign: "center",
-                    fontFamily: "Playfair Display, serif",
-                    mx: 1,
-                    my: { xs: 1, sm: 0 },
-                  }}
-                >
-                  {text}
-                </MKTypography>
-                {index < 4 && (
-                  <Divider
-                    sx={{
-                      borderColor: "black",
-                      borderWidth: "2px",
-                      height: "2rem", // Adjust the height
-                      mx: { xs: 0, sm: 1 },
-                    }}
-                    orientation="vertical"
-                    variant="middle"
-                    flexItem
-                  />
-                )}
-              </React.Fragment>
-            ))}
-          </Grid>
-
-          <Grid
-            sx={{ minHeight: "2rem", mt: 2 }}
-            display="flex"
-            flexDirection="row"
-            justifyContent="center"
-            flexWrap="wrap"
-          >
-            <Grid item xs={12} sm={2} textAlign="center" mb={{ xs: 2, sm: 0 }}>
-              <MKTypography
-                variant="h6"
-                fontWeight="regular"
-                color="black"
-                sx={{ fontFamily: "Playfair Display, serif" }}
-              >
-                hello@heavenstrails.com
-              </MKTypography>
-            </Grid>
-            <Grid item xs={12} sm={3} textAlign="center" mb={{ xs: 2, sm: 0 }}>
-              <MKTypography
-                variant="h6"
-                fontWeight="regular"
-                color="black"
-                sx={{ fontFamily: "Playfair Display, serif" }}
-              >
-                +94 77 77 0 4000
-              </MKTypography>
-              <MKTypography
-                variant="h6"
-                fontWeight="regular"
-                color="black"
-                sx={{ fontFamily: "Playfair Display, serif" }}
-              >
-                +94 37 22 8 1908
-              </MKTypography>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <MKTypography
-                variant="h6"
-                fontWeight="regular"
-                color="black"
-                sx={{ fontFamily: "Playfair Display, serif" }}
-              >
-                Kandanegedara Road, Weralugama,
-              </MKTypography>
-              <MKTypography
-                variant="h6"
-                fontWeight="regular"
-                color="black"
-                sx={{ fontFamily: "Playfair Display, serif" }}
-              >
-                Kuliyapitiya, Sri Lanka
-              </MKTypography>
-            </Grid>
-          </Grid>
-        </Grid>
-
-        <Grid item xs={12} sm="auto" display="flex" justifyContent="center">
-          <MKBox display="flex" alignItems="center">
-            {socials.map(({ icon, link }, key) => (
-              <MKTypography
-                key={link}
-                component="a"
-                href={link}
-                target="_blank"
-                rel="noreferrer"
-                variant="h5"
-                color="black"
-                opacity={0.8}
-                mr={key === socials.length - 1 ? 0 : 2.5}
-              >
-                {icon}
-              </MKTypography>
-            ))}
-          </MKBox>
-        </Grid>
-      </Grid>
+      <Footer />
     </div>
   );
 }

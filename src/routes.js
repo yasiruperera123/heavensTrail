@@ -50,6 +50,8 @@ import SignIn from "layouts/pages/authentication/sign-in";
 import Home from "layouts/pages/Home";
 import TourListing from "pages/TourListing";
 import Destination from "pages/Destination";
+import MiceTours from "pages/MICETours";
+import Weddings from "pages/Weddings";
 
 // Sections
 import PageHeaders from "layouts/sections/page-sections/page-headers";
@@ -110,6 +112,16 @@ const routes = [
             name: "destinations",
             route: "/pages/destinations",
             component: <Destination />,
+          },
+          {
+            name: "miceTours",
+            route: "/pages/mice-tours",
+            component: <MiceTours />,
+          },
+          {
+            name: "weddings",
+            route: "/pages/weddings",
+            component: <Weddings />,
           },
         ],
       },

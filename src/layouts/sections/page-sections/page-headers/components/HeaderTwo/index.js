@@ -9,6 +9,7 @@ import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import "./styles.css";
 import {
   Drawer,
   IconButton,
@@ -17,6 +18,7 @@ import {
   ListItemText,
   Box,
   Typography,
+  Divider,
 } from "@mui/material";
 // Images
 import { UilUsersAlt, UilMapPinAlt } from "@iconscout/react-unicons";
@@ -25,7 +27,7 @@ import headerLogo from "assets/images/homePage/Logo.svg";
 import CustomSelect from "components/CustomSelect";
 import CustomDateRangePicker from "components/CustomeDateRangerPicker";
 
-function HeaderTwo({ title, buttonArray }) {
+function HeaderTwo({ title, buttonArray, description }) {
   const [value, setValue] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -157,6 +159,7 @@ function HeaderTwo({ title, buttonArray }) {
           alignItems="center"
           textAlign="center"
         >
+          {description && <div className="text-with-lines">MICE Tours</div>}
           <MKTypography
             variant="h1"
             color="white"
@@ -172,6 +175,18 @@ function HeaderTwo({ title, buttonArray }) {
           >
             {title}
           </MKTypography>
+          <MKTypography
+            color="white"
+            mb={3}
+            sx={({ breakpoints, typography: {} }) => ({
+              fontFamily: "Poppins, sans-serif",
+              fontSize: "20px",
+              fontWeight: 400,
+            })}
+          >
+            {description}
+          </MKTypography>
+          {description && <hr style={{ width: "100%" }} />}
           <Grid justifyContent="center">
             {buttonArray &&
               buttonArray.length > 0 &&
