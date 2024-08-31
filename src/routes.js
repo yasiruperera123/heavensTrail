@@ -52,6 +52,7 @@ import TourListing from "pages/TourListing";
 import Destination from "pages/Destination";
 import MiceTours from "pages/MICETours";
 import Weddings from "pages/Weddings";
+import Meetings from "pages/Meetings";
 
 // Sections
 import PageHeaders from "layouts/sections/page-sections/page-headers";
@@ -122,6 +123,11 @@ const routes = [
             name: "weddings",
             route: "/pages/weddings",
             component: <Weddings />,
+          },
+          {
+            name: "meetings",
+            route: "/pages/meetings",
+            component: <Meetings />,
           },
         ],
       },

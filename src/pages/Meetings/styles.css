@@ -1,0 +1,52 @@
+/* Reset CSS for consistency */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Center the button group in the viewport */
+  .toggle-button-group {
+    display: flex;
+    border-radius: 25px;
+    overflow: hidden;
+    background-color: #EEECE2;
+    width: '40%';
+    margin-top: 10px;
+   
+  }
+  
+  .toggle-button {
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    background-color: #EEECE2;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  
+  
+  /* Apply left border to the last button */
+  .toggle-button:last-child {
+    border-left: 1px solid #d0d0d0;
+  }
+  
+  .toggle-button.selected {
+    background-color: #AF4D06;
+    color: white;
+    border-radius: 25px;
+  }
+  
+  /* .toggle-button:hover {
+    background-color: #e0e0e0;
+  } */
+  
+  .icon {
+    margin-left: 8px;
+  }
+  

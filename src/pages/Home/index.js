@@ -193,6 +193,7 @@ function Home() {
     //TODO Handle button action seperatly
     switch (item) {
       case "Meetings & Conferences":
+        navigate("/pages/meetings");
         return;
       case "Exhibitions":
         return;
