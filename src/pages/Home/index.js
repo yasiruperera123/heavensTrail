@@ -762,7 +762,7 @@ function Home() {
               container
               item
               xs={12}
-              lg={8}
+              lg={9}
               flexDirection="column"
               justifyContent="center"
               alignItems="center"
@@ -819,7 +819,7 @@ function Home() {
                   xs={12}
                   sm={6}
                   md={4}
-                  lg={5}
+                  lg={4.4}
                   sx={{ margin: 1, flexShrink: 0 }}
                 >
                   <Card
@@ -878,7 +878,7 @@ function Home() {
               marginBottom: 10,
             }}
           >
-            See All Packages
+            See All Reviews
           </MKButton>
         </Grid>
         {/* Explore our Insights, Tips and More Packages */}
