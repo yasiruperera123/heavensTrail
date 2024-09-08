@@ -5,20 +5,18 @@ import View from "layouts/sections/components/View";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
-import { ReactComponent as LiBeach } from "assets/icons/li_beach.svg";
+import { ReactComponent as NoSmoke } from "assets/icons/tabler_smoking-no.svg";
 import HeaderTwo from "layouts/sections/page-sections/page-headers/components/HeaderTwo";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MKBox from "components/MKBox";
 import footerBg from "assets/images/homePage/beach.jpeg";
 import NavBar from "components/NavBar";
 import {
-  UilPlaneDeparture,
-  UilTicket,
-  UilUtensils,
   UilBedDouble,
-  UilBuilding,
-  UilCalender,
-  UilGlassMartini,
+  UilParkingSquare,
+  UilUtensils,
+  UilWifi,
+  UilSnowFlake,
 } from "@iconscout/react-unicons";
 import soulmateImg from "assets/images/homePage/soulmate.jpeg";
 import adventureIcon1 from "assets/images/homePage/adventureIcon1.png";
@@ -36,11 +34,13 @@ import {
   AccordionDetails,
   Divider,
   Typography,
+  Rating,
 } from "@mui/material";
 import Footer from "components/Footer";
 import galleImg from "assets/images/homePage/galle.jpeg";
 import firBall from "assets/images/homePage/fireball.jpeg";
 import { AboutUsPage } from "constants/images";
+import { AccomadationPage } from "constants/images";
 
 function Accomadation() {
   const faq = [
@@ -68,41 +68,80 @@ function Accomadation() {
 
   const cardsData = [
     {
-      image: AboutUsPage.About_Us_Card,
-      title: "Destination Weddings",
-      description:
-        "Heaven's Trail is a proud subsidiary of a respected Sri Lankan group of companies, offering extraordinary journeys across Sri Lanka with support from our hotels, agriculture ventures, and event industry ties in Australia. As a locally owned and Sri Lanka Tourist Board Approved Destination Management Company (DMC), we specialize in crafting personalized holidays that showcase the island’s diverse landscapes, rich heritage, and warm hospitality.",
-      description2:
-        'Sri Lanka, often called the "Pearl of the Indian Ocean," is a tropical paradise with a unique blend of stunning beaches, lush tea estates, vibrant wildlife, and ancient cultural sites. Our dedicated team leverages deep local expertise to create memorable itineraries that highlight the best of Sri Lanka, from its 8 UNESCO World Heritage Sites to its pristine coastlines and majestic national parks.',
-      btnText: "Contact Us",
-    },
-  ];
-
-  const adventures = [
-    {
-      title: "Custom Tour Packages",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
-      img: AboutUsPage.About_Us_Feature_1,
-    },
-    {
-      title: "MICE Packages",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
-      img: AboutUsPage.About_Us_Feature_2,
+      title: "2 - 3 Star Accommodations: starting from $200",
+      image1: AccomadationPage.Hotel_Img_1,
+      image2: AccomadationPage.Hotel_Img_2,
+      image3: AccomadationPage.Hotel_Img_3,
+      image4: AccomadationPage.Hotel_Img_4,
+      facilities: [
+        <UilParkingSquare />,
+        <UilBedDouble />,
+        <UilUtensils />,
+        <UilWifi />,
+        <UilSnowFlake />,
+        <NoSmoke />,
+      ],
+      description: "Water Garden Sigiriya",
+      rating: "367 reviews",
+      rateValue: 5,
+      btnText: "View Hotel",
     },
     {
-      title: "Comprehensive Custom Tour Planner",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
-      img: AboutUsPage.About_Us_Feature_3,
+      title: "4 Star Accommodations: starting from $250",
+      image1: AccomadationPage.Hotel_Img_1,
+      image2: AccomadationPage.Hotel_Img_2,
+      image3: AccomadationPage.Hotel_Img_3,
+      image4: AccomadationPage.Hotel_Img_4,
+      facilities: [
+        <UilParkingSquare />,
+        <UilBedDouble />,
+        <UilUtensils />,
+        <UilWifi />,
+        <UilSnowFlake />,
+        <NoSmoke />,
+      ],
+      description: "Water Garden Sigiriya",
+      rating: "367 reviews",
+      rateValue: 5,
+      btnText: "View Hotel",
     },
     {
-      title: "Special Interest Tours",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
-      img: AboutUsPage.About_Us_Feature_4,
+      title: "5 Star Accommodations: starting from $250",
+      image1: AccomadationPage.Hotel_Img_1,
+      image2: AccomadationPage.Hotel_Img_2,
+      image3: AccomadationPage.Hotel_Img_3,
+      image4: AccomadationPage.Hotel_Img_4,
+      facilities: [
+        <UilParkingSquare />,
+        <UilBedDouble />,
+        <UilUtensils />,
+        <UilWifi />,
+        <UilSnowFlake />,
+        <NoSmoke />,
+      ],
+      description: "Water Garden Sigiriya",
+      rating: "367 reviews",
+      rateValue: 5,
+      btnText: "View Hotel",
     },
     {
-      title: "24/7 Customer Support",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
-      img: AboutUsPage.About_Us_Feature_5,
+      title: "Luxury Accommodations: starting from $250",
+      image1: AccomadationPage.Hotel_Img_1,
+      image2: AccomadationPage.Hotel_Img_2,
+      image3: AccomadationPage.Hotel_Img_3,
+      image4: AccomadationPage.Hotel_Img_4,
+      facilities: [
+        <UilParkingSquare />,
+        <UilBedDouble />,
+        <UilUtensils />,
+        <UilWifi />,
+        <UilSnowFlake />,
+        <NoSmoke />,
+      ],
+      description: "Water Garden Sigiriya",
+      rating: "367 reviews",
+      rateValue: 5,
+      btnText: "View Hotel",
     },
   ];
 
@@ -123,83 +162,268 @@ function Accomadation() {
     };
   }, []);
 
-  const CustomCard = ({
-    image,
-    title,
-    description,
-    description2,
-    index,
-    btnText,
-  }) => {
+  const CustomCard = ({ item, index }) => {
     const isEven = index % 2 === 0;
 
     return (
-      <Card
-        style={{
-          display: "flex",
-          flexDirection: isMobile ? "column" : isEven ? "row" : "row-reverse",
-          marginBottom: "20px",
-          borderRadius: "15px",
-          backgroundColor: "#FEFDF5",
-          boxShadow: "none",
-        }}
-      >
-        <CardMedia
-          component="img"
-          alt={title}
-          image={image}
-          title={title}
-          style={{
-            borderRadius: "15px",
-            height: "500px",
-            flex: 1,
-          }}
+      <Grid>
+        <Divider
+          variant="middle"
+          sx={{ height: 3, width: "100%", backgroundColor: "#C9C5BA" }}
         />
-        <CardContent
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignSelf: "center",
-            padding: isMobile ? "10px" : "20px",
-            flex: 1,
+        <MKTypography
+          variant="h1"
+          color="black"
+          sx={({ breakpoints, typography: { size } }) => ({
+            [breakpoints.down("md")]: {
+              fontSize: size["3xl"],
+              textAlign: "center",
+            },
+            fontFamily: "Playfair Display, serif",
+            fontSize: "40px",
+            fontWeight: 400,
+            textAlign: "left",
+            marginBottom: 2,
+            marginTop: 4,
+          })}
+        >
+          {item?.title}
+        </MKTypography>
+        <Grid
+          sx={{
+            padding: 2,
+            backgroundColor: "#EEECE2",
+            borderRadius: 5,
+            width: "100%",
           }}
         >
           <MKTypography
+            variant="h6"
+            fontWeight="regular"
             color="black"
-            sx={{
-              fontSize: "16px",
-              fontFamily: "Poppins, sans-serif",
-              lineHeight: "30px",
-              marginTop: isMobile ? "10px" : "20px",
-            }}
+            mt={1}
+            sx={({ breakpoints }) => ({
+              [breakpoints.down("sm")]: {
+                textAlign: "center",
+              },
+            })}
           >
-            {description}
+            Example Hotel:
           </MKTypography>
-          <MKTypography
-            color="black"
+
+          <Grid
             sx={{
-              fontSize: "16px",
-              fontFamily: "Poppins, sans-serif",
-              lineHeight: "30px",
-              marginTop: isMobile ? "10px" : "20px",
+              border: "solid",
+              borderWidth: 2,
+              borderColor: "#C9C5BA",
+              padding: 1,
+              borderRadius: "15px",
             }}
           >
-            {description2}
-          </MKTypography>
-          <MKButton
-            circular
-            variant="contained"
-            color="black"
-            sx={{
-              marginTop: 2,
-              width: isMobile ? "100%" : "35%",
-            }}
-          >
-            {btnText}
-          </MKButton>
-        </CardContent>
-      </Card>
+            <Card
+              sx={({ breakpoints }) => ({
+                display: "flex",
+                flexDirection: "row",
+                borderRadius: "15px",
+                boxShadow: "none",
+                backgroundColor: "#EEECE2",
+                flex: 1,
+                [breakpoints.down("sm")]: {
+                  flexDirection: "column",
+                  alignItems: "center",
+                },
+              })}
+            >
+              <CardMedia
+                component="img"
+                alt="Image"
+                image={item?.image1}
+                title="title"
+                sx={({ breakpoints }) => ({
+                  borderRadius: "15px",
+                  width: "150px",
+                  height: "150px",
+                  margin: 0,
+                  [breakpoints.down("sm")]: {
+                    width: "100%",
+                    height: "auto",
+                  },
+                })}
+              />
+
+              <CardContent
+                sx={({ breakpoints }) => ({
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignSelf: "center",
+                  backgroundColor: "#EEECE2",
+                  flex: 1,
+                  height: "150px",
+                  [breakpoints.down("sm")]: {
+                    height: "auto",
+                  },
+                })}
+              >
+                <Grid
+                  container
+                  display="flex"
+                  flexDirection="row"
+                  lg={12}
+                  sx={{
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <MKTypography
+                    color="black"
+                    sx={{
+                      fontSize: "18px",
+                      fontFamily: "Poppins, sans-serif",
+                      lineHeight: "30px",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {item?.description}
+                  </MKTypography>
+                  <Grid
+                    display="flex"
+                    flexDirection="row"
+                    sx={{ alignItems: "center" }}
+                  >
+                    <MKTypography
+                      color="black"
+                      sx={{
+                        fontSize: "16px",
+                        fontFamily: "Poppins, sans-serif",
+                        lineHeight: "30px",
+                      }}
+                    >
+                      {item?.rating}
+                    </MKTypography>
+                    <Rating name="read-only" value={item?.rateValue} readOnly />
+                  </Grid>
+                  <Divider
+                    variant="middle"
+                    sx={{
+                      height: 2,
+                      width: "100%",
+                      backgroundColor: "#C9C5BA",
+                      margin: 1,
+                    }}
+                  />
+                </Grid>
+
+                <Grid container display="flex" flexDirection="row" lg={12}>
+                  {item?.facilities.map((icon) => {
+                    return icon;
+                  })}
+                  <Divider
+                    variant="middle"
+                    sx={{
+                      height: 2,
+                      width: "100%",
+                      backgroundColor: "#C9C5BA",
+                      margin: 1,
+                    }}
+                  />
+                </Grid>
+
+                <Grid
+                  container
+                  display="flex"
+                  justifyContent={"flex-end"}
+                  lg={12}
+                >
+                  <MKButton
+                    circular
+                    variant="contained"
+                    color="black"
+                    sx={{
+                      paddingLeft: 5,
+                      paddingRight: 5,
+                    }}
+                  >
+                    {item?.btnText}
+                  </MKButton>
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid mt={2}>
+            <Card
+              sx={({ breakpoints }) => ({
+                display: "flex",
+                flexDirection: "row",
+                boxShadow: "none",
+                flex: 1,
+                backgroundColor: "#EEECE2",
+                [breakpoints.down("sm")]: {
+                  flexDirection: "column",
+                  alignItems: "center",
+                },
+              })}
+            >
+              <CardMedia
+                component="img"
+                alt="Image"
+                image={item?.image2}
+                title="title"
+                sx={({ breakpoints }) => ({
+                  borderRadius: "15px",
+                  width: "42%",
+                  height: "240px",
+                  margin: 0,
+                  marginRight: "1%",
+                  [breakpoints.down("sm")]: {
+                    width: "100%",
+                    height: "auto",
+                    marginRight: 0,
+                    marginBottom: 1,
+                  },
+                })}
+              />
+
+              <CardMedia
+                component="img"
+                alt="Image"
+                image={item?.image3}
+                title="title"
+                sx={({ breakpoints }) => ({
+                  borderRadius: "15px",
+                  width: "31%",
+                  height: "240px",
+                  margin: 0,
+                  marginRight: "1%",
+                  [breakpoints.down("sm")]: {
+                    width: "100%",
+                    height: "auto",
+                    marginRight: 0,
+                    marginBottom: 1,
+                  },
+                })}
+              />
+
+              <CardMedia
+                component="img"
+                alt="Image"
+                image={item?.image4}
+                title="title"
+                sx={({ breakpoints }) => ({
+                  borderRadius: "15px",
+                  width: "25%",
+                  height: "240px",
+                  margin: 0,
+                  [breakpoints.down("sm")]: {
+                    width: "100%",
+                    height: "auto",
+                  },
+                })}
+              />
+            </Card>
+          </Grid>
+        </Grid>
+      </Grid>
     );
   };
   const [selected, setSelected] = useState("web");
@@ -243,18 +467,6 @@ function Accomadation() {
     },
   ];
 
-  const btnArray = [
-    {
-      title: "Who We Are",
-    },
-    {
-      title: "Why Choose Us",
-    },
-    {
-      title: "Our Features",
-    },
-  ];
-
   const whyChooseUSArra = [
     {
       title: "Wide Range of Options",
@@ -280,7 +492,7 @@ function Accomadation() {
       <div style={{ padding: 15 }}>
         <HeaderTwo
           title="Accommodation Options with Heaven’s Trail"
-          backgroundImage={AboutUsPage.Header}
+          backgroundImage={AccomadationPage.Header}
         />
       </div>
 
@@ -359,6 +571,7 @@ function Accomadation() {
               sx={({ breakpoints, typography: { size } }) => ({
                 [breakpoints.down("md")]: {
                   fontSize: size["3xl"],
+                  textAlign: "center", // Center text on smaller screens
                 },
                 fontFamily: "Playfair Display, serif",
                 fontSize: "50px",
@@ -368,85 +581,93 @@ function Accomadation() {
             >
               Seaside Accommodation Overview
             </MKTypography>
+
             <Divider
               variant="middle"
-              sx={{ height: 3, width: "100%", backgroundColor: "#C9C5BA" }}
+              sx={({ breakpoints }) => ({
+                height: 3,
+                width: "100%",
+                backgroundColor: "#C9C5BA",
+                [breakpoints.down("sm")]: {
+                  width: "80%", // Adjust width on smaller screens
+                },
+              })}
             />
+
             <MKTypography
               variant="h6"
               fontWeight="regular"
               color="black"
-              sx={{ maxWidth: "90%" }}
+              sx={({ breakpoints }) => ({
+                maxWidth: "90%",
+                textAlign: "justify",
+                [breakpoints.down("md")]: {
+                  maxWidth: "100%", // Adjust text width on smaller screens
+                  textAlign: "center",
+                },
+              })}
             >
               Experience the beauty of Sri Lanka's coastlines with our seaside
               accommodations. Relax by the beach, enjoy stunning ocean views,
               and unwind in comfort.
             </MKTypography>
+
             <MKTypography
               variant="h6"
               fontWeight="regular"
               color="black"
               mt={2}
+              sx={({ breakpoints }) => ({
+                [breakpoints.down("md")]: {
+                  textAlign: "center",
+                },
+              })}
             >
               Seaside Cities:
             </MKTypography>
-            <MKTypography
-              variant="h6"
-              fontWeight="regular"
-              color="black"
-              sx={{ maxWidth: "90%", flexDirection: "row", display: "flex" }}
-            >
-              <span
-                style={{
-                  fontWeight: "bold",
-                  marginRight: 3,
-                  marginLeft: 10,
-                }}
+
+            {["Galle", "Bentota", "Unawatuna"].map((city, index) => (
+              <MKTypography
+                key={index}
+                variant="h6"
+                fontWeight="regular"
+                color="black"
+                sx={({ breakpoints }) => ({
+                  maxWidth: "90%",
+                  flexDirection: "row",
+                  display: "flex",
+                  alignItems: "center",
+                  [breakpoints.down("md")]: {
+                    maxWidth: "100%",
+                    textAlign: "center",
+                    display: "block",
+                  },
+                })}
               >
-                <li> Galle:</li>
-              </span>
-              A historic city with colonial architecture and beautiful beaches.
-            </MKTypography>
-            <MKTypography
-              variant="h6"
-              fontWeight="regular"
-              color="black"
-              sx={{ maxWidth: "90%", flexDirection: "row", display: "flex" }}
-            >
-              <span
-                style={{
-                  fontWeight: "bold",
-                  marginRight: 3,
-                  marginLeft: 10,
-                }}
-              >
-                <li>Bentota: </li>
-              </span>
-              Known for its golden sandy beaches and water sports.
-            </MKTypography>
-            <MKTypography
-              variant="h6"
-              fontWeight="regular"
-              color="black"
-              sx={{ maxWidth: "90%", flexDirection: "row", display: "flex" }}
-            >
-              <span
-                style={{
-                  fontWeight: "bold",
-                  marginRight: 3,
-                  marginLeft: 10,
-                }}
-              >
-                <li> Unawatuna:</li>
-              </span>
-              Famous for whale watching and vibrant nightlife.
-            </MKTypography>
+                <span
+                  style={{
+                    fontWeight: "bold",
+                    marginRight: 3,
+                    marginLeft: 10,
+                  }}
+                >
+                  <li>{city}:</li>
+                </span>
+                {city === "Galle"
+                  ? "A historic city with colonial architecture and beautiful beaches."
+                  : city === "Bentota"
+                  ? "Known for its golden sandy beaches and water sports."
+                  : "Famous for whale watching and vibrant nightlife."}
+              </MKTypography>
+            ))}
+
             <MKTypography
               variant="h1"
               color="black"
               sx={({ breakpoints, typography: { size } }) => ({
                 [breakpoints.down("md")]: {
                   fontSize: size["3xl"],
+                  textAlign: "center",
                 },
                 fontFamily: "Playfair Display, serif",
                 fontSize: "50px",
@@ -456,10 +677,10 @@ function Accomadation() {
             >
               Accommodation Options and Pricing
             </MKTypography>
-            <Divider
-              variant="middle"
-              sx={{ height: 3, width: "100%", backgroundColor: "#C9C5BA" }}
-            />
+
+            {cardsData?.map((item, index) => {
+              return <CustomCard item={item} index={index} />;
+            })}
           </Grid>
         </Box>
       </Grid>

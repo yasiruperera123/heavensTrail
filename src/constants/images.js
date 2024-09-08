@@ -73,6 +73,12 @@ import Contact_Us_Method_1 from "assets/images/contact-us/contact_us_method_1.pn
 import Contact_Us_Method_2 from "assets/images/contact-us/contact_us_method_2.png";
 import Contact_Us_Method_3 from "assets/images/contact-us/contact_us_method_3.png";
 
+//Accomadation
+import Accomadation_Header from "assets/images/accomadation/accomadation_header.jpeg";
+import Hotel_Img_1 from "assets/images/accomadation/hotel_img_1.jpeg";
+import Hotel_Img_2 from "assets/images/accomadation/hotel_img_2.jpeg";
+import Hotel_Img_3 from "assets/images/accomadation/hotel_img_3.jpeg";
+
 export const TourListingPage = {
   Header: TourListingHeader,
   Round_Tour_1: Tour1,
@@ -158,4 +164,12 @@ export const ContactUsPage = {
   Contact_Us_Method_1: Contact_Us_Method_1,
   Contact_Us_Method_2: Contact_Us_Method_2,
   Contact_Us_Method_3: Contact_Us_Method_3,
+};
+
+export const AccomadationPage = {
+  Header: Accomadation_Header,
+  Hotel_Img_1: Hotel_Img_1,
+  Hotel_Img_2: Hotel_Img_2,
+  Hotel_Img_3: Hotel_Img_3,
+  Hotel_Img_4: Hotel_Img_1,
 };
