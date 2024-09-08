@@ -38,6 +38,9 @@ import {
 import Footer from "components/Footer";
 import galleImg from "assets/images/homePage/galle.jpeg";
 import firBall from "assets/images/homePage/fireball.jpeg";
+import NavBarTwo from "components/NavBarTwo";
+import HeaderThree from "layouts/sections/page-sections/page-headers/components/HeaderThree";
+import { DestinationWeddingPage } from "constants/images";
 
 function Weddings() {
   const faq = [
@@ -75,7 +78,7 @@ function Weddings() {
         <UilGlassMartini className="hover-icon" />,
         <UilUtensils className="hover-icon" />,
       ],
-      img: galleImg,
+      img: DestinationWeddingPage.Wedding_Pck_1,
     },
     {
       title: "Country Wedding",
@@ -88,7 +91,7 @@ function Weddings() {
         <UilGlassMartini className="hover-icon" />,
         <UilUtensils className="hover-icon" />,
       ],
-      img: firBall,
+      img: DestinationWeddingPage.Wedding_Pck_2,
     },
     {
       title: "Wed among the mist",
@@ -101,13 +104,13 @@ function Weddings() {
         <UilGlassMartini className="hover-icon" />,
         <UilUtensils className="hover-icon" />,
       ],
-      img: soulmateImg,
+      img: DestinationWeddingPage.Wedding_Pck_3,
     },
   ];
 
   const cardsData = [
     {
-      image: soulmateImg,
+      image: DestinationWeddingPage.Card_1,
       title: "Destination Weddings",
       description:
         "Imagine a love story set in the beautiful paradise of Sri Lanka. Picture your wedding ceremony on palmfringed beaches, historical backdrops, and lush gardens. Your dream destination wedding becomes a reality in this stunning setting, where every detail is pure magic.",
@@ -120,32 +123,32 @@ function Weddings() {
     {
       title: "Wedding Planning",
       des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
-      img: adventureIcon1,
+      img: DestinationWeddingPage.Featurs_1,
     },
     {
       title: "Exquisite Venues",
       des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
-      img: adventureIcon2,
+      img: DestinationWeddingPage.Featurs_2,
     },
     {
       title: "Comprehensive Services",
       des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
-      img: adventureIcon3,
+      img: DestinationWeddingPage.Featurs_3,
     },
     {
       title: "Cultural Touches",
       des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
-      img: adventureIcon4,
+      img: DestinationWeddingPage.Featurs_4,
     },
     {
       title: "Luxury Accommodations",
       des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
-      img: adventureIcon4,
+      img: DestinationWeddingPage.Featurs_5,
     },
     {
       title: "Seamless Logistics",
       des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
-      img: adventureIcon4,
+      img: DestinationWeddingPage.Featurs_6,
     },
   ];
 
@@ -236,422 +239,435 @@ function Weddings() {
   };
 
   return (
-    <div style={{ backgroundColor: "#FEFDF5", overflowX: "hidden" }}>
-      <View height="40rem">
-        <HeaderTwo
+    <div style={{ backgroundColor: "#FEFDF5" }}>
+      <NavBarTwo />
+      <div style={{ padding: 15 }}>
+        <HeaderThree
           title="Destination Weddings"
           description="Inhale the fresh mountain air, while enjoying the scenic beauty of the misty hills is a favorite reasons to visit Ella, Sri Lanka"
+          backgroundImage={DestinationWeddingPage.Header}
         />
-      </View>
-
-      <Box
-        style={{
-          backgroundColor: "#FEFDF5",
-        }}
-      >
-        <Grid
-          container
-          spacing={4}
-          sx={{ display: "flex", justifyContent: "center" }}
-        >
-          {cardsData.map((card, index) => (
-            <Grid item xs={12} sm={6} lg={10} key={index}>
-              <CustomCard
-                image={card.image}
-                title={card.title}
-                description={card.description}
-                description2={card.description2}
-                index={index}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-
-      {/*Wedding packages*/}
-      <Grid
-        container
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          paddingLeft: "16px",
-          paddingRight: "16px",
-          marginBottom: "40px",
-          backgroundColor: "#FEFDF5",
-          marginTop: 7,
-        }}
-      >
-        <Container
-          sx={{
-            display: "flex",
-            justifyContent: "center",
+      </div>
+      <div style={{ overflowX: "hidden" }}>
+        <Box
+          style={{
+            backgroundColor: "#FEFDF5",
           }}
         >
           <Grid
             container
-            item
-            xs={12}
-            lg={8}
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            sx={{ textAlign: "center", marginBottom: "20px" }}
+            spacing={4}
+            sx={{ display: "flex", justifyContent: "center" }}
           >
-            <Stack direction="row" spacing={1} mt={3}>
-              <MKButton circular variant="outlined" color="black">
-                Heaven’s Trail MICE Experiences
-              </MKButton>
-            </Stack>
-            <MKTypography
-              variant="h1"
-              color="black"
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-                fontFamily: "Playfair Display, serif",
-                fontSize: "60px",
-                fontWeight: 400,
-              })}
-            >
-              Wedding Packages
-            </MKTypography>
-            <MKTypography
-              variant="h6"
-              fontWeight="regular"
-              color="black"
-              sx={{ textAlign: "center", maxWidth: "90%" }}
-            >
-              Crafting modern travel adventures that blend comfort with
-              excitement. Explore vibrant cultures and stunning landscapes,
-              creating lifelong memories!
-            </MKTypography>
+            {cardsData.map((card, index) => (
+              <Grid item xs={12} sm={6} lg={10} key={index}>
+                <CustomCard
+                  image={card.image}
+                  title={card.title}
+                  description={card.description}
+                  description2={card.description2}
+                  index={index}
+                />
+              </Grid>
+            ))}
           </Grid>
-        </Container>
-        <Grid container>
-          <Box
+        </Box>
+
+        {/*Wedding packages*/}
+        <Grid
+          container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            paddingLeft: "16px",
+            paddingRight: "16px",
+            marginBottom: "40px",
+            backgroundColor: "#FEFDF5",
+            marginTop: 7,
+          }}
+        >
+          <Container
             sx={{
               display: "flex",
               justifyContent: "center",
-              width: "90%",
-              margin: "0 auto",
-              padding: 2,
             }}
           >
-            <Grid container spacing={2} justifyContent="center">
-              {otherTravelPcgs.map((item, index) => (
-                <Grid
-                  item
-                  key={index}
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={4} // Adjusted for a 3-column layout
-                  sx={{ flexShrink: 0 }}
-                >
-                  <Card
-                    sx={{
-                      height: "100%",
-                      boxShadow: "none",
-                      backgroundColor: "#FEFDF5",
-                      borderWidth: 1,
-                      borderColor: "#C9C5BA",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
+            <Grid
+              container
+              item
+              xs={12}
+              lg={8}
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              sx={{ textAlign: "center", marginBottom: "20px" }}
+            >
+              <Stack direction="row" spacing={1} mt={3}>
+                <MKButton circular variant="outlined" color="black">
+                  Heaven’s Trail MICE Experiences
+                </MKButton>
+              </Stack>
+              <MKTypography
+                variant="h1"
+                color="black"
+                sx={({ breakpoints, typography: { size } }) => ({
+                  [breakpoints.down("md")]: {
+                    fontSize: size["3xl"],
+                  },
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "60px",
+                  fontWeight: 400,
+                })}
+              >
+                Wedding Packages
+              </MKTypography>
+              <MKTypography
+                variant="h6"
+                fontWeight="regular"
+                color="black"
+                sx={{ textAlign: "center", maxWidth: "90%" }}
+              >
+                Crafting modern travel adventures that blend comfort with
+                excitement. Explore vibrant cultures and stunning landscapes,
+                creating lifelong memories!
+              </MKTypography>
+            </Grid>
+          </Container>
+          <Grid container>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                width: "90%",
+                margin: "0 auto",
+                padding: 2,
+              }}
+            >
+              <Grid container spacing={2} justifyContent="center">
+                {otherTravelPcgs.map((item, index) => (
+                  <Grid
+                    item
+                    key={index}
+                    xs={12}
+                    sm={6}
+                    md={4}
+                    lg={4} // Adjusted for a 3-column layout
+                    sx={{ flexShrink: 0 }}
                   >
-                    <CardActionArea
+                    <Card
                       sx={{
                         height: "100%",
+                        boxShadow: "none",
+                        backgroundColor: "#FEFDF5",
+                        borderWidth: 1,
+                        borderColor: "#C9C5BA",
                         display: "flex",
                         flexDirection: "column",
                       }}
                     >
-                      <CardMedia
-                        component="img"
-                        height={"300px"}
-                        image={item?.img}
+                      <CardActionArea
                         sx={{
-                          objectFit: "cover",
-                          width: "100%",
-                          margin: 0,
-                          padding: 0,
-                          borderBottomLeftRadius: 0,
-                          borderBottomRightRadius: 0,
+                          height: "100%",
+                          display: "flex",
+                          flexDirection: "column",
                         }}
-                        alt="SVG Image"
-                      />
-                      <CardContent sx={{ flex: 1, padding: 1 }}>
-                        <Grid container alignItems="center">
-                          <Typography
-                            sx={{
-                              fontFamily: "Playfair Display, serif",
-                              fontSize: "28px",
-                              fontWeight: 400,
-                            }}
-                            variant="h5"
+                      >
+                        <CardMedia
+                          component="img"
+                          height={"270px"}
+                          image={item?.img}
+                          sx={{
+                            objectFit: "cover",
+                            width: "100%",
+                            margin: 0,
+                            padding: 0,
+                            borderBottomLeftRadius: 0,
+                            borderBottomRightRadius: 0,
+                          }}
+                          alt="SVG Image"
+                        />
+                        <CardContent sx={{ flex: 1, padding: 1 }}>
+                          <Grid container alignItems="center">
+                            <Typography
+                              sx={{
+                                fontFamily: "Playfair Display, serif",
+                                fontSize: "28px",
+                                fontWeight: 400,
+                                lineHeight: "100%",
+                              }}
+                              variant="h5"
+                            >
+                              {item?.title}
+                            </Typography>
+                          </Grid>
+                          <Divider
+                            variant="middle"
+                            sx={{ height: 2, marginTop: 1, marginBottom: 1 }}
+                          />
+                          <MKTypography variant="subtitle2">
+                            {item?.description}
+                          </MKTypography>
+                          <Divider
+                            variant="middle"
+                            sx={{ height: 2, marginTop: 1, marginBottom: 1 }}
+                          />
+                          {item?.iconSet &&
+                            item?.iconSet.map((icon) => {
+                              return icon;
+                            })}
+                          <Divider
+                            variant="middle"
+                            sx={{ height: 2, marginTop: 1, marginBottom: 1 }}
+                          />
+                          <Grid
+                            container
+                            display={"flex"}
+                            alignItems="center"
+                            justifyContent={"flex-end"}
                           >
-                            {item?.title}
-                          </Typography>
-                        </Grid>
-                        <Divider variant="middle" sx={{ height: 2 }} />
-                        <MKTypography variant="subtitle2">
-                          {item?.description}
-                        </MKTypography>
-                        <Divider variant="middle" sx={{ height: 2 }} />
-                        {item?.iconSet &&
-                          item?.iconSet.map((icon) => {
-                            return icon;
-                          })}
-                        <Divider variant="middle" sx={{ height: 2 }} />
-                        <Grid
-                          container
-                          display={"flex"}
-                          alignItems="center"
-                          justifyContent={"flex-end"}
-                        >
-                          <MKButton
-                            circular
-                            variant="contained"
-                            color="black"
-                            sx={{
-                              marginTop: 2,
-                              width: isMobile ? "100%" : "35%",
-                            }}
-                          >
-                            {"Inquire Us"}
-                          </MKButton>
-                        </Grid>
-                      </CardContent>
-                    </CardActionArea>
+                            <MKButton
+                              circular
+                              variant="contained"
+                              color="black"
+                              sx={{
+                                marginTop: 1,
+                                width: isMobile ? "100%" : "35%",
+                              }}
+                            >
+                              {"Inquire Us"}
+                            </MKButton>
+                          </Grid>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          </Grid>
+        </Grid>
+
+        {/* Create your own adventure SECTION */}
+        <Grid
+          container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            paddingLeft: "16px",
+            paddingRight: "16px",
+            backgroundColor: "#EEECE2",
+            marginTop: 7,
+          }}
+        >
+          <Container
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "40px",
+            }}
+          >
+            <Grid
+              container
+              item
+              xs={12}
+              lg={8}
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              sx={{ textAlign: "center", marginBottom: "20px" }}
+            >
+              <Stack direction="row" spacing={1} mt={3}>
+                <MKButton circular variant="outlined" color="black">
+                  Heaven’s Trail MICE Experiences
+                </MKButton>
+              </Stack>
+              <MKTypography
+                variant="h1"
+                color="black"
+                sx={({ breakpoints, typography: { size } }) => ({
+                  [breakpoints.down("md")]: {
+                    fontSize: size["3xl"],
+                  },
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "60px",
+                  fontWeight: 400,
+                })}
+              >
+                Our Features
+              </MKTypography>
+              <MKTypography
+                variant="h6"
+                fontWeight="regular"
+                color="black"
+                sx={{ textAlign: "center", maxWidth: "90%" }}
+              >
+                Our range of featured services ensures that every aspect of your
+                MICE tour is meticulously planned and executed to perfection.
+              </MKTypography>
+            </Grid>
+          </Container>
+          <Container
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Grid
+              sx={{
+                alignSelf: "center",
+                marginBottom: 6,
+              }}
+              container
+              spacing={2}
+            >
+              {adventures.map((item, index) => (
+                <Grid item key={index} xs={12} sm={6} lg={4}>
+                  <Card
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: "16px",
+                      backgroundColor: "#EEECE2",
+                      boxShadow: "none",
+                      borderWidth: 1,
+                      alignItems: "center",
+                      textAlign: "center",
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      height="80px"
+                      image={item?.img}
+                      alt="Image"
+                      sx={{ objectFit: "contain", width: "70px" }}
+                    />
+                    <MKTypography
+                      color="#1A1814"
+                      mb={2}
+                      sx={{
+                        fontSize: "24px",
+                        fontFamily: "Playfair Display, serif",
+                        fontSize: "28px",
+                        fontWeight: 400,
+                      }}
+                    >
+                      {item?.title}
+                    </MKTypography>
+                    <MKTypography variant="subtitle2">{item?.des}</MKTypography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
-          </Box>
+          </Container>
         </Grid>
-      </Grid>
 
-      {/* Create your own adventure SECTION */}
-      <Grid
-        container
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          paddingLeft: "16px",
-          paddingRight: "16px",
-          backgroundColor: "#EEECE2",
-          marginTop: 7,
-        }}
-      >
-        <Container
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "40px",
-          }}
-        >
-          <Grid
-            container
-            item
-            xs={12}
-            lg={8}
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            sx={{ textAlign: "center", marginBottom: "20px" }}
-          >
-            <Stack direction="row" spacing={1} mt={3}>
-              <MKButton circular variant="outlined" color="black">
-                Heaven’s Trail MICE Experiences
-              </MKButton>
-            </Stack>
-            <MKTypography
-              variant="h1"
-              color="black"
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-                fontFamily: "Playfair Display, serif",
-                fontSize: "60px",
-                fontWeight: 400,
-              })}
-            >
-              Our Features
-            </MKTypography>
-            <MKTypography
-              variant="h6"
-              fontWeight="regular"
-              color="black"
-              sx={{ textAlign: "center", maxWidth: "90%" }}
-            >
-              Our range of featured services ensures that every aspect of your
-              MICE tour is meticulously planned and executed to perfection.
-            </MKTypography>
-          </Grid>
-        </Container>
-        <Container
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Grid
-            sx={{
-              alignSelf: "center",
-              marginBottom: 6,
-            }}
-            container
-            spacing={2}
-          >
-            {adventures.map((item, index) => (
-              <Grid item key={index} xs={12} sm={6} lg={4}>
-                <Card
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: "16px",
-                    backgroundColor: "#EEECE2",
-                    boxShadow: "none",
-                    borderWidth: 1,
-                    alignItems: "center",
-                    textAlign: "center",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    height="80px"
-                    image={item?.img}
-                    alt="Image"
-                    sx={{ objectFit: "contain", width: "70px" }}
-                  />
-                  <MKTypography
-                    color="#1A1814"
-                    mb={2}
-                    sx={{
-                      fontSize: "24px",
-                      fontFamily: "Playfair Display, serif",
-                      fontSize: "28px",
-                      fontWeight: 400,
-                    }}
-                  >
-                    {item?.title}
-                  </MKTypography>
-                  <MKTypography variant="subtitle2">{item?.des}</MKTypography>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Grid>
-
-      {/* Your Questions Answered SECTION */}
-      <Grid
-        container
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          paddingLeft: "16px",
-          paddingRight: "16px",
-          marginBottom: "40px",
-          backgroundColor: "#FEFDF5",
-          margin: 0,
-        }}
-      >
-        <Container
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Grid
-            container
-            item
-            xs={12}
-            lg={8}
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            sx={{ textAlign: "center", marginBottom: "20px" }}
-          >
-            <Stack direction="row" spacing={1} mt={3}>
-              <MKButton circular variant="outlined" color="black">
-                FAQs
-              </MKButton>
-            </Stack>
-            <MKTypography
-              variant="h1"
-              color="black"
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
-            >
-              Your Questions Answered
-            </MKTypography>
-            <MKTypography
-              variant="h6"
-              fontWeight="regular"
-              color="black"
-              sx={{ textAlign: "center", maxWidth: "90%" }}
-            >
-              Planning your Sri Lankan adventure? We've got you covered! Explore
-              our Frequently Asked Questions (FAQs) to find answers to common
-              inquiries about visas, travel seasons, currency, culture, and
-              more.
-            </MKTypography>
-          </Grid>
-        </Container>
-
-        {/* Accordion List with Button */}
+        {/* Your Questions Answered SECTION */}
         <Grid
           container
-          item
-          xs={12}
-          lg={8}
-          flexDirection="column"
-          alignItems="center"
-          sx={{ width: "70%" }}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            paddingLeft: "16px",
+            paddingRight: "16px",
+            marginBottom: "40px",
+            backgroundColor: "#FEFDF5",
+            margin: 0,
+          }}
         >
-          <Grid container display={"flex"} flexDirection="column">
-            {faq.map((item, index) => (
-              <Accordion key={index} sx={{ boxShadow: "none" }}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1-content"
-                  id={`panel1-header-${index}`}
-                  sx={{ boxShadow: "none", backgroundColor: "#FEFDF5" }}
-                >
-                  {item?.title}
-                </AccordionSummary>
-                <AccordionDetails sx={{ backgroundColor: "#FEFDF5" }}>
-                  {item?.answer}
-                </AccordionDetails>
-              </Accordion>
-            ))}
-          </Grid>
-
-          {/* Load More FAQs Button */}
-          <MKButton
-            circular
-            variant="contained"
-            color="black"
+          <Container
             sx={{
-              paddingLeft: 5,
-              paddingRight: 5,
-              marginTop: 5,
-              marginBottom: 10,
+              display: "flex",
+              justifyContent: "center",
             }}
           >
-            Load More FAQs
-          </MKButton>
+            <Grid
+              container
+              item
+              xs={12}
+              lg={8}
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              sx={{ textAlign: "center", marginBottom: "20px" }}
+            >
+              <Stack direction="row" spacing={1} mt={3}>
+                <MKButton circular variant="outlined" color="black">
+                  FAQs
+                </MKButton>
+              </Stack>
+              <MKTypography
+                variant="h1"
+                color="black"
+                sx={({ breakpoints, typography: { size } }) => ({
+                  [breakpoints.down("md")]: {
+                    fontSize: size["3xl"],
+                  },
+                })}
+              >
+                Your Questions Answered
+              </MKTypography>
+              <MKTypography
+                variant="h6"
+                fontWeight="regular"
+                color="black"
+                sx={{ textAlign: "center", maxWidth: "90%" }}
+              >
+                Planning your Sri Lankan adventure? We've got you covered!
+                Explore our Frequently Asked Questions (FAQs) to find answers to
+                common inquiries about visas, travel seasons, currency, culture,
+                and more.
+              </MKTypography>
+            </Grid>
+          </Container>
+
+          {/* Accordion List with Button */}
+          <Grid
+            container
+            item
+            xs={12}
+            lg={8}
+            flexDirection="column"
+            alignItems="center"
+            sx={{ width: "70%" }}
+          >
+            <Grid container display={"flex"} flexDirection="column">
+              {faq.map((item, index) => (
+                <Accordion key={index} sx={{ boxShadow: "none" }}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1-content"
+                    id={`panel1-header-${index}`}
+                    sx={{ boxShadow: "none", backgroundColor: "#FEFDF5" }}
+                  >
+                    {item?.title}
+                  </AccordionSummary>
+                  <AccordionDetails sx={{ backgroundColor: "#FEFDF5" }}>
+                    {item?.answer}
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </Grid>
+
+            {/* Load More FAQs Button */}
+            <MKButton
+              circular
+              variant="contained"
+              color="black"
+              sx={{
+                paddingLeft: 5,
+                paddingRight: 5,
+                marginTop: 5,
+                marginBottom: 10,
+              }}
+            >
+              Load More FAQs
+            </MKButton>
+          </Grid>
         </Grid>
-      </Grid>
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 }

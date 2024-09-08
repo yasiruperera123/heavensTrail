@@ -26,6 +26,7 @@
     "@testing-library/react": "14.0.0",
     "@testing-library/user-event": "14.4.3",
     "chroma-js": "2.4.2",
+    "country-flag-icons": "^1.5.13",
     "dayjs": "^1.11.12",
     "flatpickr": "4.6.13",
     "prop-types": "15.8.1",

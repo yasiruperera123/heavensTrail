@@ -1,0 +1,106 @@
+/* General container styling */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    max-width: calc(100% - 1%); /* Ensure max width accounts for margins */
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 8px;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 1%; /* Optional, adds slight rounding to the navbar */
+  }
+
+  .navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding-top: 0%;
+  }
+  
+  /* Logo container */
+  .navbar .logo img {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  /* Navigation items container */
+  .navbar .nav-items {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+    color: black;
+  }
+  
+  /* Hide the navigation items for mobile, show them on larger screens */
+  .navbar .nav-items li {
+    display: inline;
+  }
+  
+  /* Navigation links */
+  .navbar .nav-items li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .navbar .nav-items.scrolled li a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .navbar .cta {
+    width: 20%;
+  }
+  
+  /* Button container */
+  .navbar .cta button {
+    background-color: white;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    margin-left: 15px;
+  }
+  .navbar .cta.scrolled button {
+    background-color: black;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  /* Mobile Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .navbar {
+      display: none;
+    }
+  
+    .navbar .nav-items {
+      flex-direction: column; /* Make nav items stack vertically on small screens */
+      gap: 10px; /* Reduce gap */
+    }
+  
+    .navbar .cta {
+      margin-top: 10px; /* Move the button below the nav items */
+    }
+  }
+  
+  /* Content below the navbar for scrolling */
+  .content {
+    padding: 20px;
+    height: 2000px;
+    background-color: #f5f5f5;
+  }
+  

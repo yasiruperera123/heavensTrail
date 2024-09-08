@@ -1,0 +1,23 @@
+.text-with-lines {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    width: 100%;
+  }
+  
+  .text-with-lines::before,
+  .text-with-lines::after {
+    content: "";
+    flex-grow: 1;
+    height: 2px;
+    background-color: #ffffff; /* Line color */
+  }
+  
+  .text-with-lines::before {
+    margin-right: 10px; /* Gap between line and text */
+  }
+  
+  .text-with-lines::after {
+    margin-left: 10px; /* Gap between line and text */
+  }

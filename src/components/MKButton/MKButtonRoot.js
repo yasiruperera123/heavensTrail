@@ -286,6 +286,7 @@ export default styled(Button)(({ theme, ownerState }) => {
   };
 
   return {
+    textTransform: "none",
     ...(variant === "contained" && containedStyles()),
     ...(variant === "outlined" && outliedStyles()),
     ...(variant === "gradient" && gradientStyles()),

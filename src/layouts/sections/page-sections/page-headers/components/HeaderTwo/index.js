@@ -26,8 +26,9 @@ import bgImage from "assets/images/homePage/header2_bg.jpeg";
 import headerLogo from "assets/images/homePage/Logo.svg";
 import CustomSelect from "components/CustomSelect";
 import CustomDateRangePicker from "components/CustomeDateRangerPicker";
+import NavBar from "components/NavBar";
 
-function HeaderTwo({ title, buttonArray, description }) {
+function HeaderTwo({ title, buttonArray, description, backgroundImage }) {
   const [value, setValue] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -47,167 +48,100 @@ function HeaderTwo({ title, buttonArray, description }) {
   ];
 
   return (
-    <MKBox position="relative" height="100%">
-      <Grid
-        container
-        flexDirection="row"
-        alignItems="center"
+    <div>
+      <MKBox
+        position="relative"
         sx={{
-          padding: 2,
-          position: "absolute",
-          width: "100%",
-          display: { xs: "none", lg: "flex" },
-        }}
-      >
-        {/* First MKBox with 20% width */}
-        <Grid item xs={2} sx={{ display: "flex", alignItems: "center" }}>
-          <MKBox
-            component="img"
-            src={headerLogo}
-            alt="Background"
-            sx={{
-              width: "100px",
-              height: "auto",
-              objectFit: "contain",
-              borderRadius: "8px",
-              boxShadow: "lg",
-            }}
-          />
-        </Grid>
-
-        {/* Second MKBox with 60% width, centered */}
-        <Grid
-          item
-          xs={8}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <MKBox
-            component="ul"
-            p={0}
-            m={0}
-            sx={{
-              listStyle: "none",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            {navItems.map((text) => (
-              <MKBox component="li" key={text} sx={{ padding: 1 }}>
-                <MKTypography
-                  component={Link}
-                  href="#"
-                  variant="button"
-                  color="white"
-                  fontWeight="regular"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  {text}
-                </MKTypography>
-              </MKBox>
-            ))}
-          </MKBox>
-        </Grid>
-
-        {/* Third MKBox with 20% width */}
-        <Grid
-          item
-          xs={2}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-          }}
-        >
-          <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none" }}>
-            <MKButton circular variant="contained" color="white">
-              Plan a Trip
-            </MKButton>
-          </MKBox>
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        minHeight="100%"
-        sx={{
-          backgroundImage: ({
-            palette: { gradients },
-            functions: { linearGradient, rgba },
-          }) =>
-            `${linearGradient(
-              rgba(gradients.dark.main, 0.5),
-              rgba(gradients.dark.state, 0.5)
-            )}, url(${bgImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          padding: { xs: 2, md: 4 },
+          top: 0,
+          marginTop: {
+            xs: 0,
+            sm: -10,
+          },
+          height: "30rem",
         }}
       >
         <Grid
           container
-          item
-          xs={12}
-          lg={10}
-          flexDirection="column"
-          justifyContent="center"
+          display="flex"
           alignItems="center"
-          textAlign="center"
+          justifyContent="center"
+          minHeight="100%"
+          sx={{
+            backgroundImage: ({
+              palette: { gradients },
+              functions: { linearGradient, rgba },
+            }) =>
+              `${linearGradient(
+                rgba(gradients.dark.main, 0.5),
+                rgba(gradients.dark.state, 0.5)
+              )}, url(${backgroundImage})`,
+
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            borderRadius: 4,
+            padding: { xs: 2, md: 4 },
+          }}
         >
-          {description && <div className="text-with-lines">MICE Tours</div>}
-          <MKTypography
-            variant="h1"
-            color="white"
-            mb={3}
-            sx={({ breakpoints, typography: { size } }) => ({
-              [breakpoints.down("md")]: {
-                fontSize: size["3xl"],
-              },
-              fontFamily: "Playfair Display, serif",
-              fontSize: "90px",
-              fontWeight: 400,
-            })}
+          <Grid
+            container
+            item
+            xs={12}
+            lg={10}
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            textAlign="center"
           >
-            {title}
-          </MKTypography>
-          <MKTypography
-            color="white"
-            mb={3}
-            sx={({ breakpoints, typography: {} }) => ({
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "20px",
-              fontWeight: 400,
-            })}
-          >
-            {description}
-          </MKTypography>
-          {description && <hr style={{ width: "100%" }} />}
-          <Grid justifyContent="center">
-            {buttonArray &&
-              buttonArray.length > 0 &&
-              buttonArray?.map((item) => {
-                console.log("asasasas", item);
-                return (
-                  <MKButton
-                    sx={{ marginLeft: 2 }}
-                    circular
-                    variant="outlined"
-                    color="white"
-                  >
-                    {item?.icon}
-                    {item.title}
-                  </MKButton>
-                );
+            {description && <div className="text-with-lines">MICE Tours</div>}
+            <MKTypography
+              variant="h1"
+              color="white"
+              mb={3}
+              sx={({ breakpoints, typography: { size } }) => ({
+                [breakpoints.down("md")]: {
+                  fontSize: size["3xl"],
+                },
+                fontFamily: "Playfair Display, serif",
+                fontSize: "90px",
+                fontWeight: 400,
               })}
+            >
+              {title}
+            </MKTypography>
+            <MKTypography
+              color="white"
+              mb={3}
+              sx={({ breakpoints, typography: {} }) => ({
+                fontFamily: "Poppins, sans-serif",
+                fontSize: "20px",
+                fontWeight: 400,
+              })}
+            >
+              {description}
+            </MKTypography>
+            {description && <hr style={{ width: "100%" }} />}
+            <Grid justifyContent="center">
+              {buttonArray &&
+                buttonArray.length > 0 &&
+                buttonArray?.map((item) => {
+                  console.log("asasasas", item);
+                  return (
+                    <MKButton
+                      sx={{ marginLeft: 2 }}
+                      circular
+                      variant="outlined"
+                      color="white"
+                    >
+                      {item?.icon}
+                      {item.title}
+                    </MKButton>
+                  );
+                })}
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </MKBox>
+      </MKBox>
+    </div>
   );
 }
 

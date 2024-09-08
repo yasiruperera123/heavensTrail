@@ -28,6 +28,8 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
+import { DestinationPage } from "constants/images";
+import NavBar from "components/NavBar";
 
 function Destination() {
   const seaSideDes = [
@@ -35,18 +37,18 @@ function Destination() {
       title: "Mirissa",
       description:
         "Known for whale watching and its tranquil beach atmosphere.",
-      img: galleImg,
+      img: DestinationPage.Destination_1,
     },
     {
       title: "Unawatuna",
       description:
         "Famous for its beautiful crescent-shaped beach and lively nightlife.",
-      img: galleImg,
+      img: DestinationPage.Destination_2,
     },
     {
       title: "Bentota",
       description: "Ideal for water sports and luxurious beach resorts.",
-      img: galleImg,
+      img: DestinationPage.Destination_3,
     },
   ];
 
@@ -55,19 +57,19 @@ function Destination() {
       title: "Kandy",
       description:
         "Home to the sacred Temple of the Tooth and stunning botanical gardens.",
-      img: archImg,
+      img: DestinationPage.Destination_4,
     },
     {
       title: "Nuwara Eliya",
       description:
         "Known as “Little England” for its colonial charm and lush tea estates.",
-      img: archImg,
+      img: DestinationPage.Destination_5,
     },
     {
       title: "Ella",
       description:
         "Famous for its scenic train rides, hiking trails, and the iconic Nine Arches Bridge.",
-      img: archImg,
+      img: DestinationPage.Destination_6,
     },
   ];
 
@@ -76,19 +78,19 @@ function Destination() {
       title: "Sigiriya",
       description:
         "Renowned for the ancient rock fortress and its breathtaking frescoes.",
-      img: sigiriyaImg,
+      img: DestinationPage.Destination_7,
     },
     {
       title: "Anuradhapura",
       description:
         "A historic city known for its well-preserved ruins and sacred Bodhi tree.",
-      img: sigiriyaImg,
+      img: DestinationPage.Destination_8,
     },
     {
       title: "Polonnaruwa",
       description:
         "Home to impressive ancient ruins and the iconic Gal Vihara sculptures.",
-      img: sigiriyaImg,
+      img: DestinationPage.Destination_9,
     },
   ];
 
@@ -128,13 +130,15 @@ function Destination() {
 
   return (
     <div style={{ backgroundColor: "#FEFDF5" }}>
-      <View height="40rem">
+      <NavBar />
+      <div style={{ padding: 15 }}>
         <HeaderTwo
           buttonArray={btnArray}
           title="Famous Destinations
 in Sri Lanka"
+          backgroundImage={DestinationPage.Header}
         />
-      </View>
+      </div>
 
       {/* SEASIDE DESTINATIONS */}
       <Grid
@@ -223,7 +227,7 @@ in Sri Lanka"
                     <CardActionArea>
                       <CardMedia
                         component="img"
-                        height="500px"
+                        height="350px"
                         image={item?.img}
                         sx={{
                           objectFit: "cover",
@@ -371,7 +375,7 @@ in Sri Lanka"
                     <CardActionArea>
                       <CardMedia
                         component="img"
-                        height="500px"
+                        height="350px"
                         image={item?.img}
                         sx={{
                           objectFit: "cover",
@@ -519,7 +523,7 @@ in Sri Lanka"
                     <CardActionArea>
                       <CardMedia
                         component="img"
-                        height="500px"
+                        height="350px"
                         image={item?.img}
                         sx={{
                           objectFit: "cover",

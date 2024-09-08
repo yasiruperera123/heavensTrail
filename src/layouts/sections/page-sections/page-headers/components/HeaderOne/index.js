@@ -65,92 +65,19 @@ function HeaderOne() {
   const backgroundImages = [bgImage, footerBg, bgImage];
 
   return (
-    <MKBox position="relative">
+    <MKBox
+      position="relative"
+      sx={{
+        top: 0,
+        marginTop: {
+          xs: 0,
+          sm: -10,
+        },
+      }}
+    >
       <Slider {...sliderSettings} style={{ height: "100%", width: "100%" }}>
         {backgroundImages.map((item, index) => (
           <MKBox key={index} position="relative" height="100%">
-            <Grid
-              container
-              flexDirection="row"
-              alignItems="center"
-              sx={{
-                padding: 2,
-                position: "absolute",
-                width: "100%",
-                display: { xs: "none", lg: "flex" },
-              }}
-            >
-              {/* First MKBox with 20% width */}
-              <Grid item xs={2} sx={{ display: "flex", alignItems: "center" }}>
-                <MKBox
-                  component="img"
-                  src={headerLogo}
-                  alt="Background"
-                  sx={{
-                    width: "100px",
-                    height: "auto",
-                    objectFit: "contain",
-                    borderRadius: "8px",
-                    boxShadow: "lg",
-                  }}
-                />
-              </Grid>
-
-              {/* Second MKBox with 60% width, centered */}
-              <Grid
-                item
-                xs={8}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <MKBox
-                  component="ul"
-                  p={0}
-                  m={0}
-                  sx={{
-                    listStyle: "none",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  {navItems.map((text) => (
-                    <MKBox component="li" key={text} sx={{ padding: 1 }}>
-                      <MKTypography
-                        component={Link}
-                        href="#"
-                        variant="button"
-                        color="white"
-                        fontWeight="regular"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        {text}
-                      </MKTypography>
-                    </MKBox>
-                  ))}
-                </MKBox>
-              </Grid>
-
-              {/* Third MKBox with 20% width */}
-              <Grid
-                item
-                xs={2}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "flex-end",
-                }}
-              >
-                <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none" }}>
-                  <MKButton circular variant="contained" color="white">
-                    Plan a Trip
-                  </MKButton>
-                </MKBox>
-              </Grid>
-            </Grid>
-
             <Grid
               container
               display="flex"

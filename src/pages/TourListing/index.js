@@ -24,7 +24,8 @@ import buddha2Img from "assets/images/homePage/buddha2.jpeg";
 import hinduImg from "assets/images/homePage/hindu.jpeg";
 import galleImg from "assets/images/homePage/galle.jpeg";
 import firBall from "assets/images/homePage/fireball.jpeg";
-
+import NavBar from "components/NavBar";
+import { TourListingPage } from "constants/images";
 import {
   Card,
   CardMedia,
@@ -62,7 +63,7 @@ function TourListing() {
           }}
         />,
       ],
-      img: coconutHllImg,
+      img: TourListingPage.Round_Tour_1,
     },
     {
       title: "Luxury Escape to the Misty Tea Country",
@@ -89,7 +90,7 @@ function TourListing() {
           }}
         />,
       ],
-      img: sigiriyaImg,
+      img: TourListingPage.Round_Tour_2,
     },
     {
       title: "Scenic Sri Lanka Trip -Soulmate Special",
@@ -113,7 +114,7 @@ function TourListing() {
           }}
         />,
       ],
-      img: soulmateImg,
+      img: TourListingPage.Round_Tour_3,
     },
     {
       title: "Hillside Trails in Nuwara Eliya, Ella, & Kandy",
@@ -131,7 +132,7 @@ function TourListing() {
         <UilUtensils className="hover-icon" />,
         <UilBedDouble className="hover-icon" />,
       ],
-      img: archImg,
+      img: TourListingPage.Round_Tour_4,
     },
     {
       title: "The Archaeological Marvels Package",
@@ -149,7 +150,7 @@ function TourListing() {
         <UilUtensils className="hover-icon" />,
         <UilBedDouble className="hover-icon" />,
       ],
-      img: buddha2Img,
+      img: TourListingPage.Round_Tour_5,
     },
     {
       title: "Divine Sri Lanka Getaway - Ramayana Edition",
@@ -167,7 +168,7 @@ function TourListing() {
         <UilUtensils className="hover-icon" />,
         <UilBedDouble className="hover-icon" />,
       ],
-      img: hinduImg,
+      img: TourListingPage.Round_Tour_6,
     },
   ];
 
@@ -194,7 +195,7 @@ function TourListing() {
           }}
         />,
       ],
-      img: galleImg,
+      img: TourListingPage.Day_Tour_1,
     },
     {
       title: "Visit Kandy for Temple of tooth & Vibrant Perahera",
@@ -212,7 +213,7 @@ function TourListing() {
           }}
         />,
       ],
-      img: firBall,
+      img: TourListingPage.Day_Tour_2,
     },
     {
       title: "Experience the thrill of Colombo's casino scene",
@@ -236,7 +237,7 @@ function TourListing() {
           }}
         />,
       ],
-      img: soulmateImg,
+      img: TourListingPage.Day_Tour_3,
     },
   ];
 
@@ -271,12 +272,14 @@ function TourListing() {
 
   return (
     <div style={{ backgroundColor: "#FEFDF5" }}>
-      <View height="40rem">
+      <NavBar />
+      <div style={{ padding: 15 }}>
         <HeaderTwo
           buttonArray={btnArray}
           title="Explore our round tours created just for you."
+          backgroundImage={TourListingPage.Header}
         />
-      </View>
+      </div>
       {/* Explore our travel Packages */}
       <Grid
         container
@@ -359,7 +362,6 @@ function TourListing() {
                 >
                   <Card
                     sx={{
-                      height: "650px",
                       maxHeight: "745px",
                       boxShadow: "none",
                       backgroundColor: "#FEFDF5",
@@ -385,7 +387,6 @@ function TourListing() {
                   >
                     <CardActionArea
                       sx={{
-                        height: "100%",
                         display: "flex",
                         flexDirection: "column",
                       }}
@@ -407,7 +408,7 @@ function TourListing() {
                       <CardContent sx={{ flex: 1, padding: 1 }}>
                         <MKButton
                           className="hover-button"
-                          style={{ marginTop: "10px", marginBottom: "20px" }}
+                          style={{ marginTop: "5px", marginBottom: "5px" }}
                           size="small"
                           circular
                           variant="outlined"
@@ -422,13 +423,21 @@ function TourListing() {
                               fontFamily: "Playfair Display, serif",
                               fontSize: "28px",
                               fontWeight: 400,
+                              lineHeight: "100%",
                             }}
                             variant="h5"
                           >
                             {item?.title}
                           </Typography>
                         </Grid>
-                        <Divider variant="middle" component="li" />
+                        <Divider
+                          variant="middle"
+                          sx={{
+                            backgroundColor: "##C9C5BA",
+                            height: "2px",
+                            margin: 1,
+                          }}
+                        />
                         <Grid container alignItems="center">
                           {item?.path &&
                             item?.path.length > 0 &&
@@ -452,11 +461,26 @@ function TourListing() {
                               );
                             })}
                         </Grid>
-                        <Divider variant="middle" component="li" />
+                        <Divider
+                          variant="middle"
+                          sx={{
+                            backgroundColor: "##C9C5BA",
+                            height: "2px",
+                            margin: 1,
+                          }}
+                        />
                         {item?.iconSet &&
                           item?.iconSet.map((icon) => {
                             return icon;
                           })}
+                        <Divider
+                          variant="middle"
+                          sx={{
+                            backgroundColor: "##C9C5BA",
+                            height: "2px",
+                            margin: 1,
+                          }}
+                        />
                         <MKTypography variant="subtitle2">
                           Pricing starts at
                         </MKTypography>
@@ -615,7 +639,7 @@ function TourListing() {
                       />
                       <CardContent sx={{ flex: 1, padding: 1 }}>
                         <MKButton
-                          style={{ marginTop: "10px", marginBottom: "20px" }}
+                          style={{ marginTop: "5px", marginBottom: "5px" }}
                           size="small"
                           circular
                           variant="outlined"
@@ -630,13 +654,21 @@ function TourListing() {
                               fontFamily: "Playfair Display, serif",
                               fontSize: "28px",
                               fontWeight: 400,
+                              lineHeight: "100%",
                             }}
                             variant="h5"
                           >
                             {item?.title}
                           </Typography>
                         </Grid>
-                        <Divider variant="middle" component="li" />
+                        <Divider
+                          variant="middle"
+                          sx={{
+                            backgroundColor: "##C9C5BA",
+                            height: "2px",
+                            margin: 1,
+                          }}
+                        />
                         <Grid container alignItems="center">
                           {item?.path &&
                             item?.path.length > 0 &&
@@ -660,11 +692,26 @@ function TourListing() {
                               );
                             })}
                         </Grid>
-                        <Divider variant="middle" component="li" />
+                        <Divider
+                          variant="middle"
+                          sx={{
+                            backgroundColor: "##C9C5BA",
+                            height: "2px",
+                            margin: 1,
+                          }}
+                        />
                         {item?.iconSet &&
                           item?.iconSet.map((icon) => {
                             return icon;
                           })}
+                        <Divider
+                          variant="middle"
+                          sx={{
+                            backgroundColor: "##C9C5BA",
+                            height: "2px",
+                            margin: 1,
+                          }}
+                        />
                         <MKTypography variant="subtitle2">
                           Pricing starts at
                         </MKTypography>

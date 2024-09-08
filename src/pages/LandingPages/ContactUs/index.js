@@ -1,148 +1,457 @@
-/*
-=========================================================
-* Material Kit 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// @mui material components
-import Grid from "@mui/material/Grid";
-
-// Material Kit 2 React components
-import MKBox from "components/MKBox";
-import MKInput from "components/MKInput";
+import React, { useState, useEffect } from "react";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
-
-// Material Kit 2 React examples
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import DefaultFooter from "examples/Footers/DefaultFooter";
-
-// Routes
-import routes from "routes";
-import footerRoutes from "footer.routes";
-
-// Image
-import bgImage from "assets/images/illustrations/illustration-reset.jpg";
+import View from "layouts/sections/components/View";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import { ReactComponent as LiBeach } from "assets/icons/li_beach.svg";
+import HeaderTwo from "layouts/sections/page-sections/page-headers/components/HeaderTwo";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import MKBox from "components/MKBox";
+import footerBg from "assets/images/homePage/beach.jpeg";
+import {
+  UilPlaneDeparture,
+  UilTicket,
+  UilUtensils,
+  UilBedDouble,
+  UilBuilding,
+  UilCalender,
+  UilGlassMartini,
+} from "@iconscout/react-unicons";
+import soulmateImg from "assets/images/homePage/soulmate.jpeg";
+import adventureIcon1 from "assets/images/homePage/adventureIcon1.png";
+import adventureIcon2 from "assets/images/homePage/adventureIcon2.png";
+import adventureIcon3 from "assets/images/homePage/adventureIcon3.png";
+import adventureIcon4 from "assets/images/homePage/adventureIcon4.png";
+import FormSimple from "layouts/sections/input-areas/forms/components/FormSimple";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  CardActionArea,
+  Box,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Divider,
+  Typography,
+} from "@mui/material";
+import Footer from "components/Footer";
+import galleImg from "assets/images/homePage/galle.jpeg";
+import firBall from "assets/images/homePage/fireball.jpeg";
+import NavBar from "components/NavBar";
+import { ContactUsPage } from "constants/images";
 
 function ContactUs() {
-  return (
-    <>
-      <MKBox position="fixed" top="0.5rem" width="100%">
-        <DefaultNavbar
-          routes={routes}
-          action={{
-            type: "external",
-            route: "https://www.creative-tim.com/product/material-kit-react",
-            label: "free download",
-            color: "info",
+  const cardsData = [
+    {
+      image: ContactUsPage.Contact_Us_Card,
+      title: "Destination Weddings",
+      description:
+        "Heaven's Trail is a proud subsidiary of a respected Sri Lankan group of companies, offering extraordinary journeys across Sri Lanka with support from our hotels, agriculture ventures, and event industry ties in Australia. As a locally owned and Sri Lanka Tourist Board Approved Destination Management Company (DMC), we specialize in crafting personalized holidays that showcase the island’s diverse landscapes, rich heritage, and warm hospitality.",
+      description2:
+        'Sri Lanka, often called the "Pearl of the Indian Ocean," is a tropical paradise with a unique blend of stunning beaches, lush tea estates, vibrant wildlife, and ancient cultural sites. Our dedicated team leverages deep local expertise to create memorable itineraries that highlight the best of Sri Lanka, from its 8 UNESCO World Heritage Sites to its pristine coastlines and majestic national parks.',
+      btnText: "Contact Us",
+    },
+  ];
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Function to check the window width
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 600); // You can adjust the width as per your requirement
+    };
+
+    handleResize(); // Check the initial window size
+    window.addEventListener("resize", handleResize); // Add resize event listener
+
+    // Cleanup on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const CustomCard = ({ image, title, index }) => {
+    const isEven = index % 2 === 0;
+
+    return (
+      <Card
+        style={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : isEven ? "row" : "row-reverse",
+          marginBottom: "20px",
+          borderRadius: "15px",
+          backgroundColor: "#EEECE2",
+          boxShadow: "none",
+        }}
+      >
+        <CardMedia
+          component="img"
+          alt={title}
+          image={image}
+          title={title}
+          style={{
+            flex: 1,
+            borderRadius: "15px",
+            height: "500px",
+            marginTop: 0,
           }}
         />
-      </MKBox>
-      <Grid container spacing={3} alignItems="center">
-        <Grid item xs={12} lg={6}>
-          <MKBox
-            display={{ xs: "none", lg: "flex" }}
-            width="calc(100% - 2rem)"
-            height="calc(100vh - 2rem)"
-            borderRadius="lg"
-            ml={2}
-            mt={2}
-            sx={{ backgroundImage: `url(${bgImage})` }}
-          />
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={10}
-          md={7}
-          lg={6}
-          xl={4}
-          ml={{ xs: "auto", lg: 6 }}
-          mr={{ xs: "auto", lg: 6 }}
+        <CardContent
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignSelf: "center",
+            padding: isMobile ? "10px" : "20px",
+            border: "solid",
+            marginLeft: 8,
+            borderRadius: "15px",
+            borderColor: "#C9C5BA",
+            flex: 1,
+          }}
         >
-          <MKBox
-            bgColor="white"
-            borderRadius="xl"
-            shadow="lg"
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            mt={{ xs: 20, sm: 18, md: 20 }}
-            mb={{ xs: 20, sm: 18, md: 20 }}
-            mx={3}
+          <FormSimple />
+        </CardContent>
+      </Card>
+    );
+  };
+
+  const contactMethods = [
+    {
+      title: "Phone",
+      des: "Tel: +94 77 77 0 4000 / +94 37 22 8 1908",
+      des2: "WhatsApp: +94 77 770 4000",
+      img: ContactUsPage.Contact_Us_Method_1,
+    },
+    {
+      title: "Email",
+      des: "hello@heavenstrails.com",
+      des2: "marketing@heavenstrails.com",
+      img: ContactUsPage.Contact_Us_Method_2,
+    },
+    {
+      title: "Office",
+      des: "Kandanegedara Road, Weralugama,",
+      des2: "Kuliyapitiya, Sri Lanka",
+      img: ContactUsPage.Contact_Us_Method_3,
+    },
+  ];
+
+  const contactPlaces = [
+    {
+      title: "Head Office",
+      subHead: "(SLTDA Reg.No: SLTDA/SQA/TA/01806)",
+      des: "Kandanegedara Road, Weralugama,",
+      des2: "Kuliyapitiya, Sri Lanka,",
+      des3: "+94 37 2281908",
+    },
+    {
+      title: "UAE",
+      des: "AI Bassam Building,4th Floor, Port Saeed,",
+      des2: "Deira-Dubai",
+      des3: "+971 50 316 6948",
+    },
+    {
+      title: "Australia",
+      des: "890 North Road,",
+      des2: "Bentleigh East VIC 3165",
+      des3: "+61 43 103 7027",
+    },
+  ];
+
+  return (
+    <div style={{ backgroundColor: "#FEFDF5" }}>
+      <NavBar />
+      <div style={{ padding: 15 }}>
+        <HeaderTwo title="Contact Us" backgroundImage={ContactUsPage.Header} />
+      </div>
+      <div style={{ overflowX: "hidden" }}>
+        <Grid
+          container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            paddingLeft: "16px",
+            paddingRight: "16px",
+            backgroundColor: "#FEFDF5",
+            marginTop: 5,
+          }}
+        >
+          <Container
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            <MKBox
-              variant="gradient"
-              bgColor="info"
-              coloredShadow="info"
-              borderRadius="lg"
-              p={2}
-              mx={2}
-              mt={-3}
+            <Grid
+              sx={{
+                alignSelf: "center",
+                marginBottom: 6,
+              }}
+              container
+              spacing={2}
+              lg={11}
             >
-              <MKTypography variant="h3" color="white">
-                Contact us
-              </MKTypography>
-            </MKBox>
-            <MKBox p={3}>
-              <MKTypography variant="body2" color="text" mb={3}>
-                For further questions, including partnership opportunities, please email
-                hello@creative-tim.com or contact using our contact form.
-              </MKTypography>
-              <MKBox width="100%" component="form" method="post" autoComplete="off">
-                <Grid container spacing={3}>
-                  <Grid item xs={12} md={6}>
-                    <MKInput
-                      variant="standard"
-                      label="Full Name"
-                      InputLabelProps={{ shrink: true }}
-                      fullWidth
+              {contactMethods.map((item, index) => (
+                <Grid item key={index} xs={12} sm={6} lg={4}>
+                  <Card
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: "16px",
+                      backgroundColor: "#FEFDF5",
+                      boxShadow: "none",
+                      borderWidth: 2,
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      height="80px"
+                      image={item?.img}
+                      alt="Image"
+                      sx={{
+                        objectFit: "contain",
+                        width: "70px",
+                        margin: 0,
+                      }}
                     />
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <MKInput
-                      type="email"
-                      variant="standard"
-                      label="Email"
-                      InputLabelProps={{ shrink: true }}
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <MKInput
-                      variant="standard"
-                      label="What can we help you?"
-                      placeholder="Describe your problem in at least 250 characters"
-                      InputLabelProps={{ shrink: true }}
-                      multiline
-                      fullWidth
-                      rows={6}
-                    />
-                  </Grid>
+                    <MKTypography
+                      color="#1A1814"
+                      mb={2}
+                      sx={{
+                        fontSize: "24px",
+                        fontFamily: "Playfair Display, serif",
+                        fontWeight: 400,
+                        width: "70%",
+                      }}
+                    >
+                      {item?.title}
+                    </MKTypography>
+                    <MKTypography variant="subtitle2">{item?.des}</MKTypography>
+                    <MKTypography variant="subtitle2">
+                      {item?.des2}
+                    </MKTypography>
+                  </Card>
                 </Grid>
-                <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
-                  <MKButton type="submit" variant="gradient" color="info">
-                    Send Message
-                  </MKButton>
-                </Grid>
-              </MKBox>
-            </MKBox>
-          </MKBox>
+              ))}
+            </Grid>
+          </Container>
         </Grid>
-      </Grid>
-      <MKBox pt={6} px={1} mt={6}>
-        <DefaultFooter content={footerRoutes} />
-      </MKBox>
-    </>
+
+        {/*Whoe we are*/}
+        <Grid
+          container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            paddingLeft: "16px",
+            paddingRight: "16px",
+            marginBottom: "40px",
+            backgroundColor: "#EEECE2",
+            marginTop: 7,
+          }}
+        >
+          <Container
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Grid
+              container
+              item
+              xs={12}
+              lg={8}
+              mt={7}
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              sx={{ textAlign: "center", marginBottom: "20px" }}
+            >
+              <MKTypography
+                variant="h1"
+                color="black"
+                sx={({ breakpoints, typography: { size } }) => ({
+                  [breakpoints.down("md")]: {
+                    fontSize: size["3xl"],
+                  },
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "60px",
+                  fontWeight: 400,
+                })}
+              >
+                Contact Us
+              </MKTypography>
+            </Grid>
+          </Container>
+          <Box
+            style={{
+              backgroundColor: "#EEECE2",
+            }}
+          >
+            <Grid
+              container
+              spacing={4}
+              mt={1}
+              mb={5}
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
+              {cardsData.map((card, index) => (
+                <Grid item xs={12} sm={6} lg={10} key={index}>
+                  <CustomCard
+                    image={card.image}
+                    title={card.title}
+                    description={card.description}
+                    description2={card.description2}
+                    index={index}
+                    btnText={card?.btnText}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </Grid>
+
+        {/* WHY choose US */}
+        <Grid
+          container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            paddingLeft: "16px",
+            paddingRight: "16px",
+            backgroundColor: "#FEFDF5",
+            marginTop: 7,
+          }}
+        >
+          <Container
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "40px",
+            }}
+          >
+            <Grid
+              container
+              item
+              xs={12}
+              lg={8}
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              sx={{ textAlign: "center", marginBottom: "20px" }}
+            >
+              <MKTypography
+                variant="h1"
+                color="black"
+                sx={({ breakpoints, typography: { size } }) => ({
+                  [breakpoints.down("md")]: {
+                    fontSize: size["3xl"],
+                  },
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "60px",
+                  fontWeight: 400,
+                })}
+              >
+                Our Branches
+              </MKTypography>
+              <MKTypography
+                variant="h6"
+                fontWeight="regular"
+                color="black"
+                sx={{ textAlign: "center", maxWidth: "90%" }}
+              >
+                Choosing Heaven's Trail for your accommodation means opting for
+                quality, comfort, and a seamless experience tailored to your
+                needs.
+              </MKTypography>
+            </Grid>
+          </Container>
+          <Container
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Grid
+              sx={{
+                alignSelf: "center",
+                marginBottom: 6,
+              }}
+              container
+              spacing={2}
+              lg={11}
+            >
+              {contactPlaces.map((item, index) => (
+                <Grid item key={index} xs={12} sm={6} lg={4}>
+                  <Card
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: "16px",
+                      backgroundColor: "#FEFDF5",
+                      boxShadow: "none",
+                      borderWidth: 1,
+                    }}
+                  >
+                    <MKTypography
+                      color="#1A1814"
+                      mb={2}
+                      sx={{
+                        fontSize: "24px",
+                        fontFamily: "Playfair Display, serif",
+                        fontWeight: 400,
+                        width: "90%",
+                      }}
+                    >
+                      {item?.title}
+                      <MKTypography
+                        sx={{
+                          lineHeight: 0.8,
+                          fontSize: 12,
+                          fontStyle: "italic",
+                          color: "black",
+                        }}
+                        variant="subtitle2"
+                      >
+                        {item?.subHead}
+                      </MKTypography>
+                    </MKTypography>
+                    <MKTypography color="black" variant="subtitle2">
+                      {item?.des}
+                    </MKTypography>
+                    <MKTypography color="black" variant="subtitle2">
+                      {item?.des2}
+                    </MKTypography>
+                    <MKBox display="flex" alignItems="center">
+                      <MKTypography color="black" mt={2} variant="subtitle2">
+                        Tel:
+                      </MKTypography>
+                      <MKTypography
+                        sx={{ color: "#929E03" }}
+                        mt={2}
+                        variant="subtitle2"
+                        ml={1}
+                      >
+                        {item?.des3}
+                      </MKTypography>
+                    </MKBox>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
+        </Grid>
+        <Footer />
+      </div>
+    </div>
   );
 }
 

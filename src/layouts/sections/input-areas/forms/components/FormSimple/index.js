@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Kit 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState } from "react";
 
 // @mui material components
@@ -32,54 +17,104 @@ function FormSimple() {
   const handleChecked = () => setChecked(!checked);
 
   return (
-    <MKBox component="section" py={12}>
+    <MKBox component="section">
       <Container>
-        <Grid container item justifyContent="center" xs={10} lg={7} mx="auto" textAlign="center">
-          <MKTypography variant="h3" mb={1}>
-            Contact Us
-          </MKTypography>
-        </Grid>
-        <Grid container item xs={12} lg={7} sx={{ mx: "auto" }}>
+        <Grid container item xs={12} lg={12}>
           <MKBox width="100%" component="form" method="post" autoComplete="off">
             <MKBox p={3}>
               <Grid container spacing={3}>
                 <Grid item xs={12} md={6}>
-                  <MKInput variant="standard" label="First Name" fullWidth />
+                  <MKInput
+                    backgroundColor="#FEFDF5"
+                    sx={{
+                      backgroundColor: "#FEFDF5",
+                      borderRadius: 30,
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          borderRadius: 30,
+                        },
+                      },
+                    }}
+                    variant="outlined"
+                    label="First Name"
+                    fullWidth
+                  />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <MKInput variant="standard" label="Last Name" fullWidth />
+                  <MKInput
+                    variant="outlined"
+                    label="Last Name"
+                    fullWidth
+                    sx={{
+                      backgroundColor: "#FEFDF5",
+                      borderRadius: 30,
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          borderRadius: 30,
+                        },
+                      },
+                    }}
+                  />
                 </Grid>
                 <Grid item xs={12}>
-                  <MKInput variant="standard" type="email" label="Email Address" fullWidth />
+                  <MKInput
+                    variant="outlined"
+                    type="email"
+                    label="Email"
+                    fullWidth
+                    sx={{
+                      backgroundColor: "#FEFDF5",
+                      borderRadius: 30,
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          borderRadius: 30,
+                        },
+                      },
+                    }}
+                  />
                 </Grid>
                 <Grid item xs={12}>
-                  <MKInput variant="standard" label="Your Message" multiline fullWidth rows={6} />
+                  <MKInput
+                    variant="outlined"
+                    label="Phone"
+                    fullWidth
+                    sx={{
+                      backgroundColor: "#FEFDF5",
+                      borderRadius: 30,
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          borderRadius: 30,
+                        },
+                      },
+                    }}
+                  />
                 </Grid>
-                <Grid item xs={12} alignItems="center" ml={-1}>
-                  <Switch checked={checked} onChange={handleChecked} />
-                  <MKTypography
-                    variant="button"
-                    fontWeight="regular"
-                    color="text"
-                    ml={-1}
-                    sx={{ cursor: "pointer", userSelect: "none" }}
-                    onClick={handleChecked}
-                  >
-                    &nbsp;&nbsp;I agree the&nbsp;
-                  </MKTypography>
-                  <MKTypography
-                    component="a"
-                    href="#"
-                    variant="button"
-                    fontWeight="regular"
-                    color="dark"
-                  >
-                    Terms and Conditions
-                  </MKTypography>
+                <Grid item xs={12}>
+                  <MKInput
+                    variant="outlined"
+                    label="Your Message"
+                    multiline
+                    fullWidth
+                    rows={6}
+                    sx={{
+                      backgroundColor: "#FEFDF5",
+                      borderRadius: 5,
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          borderRadius: 5,
+                        },
+                      },
+                    }}
+                  />
                 </Grid>
               </Grid>
-              <Grid container item justifyContent="center" xs={12} my={2}>
-                <MKButton type="submit" variant="gradient" color="dark" fullWidth>
+              <Grid container item justifyContent="flex-end" xs={12} my={2}>
+                <MKButton
+                  sx={{ borderRadius: 30 }}
+                  type="submit"
+                  variant="gradient"
+                  color="dark"
+                >
                   Send Message
                 </MKButton>
               </Grid>

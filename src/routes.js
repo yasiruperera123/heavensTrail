@@ -53,6 +53,7 @@ import Destination from "pages/Destination";
 import MiceTours from "pages/MICETours";
 import Weddings from "pages/Weddings";
 import Meetings from "pages/Meetings";
+import Accomadation from "pages/Accomadation";
 
 // Sections
 import PageHeaders from "layouts/sections/page-sections/page-headers";
@@ -86,12 +87,12 @@ const routes = [
         collapse: [
           {
             name: "about us",
-            route: "/pages/landing-pages/about-us",
+            route: "/pages/about-us",
             component: <AboutUs />,
           },
           {
             name: "contact us",
-            route: "/pages/landing-pages/contact-us",
+            route: "/pages/contact-us",
             component: <ContactUs />,
           },
           {
@@ -128,6 +129,11 @@ const routes = [
             name: "meetings",
             route: "/pages/meetings",
             component: <Meetings />,
+          },
+          {
+            name: "accomadation",
+            route: "/pages/accomadation",
+            component: <Accomadation />,
           },
         ],
       },
