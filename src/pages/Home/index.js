@@ -281,7 +281,7 @@ function Home() {
               <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
                 <Card
                   sx={{
-                    height: "350px",
+                    height: "440px",
                     backgroundImage: `url(${item?.img})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",

@@ -257,16 +257,20 @@ function Accomadation() {
 
   const whyChooseUSArra = [
     {
-      title: "Personalized Itineraries",
-      des: "At Heaven's Trail, we understand that every traveler is unique. Our team of experts works closely with you to craft tailor-made itineraries that cater to your interests, preferences, and travel style. Whether you seek adventure, relaxation, culture, or nature, we ensure a personalized experience that exceeds your expectations.",
+      title: "Wide Range of Options",
+      des: "From star-rated hotels to unique boutique stays, we offer a variety of accommodations to match your needs.",
     },
     {
-      title: "Local Expertise & Trusted Partnerships",
-      des: "As a locally owned and Sri Lanka Tourist Board Approved Destination Management Company, we have deep roots in the community and strong partnerships with trusted local providers. Our insider knowledge allows us to offer authentic experiences, from hidden gems to popular landmarks, with unparalleled attention to detail and quality.",
+      title: "Comfort and Quality",
+      des: "Every accommodation is carefully selected to ensure high standards of comfort and service.",
     },
     {
-      title: "Commitment to Sustainability",
-      des: "We believe in responsible tourism that supports local communities and protects the environment. Our tours are designed to minimize the ecological footprint while maximizing positive impact. By choosing Heaven's Trail, you are not just exploring Sri Lanka, but also contributing to its preservation for future generations.",
+      title: "Cultural Immersion",
+      des: "With options like home stays, you can immerse yourself in the local culture and traditions.",
+    },
+    {
+      title: "Flexible Pricing",
+      des: "Our diverse range of accommodations ensures that there is something for every budget.",
     },
   ];
 
@@ -348,7 +352,7 @@ function Accomadation() {
             display: "flex",
           }}
         >
-          <Grid flexDirection={"column"} container lg={9} sx={{}}>
+          <Grid flexDirection={"column"} container lg={10} sx={{}}>
             <MKTypography
               variant="h1"
               color="black"
@@ -437,6 +441,25 @@ function Accomadation() {
               </span>
               Famous for whale watching and vibrant nightlife.
             </MKTypography>
+            <MKTypography
+              variant="h1"
+              color="black"
+              sx={({ breakpoints, typography: { size } }) => ({
+                [breakpoints.down("md")]: {
+                  fontSize: size["3xl"],
+                },
+                fontFamily: "Playfair Display, serif",
+                fontSize: "50px",
+                fontWeight: 400,
+                textAlign: "left",
+              })}
+            >
+              Accommodation Options and Pricing
+            </MKTypography>
+            <Divider
+              variant="middle"
+              sx={{ height: 3, width: "100%", backgroundColor: "#C9C5BA" }}
+            />
           </Grid>
         </Box>
       </Grid>
@@ -470,6 +493,11 @@ function Accomadation() {
             alignItems="center"
             sx={{ textAlign: "center", marginBottom: "20px" }}
           >
+            <Stack direction="row" spacing={1} mt={4}>
+              <MKButton circular variant="outlined" color="black">
+                Customizable Tour Planner
+              </MKButton>
+            </Stack>
             <MKTypography
               variant="h1"
               color="black"
@@ -482,7 +510,7 @@ function Accomadation() {
                 fontWeight: 400,
               })}
             >
-              Why Choose Heaven's Trail?
+              Why Choose Heaven's Trail for Your Stay?
             </MKTypography>
             <MKTypography
               variant="h6"
@@ -513,7 +541,7 @@ function Accomadation() {
             spacing={2}
           >
             {whyChooseUSArra.map((item, index) => (
-              <Grid item key={index} xs={12} sm={6} lg={4}>
+              <Grid item key={index} xs={12} sm={6} lg={3}>
                 <Card
                   sx={{
                     display: "flex",
@@ -522,7 +550,7 @@ function Accomadation() {
                     backgroundColor: "#EEECE2",
                     boxShadow: "none",
                     borderWidth: 1,
-                    minHeight: "350px",
+                    minHeight: "210px",
                   }}
                 >
                   <MKTypography
@@ -530,209 +558,6 @@ function Accomadation() {
                     mb={2}
                     sx={{
                       fontSize: "24px",
-                      fontFamily: "Playfair Display, serif",
-                      fontWeight: 400,
-                      width: "70%",
-                    }}
-                  >
-                    {item?.title}
-                  </MKTypography>
-                  <MKTypography variant="subtitle2">{item?.des}</MKTypography>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Grid>
-
-      <Grid
-        container
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          backgroundColor: "#FEFDF5",
-          marginTop: 7,
-        }}
-      >
-        <MKBox
-          display="flex"
-          alignItems="center"
-          pt={4}
-          pb={4}
-          minHeight="100%"
-          sx={{
-            backgroundImage: ({
-              palette: { gradients },
-              functions: { linearGradient, rgba },
-            }) =>
-              `${linearGradient("#BFCF0F", "#818B0C")}, url(${
-                AboutUsPage.Sub_Head
-              })`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundBlendMode: "overlay",
-
-            margin: 1,
-            borderRadius: 5,
-            width: "90%",
-          }}
-        >
-          <Grid
-            container
-            xs={12}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-            }}
-            flexDirection="column"
-            justifyContent="center"
-          >
-            <MKTypography
-              variant="h1"
-              color="white"
-              mb={3}
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-                fontSize: "60px",
-                fontFamily: "Playfair Display, serif",
-                width: "70%",
-                textAlign: "center",
-              })}
-            >
-              {`Where Will Your Journey Begin?`} <br />
-              {`Create your trip today.`}
-            </MKTypography>
-            <MKTypography
-              color="white"
-              mb={3}
-              sx={({ breakpoints, typography: {} }) => ({
-                fontFamily: "Poppins, sans-serif",
-                fontSize: "20px",
-                fontWeight: 400,
-                width: "70%",
-                textAlign: "center",
-              })}
-            >
-              Sri Lanka, often called the "Pearl of the Indian Ocean," is a
-              tropical paradise with a unique blend of stunning beaches, lush
-              tea estates, vibrant wildlife, and ancient cultural sites.
-            </MKTypography>
-            <Stack direction="row" spacing={1} mt={3}>
-              <MKButton circular variant="outlined" color="white">
-                Tour Packages
-              </MKButton>
-              <MKButton circular variant="contained" color="white">
-                Plan Your Trip
-              </MKButton>
-            </Stack>
-          </Grid>
-        </MKBox>
-      </Grid>
-
-      {/* Create your own adventure SECTION */}
-      <Grid
-        container
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          paddingLeft: "16px",
-          paddingRight: "16px",
-          backgroundColor: "#EEECE2",
-          marginTop: 7,
-        }}
-      >
-        <Container
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "40px",
-          }}
-        >
-          <Grid
-            container
-            item
-            xs={12}
-            lg={8}
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            sx={{ textAlign: "center", marginBottom: "20px" }}
-          >
-            <Stack direction="row" spacing={1} mt={3}>
-              <MKButton circular variant="outlined" color="black">
-                Heaven’s Trail MICE Experiences
-              </MKButton>
-            </Stack>
-            <MKTypography
-              variant="h1"
-              color="black"
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-                fontFamily: "Playfair Display, serif",
-                fontSize: "60px",
-                fontWeight: 400,
-              })}
-            >
-              Our Features
-            </MKTypography>
-            <MKTypography
-              variant="h6"
-              fontWeight="regular"
-              color="black"
-              sx={{ textAlign: "center", maxWidth: "90%" }}
-            >
-              Our range of featured services ensures that every aspect of your
-              MICE tour is meticulously planned and executed to perfection.
-            </MKTypography>
-          </Grid>
-        </Container>
-        <Container
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Grid
-            sx={{
-              alignSelf: "center",
-              marginBottom: 6,
-              justifyContent: "center",
-            }}
-            container
-            spacing={2}
-          >
-            {adventures.map((item, index) => (
-              <Grid item key={index} xs={12} sm={6} lg={4}>
-                <Card
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: "16px",
-                    backgroundColor: "#EEECE2",
-                    boxShadow: "none",
-                    alignItems: "center",
-                    textAlign: "center",
-                    minHeight: "350px",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    height="80px"
-                    image={item?.img}
-                    alt="Image"
-                    sx={{ objectFit: "contain", width: "70px" }}
-                  />
-                  <MKTypography
-                    color="#1A1814"
-                    mb={2}
-                    sx={{
-                      fontSize: "28px",
                       fontFamily: "Playfair Display, serif",
                       fontWeight: 400,
                       width: "70%",
