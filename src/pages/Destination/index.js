@@ -30,8 +30,9 @@ import {
 } from "@mui/material";
 import { DestinationPage } from "constants/images";
 import NavBar from "components/NavBar";
-
+import { useNavigate } from "react-router-dom";
 function Destination() {
+  const navigate = useNavigate();
   const seaSideDes = [
     {
       title: "Mirissa",
@@ -127,6 +128,10 @@ function Destination() {
     { title: "Wildlife and Nature", icon: <UilTrees /> },
     { title: "Urban and Coastal", icon: <UilBuilding /> },
   ];
+
+  const handleOnClick = () => {
+    navigate("/pages/destination-details");
+  };
 
   return (
     <div style={{ backgroundColor: "#FEFDF5" }}>
@@ -224,7 +229,7 @@ in Sri Lanka"
                       borderColor: "#C9C5BA",
                     }}
                   >
-                    <CardActionArea>
+                    <CardActionArea onClick={() => handleOnClick()}>
                       <CardMedia
                         component="img"
                         height="350px"

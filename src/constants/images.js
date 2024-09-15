@@ -79,6 +79,20 @@ import Hotel_Img_1 from "assets/images/accomadation/hotel_img_1.jpeg";
 import Hotel_Img_2 from "assets/images/accomadation/hotel_img_2.jpeg";
 import Hotel_Img_3 from "assets/images/accomadation/hotel_img_3.jpeg";
 
+//Blogs
+import Blogs_Top_Card from "assets/images/blogs/blog-top-card.png";
+import Blogs_Card_1 from "assets/images/blogs/blogs_card_1.png";
+import Blogs_Card_2 from "assets/images/blogs/blogs_card_2.png";
+import Blogs_Card_3 from "assets/images/blogs/blogs_card_3.png";
+import Blogs_Card_4 from "assets/images/blogs/blogs_card_4.png";
+import Blogs_Card_5 from "assets/images/blogs/blogs_card_5.png";
+import Blogs_Card_6 from "assets/images/blogs/blogs_card_6.png";
+
+//Blog Articles
+import Blog_Article_1 from "assets/images/blogArticles/blog_article_1.png";
+import Blog_Article_2 from "assets/images/blogArticles/blog_article_2.png";
+import Blog_Article_3 from "assets/images/blogArticles/blog_article_3.png";
+
 export const TourListingPage = {
   Header: TourListingHeader,
   Round_Tour_1: Tour1,
@@ -172,4 +186,22 @@ export const AccomadationPage = {
   Hotel_Img_2: Hotel_Img_2,
   Hotel_Img_3: Hotel_Img_3,
   Hotel_Img_4: Hotel_Img_1,
+};
+
+export const BlogsPage = {
+  Header: TourListingHeader,
+  Blogs_Top_Card: Blogs_Top_Card,
+  Blogs_Card_1: Blogs_Card_1,
+  Blogs_Card_2: Blogs_Card_2,
+  Blogs_Card_3: Blogs_Card_3,
+  Blogs_Card_4: Blogs_Card_4,
+  Blogs_Card_5: Blogs_Card_5,
+  Blogs_Card_6: Blogs_Card_6,
+};
+
+export const BlogArticlePage = {
+  Header: TourListingHeader,
+  Blog_Article_1: Blog_Article_1,
+  Blog_Article_2: Blog_Article_2,
+  Blog_Article_3: Blog_Article_3,
 };

@@ -29,7 +29,14 @@ import CustomDateRangePicker from "components/CustomeDateRangerPicker";
 import NavBar from "components/NavBar";
 import { rgb } from "chroma-js";
 
-function HeaderThree({ title, buttonArray, description, backgroundImage }) {
+function HeaderThree({
+  title,
+  buttonArray,
+  description,
+  backgroundImage,
+  subHead,
+  headerFontSize,
+}) {
   const [value, setValue] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -91,7 +98,11 @@ function HeaderThree({ title, buttonArray, description, backgroundImage }) {
             alignItems="center"
             textAlign="center"
           >
-            {description && <div className="text-with-lines">MICE Tours</div>}
+            {subHead && (
+              <div className="text-with-lines">
+                {subHead ? subHead : "MICE Tours"}
+              </div>
+            )}
             <MKTypography
               variant="h1"
               color="white"
@@ -101,7 +112,7 @@ function HeaderThree({ title, buttonArray, description, backgroundImage }) {
                   fontSize: size["3xl"],
                 },
                 fontFamily: "Playfair Display, serif",
-                fontSize: "90px",
+                fontSize: headerFontSize || "90px",
                 fontWeight: 400,
               })}
             >
@@ -118,7 +129,7 @@ function HeaderThree({ title, buttonArray, description, backgroundImage }) {
             >
               {description}
             </MKTypography>
-            {description && <hr style={{ width: "100%" }} />}
+            {subHead && <hr style={{ width: "100%" }} />}
             <Grid justifyContent="center">
               {buttonArray &&
                 buttonArray.length > 0 &&

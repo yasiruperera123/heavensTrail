@@ -20,7 +20,7 @@ import { styled } from "@mui/material/styles";
 
 export default styled(Button)(({ theme, ownerState }) => {
   const { palette, functions, borders, boxShadows } = theme;
-  const { color, variant, size, circular, iconOnly } = ownerState;
+  const { color, variant, size, circular, iconOnly, customBtn } = ownerState;
 
   const { white, text, transparent, gradients, dark } = palette;
   const { boxShadow, linearGradient, pxToRem, rgba } = functions;
@@ -30,11 +30,17 @@ export default styled(Button)(({ theme, ownerState }) => {
   // styles for the button with variant="contained"
   const containedStyles = () => {
     // background color value
-    const backgroundValue = palette[color] ? palette[color].main : white.main;
+    const backgroundValue = palette[color]
+      ? palette[color].main
+      : color === "#AF4D06"
+      ? "#AF4D06"
+      : white.main;
 
     // backgroundColor value when button is focused
     const focusedBackgroundValue = palette[color]
       ? palette[color].focus
+      : color === "#AF4D06"
+      ? "#AF4D06"
       : white.focus;
 
     // boxShadow value
@@ -64,12 +70,14 @@ export default styled(Button)(({ theme, ownerState }) => {
 
     // color value
     let colorValue = white.main;
-
-    if (color === "default" || !palette[color]) {
+    if (color === "#AF4D06") {
+      colorValue = white.main;
+    } else if (color === "default" || !palette[color]) {
       colorValue = text.main;
     } else if (color === "white" || color === "light") {
       colorValue = dark.main;
     }
+    console.log("asasasas", color);
 
     // color value when button is focused
     let focusedColorValue = white.main;
@@ -80,6 +88,9 @@ export default styled(Button)(({ theme, ownerState }) => {
       focusedColorValue = dark.main;
     } else if (color === "primary" || color === "error" || color === "dark") {
       focusedColorValue = white.main;
+    } else if (color === "#AF4D06") {
+      console.log("bbbb");
+      focusedColorValue = "#AF4D06";
     }
 
     return {

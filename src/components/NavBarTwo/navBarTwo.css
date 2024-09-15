@@ -47,7 +47,7 @@
   
   /* Navigation links */
   .navbartwo .nav-items li a {
-    color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0) !important;
     text-decoration: none;
     font-weight: bold;
   }

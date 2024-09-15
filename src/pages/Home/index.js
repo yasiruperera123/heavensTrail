@@ -209,6 +209,10 @@ function Home() {
     }
   };
 
+  const handleViewAllClick = () => {
+    navigate("/pages/blogs");
+  };
+
   return (
     <div>
       <NavBar />
@@ -553,13 +557,13 @@ function Home() {
                 <Grid
                   item
                   key={index}
-                  xs={12} // Full width on mobile
-                  sm={6} // Half width on small screens
-                  md={4} // One-third width on medium screens
-                  lg={3.5} // Adjust to fit 3.5 items per row
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3.5}
                   sx={{
                     flexShrink: 0,
-                    width: "calc(100% / 3.5)", // Ensure 3.5 items per row
+                    width: "calc(100% / 3.5)",
                     backgroundColor: "#FEFDF5",
                   }}
                 >
@@ -1061,7 +1065,7 @@ function Home() {
                   marginTop: 5,
                   marginBottom: 10,
                 }}
-                onClick={handleClick}
+                onClick={handleViewAllClick}
               >
                 View All Blogs
               </MKButton>
