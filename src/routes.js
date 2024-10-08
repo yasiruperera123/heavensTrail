@@ -19,6 +19,8 @@ import Accomadation from "pages/Accomadation";
 import DestinationDetails from "pages/DestinationDetails";
 import Blogs from "pages/Blogs";
 import BlogArticle from "pages/BlogArticle";
+import TourDetails from "pages/TourDetails";
+import TourPlanner from "pages/TourPlanner";
 
 // Sections
 import PageHeaders from "layouts/sections/page-sections/page-headers";
@@ -114,6 +116,16 @@ const routes = [
             name: "blogArticle",
             route: "/pages/blog-article",
             component: <BlogArticle />,
+          },
+          {
+            name: "tourDetails",
+            route: "/pages/tour-details",
+            component: <TourDetails />,
+          },
+          {
+            name: "tourPlanner",
+            route: "/pages/tour-planner",
+            component: <TourPlanner />,
           },
         ],
       },

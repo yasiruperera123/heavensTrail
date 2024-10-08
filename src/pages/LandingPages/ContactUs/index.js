@@ -9,21 +9,6 @@ import { ReactComponent as LiBeach } from "assets/icons/li_beach.svg";
 import HeaderTwo from "layouts/sections/page-sections/page-headers/components/HeaderTwo";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MKBox from "components/MKBox";
-import footerBg from "assets/images/homePage/beach.jpeg";
-import {
-  UilPlaneDeparture,
-  UilTicket,
-  UilUtensils,
-  UilBedDouble,
-  UilBuilding,
-  UilCalender,
-  UilGlassMartini,
-} from "@iconscout/react-unicons";
-import soulmateImg from "assets/images/homePage/soulmate.jpeg";
-import adventureIcon1 from "assets/images/homePage/adventureIcon1.png";
-import adventureIcon2 from "assets/images/homePage/adventureIcon2.png";
-import adventureIcon3 from "assets/images/homePage/adventureIcon3.png";
-import adventureIcon4 from "assets/images/homePage/adventureIcon4.png";
 import FormSimple from "layouts/sections/input-areas/forms/components/FormSimple";
 import {
   Card,

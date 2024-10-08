@@ -93,6 +93,11 @@ import Blog_Article_1 from "assets/images/blogArticles/blog_article_1.png";
 import Blog_Article_2 from "assets/images/blogArticles/blog_article_2.png";
 import Blog_Article_3 from "assets/images/blogArticles/blog_article_3.png";
 
+//Tour Planner
+import Car from "assets/images/tour-planner/car.png";
+import Tour_Guide from "assets/images/tour-planner/Guide.png";
+import Driver_Guide from "assets/images/tour-planner/Drive Guide.png";
+
 export const TourListingPage = {
   Header: TourListingHeader,
   Round_Tour_1: Tour1,
@@ -204,4 +209,10 @@ export const BlogArticlePage = {
   Blog_Article_1: Blog_Article_1,
   Blog_Article_2: Blog_Article_2,
   Blog_Article_3: Blog_Article_3,
+};
+
+export const TourPlannerPage = {
+  Car: Car,
+  Tour_Guide: Tour_Guide,
+  Driver_Guide: Driver_Guide,
 };

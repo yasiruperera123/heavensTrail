@@ -10,6 +10,7 @@ import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
 import HeaderTwo from "layouts/sections/page-sections/page-headers/components/HeaderTwo";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Footer from "components/Footer";
+import { useNavigate } from "react-router-dom";
 import {
   UilPlaneDeparture,
   UilTicket,
@@ -40,6 +41,7 @@ import {
 } from "@mui/material";
 
 function TourListing() {
+  const navigate = useNavigate();
   const travelPcgs = [
     {
       title: "Luxury Escape to the Southern Coast",
@@ -622,6 +624,7 @@ function TourListing() {
                         display: "flex",
                         flexDirection: "column",
                       }}
+                      onClick={() => navigate("/pages/tour-details")}
                     >
                       <CardMedia
                         component="img"

@@ -1,0 +1,99 @@
+/* CustomStepper.css */
+.stepper-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .step {
+    height: 10px;
+    flex-grow: 1;
+    margin: 0 10px;
+    background-color: #d3d1c9; /* Inactive step color */
+    border-radius: 5px;
+  }
+  
+  .step.active {
+    background-color: #1d1d1b; /* Active step color */
+  }
+  
+  .content {
+    margin: 20px 0;
+    height: 35rem;
+    background-color: #EEECE2;
+  }
+  
+  .stepper-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .back-button,
+  .continue-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .back-button {
+    background-color: #f0f0f0;
+    color: #000;
+  }
+  
+  .continue-button {
+    background-color: #1d1d1b;
+    color: white;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    /* Adjusting the padding and margins for smaller screens */
+    .stepper-container {
+      padding: 10px;
+    }
+  
+    .step {
+      margin: 0 5px;
+    }
+  
+    .content {
+      margin: 10px 0;
+      height: auto; /* Adjust content height for mobile */
+    }
+  
+    .stepper-buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .back-button,
+    .continue-button {
+      padding: 8px 16px;
+      width: 100%; /* Full width for buttons on mobile */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    /* For even smaller screens */
+    .stepper-container {
+      flex-direction: column;
+      align-items: center;
+      padding: 5px;
+    }
+  
+    .step {
+      width: 100%;
+      margin: 5px 0;
+    }
+  
+    .back-button,
+    .continue-button {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+  }
+  

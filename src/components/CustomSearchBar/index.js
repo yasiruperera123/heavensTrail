@@ -4,9 +4,11 @@ import {
   UilCalendarAlt,
   UilAngleLeft,
   UilAngleRight,
+  UilStar,
 } from "@iconscout/react-unicons";
 
-const DateRangePicker = () => {
+const CustomSearchBar = () => {
+  const [value, setValue] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [isCalendarOpen, setCalendarOpen] = useState(false);
@@ -94,16 +96,13 @@ const DateRangePicker = () => {
   const secondMonthYear = currentMonth === 11 ? currentYear + 1 : currentYear;
 
   return (
-    <div className="date-range-picker" style={{ paddingLeft: "16px" }}>
+    <div style={{ paddingLeft: "16px" }}>
       <div className="input-wrapper" onClick={toggleCalendar}>
-        <UilCalendarAlt />
+        <UilStar />
         <input
           type="text"
-          value={
-            startDate && endDate
-              ? `${startDate.toDateString()} - ${endDate.toDateString()}`
-              : "Start Date → End Date"
-          }
+          value={value}
+          placeholder="Search by city name"
           style={{
             fontFamily: "'Poppins', sans-serif",
             fontSize: "16px",
@@ -111,48 +110,11 @@ const DateRangePicker = () => {
             width: "100%",
             color: "#333",
           }}
-          readOnly
+          onChange={(e) => setValue(e.target.value)}
         />
       </div>
-
-      {isCalendarOpen && (
-        <div className="calendar-container">
-          <div className="month-view">
-            <div className="calendar-nav">
-              <UilAngleLeft onClick={handlePrevMonth} />
-              <h4>
-                {new Date(currentYear, currentMonth).toLocaleString("default", {
-                  month: "long",
-                  year: "numeric",
-                })}
-              </h4>
-            </div>
-            <div className="calendar-grid">
-              {generateCalendar(currentMonth, currentYear)}
-            </div>
-          </div>
-
-          <div className="month-view">
-            <div className="calendar-nav">
-              <h4>
-                {new Date(secondMonthYear, secondMonth).toLocaleString(
-                  "default",
-                  {
-                    month: "long",
-                    year: "numeric",
-                  }
-                )}
-              </h4>
-              <UilAngleRight onClick={handleNextMonth} />
-            </div>
-            <div className="calendar-grid">
-              {generateCalendar(secondMonth, secondMonthYear)}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
 
-export default DateRangePicker;
+export default CustomSearchBar;

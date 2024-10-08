@@ -1,0 +1,109 @@
+.stepper-container {
+    width: 100%;
+    padding-left: 2rem;
+    position: relative;
+  }
+  
+  .step {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  
+  .step-header {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    padding-bottom: 10px;
+    position: relative;
+  }
+  
+  .step-left {
+    flex: 0 0 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .step-number {
+    font-size: 18px;
+    font-weight: bold;
+    color: #7c7c7c;
+    position: relative;
+  }
+  
+  .step-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .step-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2a2a2a;
+  }
+  
+  .step-content {
+    padding-left: 120px;
+    background-color: #f9f9f9;
+    border-left: 3px solid #ffa726;
+    padding: 15px;
+    margin-top: 10px;
+  }
+  
+  .step-content p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .step::before {
+    content: '';
+    position: absolute;
+    left: 50px;
+    top: 0;
+    width: 3px;
+    background-color: #ffa726;
+    z-index: -1;
+    height: 100%; /* Always full height by default */
+    transition: height 0.3s ease-in-out;
+  }
+  
+  .step.expanded::before {
+    height: calc(100% + 20px); /* Increase height with content */
+  }
+  
+  .step:first-child::before {
+    top: 20px; /* First step connects properly */
+  }
+  
+  .step:last-child::before {
+    height: 0; /* No extra line for the last item */
+  }
+  
+  .step.expanded .step-title {
+    color: #ffa726;
+  }
+  
+  .step.expanded .step-number {
+    color: #ffa726;
+  }
+  
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 50px;
+    bottom: -40px;
+    width: 3px;
+    height: 40px; /* Adjust the gap between steps */
+    background-color: #ffa726;
+    z-index: -1;
+  }
+  
+  .step.expanded:not(:last-child)::after {
+    height: calc(40px + 20px); /* Increase height when expanded */
+  }
+  

@@ -16,6 +16,8 @@ Coded by www.creative-tim.com
 import React from "react";
 import * as ReactDOMClient from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import "@kiwicom/orbit-components/";
+
 import "./index.css";
 import App from "App";
 
