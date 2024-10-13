@@ -495,7 +495,7 @@ function Meetings() {
             style={{
               marginTop: "10px",
               marginBottom: "4px",
-              width: "40%",
+              width: "20%",
             }}
             size="small"
             circular
@@ -520,7 +520,14 @@ function Meetings() {
             variant="middle"
             sx={{ height: 2, width: "100%", margin: 1 }}
           />
-          <Grid container>
+          <Grid
+            container
+            sx={{
+              width: "100%",
+              flexDirection: "row",
+              display: "flex",
+            }}
+          >
             {facilities.map((facility, index) => (
               <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
                 <Grid
@@ -535,9 +542,9 @@ function Meetings() {
                   <MKTypography
                     color="black"
                     sx={{
-                      fontSize: "16px",
+                      fontSize: "13px",
                       fontFamily: "Poppins, sans-serif",
-                      lineHeight: "30px",
+                      lineHeight: "35px",
                       marginLeft: 2,
                     }}
                   >
@@ -635,6 +642,7 @@ function Meetings() {
           title="MEETINGS & CONFERENCES"
           description="Inhale the fresh mountain air, while enjoying the scenic beauty of the misty hills is a favorite reasons to visit Ella, Sri Lanka"
           backgroundImage={MeetingsPage.Header}
+          subHead={"MICE Tours"}
         />
       </div>
 

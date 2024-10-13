@@ -66,17 +66,34 @@ function Weddings() {
     },
   ];
 
+  const IconMargin = "10px";
+
   const otherTravelPcgs = [
     {
       title: "“Say I do” by the beach",
       description:
         "This package includes a beachside ceremony, floral arrangements, a wedding coordinator, and a beachfront reception.",
       iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilBuilding className="hover-icon" />,
-        <UilCalender className="hover-icon" />,
-        <UilGlassMartini className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
+        <UilPlaneDeparture
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
+        <UilBuilding
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
+        <UilCalender
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
+        <UilGlassMartini
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
+        <UilUtensils
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
       ],
       img: DestinationWeddingPage.Wedding_Pck_1,
     },
@@ -85,11 +102,26 @@ function Weddings() {
       description:
         "This package includes a beachside ceremony, floral arrangements, a wedding coordinator, and a beachfront reception.",
       iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilBuilding className="hover-icon" />,
-        <UilCalender className="hover-icon" />,
-        <UilGlassMartini className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
+        <UilPlaneDeparture
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
+        <UilBuilding
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
+        <UilCalender
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
+        <UilGlassMartini
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
+        <UilUtensils
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
       ],
       img: DestinationWeddingPage.Wedding_Pck_2,
     },
@@ -98,11 +130,26 @@ function Weddings() {
       description:
         "This package includes a beachside ceremony, floral arrangements, a wedding coordinator, and a beachfront reception.",
       iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilBuilding className="hover-icon" />,
-        <UilCalender className="hover-icon" />,
-        <UilGlassMartini className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
+        <UilPlaneDeparture
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
+        <UilBuilding
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
+        <UilCalender
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
+        <UilGlassMartini
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
+        <UilUtensils
+          style={{ marginRight: IconMargin }}
+          className="hover-icon"
+        />,
       ],
       img: DestinationWeddingPage.Wedding_Pck_3,
     },
@@ -246,6 +293,7 @@ function Weddings() {
           title="Destination Weddings"
           description="Inhale the fresh mountain air, while enjoying the scenic beauty of the misty hills is a favorite reasons to visit Ella, Sri Lanka"
           backgroundImage={DestinationWeddingPage.Header}
+          subHead={"MICE Tours"}
         />
       </div>
       <div style={{ overflowX: "hidden" }}>

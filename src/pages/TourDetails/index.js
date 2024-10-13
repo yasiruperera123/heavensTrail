@@ -13,29 +13,26 @@ import MKBox from "components/MKBox";
 import footerBg from "assets/images/homePage/beach.jpeg";
 import NavBar from "components/NavBar";
 import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
-import {
-  ThemeProvider as OrbitThemeProvider,
-  defaultTheme,
-} from "@kiwicom/orbit-components";
-import Itinerary, {
-  ItinerarySegment,
-  ItineraryStatus,
-  ItineraryBadgeList,
-  ItinerarySegmentStop,
-  ItinerarySegmentDetail,
-} from "@kiwicom/orbit-components/lib/Itinerary";
+import { AboutUsPage } from "constants/images";
+import CustomItinarary from "components/CustomItinarary";
 import { useUID } from "react-uid";
 import Badge from "@kiwicom/orbit-components/lib/Badge";
 import {
   UilBedDouble,
   UilParkingSquare,
   UilUtensils,
+  UilBuilding,
   UilWifi,
   UilSnowFlake,
   UilArrowUpRight,
   UilMountainsSun,
+  UilCalender,
+  UilGlassMartini,
+  UilShoppingCart,
+  UilDiceFive,
   UilCamera,
   UilPlaneDeparture,
+  UilPresentation,
   UilTicket,
   UilAngleLeftB,
   UilAngleRightB,
@@ -63,10 +60,58 @@ import Stepper from "components/Test";
 import NavBarTwo from "components/NavBarTwo";
 import HeaderThree from "layouts/sections/page-sections/page-headers/components/HeaderThree";
 import CustomStepper from "components/CustomeStepper";
+// import {
+//   UilPlaneDeparture,
+//   UilTicket,
+//   UilUtensils,
+//   UilBedDouble,
+//   UilBuilding,
+//   UilCalender,
+//   UilGlassMartini,
+//   UilPresentation,
+//   UilShoppingCart,
+//   UilDiceFive,
+//   UilFavorite,
+// } from "@iconscout/react-unicons";
 
 function TourDetails() {
   useEffect(() => {}, []);
   const id = useUID();
+
+  const facilities = [
+    {
+      icon: <UilPlaneDeparture color="#AF4D06" />,
+      text: "Return Airport Transfers",
+    },
+    {
+      icon: <UilBuilding color="#AF4D06" />,
+      text: "Luxury Hotel Stay",
+    },
+    {
+      icon: <UilUtensils color="#AF4D06" />,
+      text: "Breakfast, Lunch & Dinner for 3 days",
+    },
+    {
+      icon: <UilPresentation color="#AF4D06" />,
+      text: "Meeting facility for 2 hours",
+    },
+    {
+      icon: <UilCalender color="#AF4D06" />,
+      text: "A full day of meeting",
+    },
+    {
+      icon: <UilGlassMartini color="#AF4D06" />,
+      text: "Evening cocktail & gala dinner",
+    },
+    {
+      icon: <UilShoppingCart color="#AF4D06" />,
+      text: "Half day shopping tour of Colombo",
+    },
+    {
+      icon: <UilDiceFive color="#AF4D06" />,
+      text: "Explore casino at Night",
+    },
+  ];
 
   return (
     <div style={{ backgroundColor: "#FEFDF5" }} id={id}>
@@ -155,129 +200,351 @@ function TourDetails() {
                     color="black"
                     sx={{ textAlign: "left", maxWidth: "90%" }}
                   >
-                    Ella is one of the most beautiful and picturesque
-                    destinations in Sri Lanka, and it is renowned for its
-                    natural beauty and stunning landscapes. It is located in the
-                    central highlands of Sri Lanka and is surrounded by misty
-                    hills covered with lush green tea plantations and cloud
-                    forests.
+                    Tea Country Escape offers a serene journey through Sri
+                    Lanka's lush tea plantations and historical landmarks. Begin
+                    with an exploration of the ancient Sigiriya rock fortress
+                    and the tranquil Dambulla Cave Temple. Continue to the
+                    cultural heart of Kandy, home to the revered Temple of the
+                    Tooth Relic, before immersing yourself in the luxury of
+                    Hatton's tea bungalows. Conclude your journey with the
+                    adventure of white water rafting in Kitulgala and the
+                    vibrant sights of Colombo, blending relaxation, adventure,
+                    and rich cultural experiences into one unforgettable tour.
                   </MKTypography>
                   <MKTypography
                     variant="h6"
                     fontWeight="regular"
                     color="black"
-                    mt={2}
-                    sx={{ textAlign: "left", maxWidth: "90%" }}
+                    sx={{
+                      textAlign: "left",
+                      maxWidth: "90%",
+                      fontWeight: "bold",
+                      marginTop: 3,
+                    }}
                   >
-                    The town has a cooler climate compared to the surrounding
-                    lowlands, and visitors can enjoy the fresh mountain air and
-                    the scenic beauty of the area. One of the most popular
-                    attractions in Ella is the Ella Gap, which offers
-                    breathtaking views of the southern plains of Sri Lanka.
+                    <li>
+                      Tour Name:{" "}
+                      <span style={{ fontWeight: 400 }}>
+                        A Luxury Escape to the Misty Tea Country
+                      </span>
+                    </li>
                   </MKTypography>
                   <MKTypography
                     variant="h6"
                     fontWeight="regular"
                     color="black"
-                    mt={2}
-                    sx={{ textAlign: "left", maxWidth: "90%" }}
+                    sx={{
+                      textAlign: "left",
+                      maxWidth: "90%",
+                      fontWeight: "bold",
+                    }}
                   >
-                    Additionally, there are many other things to see and do in
-                    Ella, including hiking to Little Adam's Peak, visiting the
-                    Rawana Ella waterfall, and exploring the Nine Arch Bridge.
-                    Ella is a must-visit destination for nature lovers,
-                    adventure seekers, and anyone who wants to experience the
-                    natural beauty and charm of Sri Lanka.
+                    <li>
+                      Duration:{" "}
+                      <span style={{ fontWeight: 400 }}>6 Days (4 Nights)</span>
+                    </li>
                   </MKTypography>
+                  <MKTypography
+                    variant="h6"
+                    fontWeight="regular"
+                    color="black"
+                    sx={{
+                      textAlign: "left",
+                      maxWidth: "90%",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    <li>
+                      Locations:{" "}
+                      <span style={{ fontWeight: 400 }}>
+                        Sigiriya, Dambulla, Kandy, Hatton, Kithulgala, Colombo
+                      </span>
+                    </li>
+                  </MKTypography>
+                  <Divider
+                    variant="middle"
+                    sx={{
+                      height: 2,
+                      width: "100%",
+                      opacity: 1,
+                      backgroundColor: "#C9C5BA",
+                    }}
+                  />
+                  <Grid container>
+                    {facilities.map((facility, index) => (
+                      <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
+                        <Grid
+                          sx={{
+                            flexDirection: "row",
+                            display: "flex",
+                            alignItems: "center",
+                            marginRight: 3,
+                          }}
+                        >
+                          {facility?.icon}
+                          <MKTypography
+                            color="black"
+                            sx={{
+                              fontSize: "16px",
+                              fontFamily: "Poppins, sans-serif",
+                              lineHeight: "30px",
+                              marginLeft: 2,
+                            }}
+                          >
+                            {facility?.text}
+                          </MKTypography>
+                        </Grid>
+                      </Grid>
+                    ))}
+                  </Grid>
                 </AccordionDetails>
               </Accordion>
-              {/* <Itinerary /> */}
-              <Stepper />
-
-              {/* <Itinerary>
-                <ItinerarySegment spaceAfter="medium">
-                  <ItinerarySegmentStop
-                    city="Moscow"
-                    station="Sheremetyevo International Airport (SVO)"
-                    date="Fri, 19.10"
-                    time="14:05"
-                  />
-                  <ItinerarySegmentDetail
-                    icon={<UilWifi size="small" />}
-                    duration="2h 30m"
-                    summary={
-                      <Badge
-                        carriers={[
-                          {
-                            code: "FR",
-                            name: "Ryanair",
+              <Grid
+                container
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  backgroundColor: "#FEFDF5",
+                  marginTop: 2,
+                }}
+              >
+                <MKBox
+                  display="flex"
+                  alignItems="center"
+                  pt={4}
+                  pb={4}
+                  sx={{
+                    backgroundImage: ({
+                      palette: { gradients },
+                      functions: { linearGradient, rgba },
+                    }) =>
+                      `${linearGradient("#BFCF0F", "#818B0C")}, url(${
+                        AboutUsPage.Sub_Head
+                      })`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundBlendMode: "overlay",
+                    borderRadius: 5,
+                    width: "100%",
+                  }}
+                >
+                  <Grid
+                    container
+                    xs={12}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      paddingX: "15px",
+                    }}
+                    flexDirection="row"
+                    justifyContent="space-between"
+                  >
+                    <Grid>
+                      <MKTypography
+                        variant="h1"
+                        color="black"
+                        sx={({ breakpoints, typography: { size } }) => ({
+                          [breakpoints.down("md")]: {
+                            fontSize: size["3xl"],
                           },
-                        ]}
+                          fontSize: "40px",
+                          fontFamily: "Poppins, sans-serif",
+                          width: "100%",
+                          fontWeight: 600,
+                          textAlign: "left",
+                        })}
                       >
-                        Ryanair
-                      </Badge>
-                    }
-                    content={[
-                      {
-                        title: "Connection Info",
-                        items: [
-                          {
-                            icon: <UilWifi size="small" />,
-                            name: "Carrier",
-                            value: "Ryanair",
-                          },
-                          {
-                            icon: <UilWifi size="small" />,
-                            name: "Connection number",
-                            value: "RA 8345",
-                          },
-                        ],
+                        {`Limited Time Offer`}
+                      </MKTypography>
+                      <MKTypography
+                        color="black"
+                        sx={({ breakpoints, typography: {} }) => ({
+                          fontFamily: "Poppins, sans-serif",
+                          fontSize: "15px",
+                          fontWeight: 400,
+                          width: "100%",
+                          textAlign: "left",
+                        })}
+                      >
+                        Lorem ipsum dolor sit amet consectetur. Sed integer sed
+                        euismod.
+                      </MKTypography>
+                    </Grid>
+                    <Stack direction="row" spacing={1}>
+                      <MKButton circular variant="contained" color="black">
+                        Find out more
+                      </MKButton>
+                    </Stack>
+                  </Grid>
+                </MKBox>
+              </Grid>
+              <Accordion
+                disableGutters // Removes padding and default spacing
+                sx={{
+                  boxShadow: "none",
+                  "&:before": { display: "none" }, // Removes the default divider line
+                }}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1-content"
+                  id={`panel1-header-1`}
+                  sx={{
+                    boxShadow: "none",
+                    backgroundColor: "#FEFDF5",
+                    margin: 0,
+                  }}
+                >
+                  <MKTypography
+                    variant="h1"
+                    color="black"
+                    sx={({ breakpoints, typography: { size } }) => ({
+                      [breakpoints.down("md")]: {
+                        fontSize: size["3xl"],
+                        textAlign: "center",
                       },
-                      {
-                        title: "Seating Info",
-                        items: [
-                          {
-                            icon: <UilWifi size="small" />,
-                            name: "Seat pitch",
-                            value: "76cm",
-                          },
-                          {
-                            icon: <UilWifi size="small" />,
-                            name: "Seat width",
-                            value: "43cm",
-                          },
-                          {
-                            icon: <UilWifi size="small" />,
-                            name: "Seat recline",
-                            value: "7cm",
-                          },
-                          {
-                            icon: <UilWifi size="small" />,
-                            name: "Audio & video on demand",
-                            value: "No",
-                          },
-                          {
-                            icon: <UilWifi size="small" />,
-                            name: "In-seat power",
-                            value: "No",
-                          },
-                          {
-                            icon: <UilWifi size="small" />,
-                            name: "Wi-Fi on board",
-                            value: "No",
-                          },
-                        ],
+                      fontFamily: "Playfair Display, serif",
+                      fontSize: "40px",
+                      fontWeight: 400,
+                      textAlign: "left",
+                      marginBottom: 2,
+                      marginTop: 4,
+                    })}
+                  >
+                    Itinerary
+                  </MKTypography>
+                </AccordionSummary>
+                <AccordionDetails sx={{ backgroundColor: "#FEFDF5" }}>
+                  <CustomItinarary />
+                </AccordionDetails>
+              </Accordion>
+              <Accordion
+                disableGutters // Removes padding and default spacing
+                sx={{
+                  boxShadow: "none",
+                  "&:before": { display: "none" }, // Removes the default divider line
+                }}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1-content"
+                  id={`panel1-header-1`}
+                  sx={{
+                    boxShadow: "none",
+                    backgroundColor: "#FEFDF5",
+                    margin: 0,
+                  }}
+                >
+                  <MKTypography
+                    variant="h1"
+                    color="black"
+                    sx={({ breakpoints, typography: { size } }) => ({
+                      [breakpoints.down("md")]: {
+                        fontSize: size["3xl"],
+                        textAlign: "center",
                       },
-                    ]}
+                      fontFamily: "Playfair Display, serif",
+                      fontSize: "40px",
+                      fontWeight: 400,
+                      textAlign: "left",
+                      marginBottom: 2,
+                      marginTop: 4,
+                    })}
+                  >
+                    Packages
+                  </MKTypography>
+                </AccordionSummary>
+                <AccordionDetails sx={{ backgroundColor: "#FEFDF5" }}>
+                  <Divider
+                    variant="middle"
+                    sx={{
+                      height: 2,
+                      width: "100%",
+                      opacity: 1,
+                      backgroundColor: "#C9C5BA",
+                    }}
                   />
-                  <ItinerarySegmentStop
-                    city="Prague"
-                    station="Václav Havel Airport Prague (PRG)"
-                    date="Fri, 19.10"
-                    time="16:35"
-                  />
-                </ItinerarySegment>
-              </Itinerary> */}
+                </AccordionDetails>
+                <Grid sx={{ width: "100%" }}>
+                  <Grid>
+                    <MKTypography
+                      color="black"
+                      sx={({ breakpoints, typography: {} }) => ({
+                        fontFamily: "Poppins, sans-serif",
+                        fontSize: "15px",
+                        fontWeight: 600,
+                        width: "100%",
+                        textAlign: "left",
+                      })}
+                    >
+                      USD 2,200{" "}
+                      <span style={{ fontSize: 12, fontWeight: 400 }}>
+                        per person sharing DBL
+                      </span>
+                    </MKTypography>
+                    <MKTypography
+                      sx={({ breakpoints, typography: {} }) => ({
+                        fontFamily: "Poppins, sans-serif",
+                        fontSize: "12px",
+                        fontWeight: 400,
+                        width: "100%",
+                        textAlign: "left",
+                        textDecoration: "line-through",
+                        color: "#8C8679",
+                      })}
+                    >
+                      USD 2,350
+                    </MKTypography>
+                    <MKTypography
+                      sx={({ breakpoints, typography: {} }) => ({
+                        fontFamily: "Poppins, sans-serif",
+                        fontSize: "12px",
+                        fontWeight: 400,
+                        width: "100%",
+                        textAlign: "left",
+                        textDecoration: "line-through",
+                        color: "#8C8679",
+                      })}
+                    >
+                      (2 Pax Travelling)
+                    </MKTypography>
+                    <Divider
+                      variant="middle"
+                      sx={{
+                        height: 2,
+                        width: "100%",
+                        opacity: 1,
+                        backgroundColor: "#EEECE2",
+                      }}
+                    />
+                    <Grid
+                      sx={{
+                        flexDirection: "row",
+                        display: "flex",
+                        alignItems: "flex-end",
+                        backgroundColor: "red",
+                      }}
+                    >
+                      <MKTypography
+                        sx={({ breakpoints, typography: {} }) => ({
+                          fontFamily: "Poppins, sans-serif",
+                          fontSize: "12px",
+                          fontWeight: 400,
+                          width: "100%",
+                          textAlign: "left",
+                          textDecoration: "line-through",
+                          color: "#8C8679",
+                        })}
+                      >
+                        (2 Pax Travelling)
+                      </MKTypography>
+                      <MKButton circular variant="contained" color="black">
+                        Selected
+                      </MKButton>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Accordion>
             </Grid>
           </Grid>
         </Grid>

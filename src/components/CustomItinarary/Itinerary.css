@@ -1,0 +1,51 @@
+.itinerary-container {
+  }
+  
+  .itinerary-day {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    position: relative;
+    margin-left: 100px;
+  }
+  
+  .timeline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    position: relative;
+  }
+  
+  .day-text {
+    position: absolute;
+    left: -100px; /* Adjust positioning of "Day" text to your preference */
+    font-weight: bold;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    background-color: #ff5722;
+    border-radius: 50%;
+  }
+
+  .dot2 {
+    width: 12px;
+    height: 12px;
+    background-color: #ff5722;
+    border-radius: 50%;margin-top: -10px;
+  }
+  
+  .dot-line {
+    width: 2px;
+    background-color: #ff5722;
+    margin-top: 5px;
+    transition: height 0.3s ease; /* Smooth transition */
+  }
+  
+  .accordion-summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  

@@ -161,6 +161,7 @@ function HeaderOne() {
                   item
                   xs={12}
                   md={6}
+                  lg={3}
                   sx={{
                     display: "flex",
                     alignItems: "center",
@@ -186,17 +187,17 @@ function HeaderOne() {
                         backgroundColor: "#FFFFFF",
                       },
                       "&::before": {
-                        left: { xs: "-180%", md: "-180px" }, // Adjust position for mobile
+                        left: { xs: "-180%", md: "-150px" }, // Adjust position for mobile
                         top: "50%",
                         transform: "translateY(-50%)",
                       },
                       "&::after": {
-                        right: { xs: "-180%", md: "-180px" }, // Adjust position for mobile
+                        right: { xs: "-180%", md: "-150px" }, // Adjust position for mobile
                         top: "50%",
                         transform: "translateY(-50%)",
                       },
                       fontFamily: "Playfair Display, serif",
-                      fontSize: "20px",
+                      fontSize: "17px",
                       fontWeight: "bold",
                       textAlign: "center",
                     }}
@@ -211,7 +212,7 @@ function HeaderOne() {
                       [breakpoints.down("md")]: {
                         fontSize: size["3xl"],
                       },
-                      fontSize: "30px",
+                      fontSize: "20px",
                       fontFamily: "Playfair Display, serif",
                       paddingLeft: 2,
                       textAlign: "center",
@@ -244,7 +245,7 @@ function HeaderOne() {
                         transform: "translateY(-50%)",
                       },
                       fontFamily: "Playfair Display, serif",
-                      fontSize: "20px",
+                      fontSize: "17px",
                       fontWeight: "bold",
                       textAlign: "center",
                     }}
@@ -256,6 +257,7 @@ function HeaderOne() {
                   item
                   xs={12}
                   md={6}
+                  lg={3}
                   sx={{
                     display: "flex",
                     flexDirection: "column",
@@ -274,7 +276,7 @@ function HeaderOne() {
                       display: "inline-flex",
                       color: "#FFFFFF",
                       fontFamily: "Poppins, sans-serif",
-                      fontSize: "20px",
+                      fontSize: "15px",
                     }}
                   >
                     Cover Image: Sigiriya, Visit this place in
@@ -287,7 +289,7 @@ function HeaderOne() {
                       [breakpoints.down("md")]: {
                         fontSize: size["3xl"],
                       },
-                      fontSize: "25px",
+                      fontSize: "20px",
                       fontFamily: "Playfair Display, serif",
                     })}
                   >
@@ -298,7 +300,15 @@ function HeaderOne() {
                     variant="middle"
                   />
                   <MKButton
-                    sx={{ width: { xs: "60%", md: "40%" } }} // Center the button in mobile view
+                    sx={{
+                      width: {
+                        xs: "60%",
+                        md: "40%",
+                        lg: "40%",
+                        padding: 0,
+                        margin: 0,
+                      },
+                    }}
                     circular
                     variant="outlined"
                     color="white"

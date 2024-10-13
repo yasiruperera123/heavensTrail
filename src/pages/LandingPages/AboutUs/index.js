@@ -427,7 +427,7 @@ function AboutUs() {
         </Grid>
 
         <Grid
-          container
+          lg={11}
           sx={{
             display: "flex",
             justifyContent: "center",
@@ -438,9 +438,9 @@ function AboutUs() {
           <MKBox
             display="flex"
             alignItems="center"
+            justifySelf="center"
             pt={4}
             pb={4}
-            minHeight="100%"
             sx={{
               backgroundImage: ({
                 palette: { gradients },
@@ -455,7 +455,7 @@ function AboutUs() {
 
               margin: 1,
               borderRadius: 5,
-              width: "90%",
+              width: "85%",
             }}
           >
             <Grid
@@ -476,10 +476,11 @@ function AboutUs() {
                   [breakpoints.down("md")]: {
                     fontSize: size["3xl"],
                   },
-                  fontSize: "60px",
+                  fontSize: "50px",
                   fontFamily: "Playfair Display, serif",
-                  width: "70%",
+                  width: "90%",
                   textAlign: "center",
+                  lineHeight: "90%",
                 })}
               >
                 {`Where Will Your Journey Begin?`} <br />
@@ -490,7 +491,7 @@ function AboutUs() {
                 mb={3}
                 sx={({ breakpoints, typography: {} }) => ({
                   fontFamily: "Poppins, sans-serif",
-                  fontSize: "20px",
+                  fontSize: "15px",
                   fontWeight: 400,
                   width: "70%",
                   textAlign: "center",

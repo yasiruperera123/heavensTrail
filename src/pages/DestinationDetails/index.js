@@ -26,6 +26,7 @@ import {
   UilTicket,
   UilAngleLeftB,
   UilAngleRightB,
+  UilAngleUp,
 } from "@iconscout/react-unicons";
 import soulmateImg from "assets/images/homePage/soulmate.jpeg";
 import adventureIcon1 from "assets/images/homePage/adventureIcon1.png";
@@ -58,6 +59,7 @@ function DestinationDetails() {
   const scrollContainerRef = useRef(null);
   const firstItemRef = useRef(null);
   const lastItemRef = useRef(null);
+  const [isExpaned, setIsExpaned] = useState(true);
   const cardsData = [
     {
       title: "Little Adam’s Peak",
@@ -338,7 +340,7 @@ function DestinationDetails() {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600); // You can adjust the width as per your requirement
     };
-
+    setIsExpaned(true);
     handleResize(); // Check the initial window size
     window.addEventListener("resize", handleResize); // Add resize event listener
     // Cleanup on component unmount
@@ -842,6 +844,7 @@ function DestinationDetails() {
           >
             <Grid container display={"flex"} flexDirection="column">
               <Accordion
+                defaultExpanded={isExpaned}
                 disableGutters // Removes padding and default spacing
                 sx={{
                   boxShadow: "none",
@@ -1025,7 +1028,7 @@ function DestinationDetails() {
               </Accordion>
             </Grid>
           </Grid>
-          <Accordion
+          {/* <Accordion
             disableGutters // Removes padding and default spacing
             sx={{
               boxShadow: "none",
@@ -1049,30 +1052,7 @@ function DestinationDetails() {
                   justifyContent: "center", // Center the content
                 },
               })}
-            >
-              <MKTypography
-                variant="h1"
-                color="black"
-                sx={({ breakpoints, typography: { size } }) => ({
-                  [breakpoints.down("md")]: {
-                    fontSize: size["3xl"],
-                    textAlign: "center",
-                  },
-                  [breakpoints.down("sm")]: {
-                    fontSize: size["2xl"],
-                    textAlign: "center",
-                  },
-                  fontFamily: "Playfair Display, serif",
-                  fontSize: "40px",
-                  fontWeight: 400,
-                  textAlign: "left",
-                  marginBottom: 2,
-                  marginTop: 4,
-                })}
-              >
-                Tours Including This Destination
-              </MKTypography>
-            </AccordionSummary>
+            ></AccordionSummary>
             <AccordionDetails
               sx={({ breakpoints }) => ({
                 display: "flex",
@@ -1091,238 +1071,282 @@ function DestinationDetails() {
                   overflowY: "scroll", // Enable vertical scrolling for mobile
                 },
               })}
+            ></AccordionDetails>
+          </Accordion> */}
+
+          <Grid lg={8}>
+            <Grid
+              lg={12}
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginTop: 2,
+              }}
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  width: "100%",
-                }}
+              <MKTypography
+                variant="h1"
+                color="black"
+                sx={({ breakpoints, typography: { size } }) => ({
+                  [breakpoints.down("md")]: {
+                    fontSize: size["3xl"],
+                    textAlign: "left",
+                  },
+                  [breakpoints.down("sm")]: {
+                    fontSize: size["2xl"],
+                    textAlign: "left",
+                  },
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "40px",
+                  fontWeight: 400,
+                  textAlign: "left",
+
+                  marginBottom: 2,
+                  marginTop: 4,
+                })}
               >
+                Tours Including This Destination
+              </MKTypography>
+              <UilAngleUp />
+            </Grid>
+            <Divider
+              variant="middle"
+              sx={{
+                backgroundColor: "#C9C5BA",
+                height: "2px",
+                fontWeight: "bold",
+                margin: 1,
+                marginBottom: 4,
+              }}
+            />
+          </Grid>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <Grid
+              ref={scrollContainerRef}
+              container
+              spacing={2}
+              sx={({ breakpoints }) => ({
+                overflowX: "scroll", // Horizontal scrolling on larger screens
+                paddingX: 20,
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
+                scrollbarWidth: "none",
+                flexWrap: "nowrap",
+                width: "100%",
+                gap: 2,
+                [breakpoints.down("sm")]: {
+                  flexDirection: "column", // Stack cards vertically on mobile
+                  overflowX: "unset",
+                  overflowY: "scroll",
+                  paddingX: 1,
+                },
+              })}
+            >
+              {travelPcgs.map((item, index) => (
                 <Grid
-                  ref={scrollContainerRef}
-                  container
-                  spacing={2}
+                  ref={
+                    index === 0
+                      ? firstItemRef
+                      : index === travelPcgs.length - 1
+                      ? lastItemRef
+                      : null
+                  }
+                  item
+                  key={index}
                   sx={({ breakpoints }) => ({
-                    overflowX: "scroll", // Horizontal scrolling on larger screens
-                    paddingX: 20,
-                    "&::-webkit-scrollbar": {
-                      display: "none",
-                    },
-                    scrollbarWidth: "none",
-                    flexWrap: "nowrap",
-                    width: "100%",
-                    gap: 2,
+                    flexShrink: 0,
+                    width: "calc(100% / 2)",
+                    backgroundColor: "#FEFDF5",
                     [breakpoints.down("sm")]: {
-                      flexDirection: "column", // Stack cards vertically on mobile
-                      overflowX: "unset",
-                      overflowY: "scroll",
-                      paddingX: 1,
+                      width: "100%", // Full width per card on mobile
+                      marginBottom: 2,
                     },
                   })}
                 >
-                  {travelPcgs.map((item, index) => (
-                    <Grid
-                      ref={
-                        index === 0
-                          ? firstItemRef
-                          : index === travelPcgs.length - 1
-                          ? lastItemRef
-                          : null
-                      }
-                      item
-                      key={index}
+                  <Card
+                    sx={({ breakpoints }) => ({
+                      display: "flex",
+                      flexDirection: "row",
+                      borderRadius: "15px",
+                      boxShadow: "none",
+                      backgroundColor: "#FEFDF5",
+                      border: "solid",
+                      borderWidth: 1,
+                      borderColor: "#C9C5BA",
+                      [breakpoints.down("sm")]: {
+                        flexDirection: "column", // Stack content on mobile
+                        alignItems: "center",
+                      },
+                    })}
+                  >
+                    <CardActionArea
                       sx={({ breakpoints }) => ({
-                        flexShrink: 0,
-                        width: "calc(100% / 2)",
-                        backgroundColor: "#FEFDF5",
+                        display: "flex",
+                        flexDirection: "row",
                         [breakpoints.down("sm")]: {
-                          width: "100%", // Full width per card on mobile
-                          marginBottom: 2,
+                          flexDirection: "column", // Stack image and content on mobile
                         },
                       })}
                     >
-                      <Card
+                      <CardMedia
+                        component="img"
+                        height="290px"
+                        image={item?.img}
                         sx={({ breakpoints }) => ({
-                          display: "flex",
-                          flexDirection: "row",
-                          borderRadius: "15px",
-                          boxShadow: "none",
-                          backgroundColor: "#FEFDF5",
-                          border: "solid",
-                          borderWidth: 1,
-                          borderColor: "#C9C5BA",
+                          objectFit: "cover",
+                          width: "35%",
+                          margin: 0,
+                          padding: 0,
+                          borderTopRightRadius: 0,
+                          borderBottomRightRadius: 0,
                           [breakpoints.down("sm")]: {
-                            flexDirection: "column", // Stack content on mobile
-                            alignItems: "center",
+                            width: "100%", // Full width for image on mobile
+                          },
+                        })}
+                        alt="Image"
+                      />
+                      <CardContent
+                        sx={({ breakpoints }) => ({
+                          flex: 1,
+                          marginX: 2,
+                          padding: 0,
+                          [breakpoints.down("sm")]: {
+                            marginX: 1,
                           },
                         })}
                       >
-                        <CardActionArea
-                          sx={({ breakpoints }) => ({
-                            display: "flex",
-                            flexDirection: "row",
-                            [breakpoints.down("sm")]: {
-                              flexDirection: "column", // Stack image and content on mobile
-                            },
-                          })}
+                        <MKButton
+                          className="hover-button"
+                          style={{ marginTop: "5px", marginBottom: "5px" }}
+                          size="small"
+                          circular
+                          variant="outlined"
+                          color="black"
                         >
-                          <CardMedia
-                            component="img"
-                            height="290px"
-                            image={item?.img}
+                          {item?.duration}
+                        </MKButton>
+
+                        <Grid container alignItems="center">
+                          <Typography
                             sx={({ breakpoints }) => ({
-                              objectFit: "cover",
-                              width: "35%",
-                              margin: 0,
-                              padding: 0,
-                              borderTopRightRadius: 0,
-                              borderBottomRightRadius: 0,
+                              fontFamily: "Playfair Display, serif",
+                              fontSize: "28px",
+                              fontWeight: 400,
+                              lineHeight: "100%",
                               [breakpoints.down("sm")]: {
-                                width: "100%", // Full width for image on mobile
+                                fontSize: "22px", // Smaller text on mobile
                               },
                             })}
-                            alt="Image"
-                          />
-                          <CardContent
-                            sx={({ breakpoints }) => ({
-                              flex: 1,
-                              marginX: 2,
-                              padding: 0,
-                              [breakpoints.down("sm")]: {
-                                marginX: 1,
-                              },
-                            })}
+                            variant="h5"
                           >
-                            <MKButton
-                              className="hover-button"
-                              style={{ marginTop: "5px", marginBottom: "5px" }}
-                              size="small"
-                              circular
-                              variant="outlined"
-                              color="black"
-                            >
-                              {item?.duration}
-                            </MKButton>
-
-                            <Grid container alignItems="center">
-                              <Typography
-                                sx={({ breakpoints }) => ({
-                                  fontFamily: "Playfair Display, serif",
-                                  fontSize: "28px",
-                                  fontWeight: 400,
-                                  lineHeight: "100%",
-                                  [breakpoints.down("sm")]: {
-                                    fontSize: "22px", // Smaller text on mobile
-                                  },
-                                })}
-                                variant="h5"
-                              >
-                                {item?.title}
-                              </Typography>
-                            </Grid>
-                            <Divider
-                              variant="middle"
-                              sx={{
-                                backgroundColor: "##C9C5BA",
-                                height: "2px",
-                                margin: 1,
-                              }}
-                            />
-                            <Grid container alignItems="center">
-                              {item?.path &&
-                                item?.path.length > 0 &&
-                                item?.path.map((elemant, index) => {
-                                  return (
-                                    <Grid
-                                      display={"flex"}
-                                      alignItems={"center"}
-                                      flexDirection={"row"}
-                                      key={index}
-                                    >
-                                      <MKTypography variant="subtitle2">
-                                        {elemant}
-                                      </MKTypography>
-                                      {index < item.path.length - 1 && (
-                                        <Icon sx={{ fontWeight: "bold" }}>
-                                          arrow_forward
-                                        </Icon>
-                                      )}
-                                    </Grid>
-                                  );
-                                })}
-                            </Grid>
-                            <Divider
-                              variant="middle"
-                              sx={{
-                                backgroundColor: "##C9C5BA",
-                                height: "2px",
-                                margin: 1,
-                              }}
-                            />
-                            {item?.iconSet && item?.iconSet.map((icon) => icon)}
-                            <Divider
-                              variant="middle"
-                              sx={{
-                                backgroundColor: "##C9C5BA",
-                                height: "2px",
-                                margin: 1,
-                              }}
-                            />
-                            <MKTypography variant="subtitle2">
-                              Pricing starts at
-                            </MKTypography>
-                            <Grid
-                              container
-                              display={"flex"}
-                              alignItems="center"
-                            >
-                              <MKTypography
-                                sx={{
-                                  fontWeight: "700",
-                                  marginRight: 1,
-                                  fontFamily: "Playfair Display, serif",
-                                  fontSize: "20px",
-                                }}
-                                variant="body2"
-                                color="text.secondary"
-                              >
-                                AUD 1600.00
-                              </MKTypography>
-                              <MKTypography
-                                variant="subtitle2"
-                                color="text.secondary"
-                                mt={0.9}
-                              >
-                                + taxes and charges
-                              </MKTypography>
-                            </Grid>
-                          </CardContent>
-                        </CardActionArea>
-                      </Card>
-                    </Grid>
-                  ))}
+                            {item?.title}
+                          </Typography>
+                        </Grid>
+                        <Divider
+                          variant="middle"
+                          sx={{
+                            backgroundColor: "##C9C5BA",
+                            height: "2px",
+                            margin: 1,
+                          }}
+                        />
+                        <Grid container alignItems="center">
+                          {item?.path &&
+                            item?.path.length > 0 &&
+                            item?.path.map((elemant, index) => {
+                              return (
+                                <Grid
+                                  display={"flex"}
+                                  alignItems={"center"}
+                                  flexDirection={"row"}
+                                  key={index}
+                                >
+                                  <MKTypography variant="subtitle2">
+                                    {elemant}
+                                  </MKTypography>
+                                  {index < item.path.length - 1 && (
+                                    <Icon sx={{ fontWeight: "bold" }}>
+                                      arrow_forward
+                                    </Icon>
+                                  )}
+                                </Grid>
+                              );
+                            })}
+                        </Grid>
+                        <Divider
+                          variant="middle"
+                          sx={{
+                            backgroundColor: "##C9C5BA",
+                            height: "2px",
+                            margin: 1,
+                          }}
+                        />
+                        {item?.iconSet && item?.iconSet.map((icon) => icon)}
+                        <Divider
+                          variant="middle"
+                          sx={{
+                            backgroundColor: "##C9C5BA",
+                            height: "2px",
+                            margin: 1,
+                          }}
+                        />
+                        <MKTypography variant="subtitle2">
+                          Pricing starts at
+                        </MKTypography>
+                        <Grid container display={"flex"} alignItems="center">
+                          <MKTypography
+                            sx={{
+                              fontWeight: "700",
+                              marginRight: 1,
+                              fontFamily: "Playfair Display, serif",
+                              fontSize: "20px",
+                            }}
+                            variant="body2"
+                            color="text.secondary"
+                          >
+                            AUD 1600.00
+                          </MKTypography>
+                          <MKTypography
+                            variant="subtitle2"
+                            color="text.secondary"
+                            mt={0.9}
+                          >
+                            + taxes and charges
+                          </MKTypography>
+                        </Grid>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
                 </Grid>
+              ))}
+            </Grid>
 
-                <Grid
-                  mt={2}
-                  sx={{
-                    flex: 1,
-                    flexDirection: "row",
-                    display: "flex",
-                  }}
-                >
-                  <Grid sx={{ marginRight: 4 }}>
-                    <UilAngleLeftB onClick={() => scrollToLeft()} />
-                  </Grid>
-                  <Grid>
-                    <UilAngleRightB onClick={() => scrollToRight()} />
-                  </Grid>
-                </Grid>
-              </Box>
-            </AccordionDetails>
-          </Accordion>
+            <Grid
+              mt={2}
+              sx={{
+                flex: 1,
+                flexDirection: "row",
+                display: "flex",
+              }}
+            >
+              <Grid sx={{ marginRight: 4 }}>
+                <UilAngleLeftB onClick={() => scrollToLeft()} />
+              </Grid>
+              <Grid>
+                <UilAngleRightB onClick={() => scrollToRight()} />
+              </Grid>
+            </Grid>
+          </Box>
         </Grid>
         <Footer />
       </div>

@@ -256,6 +256,8 @@ function Blogs() {
           justifyContent="center"
           alignItems="center"
           lg={5}
+          mt={8}
+          mb={1}
         >
           <TextField
             variant="outlined"

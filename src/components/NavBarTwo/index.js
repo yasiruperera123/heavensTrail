@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
-
+import Grid from "@mui/material/Grid";
 import { ReactComponent as Ausi } from "assets/icons/australia.svg";
 import Logo_2 from "assets/images/homePage/Logo_2.png";
 import CustomSelect from "components/CustomSelect";
@@ -102,11 +102,13 @@ function NavBarTwo() {
           m={0}
           sx={{ listStyle: "none" }}
         >
-          <CustomSelect
-            frontIcon={<Ausi />}
-            menuList={countryList}
-            isScrolled={true}
-          />
+          <Grid sx={{ maxWidth: "130px" }}>
+            <CustomSelect
+              frontIcon={<Ausi />}
+              menuList={countryList}
+              isScrolled={scrolled}
+            />
+          </Grid>
           <MKButton circular variant="contained" color="black">
             Plan a Trip
           </MKButton>

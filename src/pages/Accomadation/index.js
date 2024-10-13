@@ -554,7 +554,9 @@ function Accomadation() {
                 preference and budget, ensuring you experience comfort and
                 hospitality at its finest.
               </MKTypography>
-              <ToggleButtonGroup packages={packages} />
+              <Grid sx={{ marginTop: 5, marginBottom: 3 }}>
+                <ToggleButtonGroup packages={packages} />
+              </Grid>
             </Grid>
           </Container>
           <Box
@@ -673,6 +675,7 @@ function Accomadation() {
                   fontSize: "50px",
                   fontWeight: 400,
                   textAlign: "left",
+                  marginTop: 6,
                 })}
               >
                 Accommodation Options and Pricing

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import Container from "@mui/material/Container";
@@ -51,6 +51,9 @@ import NavBar from "components/NavBar";
 
 function Home() {
   const navigate = useNavigate();
+  const scrollContainerRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startPosition, setStartPosition] = useState({ x: 0, scrollLeft: 0 });
   const travelSolutions = [
     {
       title: "Meetings & Conferences",
@@ -180,6 +183,27 @@ function Home() {
         "Lorem ipsum dolor sit amet consectetur. Ut in sed feugiat viverra commodo sed malesuada pharetra tempor. Tempor mauris morbi leo erat. Pellentesque ut convallis interdum condimentum id ultrices pretium. Faucibus lorem accumsan quis mauris ac pellentesque lectus.",
     },
   ];
+
+  const handleMouseDown = (e) => {
+    const scrollLeft = scrollContainerRef.current.scrollLeft;
+    setStartPosition({
+      x: e.pageX,
+      scrollLeft,
+    });
+    setIsDragging(true);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+
+    const x = e.pageX;
+    const walk = (x - startPosition.x) * 2; // Scroll faster with a multiplier (adjust if necessary)
+    scrollContainerRef.current.scrollLeft = startPosition.scrollLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
 
   const handleClick = () => {
     navigate("/pages/tour-list");
@@ -541,6 +565,11 @@ function Home() {
             <Grid
               container
               spacing={2}
+              ref={scrollContainerRef}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
               sx={{
                 overflowX: "auto",
                 paddingX: 2,
@@ -806,6 +835,11 @@ function Home() {
           </Container>
           <Grid container>
             <Box
+              ref={scrollContainerRef}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
               sx={{
                 display: "flex",
                 overflowX: "auto",
@@ -961,6 +995,11 @@ function Home() {
               <Grid
                 container
                 spacing={2}
+                ref={scrollContainerRef}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseUp}
                 sx={{
                   overflowX: "auto",
                   paddingX: 2,

@@ -138,13 +138,21 @@ function Footer() {
         </Grid>
       </MKBox>
 
-      <Grid container sx={{ minHeight: "10rem" }}>
+      <Grid
+        container
+        sx={{
+          minHeight: "10rem",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <Grid
           item
           xs={12}
           sm="auto"
           alignItems="center"
           display={"flex"}
+          justifyContent={"flex-start"}
           sx={{ marginLeft: 2 }}
         >
           <MKBox
@@ -156,7 +164,7 @@ function Footer() {
           />
         </Grid>
 
-        <Grid item xs={12} sm={9} alignContent="center">
+        <Grid item xs={12} sm={9} lg={7} alignContent="center">
           <Grid
             sx={{ minHeight: "2rem" }}
             display="flex"
@@ -259,7 +267,7 @@ function Footer() {
         </Grid>
 
         <Grid item xs={12} sm="auto" display="flex" justifyContent="center">
-          <MKBox display="flex" alignItems="center">
+          <MKBox display="flex" alignItems="center" paddingRight="16px">
             {socials.map(({ icon, link }, key) => (
               <MKTypography
                 key={link}

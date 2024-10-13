@@ -2,6 +2,7 @@ import Link from "@mui/material/Link";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MKBox from "components/MKBox";
+import Grid from "@mui/material/Grid";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 
@@ -103,11 +104,13 @@ function NavBar() {
           m={0}
           sx={{ listStyle: "none" }}
         >
-          <CustomSelect
-            frontIcon={<Ausi />}
-            menuList={countryList}
-            isScrolled={scrolled}
-          />
+          <Grid sx={{ maxWidth: "130px" }}>
+            <CustomSelect
+              frontIcon={<Ausi />}
+              menuList={countryList}
+              isScrolled={scrolled}
+            />
+          </Grid>
           <MKButton circular variant="contained" color="black">
             Plan a Trip
           </MKButton>
