@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./CustomStepper.css";
 import MKButton from "components/MKButton";
+import { useNavigate } from "react-router-dom";
 
 const CustomStepper = ({ steps, initBtnHandle }) => {
   const [activeStep, setActiveStep] = useState(0);
+  const navigation = useNavigate();
   const [initStep, setInitSpet] = useState(initBtnHandle);
 
   console.log("Stesp", activeStep === 0);
@@ -11,6 +13,10 @@ const CustomStepper = ({ steps, initBtnHandle }) => {
   const handleNext = () => {
     if (activeStep < steps.length - 1) {
       setActiveStep((prevStep) => prevStep + 1);
+    }
+    if (activeStep < steps.length) {
+      navigation("/pages/tour-map");
+      console.log("last");
     }
   };
 

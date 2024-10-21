@@ -6,7 +6,7 @@ import {
   UilAngleRight,
 } from "@iconscout/react-unicons";
 
-const DateRangePicker = () => {
+const DateRangePicker = ({ backgroundColor }) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [isCalendarOpen, setCalendarOpen] = useState(false);
@@ -95,7 +95,11 @@ const DateRangePicker = () => {
 
   return (
     <div className="date-range-picker" style={{ paddingLeft: "16px" }}>
-      <div className="input-wrapper" onClick={toggleCalendar}>
+      <div
+        className="input-wrapper"
+        style={{ backgroundColor: backgroundColor ? backgroundColor : "" }}
+        onClick={toggleCalendar}
+      >
         <UilCalendarAlt />
         <input
           type="text"

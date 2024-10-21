@@ -6,8 +6,15 @@ import Select from "@mui/material/Select";
 import InputAdornment from "@mui/material/InputAdornment";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import { UilAngleDown } from "@iconscout/react-unicons";
 
-const CustomSelect = ({ title, menuList, frontIcon, isScrolled }) => {
+const CustomSelect = ({
+  title,
+  menuList,
+  frontIcon,
+  isScrolled,
+  fullWidth,
+}) => {
   const [value, setValue] = useState("");
 
   const handleChange = (event) => {
@@ -22,7 +29,7 @@ const CustomSelect = ({ title, menuList, frontIcon, isScrolled }) => {
     <FormControl fullWidth size="medium">
       <InputLabel
         sx={{
-          color: "white", // Input label color
+          color: "white",
         }}
         id="custom-select-label"
       >
@@ -41,7 +48,7 @@ const CustomSelect = ({ title, menuList, frontIcon, isScrolled }) => {
             }
             endAdornment={
               <InputAdornment position="end">
-                <ArrowDropDownIcon />
+                {fullWidth ? <UilAngleDown /> : <ArrowDropDownIcon />}
               </InputAdornment>
             }
           />
@@ -50,14 +57,20 @@ const CustomSelect = ({ title, menuList, frontIcon, isScrolled }) => {
           height: "2.8rem",
           width: "100%",
           color: "white",
+          backgroundColor: fullWidth ? "#FEFDF5" : "",
+          borderRadius: "30px",
           "& .MuiOutlinedInput-notchedOutline": {
-            border: "none",
+            border: fullWidth ? "solid" : "none",
+            borderRadius: "30px",
+            borderWidth: "1px",
+            borderColor: "#C9C5BA",
           },
           "& .MuiSvgIcon-root": {
             color: !isScrolled ? "white !important" : "black !important",
           },
           "& .MuiSelect-select": {
             color: !isScrolled ? "white !important" : "black !important",
+            backgroundColor: fullWidth ? "#FEFDF5" : "",
           },
         }}
       >
@@ -67,7 +80,11 @@ const CustomSelect = ({ title, menuList, frontIcon, isScrolled }) => {
         {menuList &&
           menuList.length > 0 &&
           menuList.map((item) => (
-            <MenuItem key={item.value} value={item.value}>
+            <MenuItem
+              sx={{ marginBottom: "2px" }}
+              key={item.value}
+              value={item.value}
+            >
               {item.label}
             </MenuItem>
           ))}

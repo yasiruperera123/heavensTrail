@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 
-const Counter = ({ label }) => {
+const Counter = ({ label, direction }) => {
   const [count, setCount] = useState(0);
 
   const handleIncrement = () => {
@@ -17,7 +17,14 @@ const Counter = ({ label }) => {
   };
 
   return (
-    <Grid alignItems="center" spacing={2}>
+    <Grid
+      alignItems="center"
+      spacing={2}
+      sx={{
+        flexDirection: direction === "row" ? "row" : "column",
+        display: direction === "row" ? "flex" : "",
+      }}
+    >
       <Grid item>
         <MKTypography variant="h6" fontWeight="regular" color="black">
           {label}
@@ -34,8 +41,9 @@ const Counter = ({ label }) => {
           border: "solid",
           alignItems: "center",
           borderColor: "#C9C5BA",
-          marginTop: 1,
-          width: "160px",
+          marginTop: direction === "row" ? 1 : 0,
+          marginLeft: direction === "row" ? 2 : 0,
+          maxWidth: "160px",
         }}
       >
         <Grid>

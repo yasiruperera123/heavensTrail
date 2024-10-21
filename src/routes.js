@@ -21,6 +21,8 @@ import Blogs from "pages/Blogs";
 import BlogArticle from "pages/BlogArticle";
 import TourDetails from "pages/TourDetails";
 import TourPlanner from "pages/TourPlanner";
+import TourReview from "pages/TourReview";
+import TourMap from "pages/TourMap";
 
 // Sections
 import PageHeaders from "layouts/sections/page-sections/page-headers";
@@ -126,6 +128,16 @@ const routes = [
             name: "tourPlanner",
             route: "/pages/tour-planner",
             component: <TourPlanner />,
+          },
+          {
+            name: "tourReview",
+            route: "/pages/tour-review",
+            component: <TourReview />,
+          },
+          {
+            name: "tourMap",
+            route: "/pages/tour-map",
+            component: <TourMap />,
           },
         ],
       },

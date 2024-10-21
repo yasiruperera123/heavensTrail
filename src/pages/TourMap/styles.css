@@ -1,0 +1,12 @@
+/* Additional CSS for media queries */
+.responsive-container {
+    width: 50%; /* Default width for larger screens */
+  }
+  
+  /* For mobile screens, reduce width */
+  @media (max-width: 600px) {
+    .responsive-container {
+      width: 90%;
+      bottom: 80px; /* Adjust the bottom position on mobile */
+    }
+  }

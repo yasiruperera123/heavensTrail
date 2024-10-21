@@ -13,6 +13,11 @@ import MKBox from "components/MKBox";
 import footerBg from "assets/images/homePage/beach.jpeg";
 import NavBar from "components/NavBar";
 import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
+import LocationCityIcon from "@mui/icons-material/LocationCity";
+import AttractionsIcon from "@mui/icons-material/Attractions";
+import { Star } from "@mui/icons-material";
+import { LocalParking, Restaurant, Wifi, Pool } from "@mui/icons-material";
+import CustomPlanner from "components/CustomPlanner";
 import {
   UilBedDouble,
   UilParkingSquare,
