@@ -9,6 +9,8 @@ import CustomPlanner from "components/CustomPlanner";
 import CustomDateRangePicker from "components/CustomeDateRangerPicker";
 import CustomSelect from "components/CustomSelect";
 import Counter from "components/CustomCounter";
+import { styled } from "@mui/system";
+import { Button } from "@mui/material";
 import {
   UilPlaneArrival,
   UilClockTen,
@@ -17,6 +19,7 @@ import {
 import { Divider } from "@mui/material";
 import Footer from "components/Footer";
 import NavBarTwo from "components/NavBarTwo";
+import SpecialOfferCard from "components/CustomOffer";
 
 function TourReview() {
   const countryList = [
@@ -30,7 +33,7 @@ function TourReview() {
       <NavBarTwo />
       <div style={{ overflowX: "hidden" }}>
         {/* Your Questions Answered SECTION */}
-
+        <SpecialOfferCard />
         <Grid
           container
           sx={{
@@ -41,7 +44,7 @@ function TourReview() {
             margin: 0,
           }}
         >
-          <Grid item xs={12} lg={8}>
+          <Grid item xs={12} lg={7}>
             <Grid
               container
               item
@@ -299,7 +302,7 @@ function TourReview() {
             container
             item
             xs={12}
-            lg={8}
+            lg={7}
             flexDirection="column"
             alignItems="center"
             sx={{
@@ -317,6 +320,7 @@ function TourReview() {
             </Grid>
           </Grid>
         </Grid>
+        {/* Floating Bottom Section */}
       </div>
       <Footer />
     </div>

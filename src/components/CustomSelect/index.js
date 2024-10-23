@@ -14,6 +14,7 @@ const CustomSelect = ({
   frontIcon,
   isScrolled,
   fullWidth,
+  backgroundColor,
 }) => {
   const [value, setValue] = useState("");
 
@@ -57,7 +58,11 @@ const CustomSelect = ({
           height: "2.8rem",
           width: "100%",
           color: "white",
-          backgroundColor: fullWidth ? "#FEFDF5" : "",
+          backgroundColor: fullWidth
+            ? backgroundColor
+              ? backgroundColor
+              : "#FEFDF5 "
+            : "",
           borderRadius: "30px",
           "& .MuiOutlinedInput-notchedOutline": {
             border: fullWidth ? "solid" : "none",
@@ -70,7 +75,11 @@ const CustomSelect = ({
           },
           "& .MuiSelect-select": {
             color: !isScrolled ? "white !important" : "black !important",
-            backgroundColor: fullWidth ? "#FEFDF5" : "",
+            backgroundColor: fullWidth
+              ? backgroundColor
+                ? backgroundColor
+                : "#FEFDF5 "
+              : "",
           },
         }}
       >

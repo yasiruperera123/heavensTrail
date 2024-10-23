@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import Container from "@mui/material/Container";
@@ -10,10 +10,17 @@ import CustomMap from "components/CustomMap";
 import { Divider } from "@mui/material";
 import Footer from "components/Footer";
 import NavBarTwo from "components/NavBarTwo";
+import CustomModal from "components/CustomModal";
+import AddCityModal from "./AddCityModal";
+import AddActivityModal from "./AddActivityModal";
+import AccomadationModal from "./AccomadationModal";
 import "./styles.css";
 
 function TourMap() {
   const navigate = useNavigate();
+  const [isCityModalOpen, setCityModalOpen] = useState(false);
+  const [isActivityModalOpen, setActivityModalOpen] = useState(false);
+  const [isAccomadationModalOpen, setAccomadationModalOpen] = useState(false);
 
   const onClickReviewTrip = () => {
     navigate("/pages/tour-review");
@@ -24,6 +31,20 @@ function TourMap() {
 
       <div style={{ overflowX: "hidden" }}>
         {/* Tour Map Section */}
+        <AddCityModal
+          isOpen={isCityModalOpen}
+          handleCloseButton={() => setCityModalOpen(!isCityModalOpen)}
+        />
+        <AddActivityModal
+          isOpen={isActivityModalOpen}
+          handleCloseButton={() => setActivityModalOpen(!isActivityModalOpen)}
+        />
+        <AccomadationModal
+          isOpen={isAccomadationModalOpen}
+          handleCloseButton={() =>
+            setAccomadationModalOpen(!isAccomadationModalOpen)
+          }
+        />
         <Grid
           container
           justifyContent="center"
@@ -105,7 +126,18 @@ function TourMap() {
                   marginY: 2,
                 }}
               />
-              <CustomPlannerActivity />
+              <CustomPlannerActivity
+                handleCityModalClick={() => {
+                  setCityModalOpen(!isCityModalOpen);
+                }}
+                handleActivityModalClick={() => {
+                  console.log("asasasas");
+                  setActivityModalOpen(!isActivityModalOpen);
+                }}
+                handleAccomadationModalClick={() => {
+                  setAccomadationModalOpen(!isAccomadationModalOpen);
+                }}
+              />
             </Grid>
 
             {/* Right Section (Map) */}
