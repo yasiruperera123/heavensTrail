@@ -336,7 +336,7 @@ function Home() {
                       color="white"
                       onClick={() => handleChoosePackageClick(item?.title)}
                       sx={{
-                        width: "50%",
+                        width: "45%",
                         fontFamily: "Poppins, sans-serif",
                         fontWeight: "600",
                       }}
@@ -348,7 +348,7 @@ function Home() {
                       circular
                       color="white"
                       sx={{
-                        width: "50%",
+                        width: "45%",
                         fontFamily: "Poppins, sans-serif",
                         fontWeight: "600",
                       }}

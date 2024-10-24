@@ -77,7 +77,6 @@ export default styled(Button)(({ theme, ownerState }) => {
     } else if (color === "white" || color === "light") {
       colorValue = dark.main;
     }
-    console.log("asasasas", color);
 
     // color value when button is focused
     let focusedColorValue = white.main;
@@ -144,7 +143,8 @@ export default styled(Button)(({ theme, ownerState }) => {
       background: backgroundValue,
       color: colorValue,
       borderColor: borderColorValue,
-
+      paddingLeft: "10px",
+      paddingRight: "10px",
       "&:hover": {
         background: transparent.main,
         borderColor: colorValue,
