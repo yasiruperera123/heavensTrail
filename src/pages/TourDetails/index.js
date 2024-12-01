@@ -17,6 +17,7 @@ import { AboutUsPage } from "constants/images";
 import CustomItinarary from "components/CustomItinarary";
 import { useUID } from "react-uid";
 import Badge from "@kiwicom/orbit-components/lib/Badge";
+import FloatingOfferCard from "./FloatingOfferCard";
 import {
   UilBedDouble,
   UilParkingSquare,
@@ -36,6 +37,8 @@ import {
   UilTicket,
   UilAngleLeftB,
   UilAngleRightB,
+  UilCheck,
+  UilTimes,
 } from "@iconscout/react-unicons";
 import {
   Card,
@@ -113,6 +116,49 @@ function TourDetails() {
     },
   ];
 
+  const packages = [
+    {
+      amount: "USD 2,200",
+      amountBefore: "USD 2,350",
+      paxCount: "(2 Pax Travelling)",
+      reviewValue: 5,
+      reviewText: "4.9 (370)",
+    },
+    {
+      amount: "USD 2,050",
+      amountBefore: "USD 2,150",
+      paxCount: "(4 Pax Travelling)",
+      reviewValue: 5,
+      reviewText: "4.9 (370)",
+    },
+    {
+      amount: "USD 1,990",
+      amountBefore: "USD 2,100",
+      paxCount: "(6 Pax Travelling)",
+      reviewValue: 5,
+      reviewText: "4.9 (370)",
+    },
+  ];
+
+  const inclusions = [
+    "Accommodation at the hotels mentioned or similar in Standard Rooms",
+    "Breakfast during tour as indicated on the program",
+    "Lunch, Afternoon tea, dinner, Selected Spirits, cocktails, Tea Experience Tour at Ceylon Tea Trails Luxury Bungalows",
+    "Transportation in a luxury air-conditioned Vehicle",
+    "The services of an English-Speaking Chauffeur Guide",
+    "Driver accommodation, meals, and driver expenses during stay",
+    "Sightseeing to locations indicated EXCLUDING Entrance Fees",
+    "Government Tax",
+  ];
+
+  const exclusions = [
+    "Dinner and Lunch or any meal not mentioned above",
+    "Cost of Entrance Fees at sightseeing locations",
+    "Additional Transfers, sightseeing or entrance fees to locations not mentioned on the program",
+    "Early check-in or late check-out charges",
+    "Expenses of a personal nature",
+  ];
+
   return (
     <div style={{ backgroundColor: "#FEFDF5" }} id={id}>
       <NavBarTwo />
@@ -125,6 +171,7 @@ function TourDetails() {
       </div>
       <div style={{ overflowX: "hidden" }}>
         {/* Your Questions Answered SECTION */}
+
         <Grid
           container
           sx={{
@@ -148,6 +195,7 @@ function TourDetails() {
             sx={{ width: "70%" }}
           >
             <Grid container display={"flex"} flexDirection="column">
+              <FloatingOfferCard />
               <Accordion
                 disableGutters // Removes padding and default spacing
                 sx={{
@@ -422,7 +470,8 @@ function TourDetails() {
                 disableGutters // Removes padding and default spacing
                 sx={{
                   boxShadow: "none",
-                  "&:before": { display: "none" }, // Removes the default divider line
+                  "&:before": { display: "none" },
+                  backgroundColor: "#FEFDF5",
                 }}
               >
                 <AccordionSummary
@@ -465,86 +514,413 @@ function TourDetails() {
                     }}
                   />
                 </AccordionDetails>
-                <Grid sx={{ width: "100%" }}>
-                  <Grid>
-                    <MKTypography
-                      color="black"
-                      sx={({ breakpoints, typography: {} }) => ({
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: "15px",
-                        fontWeight: 600,
-                        width: "100%",
-                        textAlign: "left",
-                      })}
-                    >
-                      USD 2,200{" "}
-                      <span style={{ fontSize: 12, fontWeight: 400 }}>
-                        per person sharing DBL
-                      </span>
-                    </MKTypography>
-                    <MKTypography
-                      sx={({ breakpoints, typography: {} }) => ({
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: "12px",
-                        fontWeight: 400,
-                        width: "100%",
-                        textAlign: "left",
-                        textDecoration: "line-through",
-                        color: "#8C8679",
-                      })}
-                    >
-                      USD 2,350
-                    </MKTypography>
-                    <MKTypography
-                      sx={({ breakpoints, typography: {} }) => ({
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: "12px",
-                        fontWeight: 400,
-                        width: "100%",
-                        textAlign: "left",
-                        textDecoration: "line-through",
-                        color: "#8C8679",
-                      })}
-                    >
-                      (2 Pax Travelling)
-                    </MKTypography>
-                    <Divider
-                      variant="middle"
-                      sx={{
-                        height: 2,
-                        width: "100%",
-                        opacity: 1,
-                        backgroundColor: "#EEECE2",
-                      }}
-                    />
+                <Grid
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: { xs: "column", md: "row", lg: "row" },
+                    backgroundColor: "#FEFDF5",
+                    gap: 2,
+                  }}
+                >
+                  {packages?.map((item) => {
+                    return (
+                      <Grid
+                        sx={{
+                          border: "solid",
+                          borderRadius: 5,
+                          borderColor: "#C9C5BA",
+                          paddingX: 2,
+                          paddingY: 2,
+                          backgroundColor: "#FEFDF5",
+                          width: "90%",
+                        }}
+                      >
+                        <MKTypography
+                          color="black"
+                          sx={({ breakpoints, typography: {} }) => ({
+                            fontFamily: "Poppins, sans-serif",
+                            fontSize: "15px",
+                            fontWeight: 600,
+                            width: "100%",
+                            textAlign: "left",
+                          })}
+                        >
+                          {item.amount}{" "}
+                          <span style={{ fontSize: 12, fontWeight: 400 }}>
+                            per person sharing DBL
+                          </span>
+                        </MKTypography>
+                        <MKTypography
+                          sx={({ breakpoints, typography: {} }) => ({
+                            fontFamily: "Poppins, sans-serif",
+                            fontSize: "12px",
+                            fontWeight: 400,
+                            width: "100%",
+                            textAlign: "left",
+                            textDecoration: "line-through",
+                            color: "#8C8679",
+                          })}
+                        >
+                          {item.amountBefore}
+                        </MKTypography>
+                        <MKTypography
+                          sx={({ breakpoints, typography: {} }) => ({
+                            fontFamily: "Poppins, sans-serif",
+                            fontSize: "14px",
+                            fontWeight: 500,
+                            width: "100%",
+                            textAlign: "left",
+                          })}
+                        >
+                          {item.paxCount}
+                        </MKTypography>
+                        <Divider
+                          variant="middle"
+                          sx={{
+                            height: 2,
+                            width: "100%",
+                            opacity: 1,
+                            backgroundColor: "#EEECE2",
+                          }}
+                        />
+                        <Grid
+                          sx={{
+                            flexDirection: "row",
+                            display: "flex",
+                            alignItems: "flex-end",
+                          }}
+                        >
+                          <Rating
+                            name="read-only"
+                            value={item?.reviewValue}
+                            readOnly
+                            max={1}
+                          />
+                          <MKTypography
+                            sx={({ breakpoints, typography: {} }) => ({
+                              fontFamily: "Poppins, sans-serif",
+                              fontSize: "14px",
+                              fontWeight: 500,
+                              width: "100%",
+                              textAlign: "left",
+                              color: "#8C8679",
+                            })}
+                          >
+                            {item.reviewText}
+                          </MKTypography>
+                          <MKButton circular variant="contained" color="black">
+                            Selected
+                          </MKButton>
+                        </Grid>
+                      </Grid>
+                    );
+                  })}
+                </Grid>
+                <Grid
+                  lg={12}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    backgroundColor: "#FEFDF5",
+                    marginTop: 7,
+                  }}
+                >
+                  <MKBox
+                    display="flex"
+                    alignItems="center"
+                    justifySelf="center"
+                    pt={4}
+                    pb={4}
+                    sx={{
+                      backgroundImage: ({
+                        palette: { gradients },
+                        functions: { linearGradient, rgba },
+                      }) =>
+                        `${linearGradient("#BFCF0F", "#818B0C")}, url(${
+                          AboutUsPage.Sub_Head
+                        })`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      backgroundBlendMode: "overlay",
+
+                      margin: 1,
+                      borderRadius: 5,
+                      width: "100%",
+                    }}
+                  >
                     <Grid
+                      container
+                      xs={12}
                       sx={{
-                        flexDirection: "row",
                         display: "flex",
-                        alignItems: "flex-end",
-                        backgroundColor: "red",
+                        alignItems: "center",
                       }}
+                      flexDirection="column"
+                      justifyContent="center"
                     >
                       <MKTypography
-                        sx={({ breakpoints, typography: {} }) => ({
+                        variant="h1"
+                        color="black"
+                        mb={3}
+                        sx={({ breakpoints, typography: { size } }) => ({
+                          [breakpoints.down("md")]: {
+                            fontSize: size["3xl"],
+                          },
+                          fontSize: "50px",
                           fontFamily: "Poppins, sans-serif",
-                          fontSize: "12px",
-                          fontWeight: 400,
-                          width: "100%",
-                          textAlign: "left",
-                          textDecoration: "line-through",
-                          color: "#8C8679",
+                          width: "90%",
+                          textAlign: "center",
+                          lineHeight: "90%",
                         })}
                       >
-                        (2 Pax Travelling)
+                        {`Get a 25% Off`}
                       </MKTypography>
-                      <MKButton circular variant="contained" color="black">
-                        Selected
-                      </MKButton>
+                      <MKTypography
+                        color="black"
+                        sx={({ breakpoints, typography: {} }) => ({
+                          fontFamily: "Poppins, sans-serif",
+                          fontSize: "15px",
+                          fontWeight: 400,
+                          width: "70%",
+                          textAlign: "center",
+                        })}
+                      >
+                        Book Before 20th July 2024
+                      </MKTypography>
+                      <MKTypography
+                        color="black"
+                        mb={3}
+                        sx={({ breakpoints, typography: {} }) => ({
+                          fontFamily: "Poppins, sans-serif",
+                          fontSize: "15px",
+                          fontWeight: 400,
+                          width: "70%",
+                          textAlign: "center",
+                        })}
+                      >
+                        (Stay Period valid from 15th September – 31st October
+                        2024)
+                      </MKTypography>
                     </Grid>
-                  </Grid>
+                  </MKBox>
                 </Grid>
               </Accordion>
+              <Accordion
+                disableGutters // Removes padding and default spacing
+                sx={{
+                  boxShadow: "none",
+                  "&:before": { display: "none" },
+                  backgroundColor: "#FEFDF5",
+                }}
+              >
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1-content"
+                  id={`panel1-header-1`}
+                  sx={{
+                    boxShadow: "none",
+                    backgroundColor: "#FEFDF5",
+                    margin: 0,
+                  }}
+                >
+                  <MKTypography
+                    variant="h1"
+                    color="black"
+                    sx={({ breakpoints, typography: { size } }) => ({
+                      [breakpoints.down("md")]: {
+                        fontSize: size["3xl"],
+                        textAlign: "center",
+                      },
+                      fontFamily: "Playfair Display, serif",
+                      fontSize: "40px",
+                      fontWeight: 400,
+                      textAlign: "left",
+                      marginBottom: 2,
+                      marginTop: 4,
+                    })}
+                  >
+                    What’s Included
+                  </MKTypography>
+                </AccordionSummary>
+                <AccordionDetails sx={{ backgroundColor: "#FEFDF5" }}>
+                  <Divider
+                    variant="middle"
+                    sx={{
+                      height: 2,
+                      width: "100%",
+                      opacity: 1,
+                      backgroundColor: "#C9C5BA",
+                    }}
+                  />
+                </AccordionDetails>
+                <MKBox
+                  borderRadius="lg"
+                  border="1px solid #e0e0e0"
+                  padding="20px"
+                  backgroundColor="#f9f9f9"
+                >
+                  <MKBox
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="stretch" // Ensures both sections and divider stretch to the same height
+                    width="100%"
+                  >
+                    {/* Inclusions Section */}
+                    <MKBox sx={{ width: "48%" }}>
+                      <MKTypography variant="h5" fontWeight="bold" mb={2}>
+                        Inclusions
+                      </MKTypography>
+                      {inclusions.map((item, index) => (
+                        <MKBox key={index} mb={2} display="flex">
+                          <UilCheck
+                            color="#929E03"
+                            style={{
+                              marginRight: "8px",
+                              width: "16px",
+                              height: "16px",
+                              flexShrink: 0,
+                            }}
+                          />
+                          <MKTypography
+                            sx={{
+                              lineHeight: "100%",
+                              fontFamily: "Poppins, sans-serif",
+                              fontSize: "16px",
+                              fontWeight: 500,
+                              width: "100%",
+                            }}
+                            variant="body1"
+                          >
+                            {item}
+                          </MKTypography>
+                        </MKBox>
+                      ))}
+                    </MKBox>
+
+                    {/* Vertical Divider */}
+                    <Divider
+                      orientation="vertical"
+                      flexItem
+                      sx={{
+                        mx: 3,
+                        width: "2px",
+                        backgroundColor: "#e0e0e0",
+                        height: "auto",
+                        minHeight: "100%",
+                        opacity: 1,
+                      }}
+                    />
+
+                    {/* Exclusions Section */}
+                    <MKBox sx={{ width: "48%" }}>
+                      <MKTypography variant="h5" fontWeight="bold" mb={2}>
+                        Exclusions
+                      </MKTypography>
+                      {exclusions.map((item, index) => (
+                        <MKBox key={index} mb={2} display="flex">
+                          <UilTimes
+                            color="#AF4D06"
+                            style={{
+                              marginRight: "8px",
+                              width: "16px",
+                              height: "16px",
+                              flexShrink: 0,
+                            }}
+                          />
+                          <MKTypography
+                            sx={{
+                              lineHeight: "100%",
+                              fontFamily: "Poppins, sans-serif",
+                              fontSize: "16px",
+                              fontWeight: 500,
+                              width: "100%",
+                            }}
+                            variant="body1"
+                          >
+                            {item}
+                          </MKTypography>
+                        </MKBox>
+                      ))}
+                    </MKBox>
+                  </MKBox>
+                </MKBox>
+              </Accordion>
+              <Divider
+                variant="middle"
+                sx={{
+                  height: 2,
+                  width: "100%",
+                  opacity: 1,
+                  backgroundColor: "#C9C5BA",
+                }}
+              />
+              <MKBox
+                display="flex"
+                alignItems="center"
+                justifySelf="center"
+                pt={4}
+                pb={4}
+                sx={{
+                  margin: 1,
+                  borderRadius: 5,
+                  width: "100%",
+                }}
+              >
+                <Grid
+                  container
+                  xs={12}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                  flexDirection="column"
+                  justifyContent="center"
+                >
+                  <MKTypography
+                    color="black"
+                    sx={({ breakpoints, typography: {} }) => ({
+                      fontFamily: "Poppins, sans-serif",
+                      fontSize: "15px",
+                      fontWeight: 400,
+                      width: "70%",
+                      textAlign: "center",
+                    })}
+                  >
+                    Locally Serviced By
+                  </MKTypography>
+                  <MKTypography
+                    variant="h1"
+                    color="black"
+                    sx={({ breakpoints, typography: { size } }) => ({
+                      [breakpoints.down("md")]: {
+                        fontSize: size["3xl"],
+                      },
+                      fontSize: "25px",
+                      fontFamily: "Poppins, sans-serif",
+                      width: "90%",
+                      textAlign: "center",
+                      lineHeight: "90%",
+                    })}
+                  >
+                    Heaven’s Trial Pvt Ltd.
+                  </MKTypography>
+
+                  <MKTypography
+                    color="black"
+                    mb={3}
+                    sx={({ breakpoints, typography: {} }) => ({
+                      fontFamily: "Poppins, sans-serif",
+                      fontSize: "15px",
+                      fontWeight: 400,
+                      width: "70%",
+                      textAlign: "center",
+                    })}
+                  >
+                    Sri Lanka
+                  </MKTypography>
+                </Grid>
+              </MKBox>
             </Grid>
           </Grid>
         </Grid>

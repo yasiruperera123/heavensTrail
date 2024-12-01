@@ -2,7 +2,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
@@ -29,18 +29,59 @@ import Logo from "assets/images/homePage/Logo.svg";
 import CustomSelect from "components/CustomSelect";
 import CustomDateRangePicker from "components/CustomeDateRangerPicker";
 import NavBar from "components/NavBar";
+import {
+  fetchPropertyData,
+  fetchPropertyPageTexts,
+  fetchPropertyPageImages,
+} from "services/PropertyService";
 
 function HeaderOne() {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [images, setImages] = useState();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const handleChange = (event) => {
-    setValue(event.target.value);
+
+  const getPropertyText = async () => {
+    // Usage
+    fetchPropertyPageTexts(1)
+      .then((response) => {
+        const headerTexts = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.text;
+          return acc;
+        }, {});
+
+        setValue(headerTexts);
+        console.log("headerTextssss", headerTexts);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
   };
+
+  const getPropertyImages = () => {
+    fetchPropertyPageImages(1, 1)
+      .then((response) => {
+        const headerImages = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.imgeUrl;
+          return acc;
+        }, {});
+
+        setImages(headerImages);
+        console.log("headerImages", headerImages);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  useEffect(() => {
+    getPropertyText();
+    getPropertyImages();
+  }, []);
 
   const navItems = [
     "Home",
@@ -62,7 +103,11 @@ function HeaderOne() {
     afterChange: (current) => setCurrentSlide(current),
   };
 
-  const backgroundImages = [bgImage, footerBg, bgImage];
+  const backgroundImages = [
+    images.headerImage1,
+    images.headerImage2,
+    images.headerImage3,
+  ];
 
   return (
     <MKBox
@@ -123,11 +168,11 @@ function HeaderOne() {
                     fontWeight: 400,
                   })}
                 >
-                  Sri Lanka: Your Summer Escape in Paradise Awaits
+                  {value?.headerTitle || ""}
                 </MKTypography>
                 <Grid justifyContent="center">
                   <MKButton circular variant="outlined" color="white">
-                    Destinations
+                    {value?.headerButton1}
                   </MKButton>
                   <MKButton
                     sx={{ margin: 2 }}
@@ -135,10 +180,10 @@ function HeaderOne() {
                     variant="outlined"
                     color="white"
                   >
-                    Tour Packages
+                    {value?.headerButton2}
                   </MKButton>
                   <MKButton circular variant="outlined" color="white">
-                    Business Tours
+                    {value?.headerButton3}
                   </MKButton>
                 </Grid>
               </Grid>
@@ -218,8 +263,7 @@ function HeaderOne() {
                       textAlign: "center",
                     })}
                   >
-                    “Sri Lanka is one of the Must-Visit Travel Destinations For
-                    Summer 2024”
+                    {value?.headerSubSection1Text}
                   </MKTypography>
                   <MKTypography
                     sx={{
@@ -279,7 +323,7 @@ function HeaderOne() {
                       fontSize: "15px",
                     }}
                   >
-                    Cover Image: Sigiriya, Visit this place in
+                    {value?.headerSubSection2Text1}
                   </MKTypography>
                   <MKTypography
                     variant="h1"
@@ -293,7 +337,7 @@ function HeaderOne() {
                       fontFamily: "Playfair Display, serif",
                     })}
                   >
-                    Peaceful Sri Lanka Trip -Sigiriya Special
+                    {value?.headerSubSection2Text2}
                   </MKTypography>
                   <Divider
                     sx={{ opacity: 1, backgroundColor: "#FFFFFF" }}
@@ -313,7 +357,7 @@ function HeaderOne() {
                     variant="outlined"
                     color="white"
                   >
-                    View Package
+                    {value?.headerSubSection2Button}
                   </MKButton>
                 </Grid>
               </Grid>

@@ -49,11 +49,26 @@ import {
 } from "@mui/material";
 import NavBar from "components/NavBar";
 
+import {
+  fetchPropertyData,
+  fetchPropertyPageTexts,
+} from "services/PropertyService";
+
 function Home() {
   const navigate = useNavigate();
   const scrollContainerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startPosition, setStartPosition] = useState({ x: 0, scrollLeft: 0 });
+  const [propertyData, setPropertyData] = useState(null);
+  const [pageTexts, setPageTexts] = useState([]);
+  const [headerData, setHeaderData] = useState({});
+
+  useEffect(() => {
+    console.log("asas");
+
+    getPropertyDetails();
+    getPropertyText();
+  }, []);
   const travelSolutions = [
     {
       title: "Meetings & Conferences",
@@ -184,6 +199,37 @@ function Home() {
     },
   ];
 
+  const getPropertyDetails = async () => {
+    // Usage
+    fetchPropertyData()
+      .then((data) => {
+        console.log("Fetched data: ", data);
+        setPropertyData(data.data);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getPropertyText = async () => {
+    // Usage
+    fetchPropertyPageTexts(1)
+      .then((response) => {
+        setPageTexts(response.data);
+        const headerTexts = {
+          title: response?.data.find((item) => item.tag === "headerTitle")
+            ?.text,
+        };
+        console.log("HEADER TEXTS");
+
+        setHeaderData(headerTexts);
+        console.log("Fetched data TExts: ", response);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
   const handleMouseDown = (e) => {
     const scrollLeft = scrollContainerRef.current.scrollLeft;
     setStartPosition({
@@ -241,7 +287,7 @@ function Home() {
     <div>
       <NavBar />
       <div style={{ padding: 15 }}>
-        <HeaderOne />
+        <HeaderOne data={headerData} />
       </div>
       <div style={{ overflowX: "hidden" }}>
         {/* Explore our travel solutions */}
