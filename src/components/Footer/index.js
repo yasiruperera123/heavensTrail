@@ -2,7 +2,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
@@ -34,10 +34,16 @@ import Logo from "assets/images/homePage/Logo.svg";
 import CustomSelect from "components/CustomSelect";
 import CustomDateRangePicker from "components/CustomeDateRangerPicker";
 import NavBar from "components/NavBar";
+import {
+  fetchPropertyData,
+  fetchPropertyPageTexts,
+  fetchPropertyPageImages,
+} from "services/PropertyService";
 
 function Footer() {
   const [value, setValue] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [images, setImages] = useState();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleDrawerToggle = () => {
@@ -47,6 +53,11 @@ function Footer() {
     setValue(event.target.value);
   };
 
+  useEffect(() => {
+    getPropertyText();
+    getPropertyImages();
+  }, []);
+
   const navItems = [
     "Home",
     "Tour Packages",
@@ -54,6 +65,38 @@ function Footer() {
     "About Us",
     "Contact Us",
   ];
+
+  const getPropertyText = async () => {
+    // Usage
+    fetchPropertyPageTexts(1)
+      .then((response) => {
+        const headerTexts = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.text;
+          return acc;
+        }, {});
+
+        setValue(headerTexts);
+        console.log("headerTextssss", headerTexts);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getPropertyImages = () => {
+    fetchPropertyPageImages(1, 1)
+      .then((response) => {
+        const headerImages = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.imgeUrl;
+          return acc;
+        }, {});
+        setImages(headerImages);
+        console.log("headerImages", headerImages);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
 
   const socials = [
     {
@@ -96,7 +139,7 @@ function Footer() {
         height="35rem"
         minHeight="100%"
         sx={{
-          backgroundImage: `url(${footerBg})`,
+          backgroundImage: `url(${images?.footerImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           margin: 1,
@@ -127,12 +170,11 @@ function Footer() {
               textAlign: "center",
             })}
           >
-            {`Where Will Your Journey Begin?`} <br />
-            {`Create your trip today.`}
+            {value?.footerTitle || ""}
           </MKTypography>
           <Stack direction="row" spacing={1} mt={3}>
             <MKButton circular variant="contained" color="white">
-              Plan Your Trip
+              {value?.footerButton || ""}
             </MKButton>
           </Stack>
         </Grid>

@@ -52,6 +52,7 @@ import NavBar from "components/NavBar";
 import {
   fetchPropertyData,
   fetchPropertyPageTexts,
+  fetchPropertyPageImages,
 } from "services/PropertyService";
 
 function Home() {
@@ -60,7 +61,8 @@ function Home() {
   const [isDragging, setIsDragging] = useState(false);
   const [startPosition, setStartPosition] = useState({ x: 0, scrollLeft: 0 });
   const [propertyData, setPropertyData] = useState(null);
-  const [pageTexts, setPageTexts] = useState([]);
+  const [pageTexts, setPageTexts] = useState();
+  const [pageImages, setPageImages] = useState();
   const [headerData, setHeaderData] = useState({});
 
   useEffect(() => {
@@ -68,53 +70,54 @@ function Home() {
 
     getPropertyDetails();
     getPropertyText();
+    getPropertyImages();
   }, []);
   const travelSolutions = [
     {
-      title: "Meetings & Conferences",
+      title: pageTexts?.section1Item1Title || "",
       btn1: "See Details",
       btn2: "View Packages",
-      img: meetingImg,
+      img: pageImages?.section1Item1Background || "",
     },
     {
-      title: "Exhibitions",
+      title: pageTexts?.section1Item2Title || "",
       btn1: "See Details",
       btn2: "View Packages",
-      img: exhibitionImg,
+      img: pageImages?.section1Item2Background || "",
     },
     {
-      title: "Weddings",
+      title: pageTexts?.section1Item3Title || "",
       btn1: "See Details",
       btn2: "View Packages",
-      img: weddingImg,
+      img: pageImages?.section1Item3Background || "",
     },
     {
-      title: "Incentive Tours",
+      title: pageTexts?.section1Item4Title || "",
       btn1: "See Details",
       btn2: "View Packages",
-      img: tourImg,
+      img: pageImages?.section1Item4Background || "",
     },
   ];
 
   const adventures = [
     {
-      title: "Personalize Your Adventure",
-      des: "Shape your journey by freely adding, editing, or deleting activities from your itinerary.",
+      title: pageTexts?.section2Item1Title || "",
+      des: pageTexts?.section2Item1Description || "",
       img: adventureIcon1,
     },
     {
-      title: "Optimal Route Planning",
-      des: "Add your preferences to craft the most efficient route, saving you time and effort.",
+      title: pageTexts?.section2Item2Title || "",
+      des: pageTexts?.section2Item2Description || "",
       img: adventureIcon2,
     },
     {
-      title: "Find Hotels & Restaurants",
-      des: "Shape your journey by freely adding, editing, or deleting activities from your itinerary.",
+      title: pageTexts?.section2Item3Title || "",
+      des: pageTexts?.section2Item3Description || "",
       img: adventureIcon3,
     },
     {
-      title: "Book Vehicle and Tour Guide",
-      des: "Shape your journey by freely adding, editing, or deleting activities from your itinerary.",
+      title: pageTexts?.section2Item4Title || "",
+      des: pageTexts?.section2Item4Description || "",
       img: adventureIcon4,
     },
   ];
@@ -215,15 +218,28 @@ function Home() {
     // Usage
     fetchPropertyPageTexts(1)
       .then((response) => {
-        setPageTexts(response.data);
-        const headerTexts = {
-          title: response?.data.find((item) => item.tag === "headerTitle")
-            ?.text,
-        };
-        console.log("HEADER TEXTS");
+        const headerTexts = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.text;
+          return acc;
+        }, {});
+        console.log("TEXTS", headerTexts);
 
-        setHeaderData(headerTexts);
-        console.log("Fetched data TExts: ", response);
+        setPageTexts(headerTexts);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getPropertyImages = () => {
+    fetchPropertyPageImages(1, 1)
+      .then((response) => {
+        const headerImages = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.imgeUrl;
+          return acc;
+        }, {});
+        setPageImages(headerImages);
+        console.log("headerImages", headerImages);
       })
       .catch((error) => {
         console.error("Fetch failed:", error.message);
@@ -321,7 +337,7 @@ function Home() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  MICE Experiences
+                  {pageTexts?.section1Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -336,7 +352,7 @@ function Home() {
                   fontWeight: 400,
                 })}
               >
-                Explore our travel solutions
+                {pageTexts?.section1Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -344,9 +360,7 @@ function Home() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                We create seamless MICE (Meetings, Incentives, Conferences,
-                Exhibitions) and wedding experiences in Sri Lanka. Unforgettable
-                events, flawlessly planned.
+                {pageTexts?.section1Description || ""}
               </MKTypography>
             </Grid>
           </Container>
@@ -438,7 +452,7 @@ function Home() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  Customizable Tour Planner
+                  {pageTexts?.section2Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -453,7 +467,7 @@ function Home() {
                   fontWeight: 400,
                 })}
               >
-                Create your own adventure
+                {pageTexts?.section2Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -461,9 +475,7 @@ function Home() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                We create seamless MICE (Meetings, Incentives, Conferences,
-                Exhibitions) and wedding experiences in Sri Lanka. Unforgettable
-                events, flawlessly planned.
+                {pageTexts?.section2Description || ""}
               </MKTypography>
             </Grid>
           </Container>
@@ -530,7 +542,7 @@ function Home() {
                   marginBottom: 10,
                 }}
               >
-                Create Your Customized Tour
+                {pageTexts?.section2Button2 || ""}
               </MKButton>
             </Grid>
           </Container>
@@ -570,7 +582,7 @@ function Home() {
                   color="black"
                   onClick={handleOurPackageClick}
                 >
-                  Our Packages
+                  {pageTexts?.section3Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -585,7 +597,7 @@ function Home() {
                   fontWeight: 400,
                 })}
               >
-                Explore our travel Packages
+                {pageTexts?.section3Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -593,9 +605,7 @@ function Home() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                We create seamless MICE (Meetings, Incentives, Conferences,
-                Exhibitions) and wedding experiences in Sri Lanka. Unforgettable
-                events, flawlessly planned.
+                {pageTexts?.section3Description || ""}
               </MKTypography>
             </Grid>
           </Container>
@@ -814,7 +824,7 @@ function Home() {
               }}
               onClick={handleClick}
             >
-              See All Packages
+              {pageTexts?.section3Button2 || ""}
             </MKButton>
           </Box>
         </Grid>
@@ -849,7 +859,7 @@ function Home() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  Reviews & Testimonials
+                  {pageTexts?.section4Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -864,7 +874,7 @@ function Home() {
                   fontWeight: 400,
                 })}
               >
-                Discover Sri Lanka Through Our Travelers' Eyes
+                {pageTexts?.section4Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -872,10 +882,7 @@ function Home() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                Unforgettable experiences await in Sri Lanka, but don't just
-                take our word for it! See what our past travelers have to say
-                about their incredible Sri Lankan adventures. Dive into their
-                reviews and discover the magic that awaits you.
+                {pageTexts?.section4Description || ""}
               </MKTypography>
             </Grid>
           </Container>
@@ -962,7 +969,7 @@ function Home() {
               marginBottom: 10,
             }}
           >
-            See All Reviews
+            {pageTexts?.section4Button2 || ""}
           </MKButton>
         </Grid>
         {/* Explore our Insights, Tips and More Packages */}
@@ -993,7 +1000,7 @@ function Home() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  Our Blog
+                  {pageTexts?.section5Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -1012,7 +1019,7 @@ function Home() {
                   textAlign: "center",
                 })}
               >
-                Explore our Insights, Tips and More
+                {pageTexts?.section5Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -1024,9 +1031,7 @@ function Home() {
                   margin: "0 auto",
                 }}
               >
-                Dive deeper into the magic of Sri Lanka with our insightful
-                blog! Discover hidden gems, cultural treasures, and adventure
-                inspiration to fuel your travel dreams.
+                {pageTexts?.section5Description || ""}
               </MKTypography>
             </Grid>
 
@@ -1152,7 +1157,7 @@ function Home() {
                 }}
                 onClick={handleViewAllClick}
               >
-                View All Blogs
+                {pageTexts?.section5Button2 || ""}
               </MKButton>
             </Box>
           </Grid>
@@ -1188,7 +1193,7 @@ function Home() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  FAQs
+                  {pageTexts?.section6Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -1200,7 +1205,7 @@ function Home() {
                   },
                 })}
               >
-                Your Questions Answered
+                {pageTexts?.section6Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -1208,10 +1213,7 @@ function Home() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                Planning your Sri Lankan adventure? We've got you covered!
-                Explore our Frequently Asked Questions (FAQs) to find answers to
-                common inquiries about visas, travel seasons, currency, culture,
-                and more.
+                {pageTexts?.section6Description || ""}
               </MKTypography>
             </Grid>
           </Container>
@@ -1256,7 +1258,7 @@ function Home() {
                 marginBottom: 10,
               }}
             >
-              Load More FAQs
+              {pageTexts?.section6Button2 || ""}
             </MKButton>
           </Grid>
         </Grid>
