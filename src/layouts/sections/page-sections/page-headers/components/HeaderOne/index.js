@@ -69,7 +69,6 @@ function HeaderOne() {
           acc[item.tag] = item.imgeUrl;
           return acc;
         }, {});
-
         setImages(headerImages);
         console.log("headerImages", headerImages);
       })
@@ -104,9 +103,9 @@ function HeaderOne() {
   };
 
   const backgroundImages = [
-    images.headerImage1,
-    images.headerImage2,
-    images.headerImage3,
+    images?.headerImage1,
+    images?.headerImage2,
+    images?.headerImage3,
   ];
 
   return (
