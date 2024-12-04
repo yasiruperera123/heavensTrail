@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import View from "layouts/sections/components/View";
@@ -39,9 +39,55 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
+import { PageIDs } from "constants/pageId";
+import {
+  fetchPropertyPageTexts,
+  fetchPropertyPageImages,
+} from "services/PropertyService";
 
 function TourListing() {
   const navigate = useNavigate();
+  const [pageTexts, setPageTexts] = useState();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [images, setImages] = useState();
+
+  const getPropertyText = async () => {
+    // Usage
+    fetchPropertyPageTexts(PageIDs.TourListing)
+      .then((response) => {
+        const headerTexts = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.text;
+          return acc;
+        }, {});
+        console.log("header    Textssss", headerTexts);
+        setPageTexts(headerTexts);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getPropertyImages = () => {
+    fetchPropertyPageImages(PageIDs.TourListing, 1)
+      .then((response) => {
+        const headerImages = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.imgeUrl;
+          return acc;
+        }, {});
+        setImages(headerImages);
+        console.log("headerImages", headerImages);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  useEffect(() => {
+    getPropertyText();
+    getPropertyImages();
+  }, []);
+
   const travelPcgs = [
     {
       title: "Luxury Escape to the Southern Coast",
@@ -268,7 +314,7 @@ function TourListing() {
 
   const btnArray = [
     {
-      title: "Tour Packages",
+      title: pageTexts?.headerButton1,
     },
   ];
 
@@ -278,8 +324,9 @@ function TourListing() {
       <div style={{ padding: 15 }}>
         <HeaderTwo
           buttonArray={btnArray}
-          title="Explore our round tours created just for you."
+          title={pageTexts?.headerTitle}
           backgroundImage={TourListingPage.Header}
+          pageId={PageIDs.TourListing}
         />
       </div>
       {/* Explore our travel Packages */}
@@ -312,7 +359,7 @@ function TourListing() {
           >
             <Stack direction="row" spacing={1} mt={3}>
               <MKButton circular variant="outlined" color="black">
-                Round Tours
+                {pageTexts?.section1Button}
               </MKButton>
             </Stack>
             <MKTypography
@@ -327,7 +374,7 @@ function TourListing() {
                 fontWeight: 400,
               })}
             >
-              Heaven’s Trail Round Tours
+              {pageTexts?.section1Title}
             </MKTypography>
             <MKTypography
               variant="h6"
@@ -335,9 +382,7 @@ function TourListing() {
               color="black"
               sx={{ textAlign: "center", maxWidth: "90%" }}
             >
-              Crafting modern travel adventures that blend comfort with
-              excitement. Explore vibrant cultures and stunning landscapes,
-              creating lifelong memories!
+              {pageTexts?.section1Description}
             </MKTypography>
           </Grid>
         </Container>
@@ -547,7 +592,7 @@ function TourListing() {
           >
             <Stack direction="row" spacing={1} mt={3}>
               <MKButton circular variant="outlined" color="black">
-                Day Tours
+                {pageTexts?.section2Button}
               </MKButton>
             </Stack>
             <MKTypography
@@ -562,7 +607,7 @@ function TourListing() {
                 fontWeight: 400,
               })}
             >
-              You may also like
+              {pageTexts?.section2Title}
             </MKTypography>
             <MKTypography
               variant="h6"
@@ -570,9 +615,7 @@ function TourListing() {
               color="black"
               sx={{ textAlign: "center", maxWidth: "90%" }}
             >
-              Crafting modern travel adventures that blend comfort with
-              excitement. Explore vibrant cultures and stunning landscapes,
-              creating lifelong memories!
+              {pageTexts?.section2Description}
             </MKTypography>
           </Grid>
         </Container>
@@ -747,19 +790,6 @@ function TourListing() {
             </Grid>
           </Box>
         </Grid>
-        <MKButton
-          circular
-          variant="contained"
-          color="black"
-          sx={{
-            paddingLeft: 5,
-            paddingRight: 5,
-            marginTop: 5,
-            marginBottom: 10,
-          }}
-        >
-          See All Packages
-        </MKButton>
       </Grid>
 
       {/* Your Questions Answered SECTION */}
@@ -793,7 +823,7 @@ function TourListing() {
           >
             <Stack direction="row" spacing={1} mt={3}>
               <MKButton circular variant="outlined" color="black">
-                FAQs
+                {pageTexts?.section3Button}
               </MKButton>
             </Stack>
             <MKTypography
@@ -805,7 +835,7 @@ function TourListing() {
                 },
               })}
             >
-              Your Questions Answered
+              {pageTexts?.section3Title}
             </MKTypography>
             <MKTypography
               variant="h6"
@@ -813,10 +843,7 @@ function TourListing() {
               color="black"
               sx={{ textAlign: "center", maxWidth: "90%" }}
             >
-              Planning your Sri Lankan adventure? We've got you covered! Explore
-              our Frequently Asked Questions (FAQs) to find answers to common
-              inquiries about visas, travel seasons, currency, culture, and
-              more.
+              {pageTexts?.section3Description}
             </MKTypography>
           </Grid>
         </Container>
@@ -861,7 +888,7 @@ function TourListing() {
               marginBottom: 10,
             }}
           >
-            Load More FAQs
+            {pageTexts?.section3Button2}
           </MKButton>
         </Grid>
       </Grid>

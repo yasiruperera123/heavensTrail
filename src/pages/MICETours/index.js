@@ -26,8 +26,54 @@ import {
   AccordionDetails,
 } from "@mui/material";
 import Footer from "components/Footer";
+import {
+  fetchPropertyPageTexts,
+  fetchPropertyPageImages,
+} from "services/PropertyService";
+import { PageIDs } from "constants/pageId";
 
 function MiceTours() {
+  const [pageTexts, setPageTexts] = useState();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [images, setImages] = useState();
+
+  const getPropertyText = async () => {
+    // Usage
+    fetchPropertyPageTexts(PageIDs.MiceTours)
+      .then((response) => {
+        const headerTexts = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.text;
+          return acc;
+        }, {});
+        console.log("header    Textssss", headerTexts);
+        setPageTexts(headerTexts);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getPropertyImages = () => {
+    fetchPropertyPageImages(PageIDs.MiceTours, 1)
+      .then((response) => {
+        const headerImages = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.imgeUrl;
+          return acc;
+        }, {});
+        setImages(headerImages);
+        console.log("headerImages", headerImages);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  useEffect(() => {
+    getPropertyText();
+    getPropertyImages();
+  }, []);
+
   const faq = [
     {
       title: "What is the best time to visit Sri Lanka?",
@@ -53,42 +99,38 @@ function MiceTours() {
 
   const btnArray = [
     {
-      title: "Weddings",
+      title: pageTexts?.headerButton1,
       icon: <UilHeart />,
     },
-    { title: "Meetings & Conferences ", icon: <UilMicrophone /> },
-    { title: "Incentives", icon: <LiBeach fill="white" /> },
-    { title: "Exhibitions", icon: <UilStore /> },
+    { title: pageTexts?.headerButton2, icon: <UilMicrophone /> },
+    { title: pageTexts?.headerButton3, icon: <LiBeach fill="white" /> },
+    { title: pageTexts?.headerButton4, icon: <UilStore /> },
   ];
 
   const cardsData = [
     {
-      image: MiceToursPage.Mice_Tour_1,
-      title: "Meetings & Conferences",
-      description:
-        "From budget-friendly options to luxurious 5-star establishments, our Star Class Hotels cater to a variety of preferences and needs. Enjoy high-quality amenities, exceptional service, and prime locations across Sri Lanka.",
-      buttonText: "Explore More",
+      image: pageTexts?.section1Item1Image,
+      title: pageTexts?.section1Item1Title,
+      description: pageTexts?.section1Item1Description,
+      buttonText: pageTexts?.section1Item1Button,
     },
     {
-      image: MiceToursPage.Mice_Tour_2,
-      title: "Incentive Tours",
-      description:
-        "From budget-friendly options to luxurious 5-star establishments, our Star Class Hotels cater to a variety of preferences and needs. Enjoy high-quality amenities, exceptional service, and prime locations across Sri Lanka.",
-      buttonText: "Explore More",
+      image: pageTexts?.section1Item2Image,
+      title: pageTexts?.section1Item2Title,
+      description: pageTexts?.section1Item2Description,
+      buttonText: pageTexts?.section1Item2Button,
     },
     {
-      image: MiceToursPage.Mice_Tour_3,
-      title: "Destination Weddings",
-      description:
-        "From budget-friendly options to luxurious 5-star establishments, our Star Class Hotels cater to a variety of preferences and needs. Enjoy high-quality amenities, exceptional service, and prime locations across Sri Lanka.",
-      buttonText: "View Packages",
+      image: pageTexts?.section1Item3Image,
+      title: pageTexts?.section1Item3Title,
+      description: pageTexts?.section1Item3Description,
+      buttonText: pageTexts?.section1Item3Button,
     },
     {
-      image: MiceToursPage.Mice_Tour_4,
-      title: "Exhibitions",
-      description:
-        "From budget-friendly options to luxurious 5-star establishments, our Star Class Hotels cater to a variety of preferences and needs. Enjoy high-quality amenities, exceptional service, and prime locations across Sri Lanka.",
-      buttonText: "View Packages",
+      image: pageTexts?.section1Item4Image,
+      title: pageTexts?.section1Item4Title,
+      description: pageTexts?.section1Item4Description,
+      buttonText: pageTexts?.section1Item4Button,
     },
   ];
 
@@ -218,8 +260,9 @@ function MiceTours() {
       <div style={{ padding: 15 }}>
         <HeaderTwo
           buttonArray={btnArray}
-          title="Explore our exclusive MICE Tours"
+          title={pageTexts?.headerTitle}
           backgroundImage={MiceToursPage.Header}
+          pageId={PageIDs.MiceTours}
         />
       </div>
       <div style={{ overflowX: "hidden" }}>
@@ -278,7 +321,7 @@ function MiceTours() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  Heaven’s Trail MICE Experiences
+                  {pageTexts?.section2Button}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -293,7 +336,7 @@ function MiceTours() {
                   fontWeight: 400,
                 })}
               >
-                Exceptional Services for an Unmatched Experience
+                {pageTexts?.section2Title}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -301,8 +344,7 @@ function MiceTours() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                Our range of featured services ensures that every aspect of your
-                MICE tour is meticulously planned and executed to perfection.
+                {pageTexts?.section2Description}
               </MKTypography>
             </Grid>
           </Container>
@@ -392,7 +434,7 @@ function MiceTours() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  FAQs
+                  {pageTexts?.section3Button}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -404,7 +446,7 @@ function MiceTours() {
                   },
                 })}
               >
-                Your Questions Answered
+                {pageTexts?.section3Title}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -412,10 +454,7 @@ function MiceTours() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                Planning your Sri Lankan adventure? We've got you covered!
-                Explore our Frequently Asked Questions (FAQs) to find answers to
-                common inquiries about visas, travel seasons, currency, culture,
-                and more.
+                {pageTexts?.section3Description}
               </MKTypography>
             </Grid>
           </Container>
@@ -460,7 +499,7 @@ function MiceTours() {
                 marginBottom: 10,
               }}
             >
-              Load More FAQs
+              {pageTexts?.section3Button2}
             </MKButton>
           </Grid>
         </Grid>

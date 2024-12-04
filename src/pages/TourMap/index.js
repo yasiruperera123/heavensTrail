@@ -131,7 +131,6 @@ function TourMap() {
                   setCityModalOpen(!isCityModalOpen);
                 }}
                 handleActivityModalClick={() => {
-                  console.log("asasasas");
                   setActivityModalOpen(!isActivityModalOpen);
                 }}
                 handleAccomadationModalClick={() => {

@@ -2,7 +2,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
@@ -27,17 +27,60 @@ import headerLogo from "assets/images/homePage/Logo.svg";
 import CustomSelect from "components/CustomSelect";
 import CustomDateRangePicker from "components/CustomeDateRangerPicker";
 import NavBar from "components/NavBar";
+import {
+  fetchPropertyData,
+  fetchPropertyPageTexts,
+  fetchPropertyPageImages,
+} from "services/PropertyService";
 
-function HeaderTwo({ title, buttonArray, description, backgroundImage }) {
-  const [value, setValue] = useState("");
+function HeaderTwo({
+  title,
+  buttonArray,
+  description,
+  backgroundImage,
+  pageId,
+}) {
+  const [value, setValue] = useState();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [images, setImages] = useState();
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+  const getPropertyText = async () => {
+    // Usage
+    fetchPropertyPageTexts()
+      .then((response) => {
+        const headerTexts = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.text;
+          return acc;
+        }, {});
+
+        setValue(headerTexts);
+        console.log("headerTextssss", headerTexts);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
   };
-  const handleChange = (event) => {
-    setValue(event.target.value);
+
+  const getPropertyImages = () => {
+    fetchPropertyPageImages(pageId, 1)
+      .then((response) => {
+        const headerImages = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.imgeUrl;
+          return acc;
+        }, {});
+        setImages(headerImages);
+        console.log("headerImages", headerImages);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
   };
+
+  useEffect(() => {
+    // getPropertyText();
+    getPropertyImages();
+  }, []);
 
   const navItems = [
     "Home",
@@ -124,7 +167,6 @@ function HeaderTwo({ title, buttonArray, description, backgroundImage }) {
               {buttonArray &&
                 buttonArray.length > 0 &&
                 buttonArray?.map((item) => {
-                  console.log("asasasas", item);
                   return (
                     <MKButton
                       sx={{ marginLeft: 2 }}

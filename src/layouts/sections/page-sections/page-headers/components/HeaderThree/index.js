@@ -134,7 +134,6 @@ function HeaderThree({
               {buttonArray &&
                 buttonArray.length > 0 &&
                 buttonArray?.map((item) => {
-                  console.log("asasasas", item);
                   return (
                     <MKButton
                       sx={{ marginLeft: 2 }}
