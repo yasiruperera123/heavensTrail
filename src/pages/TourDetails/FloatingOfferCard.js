@@ -32,24 +32,24 @@ const FloatingOfferCard = () => {
           display: "flex",
           flexDirection: "column",
           zIndex: 1000,
-          width: "18%",
+          width: "17%",
           transition: "top 0.3s ease", // Smooth transition
         }}
       >
         <MKTypography
-          color="black"
+          color="white"
           sx={{
             fontSize: { xs: "14px", sm: "16px" },
             fontFamily: "Poppins, sans-serif",
             lineHeight: "30px",
           }}
         >
-          Offer
+          from
         </MKTypography>
 
         <MKTypography
           variant="h1"
-          color="black"
+          color="white"
           sx={({ breakpoints, typography: { size } }) => ({
             [breakpoints.down("md")]: {
               fontSize: size["3xl"],
@@ -63,13 +63,20 @@ const FloatingOfferCard = () => {
             fontSize: "30px",
             fontWeight: 400,
             textAlign: "left",
-            marginBottom: 2,
-            marginTop: 1,
           })}
         >
-          Book Now to get a special offer
+          AUD 1,990.00
         </MKTypography>
-
+        <MKTypography
+          color="white"
+          sx={{
+            fontSize: { xs: "14px", sm: "16px" },
+            fontFamily: "Poppins, sans-serif",
+            lineHeight: "30px",
+          }}
+        >
+          + taxes and charges
+        </MKTypography>
         <Divider
           variant="middle"
           sx={{
@@ -120,7 +127,109 @@ const FloatingOfferCard = () => {
             opacity: 1,
           }}
         />
-
+        <Grid>
+          <Grid
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <MKTypography
+              color="white"
+              sx={{
+                fontSize: { xs: "14px", sm: "13px" },
+                fontFamily: "Poppins, sans-serif",
+                textAlign: "center",
+                fontWeight: 400,
+              }}
+            >
+              2 Pax Travelling
+            </MKTypography>
+            <MKTypography
+              color="white"
+              sx={{
+                fontSize: { xs: "14px", sm: "13px" },
+                fontFamily: "Poppins, sans-serif",
+                textAlign: "center",
+                fontWeight: 400,
+              }}
+            >
+              AUD 2,200
+            </MKTypography>
+          </Grid>
+          <Grid
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <MKTypography
+              color="white"
+              sx={{
+                fontSize: { xs: "14px", sm: "13px" },
+                fontFamily: "Poppins, sans-serif",
+                textAlign: "center",
+                fontWeight: 400,
+              }}
+            >
+              4 Pax Travelling
+            </MKTypography>
+            <MKTypography
+              color="white"
+              sx={{
+                fontSize: { xs: "14px", sm: "13px" },
+                fontFamily: "Poppins, sans-serif",
+                textAlign: "center",
+                fontWeight: 400,
+              }}
+            >
+              AUD 2,050
+            </MKTypography>
+          </Grid>
+          <Grid
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <MKTypography
+              color="white"
+              sx={{
+                fontSize: { xs: "14px", sm: "13px" },
+                fontFamily: "Poppins, sans-serif",
+                textAlign: "center",
+                fontWeight: 400,
+              }}
+            >
+              2 Pax Travelling
+            </MKTypography>
+            <MKTypography
+              color="white"
+              sx={{
+                fontSize: { xs: "14px", sm: "13px" },
+                fontFamily: "Poppins, sans-serif",
+                textAlign: "center",
+                fontWeight: 400,
+              }}
+            >
+              AUD 2,200
+            </MKTypography>
+          </Grid>
+        </Grid>
+        <Divider
+          variant="middle"
+          sx={{
+            backgroundColor: "#0000001A",
+            height: "2px",
+            fontWeight: "bold",
+            marginY: 1,
+            marginBottom: 1,
+            opacity: 1,
+          }}
+        />
         <MKButton
           sx={{ marginTop: 2 }}
           variant="contained"
@@ -128,7 +237,7 @@ const FloatingOfferCard = () => {
           size="medium"
           color="white"
         >
-          Book Now
+          Request a Quote
         </MKButton>
       </div>
     </div>

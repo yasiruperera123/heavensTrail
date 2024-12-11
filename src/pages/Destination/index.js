@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import View from "layouts/sections/components/View";
@@ -9,6 +9,7 @@ import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
 import HeaderTwo from "layouts/sections/page-sections/page-headers/components/HeaderTwo";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Footer from "components/Footer";
+import { PageIDs } from "constants/pageId";
 import {
   UilMountains,
   UilBookOpen,
@@ -31,8 +32,90 @@ import {
 import { DestinationPage } from "constants/images";
 import NavBar from "components/NavBar";
 import { useNavigate } from "react-router-dom";
+import { fetchDestinationData } from "services/DestinationService";
+import {
+  fetchPropertyData,
+  fetchPropertyPageTexts,
+  fetchPropertyPageImages,
+} from "services/PropertyService";
 function Destination() {
   const navigate = useNavigate();
+  const [pageTexts, setPageTexts] = useState();
+  const [pageImages, setPageImages] = useState();
+  const [hillDestinations, setHillDestinations] = useState();
+  const [seaDestinations, setSeaDestinations] = useState();
+  const [cultureDestinations, setCultureDestinations] = useState();
+
+  useEffect(() => {
+    getPropertyImages();
+    getPropertyText();
+    getSeaDestinationDetails();
+    getHillDestinationDetails();
+    getCultureDestinationDetails();
+  }, []);
+
+  const getPropertyText = async () => {
+    // Usage
+    fetchPropertyPageTexts(PageIDs.Destinations)
+      .then((response) => {
+        const headerTexts = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.text;
+          return acc;
+        }, {});
+        console.log("TEXTS", headerTexts);
+
+        setPageTexts(headerTexts);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getPropertyImages = () => {
+    fetchPropertyPageImages(PageIDs.Destinations, 1)
+      .then((response) => {
+        const headerImages = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.imgeUrl;
+          return acc;
+        }, {});
+        setPageImages(headerImages);
+        console.log("headerImages", headerImages);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getSeaDestinationDetails = () => {
+    fetchDestinationData(PageIDs.Destinations, 44)
+      .then((response) => {
+        setSeaDestinations(response?.destinationList);
+        console.log("response", response);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getHillDestinationDetails = () => {
+    fetchDestinationData(PageIDs.Destinations, 134)
+      .then((response) => {
+        setHillDestinations(response?.destinationList);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getCultureDestinationDetails = () => {
+    fetchDestinationData(PageIDs.Destinations, 49)
+      .then((response) => {
+        setCultureDestinations(response?.destinationList);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
   const seaSideDes = [
     {
       title: "Mirissa",
@@ -120,13 +203,13 @@ function Destination() {
 
   const btnArray = [
     {
-      title: "Seaside",
+      title: pageTexts?.headerButton1,
       icon: <LiBeach fill="white" />,
     },
-    { title: "Hill Country", icon: <UilMountains /> },
-    { title: "Cultural and Historical", icon: <UilBookOpen /> },
-    { title: "Wildlife and Nature", icon: <UilTrees /> },
-    { title: "Urban and Coastal", icon: <UilBuilding /> },
+    { title: pageTexts?.headerButton2, icon: <UilMountains /> },
+    { title: pageTexts?.headerButton3, icon: <UilBookOpen /> },
+    { title: pageTexts?.headerButton4, icon: <UilTrees /> },
+    { title: pageTexts?.headerButton5, icon: <UilBuilding /> },
   ];
 
   const handleOnClick = () => {
@@ -139,9 +222,9 @@ function Destination() {
       <div style={{ padding: 15 }}>
         <HeaderTwo
           buttonArray={btnArray}
-          title="Famous Destinations
-in Sri Lanka"
+          title={pageTexts?.headerTitle}
           backgroundImage={DestinationPage.Header}
+          pageId={PageIDs.Destinations}
         />
       </div>
 
@@ -185,7 +268,7 @@ in Sri Lanka"
                 fontWeight: 400,
               })}
             >
-              Seaside Destinations
+              {pageTexts?.section1Title}
             </MKTypography>
             <MKTypography
               variant="h6"
@@ -193,9 +276,7 @@ in Sri Lanka"
               color="black"
               sx={{ textAlign: "center", maxWidth: "90%" }}
             >
-              Whether you're looking to relax on golden sands, engage in
-              thrilling water sports, or explore vibrant marine life, our
-              seaside destinations have something for everyone.
+              {pageTexts?.section1Description}
             </MKTypography>
           </Grid>
         </Container>
@@ -210,84 +291,86 @@ in Sri Lanka"
             }}
           >
             <Grid container spacing={2} justifyContent="center">
-              {seaSideDes.map((item, index) => (
-                <Grid
-                  item
-                  key={index}
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={4} // Adjusted for a 3-column layout
-                  sx={{ flexShrink: 0 }}
-                >
-                  <Card
-                    sx={{
-                      height: "100%",
-                      boxShadow: "none",
-                      backgroundColor: "#FEFDF5",
-                      borderWidth: 1,
-                      borderColor: "#C9C5BA",
-                    }}
-                  >
-                    <CardActionArea onClick={() => handleOnClick()}>
-                      <CardMedia
-                        component="img"
-                        height="350px"
-                        image={item?.img}
+              {seaDestinations && seaDestinations[0]
+                ? seaDestinations.map((item, index) => (
+                    <Grid
+                      item
+                      key={index}
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={4} // Adjusted for a 3-column layout
+                      sx={{ flexShrink: 0 }}
+                    >
+                      <Card
                         sx={{
-                          objectFit: "cover",
-                          width: "100%",
-                          margin: 0,
-                          padding: 0,
-                          borderBottomLeftRadius: 0,
-                          borderBottomRightRadius: 0,
-                        }}
-                        alt="Image"
-                      />
-                      <Grid
-                        sx={{
-                          width: "100%",
-                          padding: 2,
-                          paddingTop: 0, // Remove padding from the top to prevent shifting
+                          height: "100%",
+                          boxShadow: "none",
+                          backgroundColor: "#FEFDF5",
+                          borderWidth: 1,
+                          borderColor: "#C9C5BA",
                         }}
                       >
-                        <Typography
-                          sx={{
-                            fontFamily: "Playfair Display, serif",
-                            fontSize: "25px",
-                            fontWeight: 400,
-                            marginBottom: 2,
-                          }}
-                          variant="h5"
-                        >
-                          {item?.title}
-                        </Typography>
-                        <MKTypography
-                          variant="subtitle2"
-                          sx={{
-                            display: "-webkit-box",
-                            overflow: "hidden",
-                            WebkitBoxOrient: "vertical",
-                            WebkitLineClamp: 3,
-                            textOverflow: "ellipsis",
-                          }}
-                        >
-                          {item?.description}
-                        </MKTypography>
-                        <MKTypography
-                          sx={{
-                            fontWeight: "500",
-                            textDecoration: "underline",
-                          }}
-                          variant="subtitle2"
-                        >
-                          Read More
-                        </MKTypography>
-                      </Grid>
-                    </CardActionArea>
-                  </Card>
-                </Grid>
-              ))}
+                        <CardActionArea onClick={() => handleOnClick()}>
+                          <CardMedia
+                            component="img"
+                            height="350px"
+                            image={item?.destination_image_urls[0]?.imgUrl}
+                            sx={{
+                              objectFit: "cover",
+                              width: "100%",
+                              margin: 0,
+                              padding: 0,
+                              borderBottomLeftRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                            alt="Image"
+                          />
+                          <Grid
+                            sx={{
+                              width: "100%",
+                              padding: 2,
+                              paddingTop: 0, // Remove padding from the top to prevent shifting
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                fontFamily: "Playfair Display, serif",
+                                fontSize: "25px",
+                                fontWeight: 400,
+                                marginBottom: 2,
+                              }}
+                              variant="h5"
+                            >
+                              {item?.destTitle}
+                            </Typography>
+                            <MKTypography
+                              variant="subtitle2"
+                              sx={{
+                                display: "-webkit-box",
+                                overflow: "hidden",
+                                WebkitBoxOrient: "vertical",
+                                WebkitLineClamp: 3,
+                                textOverflow: "ellipsis",
+                              }}
+                            >
+                              {item?.shortDesc}
+                            </MKTypography>
+                            <MKTypography
+                              sx={{
+                                fontWeight: "500",
+                                textDecoration: "underline",
+                              }}
+                              variant="subtitle2"
+                            >
+                              Read More
+                            </MKTypography>
+                          </Grid>
+                        </CardActionArea>
+                      </Card>
+                    </Grid>
+                  ))
+                : null}
             </Grid>
           </Box>
         </Grid>
@@ -333,7 +416,7 @@ in Sri Lanka"
                 fontWeight: 400,
               })}
             >
-              Hill Country Destinations
+              {pageTexts?.section2Title}
             </MKTypography>
             <MKTypography
               variant="h6"
@@ -341,9 +424,7 @@ in Sri Lanka"
               color="black"
               sx={{ textAlign: "center", maxWidth: "90%" }}
             >
-              Enjoy breath taking landscapes, tea plantations, and picturesque
-              waterfalls, making it a perfect retreat for nature lovers and
-              adventure enthusiasts.
+              {pageTexts?.section2Description}
             </MKTypography>
           </Grid>
         </Container>
@@ -358,84 +439,86 @@ in Sri Lanka"
             }}
           >
             <Grid container spacing={2} justifyContent="center">
-              {hillSide.map((item, index) => (
-                <Grid
-                  item
-                  key={index}
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={4} // Adjusted for a 3-column layout
-                  sx={{ flexShrink: 0 }}
-                >
-                  <Card
-                    sx={{
-                      height: "100%",
-                      boxShadow: "none",
-                      backgroundColor: "#EEECE2",
-                      borderWidth: 1,
-                      borderColor: "#C9C5BA",
-                    }}
-                  >
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        height="350px"
-                        image={item?.img}
+              {hillDestinations && hillDestinations[0]
+                ? hillDestinations.map((item, index) => (
+                    <Grid
+                      item
+                      key={index}
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={4} // Adjusted for a 3-column layout
+                      sx={{ flexShrink: 0 }}
+                    >
+                      <Card
                         sx={{
-                          objectFit: "cover",
-                          width: "100%",
-                          margin: 0,
-                          padding: 0,
-                          borderBottomLeftRadius: 0,
-                          borderBottomRightRadius: 0,
-                        }}
-                        alt="Image"
-                      />
-                      <Grid
-                        sx={{
-                          width: "100%",
-                          padding: 2,
-                          paddingTop: 0, // Remove padding from the top to prevent shifting
+                          height: "100%",
+                          boxShadow: "none",
+                          backgroundColor: "#EEECE2",
+                          borderWidth: 1,
+                          borderColor: "#C9C5BA",
                         }}
                       >
-                        <Typography
-                          sx={{
-                            fontFamily: "Playfair Display, serif",
-                            fontSize: "25px",
-                            fontWeight: 400,
-                            marginBottom: 2,
-                          }}
-                          variant="h5"
-                        >
-                          {item?.title}
-                        </Typography>
-                        <MKTypography
-                          variant="subtitle2"
-                          sx={{
-                            display: "-webkit-box",
-                            overflow: "hidden",
-                            WebkitBoxOrient: "vertical",
-                            WebkitLineClamp: 3,
-                            textOverflow: "ellipsis",
-                          }}
-                        >
-                          {item?.description}
-                        </MKTypography>
-                        <MKTypography
-                          sx={{
-                            fontWeight: "500",
-                            textDecoration: "underline",
-                          }}
-                          variant="subtitle2"
-                        >
-                          Read More
-                        </MKTypography>
-                      </Grid>
-                    </CardActionArea>
-                  </Card>
-                </Grid>
-              ))}
+                        <CardActionArea>
+                          <CardMedia
+                            component="img"
+                            height="350px"
+                            image={item?.destination_image_urls[0]?.imgUrl}
+                            sx={{
+                              objectFit: "cover",
+                              width: "100%",
+                              margin: 0,
+                              padding: 0,
+                              borderBottomLeftRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                            alt="Image"
+                          />
+                          <Grid
+                            sx={{
+                              width: "100%",
+                              padding: 2,
+                              paddingTop: 0, // Remove padding from the top to prevent shifting
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                fontFamily: "Playfair Display, serif",
+                                fontSize: "25px",
+                                fontWeight: 400,
+                                marginBottom: 2,
+                              }}
+                              variant="h5"
+                            >
+                              {item?.destTitle}
+                            </Typography>
+                            <MKTypography
+                              variant="subtitle2"
+                              sx={{
+                                display: "-webkit-box",
+                                overflow: "hidden",
+                                WebkitBoxOrient: "vertical",
+                                WebkitLineClamp: 3,
+                                textOverflow: "ellipsis",
+                              }}
+                            >
+                              {item?.shortDesc}
+                            </MKTypography>
+                            <MKTypography
+                              sx={{
+                                fontWeight: "500",
+                                textDecoration: "underline",
+                              }}
+                              variant="subtitle2"
+                            >
+                              Read More
+                            </MKTypography>
+                          </Grid>
+                        </CardActionArea>
+                      </Card>
+                    </Grid>
+                  ))
+                : null}
             </Grid>
           </Box>
         </Grid>
@@ -481,7 +564,7 @@ in Sri Lanka"
                 fontWeight: 400,
               })}
             >
-              Cultural and Historical Destinations
+              {pageTexts?.section3Title}
             </MKTypography>
             <MKTypography
               variant="h6"
@@ -489,9 +572,7 @@ in Sri Lanka"
               color="black"
               sx={{ textAlign: "center", maxWidth: "90%" }}
             >
-              Explore ancient cities, majestic temples, and UNESCO World
-              Heritage Sites that tell the stories of a civilization spanning
-              over two millennia.
+              {pageTexts?.section3Description}
             </MKTypography>
           </Grid>
         </Container>
@@ -506,84 +587,86 @@ in Sri Lanka"
             }}
           >
             <Grid container spacing={2} justifyContent="center">
-              {culturalSide.map((item, index) => (
-                <Grid
-                  item
-                  key={index}
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={4} // Adjusted for a 3-column layout
-                  sx={{ flexShrink: 0 }}
-                >
-                  <Card
-                    sx={{
-                      height: "100%",
-                      boxShadow: "none",
-                      backgroundColor: "#FEFDF5",
-                      borderWidth: 1,
-                      borderColor: "#C9C5BA",
-                    }}
-                  >
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        height="350px"
-                        image={item?.img}
+              {cultureDestinations && cultureDestinations[0]
+                ? cultureDestinations.map((item, index) => (
+                    <Grid
+                      item
+                      key={index}
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={4} // Adjusted for a 3-column layout
+                      sx={{ flexShrink: 0 }}
+                    >
+                      <Card
                         sx={{
-                          objectFit: "cover",
-                          width: "100%",
-                          margin: 0,
-                          padding: 0,
-                          borderBottomLeftRadius: 0,
-                          borderBottomRightRadius: 0,
-                        }}
-                        alt="Image"
-                      />
-                      <Grid
-                        sx={{
-                          width: "100%",
-                          padding: 2,
-                          paddingTop: 0, // Remove padding from the top to prevent shifting
+                          height: "100%",
+                          boxShadow: "none",
+                          backgroundColor: "#FEFDF5",
+                          borderWidth: 1,
+                          borderColor: "#C9C5BA",
                         }}
                       >
-                        <Typography
-                          sx={{
-                            fontFamily: "Playfair Display, serif",
-                            fontSize: "25px",
-                            fontWeight: 400,
-                            marginBottom: 2,
-                          }}
-                          variant="h5"
-                        >
-                          {item?.title}
-                        </Typography>
-                        <MKTypography
-                          variant="subtitle2"
-                          sx={{
-                            display: "-webkit-box",
-                            overflow: "hidden",
-                            WebkitBoxOrient: "vertical",
-                            WebkitLineClamp: 3,
-                            textOverflow: "ellipsis",
-                          }}
-                        >
-                          {item?.description}
-                        </MKTypography>
-                        <MKTypography
-                          sx={{
-                            fontWeight: "500",
-                            textDecoration: "underline",
-                          }}
-                          variant="subtitle2"
-                        >
-                          Read More
-                        </MKTypography>
-                      </Grid>
-                    </CardActionArea>
-                  </Card>
-                </Grid>
-              ))}
+                        <CardActionArea>
+                          <CardMedia
+                            component="img"
+                            height="350px"
+                            image={item?.destination_image_urls[0]?.imgUrl}
+                            sx={{
+                              objectFit: "cover",
+                              width: "100%",
+                              margin: 0,
+                              padding: 0,
+                              borderBottomLeftRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                            alt="Image"
+                          />
+                          <Grid
+                            sx={{
+                              width: "100%",
+                              padding: 2,
+                              paddingTop: 0, // Remove padding from the top to prevent shifting
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                fontFamily: "Playfair Display, serif",
+                                fontSize: "25px",
+                                fontWeight: 400,
+                                marginBottom: 2,
+                              }}
+                              variant="h5"
+                            >
+                              {item?.destTitle}
+                            </Typography>
+                            <MKTypography
+                              variant="subtitle2"
+                              sx={{
+                                display: "-webkit-box",
+                                overflow: "hidden",
+                                WebkitBoxOrient: "vertical",
+                                WebkitLineClamp: 3,
+                                textOverflow: "ellipsis",
+                              }}
+                            >
+                              {item?.shortDesc}
+                            </MKTypography>
+                            <MKTypography
+                              sx={{
+                                fontWeight: "500",
+                                textDecoration: "underline",
+                              }}
+                              variant="subtitle2"
+                            >
+                              Read More
+                            </MKTypography>
+                          </Grid>
+                        </CardActionArea>
+                      </Card>
+                    </Grid>
+                  ))
+                : null}
             </Grid>
           </Box>
         </Grid>
@@ -620,7 +703,7 @@ in Sri Lanka"
           >
             <Stack direction="row" spacing={1} mt={3}>
               <MKButton circular variant="outlined" color="black">
-                FAQs
+                {pageTexts?.section4Button}
               </MKButton>
             </Stack>
             <MKTypography
@@ -632,7 +715,7 @@ in Sri Lanka"
                 },
               })}
             >
-              Your Questions Answered
+              {pageTexts?.section4Title}
             </MKTypography>
             <MKTypography
               variant="h6"
@@ -640,10 +723,7 @@ in Sri Lanka"
               color="black"
               sx={{ textAlign: "center", maxWidth: "90%" }}
             >
-              Planning your Sri Lankan adventure? We've got you covered! Explore
-              our Frequently Asked Questions (FAQs) to find answers to common
-              inquiries about visas, travel seasons, currency, culture, and
-              more.
+              {pageTexts?.section4Description}
             </MKTypography>
           </Grid>
         </Container>
@@ -688,7 +768,7 @@ in Sri Lanka"
               marginBottom: 10,
             }}
           >
-            Load More FAQs
+            {pageTexts?.section4Button2}
           </MKButton>
         </Grid>
       </Grid>

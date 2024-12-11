@@ -189,7 +189,7 @@ function TourDetails() {
             container
             item
             xs={12}
-            lg={8}
+            lg={7.5}
             flexDirection="column"
             alignItems="center"
             sx={{ width: "70%" }}
