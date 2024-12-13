@@ -59,7 +59,7 @@ async function fetchPropertyPageTexts(webpageID) {
 }
 
 async function fetchPropertyPageImages(webpageID, imageType) {
-  const url = `https://www.heavenstrails.com/api/v1/web/property_images/1/${webpageID}/${imageType}/10`;
+  const url = `https://www.heavenstrails.com/api/v1/web/property_images/1/${webpageID}/${imageType}/20`;
   const headers = {
     "x-api-key": apiKey,
   };
