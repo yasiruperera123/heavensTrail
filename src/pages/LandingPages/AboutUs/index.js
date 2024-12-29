@@ -41,8 +41,55 @@ import Footer from "components/Footer";
 import galleImg from "assets/images/homePage/galle.jpeg";
 import firBall from "assets/images/homePage/fireball.jpeg";
 import { AboutUsPage } from "constants/images";
+import { PageIDs } from "constants/pageId";
+import {
+  fetchPropertyPageTexts,
+  fetchPropertyPageImages,
+} from "services/PropertyService";
 
 function AboutUs() {
+  const [pageTexts, setPageTexts] = useState();
+  const [pageImages, setPageImages] = useState();
+
+  useEffect(() => {
+    getPropertyImages();
+    getPropertyText();
+  }, []);
+
+  const getPropertyText = async () => {
+    // Usage
+    fetchPropertyPageTexts(PageIDs.AboutUs)
+      .then((response) => {
+        console.log("asasasasas");
+
+        const headerTexts = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.text;
+          return acc;
+        }, {});
+        console.log("TEXTS", headerTexts);
+
+        setPageTexts(headerTexts);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getPropertyImages = () => {
+    fetchPropertyPageImages(PageIDs.AboutUs, 1)
+      .then((response) => {
+        const headerImages = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.imgeUrl;
+          return acc;
+        }, {});
+        setPageImages(headerImages);
+        console.log("headerImages", headerImages);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
   const faq = [
     {
       title: "What is the best time to visit Sri Lanka?",
@@ -68,13 +115,11 @@ function AboutUs() {
 
   const cardsData = [
     {
-      image: AboutUsPage.About_Us_Card,
-      title: "Destination Weddings",
-      description:
-        "Heaven's Trail is a proud subsidiary of a respected Sri Lankan group of companies, offering extraordinary journeys across Sri Lanka with support from our hotels, agriculture ventures, and event industry ties in Australia. As a locally owned and Sri Lanka Tourist Board Approved Destination Management Company (DMC), we specialize in crafting personalized holidays that showcase the island’s diverse landscapes, rich heritage, and warm hospitality.",
-      description2:
-        'Sri Lanka, often called the "Pearl of the Indian Ocean," is a tropical paradise with a unique blend of stunning beaches, lush tea estates, vibrant wildlife, and ancient cultural sites. Our dedicated team leverages deep local expertise to create memorable itineraries that highlight the best of Sri Lanka, from its 8 UNESCO World Heritage Sites to its pristine coastlines and majestic national parks.',
-      btnText: "Contact Us",
+      image: pageTexts?.section1Item1Image1,
+      title: pageTexts?.section1Item1Title || "",
+      description: pageTexts?.section1Item1Description1,
+      description2: pageTexts?.section1Item1Description2,
+      btnText: pageTexts?.section1Item1Button1,
     },
   ];
 
@@ -205,28 +250,28 @@ function AboutUs() {
 
   const btnArray = [
     {
-      title: "Who We Are",
+      title: pageTexts?.headerButton1,
     },
     {
-      title: "Why Choose Us",
+      title: pageTexts?.headerButton2,
     },
     {
-      title: "Our Features",
+      title: pageTexts?.headerButton3,
     },
   ];
 
   const whyChooseUSArra = [
     {
-      title: "Personalized Itineraries",
-      des: "At Heaven's Trail, we understand that every traveler is unique. Our team of experts works closely with you to craft tailor-made itineraries that cater to your interests, preferences, and travel style. Whether you seek adventure, relaxation, culture, or nature, we ensure a personalized experience that exceeds your expectations.",
+      title: pageTexts?.section2Item1Title || "",
+      des: pageTexts?.section2Item1Description || "",
     },
     {
-      title: "Local Expertise & Trusted Partnerships",
-      des: "As a locally owned and Sri Lanka Tourist Board Approved Destination Management Company, we have deep roots in the community and strong partnerships with trusted local providers. Our insider knowledge allows us to offer authentic experiences, from hidden gems to popular landmarks, with unparalleled attention to detail and quality.",
+      title: pageTexts?.section2Item2Title || "",
+      des: pageTexts?.section2Item2Description || "",
     },
     {
-      title: "Commitment to Sustainability",
-      des: "We believe in responsible tourism that supports local communities and protects the environment. Our tours are designed to minimize the ecological footprint while maximizing positive impact. By choosing Heaven's Trail, you are not just exploring Sri Lanka, but also contributing to its preservation for future generations.",
+      title: pageTexts?.section2Item3Title || "",
+      des: pageTexts?.section2Item3Description || "",
     },
   ];
 
@@ -235,9 +280,10 @@ function AboutUs() {
       <NavBar />
       <div style={{ padding: 15 }}>
         <HeaderTwo
-          title="About Us"
+          title={pageTexts?.headerTitle}
           buttonArray={btnArray}
           backgroundImage={AboutUsPage.Header}
+          pageId={PageIDs.Destinations}
         />
       </div>
       <div style={{ overflowX: "hidden" }}>
@@ -282,7 +328,7 @@ function AboutUs() {
                   fontWeight: 400,
                 })}
               >
-                Who We Are
+                {pageTexts?.section1Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -290,9 +336,7 @@ function AboutUs() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                Enjoy breath taking landscapes, tea plantations, and picturesque
-                waterfalls, making it a perfect retreat for nature lovers and
-                adventure enthusiasts.
+                {pageTexts?.section1Description || ""}
               </MKTypography>
             </Grid>
           </Container>
@@ -363,7 +407,7 @@ function AboutUs() {
                   fontWeight: 400,
                 })}
               >
-                Why Choose Heaven's Trail?
+                {pageTexts?.section2Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -371,9 +415,7 @@ function AboutUs() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                Choosing Heaven's Trail for your accommodation means opting for
-                quality, comfort, and a seamless experience tailored to your
-                needs.
+                {pageTexts?.section2Description || ""}
               </MKTypography>
             </Grid>
           </Container>
@@ -447,7 +489,7 @@ function AboutUs() {
                 functions: { linearGradient, rgba },
               }) =>
                 `${linearGradient("#BFCF0F", "#818B0C")}, url(${
-                  AboutUsPage.Sub_Head
+                  pageImages?.section3Image || ""
                 })`,
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -478,13 +520,12 @@ function AboutUs() {
                   },
                   fontSize: "50px",
                   fontFamily: "Playfair Display, serif",
-                  width: "90%",
+                  width: "70%",
                   textAlign: "center",
                   lineHeight: "90%",
                 })}
               >
-                {`Where Will Your Journey Begin?`} <br />
-                {`Create your trip today.`}
+                {pageTexts?.section3Title || ""}
               </MKTypography>
               <MKTypography
                 color="white"
@@ -497,16 +538,14 @@ function AboutUs() {
                   textAlign: "center",
                 })}
               >
-                Sri Lanka, often called the "Pearl of the Indian Ocean," is a
-                tropical paradise with a unique blend of stunning beaches, lush
-                tea estates, vibrant wildlife, and ancient cultural sites.
+                {pageTexts?.section3Description || ""}
               </MKTypography>
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="white">
-                  Tour Packages
+                  {pageTexts?.section3Button1 || ""}
                 </MKButton>
                 <MKButton circular variant="contained" color="white">
-                  Plan Your Trip
+                  {pageTexts?.section3Button2 || ""}
                 </MKButton>
               </Stack>
             </Grid>
@@ -544,7 +583,7 @@ function AboutUs() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  Heaven’s Trail MICE Experiences
+                  {pageTexts?.section4Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -559,7 +598,7 @@ function AboutUs() {
                   fontWeight: 400,
                 })}
               >
-                Our Features
+                {pageTexts?.section4Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -567,8 +606,7 @@ function AboutUs() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                Our range of featured services ensures that every aspect of your
-                MICE tour is meticulously planned and executed to perfection.
+                {pageTexts?.section4Description || ""}
               </MKTypography>
             </Grid>
           </Container>

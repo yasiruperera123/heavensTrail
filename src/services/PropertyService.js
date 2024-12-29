@@ -21,11 +21,9 @@ async function fetchPropertyData() {
 
     // Parse the JSON data
     const data = await response.json();
-    console.log("Property Data:", data);
 
     return data;
   } catch (error) {
-    console.error("Error fetching property data:", error.message);
     throw error;
   }
 }
@@ -49,11 +47,9 @@ async function fetchPropertyPageTexts(webpageID) {
 
     // Parse the JSON data
     const data = await response.json();
-    console.log("Property Data:", data);
 
     return data;
   } catch (error) {
-    console.error("Error fetching property data:", error.message);
     throw error;
   }
 }
@@ -77,11 +73,9 @@ async function fetchPropertyPageImages(webpageID, imageType) {
 
     // Parse the JSON data
     const data = await response.json();
-    console.log("Property Data:", data);
 
     return data;
   } catch (error) {
-    console.error("Error fetching property data:", error.message);
     throw error;
   }
 }

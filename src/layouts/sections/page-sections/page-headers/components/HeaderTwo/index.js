@@ -78,7 +78,7 @@ function HeaderTwo({
   };
 
   useEffect(() => {
-    // getPropertyText();
+    getPropertyText();
     getPropertyImages();
   }, []);
 
@@ -117,7 +117,7 @@ function HeaderTwo({
               `${linearGradient(
                 rgba(gradients.dark.main, 0.5),
                 rgba(gradients.dark.state, 0.5)
-              )}, url(${backgroundImage})`,
+              )}, url(${images?.headerImage})`,
 
             backgroundSize: "cover",
             backgroundPosition: "center",
