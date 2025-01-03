@@ -504,6 +504,7 @@ function Home() {
                       backgroundColor: "#EEECE2",
                       boxShadow: "none",
                       borderWidth: 1,
+                      borderColor: "#C9C5BA",
                     }}
                   >
                     <CardMedia
@@ -555,7 +556,6 @@ function Home() {
             justifyContent: "center",
             paddingLeft: "16px",
             paddingRight: "16px",
-            marginBottom: "40px",
             backgroundColor: "#FEFDF5",
           }}
         >
@@ -837,7 +837,6 @@ function Home() {
             justifyContent: "center",
             paddingLeft: "16px",
             paddingRight: "16px",
-            marginBottom: "40px",
             backgroundColor: "#FEFDF5",
           }}
         >
@@ -1083,7 +1082,6 @@ function Home() {
                         borderColor: "#C9C5BA",
                         display: "flex",
                         flexDirection: "column",
-                        borderWidth: 0,
                         height: "100%",
                       }}
                     >
@@ -1113,6 +1111,7 @@ function Home() {
                               fontSize: "25px",
                               fontWeight: 400,
                               marginBottom: 2,
+                              color: "#000000",
                             }}
                             variant="h5"
                           >
@@ -1126,6 +1125,7 @@ function Home() {
                               WebkitLineClamp: 3,
                               overflow: "hidden",
                               textOverflow: "ellipsis",
+                              color: "#1A1814",
                             }}
                           >
                             {item?.des}
@@ -1170,7 +1170,6 @@ function Home() {
             justifyContent: "center",
             paddingLeft: "16px",
             paddingRight: "16px",
-            marginBottom: "40px",
             backgroundColor: "#EEECE2",
             margin: 0,
           }}
@@ -1203,6 +1202,7 @@ function Home() {
                   [breakpoints.down("md")]: {
                     fontSize: size["3xl"],
                   },
+                  fontFamily: "Playfair Display",
                 })}
               >
                 {pageTexts?.section6Title || ""}
@@ -1261,8 +1261,8 @@ function Home() {
               {pageTexts?.section6Button2 || ""}
             </MKButton>
           </Grid>
+          <Footer />
         </Grid>
-        <Footer />
       </div>
     </div>
   );

@@ -137,12 +137,12 @@ function Footer() {
         display="flex"
         alignItems="center"
         height="35rem"
-        minHeight="100%"
+        maxHeight="100%"
         sx={{
           backgroundImage: `url(${images?.footerImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          margin: 1,
+          margin: 0,
           borderRadius: 5,
         }}
       >
@@ -228,7 +228,7 @@ function Footer() {
                   color="black"
                   sx={{
                     textAlign: "center",
-                    fontFamily: "Playfair Display, serif",
+                    fontFamily: "Playfair Display",
                     mx: 1,
                     my: { xs: 1, sm: 0 },
                   }}
@@ -259,12 +259,12 @@ function Footer() {
             justifyContent="center"
             flexWrap="wrap"
           >
-            <Grid item xs={12} sm={2} textAlign="center" mb={{ xs: 2, sm: 0 }}>
+            <Grid item xs={12} sm={3} textAlign="center" mb={{ xs: 2, sm: 0 }}>
               <MKTypography
                 variant="h6"
                 fontWeight="regular"
                 color="black"
-                sx={{ fontFamily: "Playfair Display, serif" }}
+                sx={{ fontFamily: "Poppins" }}
               >
                 hello@heavenstrails.com
               </MKTypography>
@@ -274,7 +274,7 @@ function Footer() {
                 variant="h6"
                 fontWeight="regular"
                 color="black"
-                sx={{ fontFamily: "Playfair Display, serif" }}
+                sx={{ fontFamily: "Poppins" }}
               >
                 +94 77 77 0 4000
               </MKTypography>
@@ -282,17 +282,17 @@ function Footer() {
                 variant="h6"
                 fontWeight="regular"
                 color="black"
-                sx={{ fontFamily: "Playfair Display, serif" }}
+                sx={{ fontFamily: "Poppins" }}
               >
                 +94 37 22 8 1908
               </MKTypography>
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={5}>
               <MKTypography
                 variant="h6"
                 fontWeight="regular"
                 color="black"
-                sx={{ fontFamily: "Playfair Display, serif" }}
+                sx={{ fontFamily: "Poppins" }}
               >
                 Kandanegedara Road, Weralugama,
               </MKTypography>
@@ -300,7 +300,7 @@ function Footer() {
                 variant="h6"
                 fontWeight="regular"
                 color="black"
-                sx={{ fontFamily: "Playfair Display, serif" }}
+                sx={{ fontFamily: "Poppins" }}
               >
                 Kuliyapitiya, Sri Lanka
               </MKTypography>

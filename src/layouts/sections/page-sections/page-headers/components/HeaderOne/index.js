@@ -170,7 +170,12 @@ function HeaderOne() {
                   {value?.headerTitle || ""}
                 </MKTypography>
                 <Grid justifyContent="center">
-                  <MKButton circular variant="outlined" color="white">
+                  <MKButton
+                    circular
+                    variant="outlined"
+                    color="white"
+                    paddingX={"20px"}
+                  >
                     {value?.headerButton1}
                   </MKButton>
                   <MKButton
@@ -178,10 +183,16 @@ function HeaderOne() {
                     circular
                     variant="outlined"
                     color="white"
+                    paddingX={"20px"}
                   >
                     {value?.headerButton2}
                   </MKButton>
-                  <MKButton circular variant="outlined" color="white">
+                  <MKButton
+                    circular
+                    variant="outlined"
+                    color="white"
+                    paddingX={"20px"}
+                  >
                     {value?.headerButton3}
                   </MKButton>
                 </Grid>

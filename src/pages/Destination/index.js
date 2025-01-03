@@ -72,7 +72,7 @@ function Destination() {
   };
 
   const getPropertyImages = () => {
-    fetchPropertyPageImages(PageIDs.Destinations, 1)
+    fetchPropertyPageImages(PageIDs.Home, 1)
       .then((response) => {
         const headerImages = response?.data.reduce((acc, item) => {
           acc[item.tag] = item.imgeUrl;
@@ -87,7 +87,7 @@ function Destination() {
   };
 
   const getSeaDestinationDetails = () => {
-    fetchDestinationData(PageIDs.Destinations, 44)
+    fetchDestinationData(PageIDs.Home, 44)
       .then((response) => {
         setSeaDestinations(response?.destinationList);
         console.log("response", response);
@@ -98,7 +98,7 @@ function Destination() {
   };
 
   const getHillDestinationDetails = () => {
-    fetchDestinationData(PageIDs.Destinations, 134)
+    fetchDestinationData(PageIDs.Home, 134)
       .then((response) => {
         setHillDestinations(response?.destinationList);
       })
@@ -108,7 +108,7 @@ function Destination() {
   };
 
   const getCultureDestinationDetails = () => {
-    fetchDestinationData(PageIDs.Destinations, 49)
+    fetchDestinationData(PageIDs.Home, 49)
       .then((response) => {
         setCultureDestinations(response?.destinationList);
       })

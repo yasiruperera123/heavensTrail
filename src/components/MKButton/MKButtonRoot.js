@@ -20,7 +20,8 @@ import { styled } from "@mui/material/styles";
 
 export default styled(Button)(({ theme, ownerState }) => {
   const { palette, functions, borders, boxShadows } = theme;
-  const { color, variant, size, circular, iconOnly, customBtn } = ownerState;
+  const { color, variant, size, circular, iconOnly, customBtn, paddingX } =
+    ownerState;
 
   const { white, text, transparent, gradients, dark } = palette;
   const { boxShadow, linearGradient, pxToRem, rgba } = functions;
@@ -143,8 +144,8 @@ export default styled(Button)(({ theme, ownerState }) => {
       background: backgroundValue,
       color: colorValue,
       borderColor: borderColorValue,
-      paddingLeft: "10px",
-      paddingRight: "10px",
+      paddingLeft: paddingX || "10px",
+      paddingRight: paddingX || "10px",
       "&:hover": {
         background: transparent.main,
         borderColor: colorValue,
