@@ -61,7 +61,6 @@ function TourPlanner() {
       content: (
         <StepOne
           handleInitBtn={(data) => {
-            console.log("asasasasasasas", clickInitBtn);
             setInitBtn(!clickInitBtn);
           }}
           initVal={initVal}

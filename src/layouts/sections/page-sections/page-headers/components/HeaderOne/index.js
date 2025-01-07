@@ -401,7 +401,7 @@ function HeaderOne() {
         <List>
           {navItems.map((text) => (
             <ListItem button key={text}>
-              <ListItemText primary={text} />
+              <ListItemText sx={{ marginY: 1, marginLeft: 1 }} primary={text} />
             </ListItem>
           ))}
         </List>

@@ -208,7 +208,13 @@ function Footer() {
 
         <Grid item xs={12} sm={9} lg={7} alignContent="center">
           <Grid
-            sx={{ minHeight: "2rem" }}
+            sx={({ breakpoints }) => ({
+              minHeight: "2rem",
+              [breakpoints.down("sm")]: {
+                flexDirection: "column",
+                alignItems: "center",
+              },
+            })}
             display="flex"
             flexDirection="row"
             flexWrap="wrap"

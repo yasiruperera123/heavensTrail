@@ -31,7 +31,7 @@ import {
   UilTicket,
   UilAngleLeftB,
   UilAngleRightB,
-  UilAngleUp,
+  UilAngleDown,
 } from "@iconscout/react-unicons";
 import soulmateImg from "assets/images/homePage/soulmate.jpeg";
 import adventureIcon1 from "assets/images/homePage/adventureIcon1.png";
@@ -1113,7 +1113,7 @@ function DestinationDetails() {
               >
                 Tours Including This Destination
               </MKTypography>
-              <UilAngleUp />
+              <UilAngleDown />
             </Grid>
             <Divider
               variant="middle"

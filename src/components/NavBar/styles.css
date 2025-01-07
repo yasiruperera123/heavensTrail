@@ -80,7 +80,7 @@
 /* Mobile Responsive Styles */
 @media screen and (max-width: 768px) {
   .navbar {
-    display: block;
+    display: none;
   }
 
   .navbar .nav-items {

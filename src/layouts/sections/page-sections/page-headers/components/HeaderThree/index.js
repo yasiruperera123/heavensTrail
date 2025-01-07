@@ -136,7 +136,12 @@ function HeaderThree({
                 buttonArray?.map((item) => {
                   return (
                     <MKButton
-                      sx={{ marginLeft: 2 }}
+                      sx={({ breakpoints }) => ({
+                        [breakpoints.down("sm")]: {
+                          marginY: 1,
+                        },
+                        marginLeft: 2,
+                      })}
                       circular
                       variant="outlined"
                       color="white"
@@ -149,6 +154,49 @@ function HeaderThree({
             </Grid>
           </Grid>
         </Grid>
+        {/* Mobile Menu Drawer */}
+        <Drawer
+          anchor="left"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          sx={{
+            display: { xs: "block", lg: "none" },
+            "& .MuiDrawer-paper": {
+              width: "240px",
+              boxSizing: "border-box",
+            },
+          }}
+        >
+          <IconButton
+            onClick={handleDrawerToggle}
+            sx={{ margin: 2, justifyContent: "flex-end" }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <List>
+            {navItems.map((text) => (
+              <ListItem button key={text}>
+                <ListItemText
+                  sx={{ marginY: 1, marginLeft: 1 }}
+                  primary={text}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+
+        {/* Mobile Menu Button */}
+        <IconButton
+          onClick={handleDrawerToggle}
+          sx={{
+            display: { xs: "block", lg: "none" },
+            position: "absolute",
+            top: "16px",
+            right: "16px",
+          }}
+        >
+          <MenuIcon />
+        </IconButton>
       </MKBox>
     </div>
   );

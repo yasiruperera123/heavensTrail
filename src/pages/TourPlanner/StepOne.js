@@ -67,18 +67,21 @@ const StepOne = ({ handleInitBtn, initVal }) => {
           </MKTypography>
           <Grid
             lg={10}
-            sx={{
+            sx={({ breakpoints }) => ({
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
               marginX: "16px",
               marginTop: 4,
-            }}
+              [breakpoints.down("sm")]: {
+                flexDirection: "column",
+              },
+            })}
           >
             {travelSolutions.map((item, index) => (
               <Grid item key={index}>
                 <Card
-                  sx={{
+                  sx={({ breakpoints }) => ({
                     height: "440px",
                     width: "400px",
                     backgroundImage: `url(${item?.img})`,
@@ -89,7 +92,11 @@ const StepOne = ({ handleInitBtn, initVal }) => {
                     alignItems: "center",
                     padding: "16px",
                     marginRight: 4,
-                  }}
+                    [breakpoints.down("sm")]: {
+                      width: "100%",
+                      marginY: 1,
+                    },
+                  })}
                 >
                   <MKTypography
                     color="white"

@@ -41,6 +41,7 @@ import firBall from "assets/images/homePage/fireball.jpeg";
 import NavBarTwo from "components/NavBarTwo";
 import HeaderThree from "layouts/sections/page-sections/page-headers/components/HeaderThree";
 import { DestinationWeddingPage } from "constants/images";
+import breakpoints from "assets/theme/base/breakpoints";
 
 function Weddings() {
   const faq = [
@@ -260,23 +261,29 @@ function Weddings() {
           </MKTypography>
           <MKTypography
             color="black"
-            sx={{
+            sx={({ breakpoints }) => ({
               fontSize: "16px",
               fontFamily: "Poppins, sans-serif",
               lineHeight: "30px",
               marginTop: isMobile ? "10px" : "20px",
-            }}
+              [breakpoints.down("sm")]: {
+                textAlign: "center",
+              },
+            })}
           >
             {description}
           </MKTypography>
           <MKTypography
             color="black"
-            sx={{
+            sx={({ breakpoints }) => ({
               fontSize: "16px",
               fontFamily: "Poppins, sans-serif",
               lineHeight: "30px",
               marginTop: isMobile ? "10px" : "20px",
-            }}
+              [breakpoints.down("sm")]: {
+                textAlign: "center",
+              },
+            })}
           >
             {description2}
           </MKTypography>
@@ -373,7 +380,13 @@ function Weddings() {
                 variant="h6"
                 fontWeight="regular"
                 color="black"
-                sx={{ textAlign: "center", maxWidth: "90%" }}
+                sx={({ breakpoints }) => ({
+                  [breakpoints.down("sm")]: {
+                    alignSelf: "center",
+                  },
+                  textAlign: "center",
+                  maxWidth: "90%",
+                })}
               >
                 Crafting modern travel adventures that blend comfort with
                 excitement. Explore vibrant cultures and stunning landscapes,

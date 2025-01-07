@@ -50,6 +50,7 @@ import firBall from "assets/images/homePage/fireball.jpeg";
 import NavBar from "components/NavBar";
 import NavBarTwo from "components/NavBarTwo";
 import { MeetingsPage } from "constants/images";
+import breakpoints from "assets/theme/base/breakpoints";
 
 function Meetings() {
   const faq = [
@@ -379,14 +380,18 @@ function Meetings() {
 
     return (
       <Card
-        style={{
+        sx={({ breakpoints }) => ({
           display: "flex",
           flexDirection: isMobile ? "column" : isEven ? "row" : "row-reverse",
           marginBottom: "20px",
           borderRadius: "15px",
           backgroundColor: "#FEFDF5",
           boxShadow: "none",
-        }}
+          [breakpoints.down("sm")]: {
+            justifyContent: "center",
+            alignItems: "center",
+          },
+        })}
       >
         <CardMedia
           component="img"
@@ -492,15 +497,18 @@ function Meetings() {
         >
           <MKButton
             className="hover-button"
-            style={{
-              marginTop: "10px",
-              marginBottom: "4px",
-              width: "20%",
-            }}
             size="small"
             circular
             variant="outlined"
             color="black"
+            sx={({ breakpoints }) => ({
+              [breakpoints.down("sm")]: {
+                width: "100%",
+              },
+              marginTop: "10px",
+              marginBottom: "4px",
+              width: "20%",
+            })}
           >
             {duration}
           </MKButton>
@@ -569,7 +577,16 @@ function Meetings() {
             Pricing starts at
           </MKTypography>
           <ToggleButtonGroup packages={packages} key={key} />
-          <Grid container>
+          <Grid
+            container
+            sx={({ breakpoints }) => ({
+              [breakpoints.down("sm")]: {
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              },
+            })}
+          >
             {packageObj.map((itemObj, index) => (
               <Grid mr={1} mt={1} key={index} size={{ xs: 2, sm: 4, md: 4 }}>
                 <Grid

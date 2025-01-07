@@ -198,11 +198,14 @@ function Blogs() {
               variant="h6"
               fontWeight="regular"
               color="black"
-              sx={{
+              sx={({ breakpoints }) => ({
                 textAlign: "left",
                 maxWidth: "100%",
                 lineHeight: "19.5px",
-              }}
+                [breakpoints.down("sm")]: {
+                  marginTop: 2,
+                },
+              })}
             >
               Explore the most beautiful train journeys in Sri Lanka, offering
               stunning views of tea plantations, waterfalls, and mountains. A
@@ -364,7 +367,7 @@ function Blogs() {
               justifyContent: "center",
             }}
           >
-            <Grid item xs={12} sm={6} lg={10.5} sx={{ alignItems: "center" }}>
+            <Grid item xs={12} sm={5} lg={10.5} sx={{ alignItems: "center" }}>
               <Divider
                 variant="middle"
                 sx={{
@@ -381,13 +384,18 @@ function Blogs() {
 
         <Grid container>
           <Box
-            sx={{
+            sx={({ breakpoints }) => ({
               display: "flex",
               justifyContent: "center",
               width: "90%",
               margin: "0 auto",
-              padding: 2,
-            }}
+              padding: 0,
+              [breakpoints.down("sm")]: {
+                width: "100%",
+                margin: "0",
+                paddingTop: 2,
+              },
+            })}
           >
             <Grid container spacing={3} justifyContent="center">
               {travelPcgs.map((item, index) => (
@@ -395,9 +403,9 @@ function Blogs() {
                   item
                   key={index}
                   xs={12}
-                  sm={6}
+                  sm={12}
                   md={4}
-                  lg={4} // Adjusted for a 3-column layout
+                  lg={4}
                   sx={{ flexShrink: 0 }}
                 >
                   <Card
