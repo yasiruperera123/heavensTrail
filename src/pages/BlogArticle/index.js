@@ -1,52 +1,14 @@
 import React from "react";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
-import View from "layouts/sections/components/View";
-import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
-import Icon from "@mui/material/Icon";
-import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
-import HeaderTwo from "layouts/sections/page-sections/page-headers/components/HeaderTwo";
 import HeaderThree from "layouts/sections/page-sections/page-headers/components/HeaderThree";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Footer from "components/Footer";
 import MKBox from "components/MKBox";
-import {
-  UilPlaneDeparture,
-  UilTicket,
-  UilUtensils,
-  UilBedDouble,
-  UilSearch,
-  UilArrowLeft,
-  UilArrowRight,
-} from "@iconscout/react-unicons";
-import { TextField, InputAdornment } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import coconutHllImg from "assets/images/homePage/coconut_hill.jpeg";
-import sigiriyaImg from "assets/images/homePage/sigiriya.jpeg";
-import soulmateImg from "assets/images/homePage/soulmate.jpeg";
-import archImg from "assets/images/homePage/9arch.jpeg";
-import buddha2Img from "assets/images/homePage/buddha2.jpeg";
-import hinduImg from "assets/images/homePage/hindu.jpeg";
-import galleImg from "assets/images/homePage/galle.jpeg";
-import firBall from "assets/images/homePage/fireball.jpeg";
-import NavBar from "components/NavBar";
+import { UilArrowLeft, UilArrowRight } from "@iconscout/react-unicons";
 import NavBarTwo from "components/NavBarTwo";
-import { BlogsPage } from "constants/images";
 import { BlogArticlePage } from "constants/images";
-import {
-  Card,
-  CardMedia,
-  CardActionArea,
-  CardContent,
-  Divider,
-  Box,
-  Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from "@mui/material";
+import { Box } from "@mui/material";
 
 function BlogArticle() {
   return (

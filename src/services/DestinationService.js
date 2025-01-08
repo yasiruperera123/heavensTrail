@@ -27,4 +27,38 @@ async function fetchDestinationData(pageId, categoryId) {
   }
 }
 
-export { fetchDestinationData };
+async function fetchDestinationDataByID(
+  pageCount,
+  pageId,
+  destinationId,
+  cityId,
+  classId,
+  typeId
+) {
+  const url = `https://www.heavenstrails.com/api/v1/web/attraction/${pageCount}/${pageId}/${destinationId}/${cityId}/${classId}/${typeId}`;
+  const headers = {
+    "x-api-key": apiKey,
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: headers,
+    });
+
+    // Check if the response is successful
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Parse the JSON data
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching property data:", error.message);
+    throw error;
+  }
+}
+
+export { fetchDestinationData, fetchDestinationDataByID };

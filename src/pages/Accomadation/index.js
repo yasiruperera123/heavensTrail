@@ -18,11 +18,6 @@ import {
   UilWifi,
   UilSnowFlake,
 } from "@iconscout/react-unicons";
-import soulmateImg from "assets/images/homePage/soulmate.jpeg";
-import adventureIcon1 from "assets/images/homePage/adventureIcon1.png";
-import adventureIcon2 from "assets/images/homePage/adventureIcon2.png";
-import adventureIcon3 from "assets/images/homePage/adventureIcon3.png";
-import adventureIcon4 from "assets/images/homePage/adventureIcon4.png";
 import {
   Card,
   CardMedia,
@@ -37,10 +32,12 @@ import {
   Rating,
 } from "@mui/material";
 import Footer from "components/Footer";
-import galleImg from "assets/images/homePage/galle.jpeg";
-import firBall from "assets/images/homePage/fireball.jpeg";
-import { AboutUsPage } from "constants/images";
 import { AccomadationPage } from "constants/images";
+import {
+  fetchPropertyPageTexts,
+  fetchPropertyPageImages,
+} from "services/PropertyService";
+import { PageIDs } from "constants/pageId";
 
 function Accomadation() {
   const faq = [
@@ -146,6 +143,8 @@ function Accomadation() {
   ];
 
   const [isMobile, setIsMobile] = useState(false);
+  const [pageTexts, setPageTexts] = useState();
+  const [pageImages, setPageImages] = useState();
 
   useEffect(() => {
     // Function to check the window width
@@ -440,9 +439,9 @@ function Accomadation() {
             <button
               key={key}
               className={`toggle-button ${
-                selected === item.key ? "selected" : ""
+                selected === item.value ? "selected" : ""
               }`}
-              onClick={() => handleButtonClick(item.key)}
+              onClick={() => handleButtonClick(item.value)}
             >
               {item.value}
             </button>
@@ -469,30 +468,67 @@ function Accomadation() {
 
   const whyChooseUSArra = [
     {
-      title: "Wide Range of Options",
-      des: "From star-rated hotels to unique boutique stays, we offer a variety of accommodations to match your needs.",
+      title: pageTexts?.section3Item1Title || "",
+      des: pageTexts?.section3Item1Description || "",
     },
     {
-      title: "Comfort and Quality",
-      des: "Every accommodation is carefully selected to ensure high standards of comfort and service.",
+      title: pageTexts?.section3Item2Title || "",
+      des: pageTexts?.section3Item2Description || "",
     },
     {
-      title: "Cultural Immersion",
-      des: "With options like home stays, you can immerse yourself in the local culture and traditions.",
+      title: pageTexts?.section3Item3Title || "",
+      des: pageTexts?.section3Item3Description || "",
     },
     {
-      title: "Flexible Pricing",
-      des: "Our diverse range of accommodations ensures that there is something for every budget.",
+      title: pageTexts?.section3Item4Title || "",
+      des: pageTexts?.section3Item4Description || "",
     },
   ];
+
+  useEffect(() => {
+    console.log("Accamadatiom");
+
+    getPropertyImages();
+    getPropertyText();
+  }, []);
+
+  const getPropertyText = async () => {
+    // Usage
+    fetchPropertyPageTexts(PageIDs.Accomodation)
+      .then((response) => {
+        const headerTexts = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.text;
+          return acc;
+        }, {});
+
+        setPageTexts(headerTexts);
+      })
+      .catch((error) => {});
+  };
+
+  const getPropertyImages = () => {
+    fetchPropertyPageImages(PageIDs.Accomodation, 1)
+      .then((response) => {
+        const headerImages = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.imgeUrl;
+          return acc;
+        }, {});
+        setPageImages(headerImages);
+        console.log("headerImages", headerImages);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
 
   return (
     <div style={{ backgroundColor: "#FEFDF5" }}>
       <NavBar />
       <div style={{ padding: 15 }}>
         <HeaderTwo
-          title="Accommodation Options with Heaven’s Trail"
-          backgroundImage={AccomadationPage.Header}
+          title={pageTexts?.headerTitle}
+          //backgroundImage={AccomadationPage.Header}
+          pageId={PageIDs.Accomodation}
         />
       </div>
       <div style={{ overflowX: "hidden" }}>
@@ -527,7 +563,7 @@ function Accomadation() {
             >
               <Stack direction="row" spacing={1}>
                 <MKButton circular variant="outlined" color="black">
-                  Heaven’s Trail Accommodation
+                  {pageTexts?.section1Button}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -542,7 +578,7 @@ function Accomadation() {
                   fontWeight: 400,
                 })}
               >
-                Categories of Accommodation
+                {pageTexts?.section1Title}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -550,9 +586,7 @@ function Accomadation() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                We offer a wide range of accommodation options to suit every
-                preference and budget, ensuring you experience comfort and
-                hospitality at its finest.
+                {pageTexts?.section1Description}
               </MKTypography>
               <Grid sx={{ marginTop: 5, marginBottom: 3 }}>
                 <ToggleButtonGroup packages={packages} />
@@ -581,7 +615,7 @@ function Accomadation() {
                   textAlign: "left",
                 })}
               >
-                Seaside Accommodation Overview
+                {selected} Accommodation Overview
               </MKTypography>
 
               <Divider
@@ -609,9 +643,7 @@ function Accomadation() {
                   },
                 })}
               >
-                Experience the beauty of Sri Lanka's coastlines with our seaside
-                accommodations. Relax by the beach, enjoy stunning ocean views,
-                and unwind in comfort.
+                {pageTexts?.section2Description}
               </MKTypography>
 
               <MKTypography
@@ -625,7 +657,7 @@ function Accomadation() {
                   },
                 })}
               >
-                Seaside Cities:
+                {selected} Cities:
               </MKTypography>
 
               {["Galle", "Bentota", "Unawatuna"].map((city, index) => (
@@ -719,7 +751,7 @@ function Accomadation() {
             >
               <Stack direction="row" spacing={1} mt={4}>
                 <MKButton circular variant="outlined" color="black">
-                  Customizable Tour Planner
+                  {pageTexts?.section3Button}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -734,7 +766,7 @@ function Accomadation() {
                   fontWeight: 400,
                 })}
               >
-                Why Choose Heaven's Trail for Your Stay?
+                {pageTexts?.section3Title}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -742,9 +774,7 @@ function Accomadation() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                Choosing Heaven's Trail for your accommodation means opting for
-                quality, comfort, and a seamless experience tailored to your
-                needs.
+                {pageTexts?.section3Description}
               </MKTypography>
             </Grid>
           </Container>
@@ -828,7 +858,7 @@ function Accomadation() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  FAQs
+                  {pageTexts?.section4Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -840,7 +870,7 @@ function Accomadation() {
                   },
                 })}
               >
-                Your Questions Answered
+                {pageTexts?.section4Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -848,10 +878,7 @@ function Accomadation() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                Planning your Sri Lankan adventure? We've got you covered!
-                Explore our Frequently Asked Questions (FAQs) to find answers to
-                common inquiries about visas, travel seasons, currency, culture,
-                and more.
+                {pageTexts?.section4Description || ""}
               </MKTypography>
             </Grid>
           </Container>
@@ -896,7 +923,7 @@ function Accomadation() {
                 marginBottom: 10,
               }}
             >
-              Load More FAQs
+              {pageTexts?.section4Button2 || ""}
             </MKButton>
           </Grid>
         </Grid>

@@ -2,7 +2,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
@@ -21,13 +21,10 @@ import {
   Divider,
 } from "@mui/material";
 // Images
-import { UilUsersAlt, UilMapPinAlt } from "@iconscout/react-unicons";
-import bgImage from "assets/images/homePage/header2_bg.jpeg";
-import headerLogo from "assets/images/homePage/Logo.svg";
-import CustomSelect from "components/CustomSelect";
-import CustomDateRangePicker from "components/CustomeDateRangerPicker";
-import NavBar from "components/NavBar";
-import { rgb } from "chroma-js";
+import {
+  fetchPropertyPageTexts,
+  fetchPropertyPageImages,
+} from "services/PropertyService";
 
 function HeaderThree({
   title,
@@ -36,9 +33,48 @@ function HeaderThree({
   backgroundImage,
   subHead,
   headerFontSize,
+  pageId,
 }) {
   const [value, setValue] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [images, setImages] = useState();
+
+  useEffect(() => {
+    getPropertyText();
+    getPropertyImages();
+  }, []);
+
+  const getPropertyText = async () => {
+    // Usage
+    fetchPropertyPageTexts()
+      .then((response) => {
+        const headerTexts = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.text;
+          return acc;
+        }, {});
+
+        setValue(headerTexts);
+        console.log("headerTextssss", headerTexts);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getPropertyImages = () => {
+    fetchPropertyPageImages(pageId, 1)
+      .then((response) => {
+        const headerImages = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.imgeUrl;
+          return acc;
+        }, {});
+        setImages(headerImages);
+        console.log("headerImages", headerImages);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -80,7 +116,7 @@ function HeaderThree({
               `${linearGradient(
                 rgba(gradients.dark.main, 0),
                 rgba(gradients.dark.state, 0)
-              )}, url(${backgroundImage})`,
+              )}, url(${images?.headerImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             opacity: 1,

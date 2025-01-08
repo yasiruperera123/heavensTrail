@@ -9,21 +9,16 @@ import Icon from "@mui/material/Icon";
 import { ReactComponent as Walking } from "assets/icons/la_walking.svg";
 import HeaderTwo from "layouts/sections/page-sections/page-headers/components/HeaderTwo";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MKBox from "components/MKBox";
-import footerBg from "assets/images/homePage/beach.jpeg";
-import NavBar from "components/NavBar";
 import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
-import LocationCityIcon from "@mui/icons-material/LocationCity";
-import AttractionsIcon from "@mui/icons-material/Attractions";
-import { Star } from "@mui/icons-material";
-import { LocalParking, Restaurant, Wifi, Pool } from "@mui/icons-material";
-import CustomPlanner from "components/CustomPlanner";
+import { useLocation } from "react-router-dom";
+import { PageIDs } from "constants/pageId";
+import {
+  fetchPropertyPageTexts,
+  fetchPropertyPageImages,
+} from "services/PropertyService";
 import {
   UilBedDouble,
-  UilParkingSquare,
   UilUtensils,
-  UilWifi,
-  UilSnowFlake,
   UilArrowUpRight,
   UilMountainsSun,
   UilCamera,
@@ -33,11 +28,6 @@ import {
   UilAngleRightB,
   UilAngleDown,
 } from "@iconscout/react-unicons";
-import soulmateImg from "assets/images/homePage/soulmate.jpeg";
-import adventureIcon1 from "assets/images/homePage/adventureIcon1.png";
-import adventureIcon2 from "assets/images/homePage/adventureIcon2.png";
-import adventureIcon3 from "assets/images/homePage/adventureIcon3.png";
-import adventureIcon4 from "assets/images/homePage/adventureIcon4.png";
 import {
   Card,
   CardMedia,
@@ -52,11 +42,9 @@ import {
   Rating,
 } from "@mui/material";
 import Footer from "components/Footer";
-import galleImg from "assets/images/homePage/galle.jpeg";
-import firBall from "assets/images/homePage/fireball.jpeg";
 import { AccomadationPage } from "constants/images";
 import { TourListingPage } from "constants/images";
-import Itinerary from "components/Itinerary";
+import { fetchDestinationDataByID } from "services/DestinationService";
 import NavBarTwo from "components/NavBarTwo";
 import HeaderThree from "layouts/sections/page-sections/page-headers/components/HeaderThree";
 
@@ -64,36 +52,9 @@ function DestinationDetails() {
   const scrollContainerRef = useRef(null);
   const firstItemRef = useRef(null);
   const lastItemRef = useRef(null);
+  const location = useLocation();
+  const { state } = location;
   const [isExpaned, setIsExpaned] = useState(true);
-  const cardsData = [
-    {
-      title: "Little Adam’s Peak",
-      image1: AccomadationPage.Hotel_Img_1,
-      description:
-        "An early morning hike to Ella Rock sounds is worthy to try out! The sunrise in the mountain gap is absolutely breath-taking. Just a heads up, though - the hike to Ella Rock typically takes closer to half an hour,  with comfortable walking shoes, a light jacket in case it's chilly, and plenty of water and snacks to keep you energized along the way. Don't forget your camera to capture the panoramic views of the valley below.",
-      rating: "367 reviews",
-      rateValue: 5,
-      btnText: "View On Map",
-    },
-    {
-      title: "Ravana Falls",
-      image1: AccomadationPage.Hotel_Img_1,
-      description:
-        "An early morning hike to Ella Rock sounds is worthy to try out! The sunrise in the mountain gap is absolutely breath-taking. Just a heads up, though - the hike to Ella Rock typically takes closer to half an hour,  with comfortable walking shoes, a light jacket in case it's chilly, and plenty of water and snacks to keep you energized along the way. Don't forget your camera to capture the panoramic views of the valley below.",
-      rating: "367 reviews",
-      rateValue: 5,
-      btnText: "View On Map",
-    },
-    {
-      title: "Nine Arches Bridge",
-      image1: AccomadationPage.Hotel_Img_1,
-      description:
-        "An early morning hike to Ella Rock sounds is worthy to try out! The sunrise in the mountain gap is absolutely breath-taking. Just a heads up, though - the hike to Ella Rock typically takes closer to half an hour,  with comfortable walking shoes, a light jacket in case it's chilly, and plenty of water and snacks to keep you energized along the way. Don't forget your camera to capture the panoramic views of the valley below.",
-      rating: "367 reviews",
-      rateValue: 5,
-      btnText: "View On Map",
-    },
-  ];
 
   const cardsData2 = [
     {
@@ -161,198 +122,64 @@ function DestinationDetails() {
     },
   ];
 
-  const meetingPackageData = [
-    {
-      image: AccomadationPage.Hotel_Img_1,
-      title: "The vibrant city of Colombo",
-      duration: "3 Nights, 4 Days",
-      facilities: [
-        {
-          icon: <UilPlaneDeparture />,
-          text: "Return Airport Transfers",
-        },
-        {
-          icon: <UilTicket />,
-          text: "Luxury Hotel Stay",
-        },
-        {
-          icon: <UilUtensils />,
-          text: "Breakfast, Lunch & Dinner for 3 days",
-        },
-        {
-          icon: <UilBedDouble />,
-          text: "Meeting facility for 2 hours",
-        },
-        {
-          icon: <LiBeach />,
-          text: "A full day of meeting",
-        },
-      ],
-      packages: [
-        {
-          key: "standard",
-          value: "Standard",
-        },
-        {
-          key: "deluxe",
-          value: "Deluxe",
-        },
-        {
-          key: "premium",
-          value: "Premium",
-        },
-      ],
-      packageObj: [
-        {
-          paxCount: "25 - 49",
-          price: "USD 219.99",
-          type: "Per Person Sharing a TWIN Room",
-        },
-        {
-          paxCount: "50 - 99",
-          price: "USD 329.99",
-          type: "Per Person Sharing a TWIN Room",
-        },
-        {
-          paxCount: "100 - 149",
-          price: "USD 439.99",
-          type: "Per Person Sharing a TWIN Room",
-        },
-      ],
-    },
-    {
-      image: AccomadationPage.Hotel_Img_1,
-      title: "The vibrant city of Colombo",
-      duration: "3 Nights, 4 Days",
-      facilities: [
-        {
-          icon: <UilPlaneDeparture />,
-          text: "Return Airport Transfers",
-        },
-        {
-          icon: <UilTicket />,
-          text: "Luxury Hotel Stay",
-        },
-        {
-          icon: <UilUtensils />,
-          text: "Breakfast, Lunch & Dinner for 3 days",
-        },
-        {
-          icon: <UilBedDouble />,
-          text: "Meeting facility for 2 hours",
-        },
-        {
-          icon: <LiBeach />,
-          text: "A full day of meeting",
-        },
-      ],
-      packages: [
-        {
-          key: "standard",
-          value: "Standard",
-        },
-        {
-          key: "deluxe",
-          value: "Deluxe",
-        },
-        {
-          key: "premium",
-          value: "Premium",
-        },
-      ],
-      packageObj: [
-        {
-          paxCount: "25 - 49",
-          price: "USD 219.99",
-          type: "Per Person Sharing a TWIN Room",
-        },
-        {
-          paxCount: "50 - 99",
-          price: "USD 329.99",
-          type: "Per Person Sharing a TWIN Room",
-        },
-        {
-          paxCount: "100 - 149",
-          price: "USD 439.99",
-          type: "Per Person Sharing a TWIN Room",
-        },
-      ],
-    },
-    {
-      image: AccomadationPage.Hotel_Img_1,
-      title: "The vibrant city of Colombo",
-      duration: "3 Nights, 4 Days",
-      facilities: [
-        {
-          icon: <UilPlaneDeparture />,
-          text: "Return Airport Transfers",
-        },
-        {
-          icon: <UilTicket />,
-          text: "Luxury Hotel Stay",
-        },
-        {
-          icon: <UilUtensils />,
-          text: "Breakfast, Lunch & Dinner for 3 days",
-        },
-        {
-          icon: <UilBedDouble />,
-          text: "Meeting facility for 2 hours",
-        },
-        {
-          icon: <LiBeach />,
-          text: "A full day of meeting",
-        },
-      ],
-      packages: [
-        {
-          key: "standard",
-          value: "Standard",
-        },
-        {
-          key: "deluxe",
-          value: "Deluxe",
-        },
-        {
-          key: "premium",
-          value: "Premium",
-        },
-      ],
-      packageObj: [
-        {
-          paxCount: "25 - 49",
-          price: "USD 219.99",
-          type: "Per Person Sharing a TWIN Room",
-        },
-        {
-          paxCount: "50 - 99",
-          price: "USD 329.99",
-          type: "Per Person Sharing a TWIN Room",
-        },
-        {
-          paxCount: "100 - 149",
-          price: "USD 439.99",
-          type: "Per Person Sharing a TWIN Room",
-        },
-      ],
-    },
-  ];
-
-  const [isMobile, setIsMobile] = useState(false);
+  const [destinationDetails, setDestinationDetails] = useState(false);
+  const [pageTexts, setPageTexts] = useState();
+  const [pageImages, setPageImages] = useState();
 
   useEffect(() => {
-    // Function to check the window width
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 600); // You can adjust the width as per your requirement
-    };
-    setIsExpaned(true);
-    handleResize(); // Check the initial window size
-    window.addEventListener("resize", handleResize); // Add resize event listener
-    // Cleanup on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    getDestinationDetails();
+    getPropertyText();
+    getPropertyImages();
   }, []);
+
+  const getPropertyText = async () => {
+    // Usage
+    fetchPropertyPageTexts(PageIDs.Destinations)
+      .then((response) => {
+        const headerTexts = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.text;
+          return acc;
+        }, {});
+        console.log("TEXTS", headerTexts);
+
+        setPageTexts(headerTexts);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getPropertyImages = () => {
+    fetchPropertyPageImages(PageIDs.Home, 1)
+      .then((response) => {
+        const headerImages = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.imgeUrl;
+          return acc;
+        }, {});
+        setPageImages(headerImages);
+        console.log("headerImages", headerImages);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getDestinationDetails = () => {
+    fetchDestinationDataByID(
+      1,
+      // PageIDs.DestinationDetails,
+      PageIDs.Home,
+      state?.destinationId
+    )
+      .then((response) => {
+        console.log("fetchDestinationDataByID", response);
+
+        setDestinationDetails(response?.data);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
 
   const scrollToLeft = () => {
     // Scroll to the left by 300px, you can adjust this value as needed
@@ -501,7 +328,7 @@ function DestinationDetails() {
                       lineHeight: "19.5px",
                     }}
                   >
-                    {item?.description}
+                    {item?.longDescription}
                   </MKTypography>
                   <Divider
                     variant="middle"
@@ -529,7 +356,7 @@ function DestinationDetails() {
                       paddingRight: 5,
                     }}
                   >
-                    {item?.btnText}
+                    View On Map
                     {<UilArrowUpRight />}
                   </MKButton>
                 </Grid>
@@ -818,9 +645,10 @@ function DestinationDetails() {
       <NavBarTwo />
       <div style={{ padding: 15 }}>
         <HeaderThree
-          title="Accommodation Options with Heaven’s Trail"
+          title={pageTexts?.headerTitle}
           backgroundImage={AccomadationPage.Header}
-          subHead={"Hill Country Destinations"}
+          subHead={pageTexts?.headerDescription}
+          pageId={PageIDs.Destinations}
         />
       </div>
       <div style={{ overflowX: "hidden" }}>
@@ -979,9 +807,12 @@ function DestinationDetails() {
                       backgroundColor: "#C9C5BA",
                     }}
                   />
-                  {cardsData?.map((item, index) => {
-                    return <CustomCard item={item} index={index} />;
-                  })}
+                  {destinationDetails?.attractionList &&
+                  destinationDetails?.attractionList.length > 0
+                    ? destinationDetails?.attractionList?.map((item, index) => {
+                        return <CustomCard item={item} index={index} />;
+                      })
+                    : null}
                 </AccordionDetails>
               </Accordion>
               <Accordion

@@ -16,9 +16,6 @@ import {
   UilTrees,
   UilBuilding,
 } from "@iconscout/react-unicons";
-import sigiriyaImg from "assets/images/homePage/sigiriya.jpeg";
-import archImg from "assets/images/homePage/9arch.jpeg";
-import galleImg from "assets/images/homePage/galle.jpeg";
 import {
   Card,
   CardMedia,
@@ -34,7 +31,6 @@ import NavBar from "components/NavBar";
 import { useNavigate } from "react-router-dom";
 import { fetchDestinationData } from "services/DestinationService";
 import {
-  fetchPropertyData,
   fetchPropertyPageTexts,
   fetchPropertyPageImages,
 } from "services/PropertyService";
@@ -89,8 +85,7 @@ function Destination() {
   const getSeaDestinationDetails = () => {
     fetchDestinationData(PageIDs.Home, 44)
       .then((response) => {
-        setSeaDestinations(response?.destinationList);
-        console.log("response", response);
+        setSeaDestinations(response?.data?.destinationList);
       })
       .catch((error) => {
         console.error("Fetch failed:", error.message);
@@ -100,7 +95,7 @@ function Destination() {
   const getHillDestinationDetails = () => {
     fetchDestinationData(PageIDs.Home, 134)
       .then((response) => {
-        setHillDestinations(response?.destinationList);
+        setHillDestinations(response?.data?.destinationList);
       })
       .catch((error) => {
         console.error("Fetch failed:", error.message);
@@ -110,73 +105,12 @@ function Destination() {
   const getCultureDestinationDetails = () => {
     fetchDestinationData(PageIDs.Home, 49)
       .then((response) => {
-        setCultureDestinations(response?.destinationList);
+        setCultureDestinations(response?.data?.destinationList);
       })
       .catch((error) => {
         console.error("Fetch failed:", error.message);
       });
   };
-  const seaSideDes = [
-    {
-      title: "Mirissa",
-      description:
-        "Known for whale watching and its tranquil beach atmosphere.",
-      img: DestinationPage.Destination_1,
-    },
-    {
-      title: "Unawatuna",
-      description:
-        "Famous for its beautiful crescent-shaped beach and lively nightlife.",
-      img: DestinationPage.Destination_2,
-    },
-    {
-      title: "Bentota",
-      description: "Ideal for water sports and luxurious beach resorts.",
-      img: DestinationPage.Destination_3,
-    },
-  ];
-
-  const hillSide = [
-    {
-      title: "Kandy",
-      description:
-        "Home to the sacred Temple of the Tooth and stunning botanical gardens.",
-      img: DestinationPage.Destination_4,
-    },
-    {
-      title: "Nuwara Eliya",
-      description:
-        "Known as “Little England” for its colonial charm and lush tea estates.",
-      img: DestinationPage.Destination_5,
-    },
-    {
-      title: "Ella",
-      description:
-        "Famous for its scenic train rides, hiking trails, and the iconic Nine Arches Bridge.",
-      img: DestinationPage.Destination_6,
-    },
-  ];
-
-  const culturalSide = [
-    {
-      title: "Sigiriya",
-      description:
-        "Renowned for the ancient rock fortress and its breathtaking frescoes.",
-      img: DestinationPage.Destination_7,
-    },
-    {
-      title: "Anuradhapura",
-      description:
-        "A historic city known for its well-preserved ruins and sacred Bodhi tree.",
-      img: DestinationPage.Destination_8,
-    },
-    {
-      title: "Polonnaruwa",
-      description:
-        "Home to impressive ancient ruins and the iconic Gal Vihara sculptures.",
-      img: DestinationPage.Destination_9,
-    },
-  ];
 
   const faq = [
     {
@@ -212,8 +146,8 @@ function Destination() {
     { title: pageTexts?.headerButton5, icon: <UilBuilding /> },
   ];
 
-  const handleOnClick = () => {
-    navigate("/pages/destination-details");
+  const handleOnClick = (destinationId) => {
+    navigate("/pages/destination-details", { state: { destinationId } });
   };
 
   return (
@@ -223,7 +157,7 @@ function Destination() {
         <HeaderTwo
           buttonArray={btnArray}
           title={pageTexts?.headerTitle}
-          backgroundImage={DestinationPage.Header}
+          //backgroundImage={DestinationPage.Header}
           pageId={PageIDs.Destinations}
         />
       </div>
@@ -291,7 +225,7 @@ function Destination() {
             }}
           >
             <Grid container spacing={2} justifyContent="center">
-              {seaDestinations && seaDestinations[0]
+              {seaDestinations && seaDestinations.length > 0
                 ? seaDestinations.map((item, index) => (
                     <Grid
                       item
@@ -302,6 +236,7 @@ function Destination() {
                       lg={4} // Adjusted for a 3-column layout
                       sx={{ flexShrink: 0 }}
                     >
+                      {console.log("seaDestinations", seaDestinations)}
                       <Card
                         sx={{
                           height: "100%",
@@ -311,7 +246,9 @@ function Destination() {
                           borderColor: "#C9C5BA",
                         }}
                       >
-                        <CardActionArea onClick={() => handleOnClick()}>
+                        <CardActionArea
+                          onClick={() => handleOnClick(item?.destiId)}
+                        >
                           <CardMedia
                             component="img"
                             height="350px"
