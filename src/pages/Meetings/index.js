@@ -51,6 +51,7 @@ import NavBar from "components/NavBar";
 import NavBarTwo from "components/NavBarTwo";
 import { MeetingsPage } from "constants/images";
 import breakpoints from "assets/theme/base/breakpoints";
+import { PageIDs } from "constants/pageId";
 
 function Meetings() {
   const faq = [
@@ -660,6 +661,7 @@ function Meetings() {
           description="Inhale the fresh mountain air, while enjoying the scenic beauty of the misty hills is a favorite reasons to visit Ella, Sri Lanka"
           backgroundImage={MeetingsPage.Header}
           subHead={"MICE Tours"}
+          pageId={PageIDs.Meetings}
         />
       </div>
 

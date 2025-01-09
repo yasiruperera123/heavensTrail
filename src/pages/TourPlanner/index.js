@@ -20,10 +20,6 @@ import StepSix from "./StepSix";
 import StepSeven from "./StepSeven";
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import Footer from "components/Footer";
-import galleImg from "assets/images/homePage/galle.jpeg";
-import firBall from "assets/images/homePage/fireball.jpeg";
-import { AboutUsPage } from "constants/images";
-import HeaderThree from "layouts/sections/page-sections/page-headers/components/HeaderThree";
 import NavBarTwo from "components/NavBarTwo";
 import CustomStepper from "components/CustomeStepper";
 

@@ -62,20 +62,7 @@ import { TourListingPage } from "constants/images";
 import Stepper from "components/Test";
 import NavBarTwo from "components/NavBarTwo";
 import HeaderThree from "layouts/sections/page-sections/page-headers/components/HeaderThree";
-import CustomStepper from "components/CustomeStepper";
-// import {
-//   UilPlaneDeparture,
-//   UilTicket,
-//   UilUtensils,
-//   UilBedDouble,
-//   UilBuilding,
-//   UilCalender,
-//   UilGlassMartini,
-//   UilPresentation,
-//   UilShoppingCart,
-//   UilDiceFive,
-//   UilFavorite,
-// } from "@iconscout/react-unicons";
+import { PageIDs } from "constants/pageId";
 
 function TourDetails() {
   useEffect(() => {}, []);
@@ -167,6 +154,7 @@ function TourDetails() {
           title="Accommodation Options with Heaven’s Trail"
           backgroundImage={AccomadationPage.Header}
           subHead={"Hill Country Destinations"}
+          pageId={PageIDs.TourDetails}
         />
       </div>
       <div style={{ overflowX: "hidden" }}>

@@ -33,6 +33,7 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
+import { PageIDs } from "constants/pageId";
 
 function Blogs() {
   const navigate = useNavigate();
@@ -238,7 +239,8 @@ function Blogs() {
         <HeaderTwo
           buttonArray={btnArray}
           title="Blogs & Stories"
-          backgroundImage={BlogsPage.Header}
+          pageId={PageIDs.Blogs}
+          // backgroundImage={BlogsPage.Header}
         />
       </div>
       {/* Explore our travel Packages */}

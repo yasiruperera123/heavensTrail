@@ -9,6 +9,7 @@ import { UilArrowLeft, UilArrowRight } from "@iconscout/react-unicons";
 import NavBarTwo from "components/NavBarTwo";
 import { BlogArticlePage } from "constants/images";
 import { Box } from "@mui/material";
+import { PageIDs } from "constants/pageId";
 
 function BlogArticle() {
   return (
@@ -20,6 +21,7 @@ function BlogArticle() {
           backgroundImage={BlogArticlePage.Header}
           subHead="Travel Tips"
           headerFontSize={55}
+          pageId={PageIDs.BlogArticle}
         />
       </div>
       {/* Explore our travel Packages */}

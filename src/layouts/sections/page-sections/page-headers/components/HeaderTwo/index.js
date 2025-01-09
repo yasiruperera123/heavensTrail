@@ -80,7 +80,7 @@ function HeaderTwo({
   useEffect(() => {
     getPropertyText();
     getPropertyImages();
-  }, []);
+  }, [pageId]);
 
   const navItems = [
     "Home",

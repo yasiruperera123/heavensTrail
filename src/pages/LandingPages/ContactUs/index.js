@@ -27,6 +27,7 @@ import galleImg from "assets/images/homePage/galle.jpeg";
 import firBall from "assets/images/homePage/fireball.jpeg";
 import NavBar from "components/NavBar";
 import { ContactUsPage } from "constants/images";
+import { PageIDs } from "constants/pageId";
 
 function ContactUs() {
   const cardsData = [
@@ -151,7 +152,11 @@ function ContactUs() {
     <div style={{ backgroundColor: "#FEFDF5" }}>
       <NavBar />
       <div style={{ padding: 15 }}>
-        <HeaderTwo title="Contact Us" backgroundImage={ContactUsPage.Header} />
+        <HeaderTwo
+          title="Contact Us"
+          // backgroundImage={ContactUsPage.Header}
+          pageId={PageIDs.ContactUs}
+        />
       </div>
       <div style={{ overflowX: "hidden" }}>
         <Grid
