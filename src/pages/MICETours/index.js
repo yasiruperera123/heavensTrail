@@ -15,6 +15,7 @@ import adventureIcon2 from "assets/images/homePage/adventureIcon2.png";
 import adventureIcon3 from "assets/images/homePage/adventureIcon3.png";
 import adventureIcon4 from "assets/images/homePage/adventureIcon4.png";
 import { MiceToursPage } from "constants/images";
+
 import NavBar from "components/NavBar";
 import {
   Card,
@@ -40,7 +41,7 @@ function MiceTours() {
 
   const getPropertyText = async () => {
     // Usage
-    fetchPropertyPageTexts(PageIDs.MiceTours)
+    fetchPropertyPageTexts(PageIDs.MICETours)
       .then((response) => {
         const headerTexts = response?.data.reduce((acc, item) => {
           acc[item.tag] = item.text;
@@ -55,7 +56,7 @@ function MiceTours() {
   };
 
   const getPropertyImages = () => {
-    fetchPropertyPageImages(PageIDs.MiceTours, 1)
+    fetchPropertyPageImages(PageIDs.MICETours, 1)
       .then((response) => {
         const headerImages = response?.data.reduce((acc, item) => {
           acc[item.tag] = item.imgeUrl;
@@ -261,8 +262,7 @@ function MiceTours() {
         <HeaderTwo
           buttonArray={btnArray}
           title={pageTexts?.headerTitle}
-          backgroundImage={MiceToursPage.Header}
-          pageId={PageIDs.MiceTours}
+          pageId={PageIDs.MICETours}
         />
       </div>
       <div style={{ overflowX: "hidden" }}>
