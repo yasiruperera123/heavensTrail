@@ -57,7 +57,7 @@ function ContactUs() {
 
   const getPropertyText = async () => {
     // Usage
-    fetchPropertyPageTexts(PageIDs.AboutUs)
+    fetchPropertyPageTexts(PageIDs.ContactUs)
       .then((response) => {
         console.log("asasasasas");
 
@@ -75,7 +75,7 @@ function ContactUs() {
   };
 
   const getPropertyImages = () => {
-    fetchPropertyPageImages(PageIDs.AboutUs, 1)
+    fetchPropertyPageImages(PageIDs.ContactUs, 1)
       .then((response) => {
         const headerImages = response?.data.reduce((acc, item) => {
           acc[item.tag] = item.imgeUrl;
