@@ -110,25 +110,25 @@ function MiceTours() {
 
   const cardsData = [
     {
-      image: pageTexts?.section1Item1Image,
+      image: images?.section1Item1Image,
       title: pageTexts?.section1Item1Title,
       description: pageTexts?.section1Item1Description,
       buttonText: pageTexts?.section1Item1Button,
     },
     {
-      image: pageTexts?.section1Item2Image,
+      image: images?.section1Item2Image,
       title: pageTexts?.section1Item2Title,
       description: pageTexts?.section1Item2Description,
       buttonText: pageTexts?.section1Item2Button,
     },
     {
-      image: pageTexts?.section1Item3Image,
+      image: images?.section1Item3Image,
       title: pageTexts?.section1Item3Title,
       description: pageTexts?.section1Item3Description,
       buttonText: pageTexts?.section1Item3Button,
     },
     {
-      image: pageTexts?.section1Item4Image,
+      image: images?.section1Item4Image,
       title: pageTexts?.section1Item4Title,
       description: pageTexts?.section1Item4Description,
       buttonText: pageTexts?.section1Item4Button,
