@@ -28,11 +28,17 @@ import firBall from "assets/images/homePage/fireball.jpeg";
 import NavBar from "components/NavBar";
 import { ContactUsPage } from "constants/images";
 import { PageIDs } from "constants/pageId";
+import {
+  fetchPropertyPageTexts,
+  fetchPropertyPageImages,
+} from "services/PropertyService";
 
 function ContactUs() {
+  const [pageTexts, setPageTexts] = useState();
+  const [pageImages, setPageImages] = useState();
   const cardsData = [
     {
-      image: ContactUsPage.Contact_Us_Card,
+      image: pageImages?.section2Item1Image,
       title: "Destination Weddings",
       description:
         "Heaven's Trail is a proud subsidiary of a respected Sri Lankan group of companies, offering extraordinary journeys across Sri Lanka with support from our hotels, agriculture ventures, and event industry ties in Australia. As a locally owned and Sri Lanka Tourist Board Approved Destination Management Company (DMC), we specialize in crafting personalized holidays that showcase the island’s diverse landscapes, rich heritage, and warm hospitality.",
@@ -43,6 +49,45 @@ function ContactUs() {
   ];
 
   const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    getPropertyImages();
+    getPropertyText();
+  }, []);
+
+  const getPropertyText = async () => {
+    // Usage
+    fetchPropertyPageTexts(PageIDs.AboutUs)
+      .then((response) => {
+        console.log("asasasasas");
+
+        const headerTexts = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.text;
+          return acc;
+        }, {});
+        console.log("TEXTS", headerTexts);
+
+        setPageTexts(headerTexts);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getPropertyImages = () => {
+    fetchPropertyPageImages(PageIDs.AboutUs, 1)
+      .then((response) => {
+        const headerImages = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.imgeUrl;
+          return acc;
+        }, {});
+        setPageImages(headerImages);
+        console.log("headerImages", headerImages);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
 
   useEffect(() => {
     // Function to check the window width
@@ -348,7 +393,7 @@ function ContactUs() {
                   fontWeight: 400,
                 })}
               >
-                Our Branches
+                {pageTexts?.section3Title}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -356,9 +401,7 @@ function ContactUs() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                Choosing Heaven's Trail for your accommodation means opting for
-                quality, comfort, and a seamless experience tailored to your
-                needs.
+                {pageTexts?.section3Description}
               </MKTypography>
             </Grid>
           </Container>
