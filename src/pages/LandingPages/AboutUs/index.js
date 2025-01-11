@@ -125,28 +125,28 @@ function AboutUs() {
 
   const adventures = [
     {
-      title: "Custom Tour Packages",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
+      title: pageTexts?.section4Item1Title,
+      des: pageTexts?.section4Item1Description,
       img: AboutUsPage.About_Us_Feature_1,
     },
     {
-      title: "MICE Packages",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
+      title: pageTexts?.section4Item2Title,
+      des: pageTexts?.section4Item2Description,
       img: AboutUsPage.About_Us_Feature_2,
     },
     {
-      title: "Comprehensive Custom Tour Planner",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
+      title: pageTexts?.section4Item3Title,
+      des: pageTexts?.section4Item3Description,
       img: AboutUsPage.About_Us_Feature_3,
     },
     {
-      title: "Special Interest Tours",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
+      title: pageTexts?.section4Item4Title,
+      des: pageTexts?.section4Item4Description,
       img: AboutUsPage.About_Us_Feature_4,
     },
     {
-      title: "24/7 Customer Support",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
+      title: pageTexts?.section4Item5Title,
+      des: pageTexts?.section4Item5Description,
       img: AboutUsPage.About_Us_Feature_5,
     },
   ];

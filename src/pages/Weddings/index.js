@@ -42,8 +42,54 @@ import NavBarTwo from "components/NavBarTwo";
 import HeaderThree from "layouts/sections/page-sections/page-headers/components/HeaderThree";
 import { DestinationWeddingPage } from "constants/images";
 import breakpoints from "assets/theme/base/breakpoints";
+import { PageIDs } from "constants/pageId";
+import {
+  fetchPropertyPageTexts,
+  fetchPropertyPageImages,
+} from "services/PropertyService";
 
 function Weddings() {
+  const [pageTexts, setPageTexts] = useState();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [images, setImages] = useState();
+
+  const getPropertyText = async () => {
+    // Usage
+    fetchPropertyPageTexts(PageIDs.MICEDestinationWeddings)
+      .then((response) => {
+        const headerTexts = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.text;
+          return acc;
+        }, {});
+        console.log("header    Textssss", headerTexts);
+        setPageTexts(headerTexts);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getPropertyImages = () => {
+    fetchPropertyPageImages(PageIDs.MICEDestinationWeddings, 1)
+      .then((response) => {
+        const headerImages = response?.data.reduce((acc, item) => {
+          acc[item.tag] = item.imgeUrl;
+          return acc;
+        }, {});
+        setImages(headerImages);
+        console.log("headerImages", headerImages);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  useEffect(() => {
+    getPropertyText();
+    getPropertyImages();
+  }, []);
+
   const faq = [
     {
       title: "What is the best time to visit Sri Lanka?",
@@ -158,44 +204,42 @@ function Weddings() {
 
   const cardsData = [
     {
-      image: DestinationWeddingPage.Card_1,
-      title: "Destination Weddings",
-      description:
-        "Imagine a love story set in the beautiful paradise of Sri Lanka. Picture your wedding ceremony on palmfringed beaches, historical backdrops, and lush gardens. Your dream destination wedding becomes a reality in this stunning setting, where every detail is pure magic.",
-      description2:
-        "Let the waves create a soothing soundtrack, and the tropical breeze adds to the celebration of your special day. It's not just a wedding; it's the start of your forever journey right in the heart of Sri Lanka's captivating beauty. Holding hands with your beloved, step into this enchanting love story, where the island's charm fills every moment with unmatched romance and beauty.",
+      image: images?.section1Item1Image,
+      title: pageTexts?.section1Item1Title,
+      description: pageTexts?.section1Item1Description1,
+      description2: pageTexts?.section1Item1Description2,
     },
   ];
 
   const adventures = [
     {
-      title: "Wedding Planning",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
+      title: pageTexts?.section3Item1Title,
+      des: pageTexts?.section3Item1Description,
       img: DestinationWeddingPage.Featurs_1,
     },
     {
-      title: "Exquisite Venues",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
+      title: pageTexts?.section3Item2Title,
+      des: pageTexts?.section3Item2Description,
       img: DestinationWeddingPage.Featurs_2,
     },
     {
-      title: "Comprehensive Services",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
+      title: pageTexts?.section3Item3Title,
+      des: pageTexts?.section3Item3Description,
       img: DestinationWeddingPage.Featurs_3,
     },
     {
-      title: "Cultural Touches",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
+      title: pageTexts?.section3Item4Title,
+      des: pageTexts?.section3Item4Description,
       img: DestinationWeddingPage.Featurs_4,
     },
     {
-      title: "Luxury Accommodations",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
+      title: pageTexts?.section3Item5Title,
+      des: pageTexts?.section3Item5Description,
       img: DestinationWeddingPage.Featurs_5,
     },
     {
-      title: "Seamless Logistics",
-      des: "Our expert wedding planners work with you to customize every detail, ensuring your wedding day reflects your unique love story.",
+      title: pageTexts?.section3Item6Title,
+      des: pageTexts?.section3Item6Description,
       img: DestinationWeddingPage.Featurs_6,
     },
   ];
@@ -297,10 +341,10 @@ function Weddings() {
       <NavBarTwo />
       <div style={{ padding: 15 }}>
         <HeaderThree
-          title="Destination Weddings"
-          description="Inhale the fresh mountain air, while enjoying the scenic beauty of the misty hills is a favorite reasons to visit Ella, Sri Lanka"
-          backgroundImage={DestinationWeddingPage.Header}
-          subHead={"MICE Tours"}
+          title={pageTexts?.headerTitle}
+          description={pageTexts?.headerDescription2}
+          subHead={pageTexts?.headerDescription1}
+          pageId={PageIDs.MICEDestinationWeddings}
         />
       </div>
       <div style={{ overflowX: "hidden" }}>
@@ -359,7 +403,7 @@ function Weddings() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  Heaven’s Trail MICE Experiences
+                  {pageTexts?.section2Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -374,7 +418,7 @@ function Weddings() {
                   fontWeight: 400,
                 })}
               >
-                Wedding Packages
+                {pageTexts?.section2Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -388,9 +432,7 @@ function Weddings() {
                   maxWidth: "90%",
                 })}
               >
-                Crafting modern travel adventures that blend comfort with
-                excitement. Explore vibrant cultures and stunning landscapes,
-                creating lifelong memories!
+                {pageTexts?.section2Description || ""}
               </MKTypography>
             </Grid>
           </Container>
@@ -539,7 +581,7 @@ function Weddings() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  Heaven’s Trail MICE Experiences
+                  {pageTexts?.section3Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -554,7 +596,7 @@ function Weddings() {
                   fontWeight: 400,
                 })}
               >
-                Our Features
+                {pageTexts?.section3Title}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -562,8 +604,7 @@ function Weddings() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                Our range of featured services ensures that every aspect of your
-                MICE tour is meticulously planned and executed to perfection.
+                {pageTexts?.section3Description}
               </MKTypography>
             </Grid>
           </Container>
@@ -655,7 +696,7 @@ function Weddings() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  FAQs
+                  {pageTexts?.section4Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -667,7 +708,7 @@ function Weddings() {
                   },
                 })}
               >
-                Your Questions Answered
+                {pageTexts?.section4Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -675,10 +716,7 @@ function Weddings() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                Planning your Sri Lankan adventure? We've got you covered!
-                Explore our Frequently Asked Questions (FAQs) to find answers to
-                common inquiries about visas, travel seasons, currency, culture,
-                and more.
+                {pageTexts?.section4Description}
               </MKTypography>
             </Grid>
           </Container>
@@ -723,7 +761,7 @@ function Weddings() {
                 marginBottom: 10,
               }}
             >
-              Load More FAQs
+              {pageTexts?.section4Button2}
             </MKButton>
           </Grid>
         </Grid>

@@ -42,7 +42,7 @@ function HeaderThree({
   useEffect(() => {
     getPropertyText();
     getPropertyImages();
-  }, []);
+  }, [pageId]);
 
   const getPropertyText = async () => {
     // Usage
