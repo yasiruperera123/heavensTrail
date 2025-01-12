@@ -115,7 +115,7 @@ function AboutUs() {
 
   const cardsData = [
     {
-      image: pageTexts?.section1Item1Image1,
+      image: pageImages?.section1Item1Image,
       title: pageTexts?.section1Item1Title || "",
       description: pageTexts?.section1Item1Description1,
       description2: pageTexts?.section1Item1Description2,
