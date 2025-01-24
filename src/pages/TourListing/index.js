@@ -44,6 +44,7 @@ import {
   fetchPropertyPageTexts,
   fetchPropertyPageImages,
 } from "services/PropertyService";
+import FAQs from "components/FAQs";
 
 function TourListing() {
   const navigate = useNavigate();
@@ -286,29 +287,6 @@ function TourListing() {
         />,
       ],
       img: TourListingPage.Day_Tour_3,
-    },
-  ];
-
-  const faq = [
-    {
-      title: "What is the best time to visit Sri Lanka?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Ut in sed feugiat viverra commodo sed malesuada pharetra tempor. Tempor mauris morbi leo erat. Pellentesque ut convallis interdum condimentum id ultrices pretium. Faucibus lorem accumsan quis mauris ac pellentesque lectus.",
-    },
-    {
-      title: "How can Heaven's Trail help me plan my Sri Lankan tour?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Ut in sed feugiat viverra commodo sed malesuada pharetra tempor. Tempor mauris morbi leo erat. Pellentesque ut convallis interdum condimentum id ultrices pretium. Faucibus lorem accumsan quis mauris ac pellentesque lectus.",
-    },
-    {
-      title: "What should I pack for my trip to Sri Lanka?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Ut in sed feugiat viverra commodo sed malesuada pharetra tempor. Tempor mauris morbi leo erat. Pellentesque ut convallis interdum condimentum id ultrices pretium. Faucibus lorem accumsan quis mauris ac pellentesque lectus.",
-    },
-    {
-      title: "How can I get around Sri Lanka?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Ut in sed feugiat viverra commodo sed malesuada pharetra tempor. Tempor mauris morbi leo erat. Pellentesque ut convallis interdum condimentum id ultrices pretium. Faucibus lorem accumsan quis mauris ac pellentesque lectus.",
     },
   ];
 
@@ -848,49 +826,7 @@ function TourListing() {
           </Grid>
         </Container>
 
-        {/* Accordion List with Button */}
-        <Grid
-          container
-          item
-          xs={12}
-          lg={8}
-          flexDirection="column"
-          alignItems="center"
-          sx={{ width: "70%" }}
-        >
-          <Grid container display={"flex"} flexDirection="column">
-            {faq.map((item, index) => (
-              <Accordion key={index} sx={{ boxShadow: "none" }}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1-content"
-                  id={`panel1-header-${index}`}
-                  sx={{ boxShadow: "none", backgroundColor: "#FEFDF5" }}
-                >
-                  {item?.title}
-                </AccordionSummary>
-                <AccordionDetails sx={{ backgroundColor: "#FEFDF5" }}>
-                  {item?.answer}
-                </AccordionDetails>
-              </Accordion>
-            ))}
-          </Grid>
-
-          {/* Load More FAQs Button */}
-          <MKButton
-            circular
-            variant="contained"
-            color="black"
-            sx={{
-              paddingLeft: 5,
-              paddingRight: 5,
-              marginTop: 5,
-              marginBottom: 10,
-            }}
-          >
-            {pageTexts?.section3Button2}
-          </MKButton>
-        </Grid>
+        <FAQs title="TourListing" />
       </Grid>
       <Footer />
     </div>

@@ -54,6 +54,8 @@ import {
   fetchPropertyPageTexts,
   fetchPropertyPageImages,
 } from "services/PropertyService";
+import { fetchTourPackages } from "services/TourServices";
+import FAQs from "components/FAQs";
 
 function Home() {
   const navigate = useNavigate();
@@ -64,10 +66,11 @@ function Home() {
   const [pageTexts, setPageTexts] = useState();
   const [pageImages, setPageImages] = useState();
   const [headerData, setHeaderData] = useState({});
+  const [tourPackages, setTourPackages] = useState([]);
 
   useEffect(() => {
     console.log("asas");
-
+    getTourPackages();
     getPropertyDetails();
     getPropertyText();
     getPropertyImages();
@@ -179,35 +182,27 @@ function Home() {
     },
   ];
 
-  const faq = [
-    {
-      title: "What is the best time to visit Sri Lanka?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Ut in sed feugiat viverra commodo sed malesuada pharetra tempor. Tempor mauris morbi leo erat. Pellentesque ut convallis interdum condimentum id ultrices pretium. Faucibus lorem accumsan quis mauris ac pellentesque lectus.",
-    },
-    {
-      title: "How can Heaven's Trail help me plan my Sri Lankan tour?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Ut in sed feugiat viverra commodo sed malesuada pharetra tempor. Tempor mauris morbi leo erat. Pellentesque ut convallis interdum condimentum id ultrices pretium. Faucibus lorem accumsan quis mauris ac pellentesque lectus.",
-    },
-    {
-      title: "What should I pack for my trip to Sri Lanka?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Ut in sed feugiat viverra commodo sed malesuada pharetra tempor. Tempor mauris morbi leo erat. Pellentesque ut convallis interdum condimentum id ultrices pretium. Faucibus lorem accumsan quis mauris ac pellentesque lectus.",
-    },
-    {
-      title: "How can I get around Sri Lanka?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur. Ut in sed feugiat viverra commodo sed malesuada pharetra tempor. Tempor mauris morbi leo erat. Pellentesque ut convallis interdum condimentum id ultrices pretium. Faucibus lorem accumsan quis mauris ac pellentesque lectus.",
-    },
-  ];
-
   const getPropertyDetails = async () => {
     // Usage
     fetchPropertyData()
       .then((data) => {
         console.log("Fetched data: ", data);
         setPropertyData(data.data);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getTourPackages = async () => {
+    // Usage
+    fetchTourPackages()
+      .then((reponse) => {
+        console.log("Fetched data: TOUR ", reponse);
+        const filteredItems = reponse?.data
+          .filter((item) => item.seq === 0)
+          .slice(0, 4);
+        setTourPackages(filteredItems);
       })
       .catch((error) => {
         console.error("Fetch failed:", error.message);
@@ -638,178 +633,193 @@ function Home() {
                 gap: 2, // Adds spacing between cards horizontally
               }}
             >
-              {travelPcgs.map((item, index) => (
-                <Grid
-                  item
-                  key={index}
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={3.5}
-                  sx={{
-                    flexShrink: 0,
-                    width: "calc(100% / 3.5)",
-                    backgroundColor: "#FEFDF5",
-                  }}
-                >
-                  <Card
-                    sx={{
-                      height: "90%",
-                      boxShadow: "none",
-                      backgroundColor: "#FEFDF5",
-                      borderWidth: 1,
-                      borderColor: "#C9C5BA",
-                      display: "flex",
-                      flexDirection: "column",
-                      transition: "background-color 0.3s ease, color 0.3s ease",
-                      "&:hover": {
-                        backgroundColor: "#EEECE2",
-                        "& .hover-button": {
-                          backgroundColor: "#AF4D06",
-                          color: "#FEFDF5",
-                        },
-                        "& .hover-icon": {
-                          color: "#929E03",
-                        },
-                        "& .hover-svg path, & .hover-svg line, & .hover-svg rect, & .hover-svg circle":
-                          {
-                            stroke: "#929E03",
-                          },
-                      },
-                    }}
-                  >
-                    <CardActionArea
+              {tourPackages && tourPackages.length > 1
+                ? tourPackages.map((item, index) => (
+                    <Grid
+                      item
+                      key={index}
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={3.5}
                       sx={{
-                        height: "100%",
-                        display: "flex",
-                        flexDirection: "column",
+                        flexShrink: 0,
+                        width: "calc(100% / 3.5)",
+                        backgroundColor: "#FEFDF5",
                       }}
                     >
-                      <CardMedia
-                        component="img"
-                        height="40%"
-                        image={item?.img}
+                      <Card
                         sx={{
-                          objectFit: "cover",
-                          width: "100%",
-                          margin: 0,
-                          padding: 0,
-                          borderBottomLeftRadius: 0,
-                          borderBottomRightRadius: 0,
+                          height: "90%",
+                          boxShadow: "none",
+                          backgroundColor: "#FEFDF5",
+                          borderWidth: 1,
+                          borderColor: "#C9C5BA",
+                          display: "flex",
+                          flexDirection: "column",
+                          transition:
+                            "background-color 0.3s ease, color 0.3s ease",
+                          "&:hover": {
+                            backgroundColor: "#EEECE2",
+                            "& .hover-button": {
+                              backgroundColor: "#AF4D06",
+                              color: "#FEFDF5",
+                            },
+                            "& .hover-icon": {
+                              color: "#929E03",
+                            },
+                            "& .hover-svg path, & .hover-svg line, & .hover-svg rect, & .hover-svg circle":
+                              {
+                                stroke: "#929E03",
+                              },
+                          },
                         }}
-                        alt="Image"
-                      />
-                      <CardContent sx={{ flex: 1, padding: 1 }}>
-                        <MKButton
-                          className="hover-button"
-                          style={{
-                            marginTop: "5px",
+                      >
+                        <CardActionArea
+                          sx={{
+                            height: "100%",
+                            display: "flex",
+                            flexDirection: "column",
                           }}
-                          size="small"
-                          circular
-                          variant="outlined"
-                          color="black"
                         >
-                          6 Nights, 7 Days
-                        </MKButton>
+                          <CardMedia
+                            component="img"
+                            height="40%"
+                            image={item?.tour_pkg_image_urls[0]?.imgUrl}
+                            sx={{
+                              objectFit: "cover",
+                              width: "100%",
+                              margin: 0,
+                              padding: 0,
+                              borderBottomLeftRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                            alt="Image"
+                          />
+                          <CardContent sx={{ flex: 1, padding: 1 }}>
+                            <MKButton
+                              className="hover-button"
+                              style={{
+                                marginTop: "5px",
+                              }}
+                              size="small"
+                              circular
+                              variant="outlined"
+                              color="black"
+                            >
+                              6 Nights, 7 Days
+                            </MKButton>
 
-                        <Grid container alignItems="center">
-                          <Typography
-                            sx={{
-                              fontFamily: "Playfair Display, serif",
-                              fontSize: "28px",
-                              fontWeight: 400,
-                              lineHeight: "100%",
-                            }}
-                            variant="h5"
-                          >
-                            {item?.title}
-                          </Typography>
-                        </Grid>
-                        <Divider
-                          variant="middle"
-                          sx={{
-                            backgroundColor: "##C9C5BA",
-                            height: "2px",
-                            margin: 1,
-                          }}
-                        />
-                        <Grid container alignItems="center">
-                          <MKTypography variant="subtitle2">
-                            Airport
-                          </MKTypography>
-                          <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-                          <MKTypography variant="subtitle2">
-                            Yala (2N)
-                          </MKTypography>
-                          <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-                          <MKTypography variant="subtitle2">
-                            Weligama (1N)
-                          </MKTypography>
-                          <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-                          <MKTypography variant="subtitle2">
-                            Ahungalle (1N)
-                          </MKTypography>
-                          <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-                          <MKTypography variant="subtitle2">
-                            Airport
-                          </MKTypography>
-                        </Grid>
-                        <Divider
-                          variant="middle"
-                          sx={{
-                            backgroundColor: "##C9C5BA",
-                            height: "2px",
-                            margin: 1,
-                          }}
-                        />
-                        <UilPlaneDeparture className="hover-icon" />
-                        <UilTicket className="hover-icon" />
-                        <UilUtensils className="hover-icon" />
-                        <UilBedDouble className="hover-icon" />
-                        <LiBeach
-                          className="hover-svg"
-                          sx={{
-                            transition: "stroke 0.3s ease",
-                          }}
-                        />
-                        <Divider
-                          variant="middle"
-                          sx={{
-                            backgroundColor: "##C9C5BA",
-                            height: "2px",
-                            margin: 1,
-                          }}
-                        />
-                        <MKTypography variant="subtitle2">
-                          Pricing starts at
-                        </MKTypography>
-                        <Grid container display={"flex"} alignItems="center">
-                          <MKTypography
-                            sx={{
-                              fontWeight: "700",
-                              marginRight: 1,
-                              fontFamily: "Playfair Display, serif",
-                              fontSize: "20px",
-                            }}
-                            variant="body2"
-                            color="text.secondary"
-                          >
-                            AUD 1600.00
-                          </MKTypography>
-                          <MKTypography
-                            variant="subtitle2"
-                            color="text.secondary"
-                            mt={0.9}
-                          >
-                            + taxes and charges
-                          </MKTypography>
-                        </Grid>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </Grid>
-              ))}
+                            <Grid container alignItems="center">
+                              <Typography
+                                sx={{
+                                  fontFamily: "Playfair Display, serif",
+                                  fontSize: "28px",
+                                  fontWeight: 400,
+                                  lineHeight: "100%",
+                                }}
+                                variant="h5"
+                              >
+                                {item?.pageTitle}
+                              </Typography>
+                            </Grid>
+                            <Divider
+                              variant="middle"
+                              sx={{
+                                backgroundColor: "##C9C5BA",
+                                height: "2px",
+                                margin: 1,
+                              }}
+                            />
+                            <Grid container alignItems="center">
+                              <MKTypography variant="subtitle2">
+                                Airport
+                              </MKTypography>
+                              <Icon sx={{ fontWeight: "bold" }}>
+                                arrow_forward
+                              </Icon>
+                              <MKTypography variant="subtitle2">
+                                Yala (2N)
+                              </MKTypography>
+                              <Icon sx={{ fontWeight: "bold" }}>
+                                arrow_forward
+                              </Icon>
+                              <MKTypography variant="subtitle2">
+                                Weligama (1N)
+                              </MKTypography>
+                              <Icon sx={{ fontWeight: "bold" }}>
+                                arrow_forward
+                              </Icon>
+                              <MKTypography variant="subtitle2">
+                                Ahungalle (1N)
+                              </MKTypography>
+                              <Icon sx={{ fontWeight: "bold" }}>
+                                arrow_forward
+                              </Icon>
+                              <MKTypography variant="subtitle2">
+                                Airport
+                              </MKTypography>
+                            </Grid>
+                            <Divider
+                              variant="middle"
+                              sx={{
+                                backgroundColor: "##C9C5BA",
+                                height: "2px",
+                                margin: 1,
+                              }}
+                            />
+                            <UilPlaneDeparture className="hover-icon" />
+                            <UilTicket className="hover-icon" />
+                            <UilUtensils className="hover-icon" />
+                            <UilBedDouble className="hover-icon" />
+                            <LiBeach
+                              className="hover-svg"
+                              sx={{
+                                transition: "stroke 0.3s ease",
+                              }}
+                            />
+                            <Divider
+                              variant="middle"
+                              sx={{
+                                backgroundColor: "##C9C5BA",
+                                height: "2px",
+                                margin: 1,
+                              }}
+                            />
+                            <MKTypography variant="subtitle2">
+                              Pricing starts at
+                            </MKTypography>
+                            <Grid
+                              container
+                              display={"flex"}
+                              alignItems="center"
+                            >
+                              <MKTypography
+                                sx={{
+                                  fontWeight: "700",
+                                  marginRight: 1,
+                                  fontFamily: "Playfair Display, serif",
+                                  fontSize: "20px",
+                                }}
+                                variant="body2"
+                                color="text.secondary"
+                              >
+                                AUD 1600.00
+                              </MKTypography>
+                              <MKTypography
+                                variant="subtitle2"
+                                color="text.secondary"
+                                mt={0.9}
+                              >
+                                + taxes and charges
+                              </MKTypography>
+                            </Grid>
+                          </CardContent>
+                        </CardActionArea>
+                      </Card>
+                    </Grid>
+                  ))
+                : null}
             </Grid>
 
             <MKButton
@@ -1218,49 +1228,7 @@ function Home() {
             </Grid>
           </Container>
 
-          {/* Accordion List with Button */}
-          <Grid
-            container
-            item
-            xs={12}
-            lg={8}
-            flexDirection="column"
-            alignItems="center"
-            sx={{ width: "70%" }}
-          >
-            <Grid container display={"flex"} flexDirection="column">
-              {faq.map((item, index) => (
-                <Accordion key={index} sx={{ boxShadow: "none" }}>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1-content"
-                    id={`panel1-header-${index}`}
-                    sx={{ boxShadow: "none", backgroundColor: "#EEECE2" }}
-                  >
-                    {item?.title}
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ backgroundColor: "#EEECE2" }}>
-                    {item?.answer}
-                  </AccordionDetails>
-                </Accordion>
-              ))}
-            </Grid>
-
-            {/* Load More FAQs Button */}
-            <MKButton
-              circular
-              variant="contained"
-              color="black"
-              sx={{
-                paddingLeft: 5,
-                paddingRight: 5,
-                marginTop: 5,
-                marginBottom: 10,
-              }}
-            >
-              {pageTexts?.section6Button2 || ""}
-            </MKButton>
-          </Grid>
+          <FAQs title="Home FAQ" />
           <Footer />
         </Grid>
       </div>
