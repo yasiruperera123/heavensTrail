@@ -55,6 +55,7 @@ import {
   fetchPropertyPageImages,
 } from "services/PropertyService";
 import { fetchTourPackages } from "services/TourServices";
+import { fetchBlogCategories } from "services/BlogsService";
 import FAQs from "components/FAQs";
 
 function Home() {
@@ -67,6 +68,7 @@ function Home() {
   const [pageImages, setPageImages] = useState();
   const [headerData, setHeaderData] = useState({});
   const [tourPackages, setTourPackages] = useState([]);
+  const [blogCategories, setBlogCategories] = useState([]);
 
   useEffect(() => {
     console.log("asas");
@@ -74,6 +76,7 @@ function Home() {
     getPropertyDetails();
     getPropertyText();
     getPropertyImages();
+    getBlogCategories();
   }, []);
   const travelSolutions = [
     {
@@ -203,6 +206,19 @@ function Home() {
           .filter((item) => item.seq === 0)
           .slice(0, 4);
         setTourPackages(filteredItems);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
+  const getBlogCategories = async () => {
+    // Usage
+    fetchBlogCategories()
+      .then((reponse) => {
+        console.log("Fetched data: BLOG ", reponse);
+        const filteredItems = reponse?.data.slice(0, 4);
+        setBlogCategories(filteredItems);
       })
       .catch((error) => {
         console.error("Fetch failed:", error.message);
@@ -633,7 +649,7 @@ function Home() {
                 gap: 2, // Adds spacing between cards horizontally
               }}
             >
-              {tourPackages && tourPackages.length > 1
+              {tourPackages && tourPackages.length > 0
                 ? tourPackages.map((item, index) => (
                     <Grid
                       item
@@ -1072,88 +1088,90 @@ function Home() {
                   gap: 2,
                 }}
               >
-                {blogs.map((item, index) => (
-                  <Grid
-                    item
-                    key={index}
-                    xs={12}
-                    sm={6}
-                    md={4}
-                    lg={3.5}
-                    sx={{
-                      flexShrink: 0,
-                    }}
-                  >
-                    <Card
-                      sx={{
-                        boxShadow: "none",
-                        backgroundColor: "#FEFDF5",
-                        borderWidth: 1,
-                        borderColor: "#C9C5BA",
-                        display: "flex",
-                        flexDirection: "column",
-                        height: "100%",
-                      }}
-                    >
-                      <CardActionArea
+                {blogCategories && blogCategories.length > 0
+                  ? blogCategories.map((item, index) => (
+                      <Grid
+                        item
+                        key={index}
+                        xs={12}
+                        sm={6}
+                        md={4}
+                        lg={3.5}
                         sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          height: "100%",
+                          flexShrink: 0,
                         }}
                       >
-                        <CardMedia
-                          component="img"
-                          height="270px"
-                          image={item?.img}
+                        <Card
                           sx={{
-                            objectFit: "cover",
-                            width: "100%",
-                            margin: 0,
-                            padding: 0,
+                            boxShadow: "none",
+                            backgroundColor: "#FEFDF5",
+                            borderWidth: 1,
+                            borderColor: "#C9C5BA",
+                            display: "flex",
+                            flexDirection: "column",
+                            height: "100%",
                           }}
-                          alt="Image"
-                        />
-                        <CardContent sx={{ flex: 1, padding: 2 }}>
-                          <Typography
+                        >
+                          <CardActionArea
                             sx={{
-                              fontFamily: "Playfair Display, serif",
-                              fontSize: "25px",
-                              fontWeight: 400,
-                              marginBottom: 2,
-                              color: "#000000",
-                            }}
-                            variant="h5"
-                          >
-                            {item?.title}
-                          </Typography>
-                          <MKTypography
-                            variant="subtitle2"
-                            sx={{
-                              display: "-webkit-box",
-                              WebkitBoxOrient: "vertical",
-                              WebkitLineClamp: 3,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              color: "#1A1814",
+                              display: "flex",
+                              flexDirection: "column",
+                              height: "100%",
                             }}
                           >
-                            {item?.des}
-                          </MKTypography>
-                          <MKTypography
-                            sx={{
-                              fontWeight: "500",
-                              textDecoration: "underline",
-                            }}
-                            variant="subtitle2"
-                          >
-                            Read More
-                          </MKTypography>
-                        </CardContent>
-                      </CardActionArea>
-                    </Card>
-                  </Grid>
-                ))}
+                            <CardMedia
+                              component="img"
+                              height="270px"
+                              image={item?.Blog_posts?.featured_image_url}
+                              sx={{
+                                objectFit: "cover",
+                                width: "100%",
+                                margin: 0,
+                                padding: 0,
+                              }}
+                              alt="Image"
+                            />
+                            <CardContent sx={{ flex: 1, padding: 2 }}>
+                              <Typography
+                                sx={{
+                                  fontFamily: "Playfair Display, serif",
+                                  fontSize: "25px",
+                                  fontWeight: 400,
+                                  marginBottom: 2,
+                                  color: "#000000",
+                                }}
+                                variant="h5"
+                              >
+                                {item?.Blog_posts?.title}
+                              </Typography>
+                              <MKTypography
+                                variant="subtitle2"
+                                sx={{
+                                  display: "-webkit-box",
+                                  WebkitBoxOrient: "vertical",
+                                  WebkitLineClamp: 3,
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                  color: "#1A1814",
+                                }}
+                              >
+                                {item?.Blog_posts?.description}
+                              </MKTypography>
+                              <MKTypography
+                                sx={{
+                                  fontWeight: "500",
+                                  textDecoration: "underline",
+                                }}
+                                variant="subtitle2"
+                              >
+                                Read More
+                              </MKTypography>
+                            </CardContent>
+                          </CardActionArea>
+                        </Card>
+                      </Grid>
+                    ))
+                  : null}
               </Grid>
 
               <MKButton
