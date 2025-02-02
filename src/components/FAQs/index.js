@@ -86,6 +86,7 @@ function FAQs({ title }) {
     fetchFAQByTitle(title)
       .then((response) => {
         setFAQs(response?.data);
+        console.log("RePOSNESE FQ", response?.data);
       })
       .catch((error) => {
         console.error("Fetch failed:", error.message);
@@ -136,9 +137,10 @@ function FAQs({ title }) {
       sx={{ width: "70%" }}
     >
       <Grid container display={"flex"} flexDirection="column">
-        {FAQs && FAQs.length > 1
+        {FAQs && FAQs.length > 0
           ? FAQs.map((item, index) => (
               <Accordion key={index} sx={{ boxShadow: "none" }}>
+                {console.log("ITEN", item)}
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1-content"
