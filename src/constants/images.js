@@ -98,6 +98,12 @@ import Car from "assets/images/tour-planner/car.png";
 import Tour_Guide from "assets/images/tour-planner/Guide.png";
 import Driver_Guide from "assets/images/tour-planner/Drive Guide.png";
 
+//Home
+import Exp_1 from "assets/images/homePage/home_exp_1.jpeg";
+import Exp_2 from "assets/images/homePage/home_exp_2.jpeg";
+import Exp_3 from "assets/images/homePage/home_exp_3.jpeg";
+import Exp_4 from "assets/images/homePage/home_exp_4.jpeg";
+
 export const TourListingPage = {
   Header: TourListingHeader,
   Round_Tour_1: Tour1,
@@ -215,4 +221,11 @@ export const TourPlannerPage = {
   Car: Car,
   Tour_Guide: Tour_Guide,
   Driver_Guide: Driver_Guide,
+};
+
+export const HomePage = {
+  Exp_1: Exp_1,
+  Exp_2: Exp_2,
+  Exp_3: Exp_3,
+  Exp_4: Exp_4,
 };

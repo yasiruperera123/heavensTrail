@@ -14,38 +14,58 @@ import "./styles.css"; // Import the CSS file for styling
 
 function NavBar() {
   const [scrolled, setScrolled] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState(null);
   const navigate = useNavigate();
   const navItems = [
-    "Home",
-    "Tour Packages",
-    "Business Tours",
-    "About Us",
-    "Contact Us",
+    { name: "Home" },
+    {
+      name: "Tour Packages",
+      dropdown: ["Round Tours", "Day Tours"],
+    },
+    {
+      name: "Business Tours",
+      dropdown: [
+        "Destination Wedding",
+        "Incentive Tours",
+        "Meetings",
+        "Conferences & Exhibitions",
+      ],
+    },
+    { name: "About Us" },
+    { name: "Contact Us" },
   ];
 
   const onItemClick = (item) => {
     switch (item) {
       case "Home":
         navigate("/home");
-        return;
+        break;
       case "Tour Packages":
         navigate("/pages/tour-list");
-        return;
+        break;
       case "Business Tours":
         navigate("/pages/mice-tours");
-        return;
+        break;
       case "About Us":
         navigate("/pages/about-us");
-
-        return;
+        break;
       case "Contact Us":
         navigate("/pages/contact-us");
-
-        return;
-
+        break;
+      case "Round Tours":
+        navigate("/pages/round-tours");
+        break;
+      case "Day Tours":
+        navigate("/pages/day-tours");
+        break;
+      case "Corporate Events":
+        navigate("/pages/corporate-events");
+        break;
+      case "Workshops":
+        navigate("/pages/workshops");
+        break;
       default:
         navigate("/home");
-        return;
     }
   };
 
@@ -78,8 +98,13 @@ function NavBar() {
 
       {/* Navigation items in the center */}
       <ul className={`nav-items ${scrolled ? "scrolled" : ""}`}>
-        {navItems.map((text) => (
-          <MKBox component="li" key={text}>
+        {navItems.map((item) => (
+          <MKBox
+            component="li"
+            key={item.name}
+            onMouseEnter={() => setHoveredItem(item.name)}
+            onMouseLeave={() => setHoveredItem(null)}
+          >
             <MKTypography
               component={Link}
               href="#"
@@ -87,10 +112,28 @@ function NavBar() {
               sx={{ color: "black" }}
               fontWeight="regular"
               p={1}
-              onClick={(e) => onItemClick(text)}
+              onClick={(e) => onItemClick(item.name)}
             >
-              {text}
+              {item.name}
             </MKTypography>
+            {/* Dropdown Menu */}
+            {item.dropdown && hoveredItem === item.name && (
+              <MKBox className="dropdown-menu">
+                {item.dropdown.map((subItem) => (
+                  <MKTypography
+                    key={subItem}
+                    component={Link}
+                    variant="button"
+                    fontWeight="regular"
+                    href="#"
+                    style={{ color: "black", fontFamily: "Poppins" }}
+                    onClick={() => onItemClick(subItem)}
+                  >
+                    {subItem}
+                  </MKTypography>
+                ))}
+              </MKBox>
+            )}
           </MKBox>
         ))}
       </ul>

@@ -9,6 +9,11 @@ import { useNavigate } from "react-router-dom";
 import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
 import HeaderOne from "layouts/sections/page-sections/page-headers/components/HeaderOne";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import { UilAngleDown } from "@iconscout/react-unicons";
+import { HomePage } from "constants/images";
 import {
   UilPlaneDeparture,
   UilTicket,
@@ -43,9 +48,10 @@ import {
   Box,
   Typography,
   Avatar,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import NavBar from "components/NavBar";
 
@@ -57,6 +63,7 @@ import {
 import { fetchTourPackages } from "services/TourServices";
 import { fetchBlogCategories } from "services/BlogsService";
 import FAQs from "components/FAQs";
+import "./styles.css";
 
 function Home() {
   const navigate = useNavigate();
@@ -69,15 +76,50 @@ function Home() {
   const [headerData, setHeaderData] = useState({});
   const [tourPackages, setTourPackages] = useState([]);
   const [blogCategories, setBlogCategories] = useState([]);
+  const [selected, setSelected] = useState("web");
+  const [type, setType] = React.useState("");
+  const [location, setLocation] = React.useState("");
+
+  const handleTypeChange = (event) => {
+    setType(event.target.value);
+  };
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
 
   useEffect(() => {
-    console.log("asas");
     getTourPackages();
     getPropertyDetails();
     getPropertyText();
     getPropertyImages();
     getBlogCategories();
+    setSelected(packages[0].key);
   }, []);
+
+  const packages = [
+    {
+      key: "all ",
+      value: "All ",
+    },
+    {
+      key: "shorttrips",
+      value: "Short trips",
+    },
+    {
+      key: "halfday",
+      value: "Half-day ",
+    },
+    {
+      key: "fullday",
+      value: "Full-day ",
+    },
+    {
+      key: "multiday",
+      value: "Multi-day",
+    },
+  ];
+
   const travelSolutions = [
     {
       title: pageTexts?.section1Item1Title || "",
@@ -102,6 +144,37 @@ function Home() {
       btn1: "See Details",
       btn2: "View Packages",
       img: pageImages?.section1Item4Background || "",
+    },
+  ];
+
+  const experienceData = [
+    {
+      title: "Tuk Tuk Safari in Colombo" || "",
+      description:
+        "Hop on a tuk-tuk for a fun-filled tour through the vibrant streets of Colombo.",
+      btn: ["Short Trip", "Urban Adventure", "Colombo"],
+      img: HomePage?.Exp_1 || "",
+    },
+    {
+      title: "Ceylon Tea Tour in Nuwara Eliya" || "",
+      description:
+        "Hop on a tuk-tuk for a fun-filled tour through the vibrant streets of Colombo.",
+      btn: ["Full Day", "Local", "Nuwara Eliya"],
+      img: HomePage?.Exp_2 || "",
+    },
+    {
+      title: "Hot Air Balloon Ride Over Dambulla" || "",
+      description:
+        "Hop on a tuk-tuk for a fun-filled tour through the vibrant streets of Colombo.",
+      btn: ["Half Day", "Adventure", "Dambulla"],
+      img: HomePage?.Exp_3 || "",
+    },
+    {
+      title: "Snorkelling in Pigeon Island" || "",
+      description:
+        "Hop on a tuk-tuk for a fun-filled tour through the vibrant streets of Colombo.",
+      btn: ["Short Trip", "Adventure", "Colombo"],
+      img: HomePage?.Exp_4 || "",
     },
   ];
 
@@ -159,29 +232,6 @@ function Home() {
     {
       title:
         "We had the most relaxing and rejuvenating time in Sri Lanka. Our tour focused on wellness and mindfulness, and we had the opportunity to practice yoga, meditation, and Ayurveda treatments. ",
-    },
-  ];
-
-  const blogs = [
-    {
-      title: "Trek Sri Lanka's Thrilling Wildlife Adventures",
-      des: "Encounter Sri Lanka's diverse wildlife in its natural habitat. Learn about the island's national parks, fascinating creatures you might spot, and responsible wildlife viewing practices.",
-      img: tigerImg,
-    },
-    {
-      title: "Unveiling Culinary Delights: A Foodie's Guide",
-      des: "Embark on a delicious journey through Sri Lanka's vibrant culinary scene. Explore regional specialties, mouthwatering street food, and authentic cooking experiences.",
-      img: foodImg,
-    },
-    {
-      title: "Learn about Sri Lanka's Most Breathtaking Trails",
-      des: "Lace up your boots and explore Sri Lanka's stunning landscapes on foot. Discover scenic trails for all levels, from gentle hikes to challenging treks, offering breathtaking views and unforgettable experiences.",
-      img: archImg,
-    },
-    {
-      title: "Sri Lanka's Ancient Cities: A Journey Through History",
-      des: "Travel back in time and explore Sri Lanka's captivating ancient cities. Discover UNESCO World Heritage Sites, delve into rich cultural heritage, and uncover the island's fascinating past.",
-      img: buddhaImg,
     },
   ];
 
@@ -308,6 +358,30 @@ function Home() {
 
   const handleViewAllClick = () => {
     navigate("/pages/blogs");
+  };
+
+  const handleButtonClick = (value) => {
+    setSelected(value);
+  };
+
+  const ToggleButtonGroup = ({ packages, key }) => {
+    return (
+      <div className="toggle-button-group-home">
+        {packages?.map((item, index) => {
+          return (
+            <button
+              key={key}
+              className={`toggle-button ${
+                selected === item.value ? "selected" : ""
+              }`}
+              onClick={() => handleButtonClick(item.value)}
+            >
+              {item.value}
+            </button>
+          );
+        })}
+      </div>
+    );
   };
 
   return (
@@ -855,6 +929,283 @@ function Home() {
           </Box>
         </Grid>
 
+        {/* Experiecnce Section */}
+        <Grid
+          container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            paddingLeft: "16px",
+            paddingRight: "16px",
+            backgroundColor: "#EEECE2",
+          }}
+        >
+          <Container
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Grid
+              container
+              item
+              xs={12}
+              lg={8}
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              sx={{ textAlign: "center", marginBottom: "20px" }}
+            >
+              <Stack direction="row" spacing={1} mt={3}>
+                <MKButton
+                  circular
+                  variant="outlined"
+                  color="black"
+                  onClick={handleOurPackageClick}
+                >
+                  {pageTexts?.section4Button || "Experiences"}
+                </MKButton>
+              </Stack>
+              <MKTypography
+                variant="h1"
+                color="black"
+                sx={({ breakpoints, typography: { size } }) => ({
+                  [breakpoints.down("md")]: {
+                    fontSize: size["3xl"],
+                  },
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "60px",
+                  fontWeight: 400,
+                })}
+              >
+                {pageTexts?.section4Title ||
+                  "Unforgettable Experiences in Sri Lanka"}
+              </MKTypography>
+              <MKTypography
+                variant="h6"
+                fontWeight="regular"
+                color="black"
+                sx={{ textAlign: "center", maxWidth: "90%" }}
+              >
+                {pageTexts?.section4Description || ""}
+              </MKTypography>
+            </Grid>
+          </Container>
+          <Grid
+            sx={{
+              marginTop: 2,
+              marginBottom: 4,
+              flexDirection: "row",
+              alignItems: "center",
+              display: "flex",
+              gap: 2,
+            }}
+            lg={10}
+          >
+            <Grid>
+              <ToggleButtonGroup packages={packages} />
+            </Grid>
+            <FormControl fullWidth sx={{ borderRadius: 20 }} size="large">
+              <InputLabel>All Type</InputLabel>
+              <Select
+                sx={{
+                  height: "50px",
+                  borderRadius: 50,
+                  backgroundColor: "#FEFDF5",
+                }}
+                input={
+                  <OutlinedInput
+                    label={"All Type"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        {<UilAngleDown />}
+                      </InputAdornment>
+                    }
+                  />
+                }
+                value={type}
+                label="All Type"
+                onChange={handleTypeChange}
+              >
+                <MenuItem value={10}>Tenn</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl fullWidth sx={{ borderRadius: 20 }} size="large">
+              <InputLabel> All Locations</InputLabel>
+              <Select
+                sx={{
+                  height: "50px",
+                  borderRadius: 50,
+                  backgroundColor: "#FEFDF5",
+                }}
+                input={
+                  <OutlinedInput
+                    label={" All Locations"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        {<UilAngleDown />}
+                      </InputAdornment>
+                    }
+                  />
+                }
+                value={location}
+                label=" All Locations"
+                onChange={handleLocationChange}
+              >
+                <MenuItem value={10}>Tenn</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <Grid
+              container
+              spacing={2}
+              ref={scrollContainerRef}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              sx={{
+                overflowX: "auto",
+                paddingX: 2,
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
+                scrollbarWidth: "none",
+                flexWrap: "nowrap",
+                width: "100%",
+              }}
+            >
+              {experienceData && experienceData.length > 0
+                ? experienceData.map((item, index) => (
+                    <Grid
+                      item
+                      key={index}
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={3.5}
+                      sx={{
+                        flexShrink: 0,
+                        width: "calc(100% / 3.5)",
+                        backgroundColor: "#EEECE2",
+                        height: "100%",
+                      }}
+                    >
+                      <Card
+                        sx={{
+                          height: "100%",
+                          boxShadow: "none",
+                          backgroundColor: "#EEECE2",
+                          borderWidth: 1,
+                          borderColor: "#C9C5BA",
+                          display: "flex",
+                          flexDirection: "column",
+                          margin: 0,
+                        }}
+                      >
+                        <CardMedia
+                          component="img"
+                          image={item?.img}
+                          sx={{
+                            width: "100%",
+                            height: "300px",
+                            objectFit: "cover",
+                            margin: 0,
+                            padding: 0,
+                            borderBottomLeftRadius: 0,
+                            borderBottomRightRadius: 0,
+                          }}
+                          alt="Image"
+                        />
+                        <CardContent sx={{ flex: 1 }}>
+                          <Grid
+                            sx={{
+                              gap: 1,
+                              display: "flex",
+                              flexDirection: "row",
+                            }}
+                          >
+                            {item?.btn.map((btn, index) => {
+                              return (
+                                <MKButton
+                                  className="hover-button"
+                                  style={{
+                                    marginTop: "5px",
+                                  }}
+                                  size="small"
+                                  circular
+                                  variant="outlined"
+                                  color="black"
+                                >
+                                  {btn}
+                                </MKButton>
+                              );
+                            })}
+                          </Grid>
+
+                          <Grid container alignItems="center">
+                            <Typography
+                              sx={{
+                                fontFamily: "Playfair Display, serif",
+                                fontSize: "28px",
+                                fontWeight: 400,
+                                lineHeight: "100%",
+                                marginY: 2,
+                              }}
+                              variant="h5"
+                            >
+                              {item?.title}
+                            </Typography>
+                          </Grid>
+                          <MKTypography variant="subtitle2">
+                            {item?.description}
+                          </MKTypography>
+                          <Grid container display={"flex"} alignItems="center">
+                            <MKTypography
+                              variant="subtitle2"
+                              color="text.secondary"
+                              sx={{ textDecoration: "underline" }}
+                              mt={0.9}
+                            >
+                              Learn More
+                            </MKTypography>
+                          </Grid>
+                        </CardContent>
+                      </Card>
+                    </Grid>
+                  ))
+                : null}
+            </Grid>
+
+            <MKButton
+              circular
+              variant="contained"
+              color="black"
+              sx={{
+                paddingLeft: 5,
+                paddingRight: 5,
+                marginTop: 5,
+                marginBottom: 10,
+              }}
+              onClick={handleClick}
+            >
+              {pageTexts?.section4Button2 || ""}
+            </MKButton>
+          </Box>
+        </Grid>
+
         {/* Discover Sri Lanka Through Our Travelers' Eyes SECTION */}
         <Grid
           container
@@ -884,7 +1235,7 @@ function Home() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  {pageTexts?.section4Button || ""}
+                  {pageTexts?.section5Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -899,7 +1250,7 @@ function Home() {
                   fontWeight: 400,
                 })}
               >
-                {pageTexts?.section4Title || ""}
+                {pageTexts?.section5Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -907,7 +1258,7 @@ function Home() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                {pageTexts?.section4Description || ""}
+                {pageTexts?.section5Description || ""}
               </MKTypography>
             </Grid>
           </Container>
@@ -994,7 +1345,7 @@ function Home() {
               marginBottom: 10,
             }}
           >
-            {pageTexts?.section4Button2 || ""}
+            {pageTexts?.section5Button2 || ""}
           </MKButton>
         </Grid>
         {/* Explore our Insights, Tips and More Packages */}
@@ -1025,7 +1376,7 @@ function Home() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  {pageTexts?.section5Button || ""}
+                  {pageTexts?.section6Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -1044,7 +1395,7 @@ function Home() {
                   textAlign: "center",
                 })}
               >
-                {pageTexts?.section5Title || ""}
+                {pageTexts?.section6Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -1056,7 +1407,7 @@ function Home() {
                   margin: "0 auto",
                 }}
               >
-                {pageTexts?.section5Description || ""}
+                {pageTexts?.section6Description || ""}
               </MKTypography>
             </Grid>
 
@@ -1185,7 +1536,7 @@ function Home() {
                 }}
                 onClick={handleViewAllClick}
               >
-                {pageTexts?.section5Button2 || ""}
+                {pageTexts?.section6Button2 || ""}
               </MKButton>
             </Box>
           </Grid>
@@ -1220,7 +1571,7 @@ function Home() {
             >
               <Stack direction="row" spacing={1} mt={3}>
                 <MKButton circular variant="outlined" color="black">
-                  {pageTexts?.section6Button || ""}
+                  {pageTexts?.section7Button || ""}
                 </MKButton>
               </Stack>
               <MKTypography
@@ -1233,7 +1584,7 @@ function Home() {
                   fontFamily: "Playfair Display",
                 })}
               >
-                {pageTexts?.section6Title || ""}
+                {pageTexts?.section7Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -1241,7 +1592,7 @@ function Home() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                {pageTexts?.section6Description || ""}
+                {pageTexts?.section7Description || ""}
               </MKTypography>
             </Grid>
           </Container>

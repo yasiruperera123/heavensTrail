@@ -40,6 +40,7 @@
   color: black;
   margin: 0 auto; /* Center the nav items */
   padding: 0;
+  position: relative; 
 }
 
 .navbar .nav-items li {
@@ -91,4 +92,30 @@
   .navbar .cta {
     margin-top: 10px; /* Move the button below the nav items */
   }
+}
+
+.dropdown-menu {
+  position: absolute;
+  left: 35%;
+  transform: translateX(-50%);
+  background-color: whitesmoke;
+  border: 1px solid #ddd;   /* Subtle border */
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  z-index: 999;
+  min-width: 150px;  
+  color: black;     
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 20px;
+  background-color: whitesmoke;
+  opacity: 0.8;
+  color:black;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f5f5f5;
+  color:black;    /* Light hover effect */
 }
