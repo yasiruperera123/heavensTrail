@@ -96,8 +96,7 @@
 
 .dropdown-menu {
   position: absolute;
-  left: 35%;
-  transform: translateX(-50%);
+  transform: translateX(-20%);
   background-color: whitesmoke;
   border: 1px solid #ddd;   /* Subtle border */
   border-radius: 4px;

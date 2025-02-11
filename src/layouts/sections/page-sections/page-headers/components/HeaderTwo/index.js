@@ -98,7 +98,7 @@ function HeaderTwo({
       <MKBox
         position="relative"
         sx={{
-          top: 0,
+          top: 10,
           marginTop: {
             xs: 0,
             sm: -10,

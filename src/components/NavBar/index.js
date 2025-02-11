@@ -98,10 +98,10 @@ function NavBar() {
 
       {/* Navigation items in the center */}
       <ul className={`nav-items ${scrolled ? "scrolled" : ""}`}>
-        {navItems.map((item) => (
+        {navItems.map((item, index) => (
           <MKBox
             component="li"
-            key={item.name}
+            key={index}
             onMouseEnter={() => setHoveredItem(item.name)}
             onMouseLeave={() => setHoveredItem(null)}
           >
@@ -126,7 +126,11 @@ function NavBar() {
                     variant="button"
                     fontWeight="regular"
                     href="#"
-                    style={{ color: "black", fontFamily: "Poppins" }}
+                    style={{
+                      color: "black",
+                      fontFamily: "Poppins",
+                      textAlign: "center",
+                    }}
                     onClick={() => onItemClick(subItem)}
                   >
                     {subItem}

@@ -64,6 +64,7 @@ import { fetchTourPackages } from "services/TourServices";
 import { fetchBlogCategories } from "services/BlogsService";
 import FAQs from "components/FAQs";
 import "./styles.css";
+import zIndex from "@mui/material/styles/zIndex";
 
 function Home() {
   const navigate = useNavigate();
@@ -80,6 +81,31 @@ function Home() {
   const [type, setType] = React.useState("");
   const [location, setLocation] = React.useState("");
 
+  const ElfsightWidget = () => {
+    useEffect(() => {
+      const script = document.createElement("script");
+      script.src = "https://static.elfsight.com/platform/platform.js";
+      script.async = true;
+
+      // Delay appending the script to avoid ResizeObserver errors
+      setTimeout(() => {
+        document.body.appendChild(script);
+      }, 100);
+
+      return () => {
+        setTimeout(() => {
+          document.body.appendChild(script);
+        }, 100);
+      };
+    }, []);
+
+    return (
+      <div
+        className="elfsight-app-d0e847bf-c7ca-4f6c-9338-2da0c4da62fa"
+        data-elfsight-app-lazy
+      ></div>
+    );
+  };
   const handleTypeChange = (event) => {
     setType(event.target.value);
   };
@@ -464,15 +490,29 @@ function Home() {
                     padding: "16px",
                   }}
                 >
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: 4,
+                      backgroundColor: "rgba(0, 0, 0, 0.4)", // Adjust opacity as needed
+                      zIndex: 0,
+                    }}
+                  />
                   <MKTypography
                     color="white"
                     sx={{
                       fontSize: "34px",
                       fontFamily: "Playfair Display, serif",
+                      zIndex: 1,
                     }}
                   >
                     {item?.title}
                   </MKTypography>
+
                   <Stack spacing={1} mt={1}>
                     <MKButton
                       size="small"
@@ -1262,13 +1302,14 @@ function Home() {
               </MKTypography>
             </Grid>
           </Container>
-          <Grid container>
+          <Grid
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+            container
+          >
             <Box
-              ref={scrollContainerRef}
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseUp}
               sx={{
                 display: "flex",
                 overflowX: "auto",
@@ -1279,7 +1320,8 @@ function Home() {
                 scrollbarWidth: "none",
               }}
             >
-              {reviews.map((item, index) => (
+              <ElfsightWidget />
+              {/* {reviews.map((item, index) => (
                 <Grid
                   item
                   key={index}
@@ -1331,7 +1373,7 @@ function Home() {
                     </CardContent>
                   </Card>
                 </Grid>
-              ))}
+              ))} */}
             </Box>
           </Grid>
           <MKButton

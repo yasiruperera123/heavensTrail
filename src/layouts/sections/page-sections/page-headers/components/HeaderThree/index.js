@@ -95,7 +95,7 @@ function HeaderThree({
     <div>
       <MKBox
         sx={{
-          top: 0,
+          top: 10,
           marginTop: {
             xs: 0,
           },
