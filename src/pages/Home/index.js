@@ -780,7 +780,6 @@ function Home() {
                     >
                       <Card
                         sx={{
-                          height: "90%",
                           boxShadow: "none",
                           backgroundColor: "#FEFDF5",
                           borderWidth: 1,
@@ -814,11 +813,11 @@ function Home() {
                         >
                           <CardMedia
                             component="img"
-                            height="40%"
                             image={item?.tour_pkg_image_urls[0]?.imgUrl}
                             sx={{
                               objectFit: "cover",
                               width: "100%",
+                              height: "350px",
                               margin: 0,
                               padding: 0,
                               borderBottomLeftRadius: 0,
@@ -826,7 +825,13 @@ function Home() {
                             }}
                             alt="Image"
                           />
-                          <CardContent sx={{ flex: 1, padding: 1 }}>
+                          <CardContent
+                            sx={{
+                              flex: 1,
+                              padding: 1,
+                              minHeight: "350px",
+                            }}
+                          >
                             <MKButton
                               className="hover-button"
                               style={{
@@ -837,7 +842,7 @@ function Home() {
                               variant="outlined"
                               color="black"
                             >
-                              6 Nights, 7 Days
+                              {item?.duration} {item?.durationUnit}
                             </MKButton>
 
                             <Grid container alignItems="center">
@@ -934,7 +939,7 @@ function Home() {
                                 variant="body2"
                                 color="text.secondary"
                               >
-                                AUD 1600.00
+                                {item?.Currency?.code} {item?.price}
                               </MKTypography>
                               <MKTypography
                                 variant="subtitle2"

@@ -11,6 +11,7 @@ import HeaderTwo from "layouts/sections/page-sections/page-headers/components/He
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Footer from "components/Footer";
 import { useNavigate } from "react-router-dom";
+import { fetchTourPackages } from "services/TourServices";
 import {
   UilPlaneDeparture,
   UilTicket,
@@ -50,6 +51,8 @@ function TourListing() {
   const navigate = useNavigate();
   const [pageTexts, setPageTexts] = useState();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [roundTours, setRoundTours] = useState([]);
+  const [dayTours, setDayTours] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [images, setImages] = useState();
 
@@ -84,34 +87,57 @@ function TourListing() {
       });
   };
 
+  const getTourPackages = async () => {
+    // Usage
+    fetchTourPackages()
+      .then((reponse) => {
+        console.log("Fetched data: TOUR ", reponse);
+        const roundTours = reponse?.data
+          .filter((item) => item.tType === "Round Tour")
+          .slice(0, 6);
+        setRoundTours(roundTours);
+        const dayTours = reponse?.data
+          .filter((item) => item.tType === "Day Tour")
+          .slice(0, 3);
+        setDayTours(dayTours);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
+
   useEffect(() => {
     getPropertyText();
     getPropertyImages();
+    getTourPackages();
   }, []);
+
+  const path = [
+    "Airport",
+    "Yala (2N)",
+    "Weligama (1N)",
+    "Ahungalle (1N)",
+    "Airport",
+  ];
+
+  const iconSet = [
+    <UilPlaneDeparture className="hover-icon" />,
+    <UilTicket className="hover-icon" />,
+    <UilUtensils className="hover-icon" />,
+    <UilBedDouble className="hover-icon" />,
+    <LiBeach
+      className="hover-svg"
+      sx={{
+        transition: "stroke 0.3s ease",
+      }}
+    />,
+  ];
 
   const travelPcgs = [
     {
       title: "Luxury Escape to the Southern Coast",
       duration: "4 Nights, 6 Days",
-      path: [
-        "Airport",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-        <LiBeach
-          className="hover-svg"
-          sx={{
-            transition: "stroke 0.3s ease",
-          }}
-        />,
-      ],
+
       img: TourListingPage.Round_Tour_1,
     },
     {
@@ -375,7 +401,7 @@ function TourListing() {
             }}
           >
             <Grid container spacing={2} justifyContent="center">
-              {travelPcgs.map((item, index) => (
+              {roundTours.map((item, index) => (
                 <Grid
                   item
                   key={index}
@@ -419,7 +445,7 @@ function TourListing() {
                       <CardMedia
                         component="img"
                         height={"250px"}
-                        image={item?.img}
+                        image={item?.tour_pkg_image_urls[0]?.imgUrl}
                         sx={{
                           objectFit: "cover",
                           width: "100%",
@@ -439,7 +465,7 @@ function TourListing() {
                           variant="outlined"
                           color="black"
                         >
-                          {item?.duration}
+                          {item?.duration} {item?.durationUnit}
                         </MKButton>
 
                         <Grid container alignItems="center">
@@ -464,9 +490,9 @@ function TourListing() {
                           }}
                         />
                         <Grid container alignItems="center">
-                          {item?.path &&
-                            item?.path.length > 0 &&
-                            item?.path.map((elemant, index) => {
+                          {path &&
+                            path?.length > 0 &&
+                            path.map((elemant, index) => {
                               return (
                                 <Grid
                                   display={"flex"}
@@ -477,7 +503,7 @@ function TourListing() {
                                   <MKTypography variant="subtitle2">
                                     {elemant}
                                   </MKTypography>
-                                  {index < item.path.length - 1 && (
+                                  {index < path.length - 1 && (
                                     <Icon sx={{ fontWeight: "bold" }}>
                                       arrow_forward
                                     </Icon>
@@ -494,8 +520,8 @@ function TourListing() {
                             margin: 1,
                           }}
                         />
-                        {item?.iconSet &&
-                          item?.iconSet.map((icon) => {
+                        {iconSet &&
+                          iconSet.map((icon) => {
                             return icon;
                           })}
                         <Divider
@@ -520,7 +546,7 @@ function TourListing() {
                             variant="body2"
                             color="text.secondary"
                           >
-                            AUD 1600.00
+                            {item?.Currency?.code} {item?.price}
                           </MKTypography>
                           <MKTypography
                             variant="subtitle2"
@@ -608,163 +634,169 @@ function TourListing() {
             }}
           >
             <Grid container spacing={2} justifyContent="center">
-              {otherTravelPcgs.map((item, index) => (
-                <Grid
-                  item
-                  key={index}
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={4} // Adjusted for a 3-column layout
-                  sx={{ flexShrink: 0 }}
-                >
-                  <Card
-                    sx={{
-                      height: "100%",
-                      boxShadow: "none",
-                      backgroundColor: "#EEECE2",
-                      borderWidth: 1,
-                      borderColor: "#C9C5BA",
-                      display: "flex",
-                      flexDirection: "column",
-                      "&:hover": {
-                        backgroundColor: "#FEFDF5",
-                        "& .hover-icon": {
-                          color: "#929E03",
-                        },
-                        "& .hover-svg path, & .hover-svg line, & .hover-svg rect, & .hover-svg circle":
-                          {
-                            stroke: "#929E03",
-                          },
-                      },
-                    }}
-                  >
-                    <CardActionArea
-                      sx={{
-                        height: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                      }}
-                      onClick={() => navigate("/pages/tour-details")}
+              {dayTours && dayTours.length > 0
+                ? dayTours.map((item, index) => (
+                    <Grid
+                      item
+                      key={index}
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={4} // Adjusted for a 3-column layout
+                      sx={{ flexShrink: 0 }}
                     >
-                      <CardMedia
-                        component="img"
-                        height={"300px"}
-                        image={item?.img}
+                      <Card
                         sx={{
-                          objectFit: "cover",
-                          width: "100%",
-                          margin: 0,
-                          padding: 0,
-                          borderBottomLeftRadius: 0,
-                          borderBottomRightRadius: 0,
+                          height: "100%",
+                          boxShadow: "none",
+                          backgroundColor: "#EEECE2",
+                          borderWidth: 1,
+                          borderColor: "#C9C5BA",
+                          display: "flex",
+                          flexDirection: "column",
+                          "&:hover": {
+                            backgroundColor: "#FEFDF5",
+                            "& .hover-icon": {
+                              color: "#929E03",
+                            },
+                            "& .hover-svg path, & .hover-svg line, & .hover-svg rect, & .hover-svg circle":
+                              {
+                                stroke: "#929E03",
+                              },
+                          },
                         }}
-                        alt="SVG Image"
-                      />
-                      <CardContent sx={{ flex: 1, padding: 1 }}>
-                        <MKButton
-                          style={{ marginTop: "5px", marginBottom: "5px" }}
-                          size="small"
-                          circular
-                          variant="outlined"
-                          color="black"
+                      >
+                        <CardActionArea
+                          sx={{
+                            height: "100%",
+                            display: "flex",
+                            flexDirection: "column",
+                          }}
+                          onClick={() => navigate("/pages/tour-details")}
                         >
-                          {item?.duration}
-                        </MKButton>
+                          <CardMedia
+                            component="img"
+                            height={"300px"}
+                            image={item?.tour_pkg_image_urls[0]?.imgUrl}
+                            sx={{
+                              objectFit: "cover",
+                              width: "100%",
+                              margin: 0,
+                              padding: 0,
+                              borderBottomLeftRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                            alt="SVG Image"
+                          />
+                          <CardContent sx={{ flex: 1, padding: 1 }}>
+                            <MKButton
+                              style={{ marginTop: "5px", marginBottom: "5px" }}
+                              size="small"
+                              circular
+                              variant="outlined"
+                              color="black"
+                            >
+                              {item?.duration} {item?.durationUnit}
+                            </MKButton>
 
-                        <Grid container alignItems="center">
-                          <Typography
-                            sx={{
-                              fontFamily: "Playfair Display, serif",
-                              fontSize: "28px",
-                              fontWeight: 400,
-                              lineHeight: "100%",
-                            }}
-                            variant="h5"
-                          >
-                            {item?.title}
-                          </Typography>
-                        </Grid>
-                        <Divider
-                          variant="middle"
-                          sx={{
-                            backgroundColor: "##C9C5BA",
-                            height: "2px",
-                            margin: 1,
-                          }}
-                        />
-                        <Grid container alignItems="center">
-                          {item?.path &&
-                            item?.path.length > 0 &&
-                            item?.path.map((elemant, index) => {
-                              return (
-                                <Grid
-                                  display={"flex"}
-                                  alignItems={"center"}
-                                  flexDirection={"row"}
-                                  key={index}
-                                >
-                                  <MKTypography variant="subtitle2">
-                                    {elemant}
-                                  </MKTypography>
-                                  {index < item.path.length - 1 && (
-                                    <Icon sx={{ fontWeight: "bold" }}>
-                                      arrow_forward
-                                    </Icon>
-                                  )}
-                                </Grid>
-                              );
-                            })}
-                        </Grid>
-                        <Divider
-                          variant="middle"
-                          sx={{
-                            backgroundColor: "##C9C5BA",
-                            height: "2px",
-                            margin: 1,
-                          }}
-                        />
-                        {item?.iconSet &&
-                          item?.iconSet.map((icon) => {
-                            return icon;
-                          })}
-                        <Divider
-                          variant="middle"
-                          sx={{
-                            backgroundColor: "##C9C5BA",
-                            height: "2px",
-                            margin: 1,
-                          }}
-                        />
-                        <MKTypography variant="subtitle2">
-                          Pricing starts at
-                        </MKTypography>
-                        <Grid container display={"flex"} alignItems="center">
-                          <MKTypography
-                            sx={{
-                              fontWeight: "700",
-                              marginRight: 1,
-                              fontFamily: "Playfair Display, serif",
-                              fontSize: "20px",
-                            }}
-                            variant="body2"
-                            color="text.secondary"
-                          >
-                            AUD 1600.00
-                          </MKTypography>
-                          <MKTypography
-                            variant="subtitle2"
-                            color="text.secondary"
-                            mt={0.9}
-                          >
-                            + taxes and charges
-                          </MKTypography>
-                        </Grid>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </Grid>
-              ))}
+                            <Grid container alignItems="center">
+                              <Typography
+                                sx={{
+                                  fontFamily: "Playfair Display, serif",
+                                  fontSize: "28px",
+                                  fontWeight: 400,
+                                  lineHeight: "100%",
+                                }}
+                                variant="h5"
+                              >
+                                {item?.title}
+                              </Typography>
+                            </Grid>
+                            <Divider
+                              variant="middle"
+                              sx={{
+                                backgroundColor: "##C9C5BA",
+                                height: "2px",
+                                margin: 1,
+                              }}
+                            />
+                            <Grid container alignItems="center">
+                              {path &&
+                                path.length > 0 &&
+                                path.map((elemant, index) => {
+                                  return (
+                                    <Grid
+                                      display={"flex"}
+                                      alignItems={"center"}
+                                      flexDirection={"row"}
+                                      key={index}
+                                    >
+                                      <MKTypography variant="subtitle2">
+                                        {elemant}
+                                      </MKTypography>
+                                      {index < path.length - 1 && (
+                                        <Icon sx={{ fontWeight: "bold" }}>
+                                          arrow_forward
+                                        </Icon>
+                                      )}
+                                    </Grid>
+                                  );
+                                })}
+                            </Grid>
+                            <Divider
+                              variant="middle"
+                              sx={{
+                                backgroundColor: "##C9C5BA",
+                                height: "2px",
+                                margin: 1,
+                              }}
+                            />
+                            {iconSet &&
+                              iconSet.map((icon) => {
+                                return icon;
+                              })}
+                            <Divider
+                              variant="middle"
+                              sx={{
+                                backgroundColor: "##C9C5BA",
+                                height: "2px",
+                                margin: 1,
+                              }}
+                            />
+                            <MKTypography variant="subtitle2">
+                              Pricing starts at
+                            </MKTypography>
+                            <Grid
+                              container
+                              display={"flex"}
+                              alignItems="center"
+                            >
+                              <MKTypography
+                                sx={{
+                                  fontWeight: "700",
+                                  marginRight: 1,
+                                  fontFamily: "Playfair Display, serif",
+                                  fontSize: "20px",
+                                }}
+                                variant="body2"
+                                color="text.secondary"
+                              >
+                                {item?.Currency?.code} {item?.price}
+                              </MKTypography>
+                              <MKTypography
+                                variant="subtitle2"
+                                color="text.secondary"
+                                mt={0.9}
+                              >
+                                + taxes and charges
+                              </MKTypography>
+                            </Grid>
+                          </CardContent>
+                        </CardActionArea>
+                      </Card>
+                    </Grid>
+                  ))
+                : null}
             </Grid>
           </Box>
         </Grid>
