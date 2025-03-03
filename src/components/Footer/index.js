@@ -39,12 +39,14 @@ import {
   fetchPropertyPageTexts,
   fetchPropertyPageImages,
 } from "services/PropertyService";
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
   const [value, setValue] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [images, setImages] = useState();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -98,6 +100,10 @@ function Footer() {
       });
   };
 
+  const handleTourPlanner = () => {
+    navigate("pages/tour-planner")
+  };
+  
   const socials = [
     {
       icon: <Instagram />,
@@ -173,7 +179,7 @@ function Footer() {
             {value?.footerTitle || ""}
           </MKTypography>
           <Stack direction="row" spacing={1} mt={3}>
-            <MKButton circular variant="contained" color="white">
+            <MKButton circular variant="contained" color="white" onClick = {handleTourPlanner}>
               {value?.footerButton || ""}
             </MKButton>
           </Stack>

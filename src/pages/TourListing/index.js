@@ -490,26 +490,46 @@ function TourListing() {
                           }}
                         />
                         <Grid container alignItems="center">
-                          {path &&
-                            path?.length > 0 &&
-                            path.map((elemant, index) => {
-                              return (
-                                <Grid
-                                  display={"flex"}
-                                  alignItems={"center"}
-                                  flexDirection={"row"}
-                                  key={index}
-                                >
-                                  <MKTypography variant="subtitle2">
-                                    {elemant}
-                                  </MKTypography>
-                                  {index < path.length - 1 && (
-                                    <Icon sx={{ fontWeight: "bold" }}>
-                                      arrow_forward
-                                    </Icon>
-                                  )}
-                                </Grid>
-                              );
+                          {item.tour_itineries &&
+                            item.tour_itineries?.length > 0 &&
+                            item.tour_itineries.map((element, index) => {
+                              if (element.iTitle === "Route") {
+                                return (
+                                  <Grid
+                                    display={"flex"}
+                                    alignItems={"center"}
+                                    flexDirection={"row"}
+                                    key={index}
+                                  >
+                                    {element.tour_sub_itineraries &&
+                                      element.tour_sub_itineraries.length > 0 &&
+                                      element.tour_sub_itineraries.map(
+                                        (x, i) => {
+                                          return (
+                                            <>
+                                              <MKTypography variant="subtitle2">
+                                                {x.subTitle.replace(
+                                                  /\bNights?\b/g,
+                                                  "N"
+                                                )}
+                                              </MKTypography>
+                                              {i <
+                                                element.tour_sub_itineraries
+                                                  .length -
+                                                  1 && (
+                                                <Icon
+                                                  sx={{ fontWeight: "bold", marginRight: 0.5, marginLeft: 0.5 }}
+                                                >
+                                                  arrow_forward
+                                                </Icon>
+                                              )}
+                                            </>
+                                          );
+                                        }
+                                      )}
+                                  </Grid>
+                                );
+                              }
                             })}
                         </Grid>
                         <Divider
@@ -720,29 +740,49 @@ function TourListing() {
                                 margin: 1,
                               }}
                             />
-                            <Grid container alignItems="center">
-                              {path &&
-                                path.length > 0 &&
-                                path.map((elemant, index) => {
-                                  return (
-                                    <Grid
-                                      display={"flex"}
-                                      alignItems={"center"}
-                                      flexDirection={"row"}
-                                      key={index}
-                                    >
-                                      <MKTypography variant="subtitle2">
-                                        {elemant}
-                                      </MKTypography>
-                                      {index < path.length - 1 && (
-                                        <Icon sx={{ fontWeight: "bold" }}>
-                                          arrow_forward
-                                        </Icon>
+                        <Grid container alignItems="center">
+                          {item.tour_itineries &&
+                            item.tour_itineries?.length > 0 &&
+                            item.tour_itineries.map((element, index) => {
+                              if (element.iTitle === "Route") {
+                                return (
+                                  <Grid
+                                    display={"flex"}
+                                    alignItems={"center"}
+                                    flexDirection={"row"}
+                                    key={index}
+                                  >
+                                    {element.tour_sub_itineraries &&
+                                      element.tour_sub_itineraries.length > 0 &&
+                                      element.tour_sub_itineraries.map(
+                                        (x, i) => {
+                                          return (
+                                            <>
+                                              <MKTypography variant="subtitle2">
+                                                {x.subTitle.replace(
+                                                  /\bNights?\b/g,
+                                                  "N"
+                                                )}
+                                              </MKTypography>
+                                              {i <
+                                                element.tour_sub_itineraries
+                                                  .length -
+                                                  1 && (
+                                                <Icon
+                                                  sx={{ fontWeight: "bold", marginRight: 0.5, marginLeft: 0.5 }}
+                                                >
+                                                  arrow_forward
+                                                </Icon>
+                                              )}
+                                            </>
+                                          );
+                                        }
                                       )}
-                                    </Grid>
-                                  );
-                                })}
-                            </Grid>
+                                  </Grid>
+                                );
+                              }
+                            })}
+                        </Grid>
                             <Divider
                               variant="middle"
                               sx={{
@@ -836,22 +876,15 @@ function TourListing() {
                 {pageTexts?.section3Button}
               </MKButton>
             </Stack>
-              <MKTypography
-                variant="h1"
-                color="black"
-                sx={({ breakpoints, typography: { size } }) => ({
-                  [breakpoints.down("md")]: {
-                    fontSize: size["3xl"],
-                  },
-                  [breakpoints.down("sm")]: {
-                    fontSize: size["xl"],
-                  },
-                  fontFamily: "Playfair Display, serif",
-                  fontSize: "60px",
-                  fontWeight: 400,
-                  textAlign: "center",
-                })}
-              >
+            <MKTypography
+              variant="h1"
+              color="black"
+              sx={({ breakpoints, typography: { size } }) => ({
+                [breakpoints.down("md")]: {
+                  fontSize: size["3xl"],
+                },
+              })}
+            >
               {pageTexts?.section3Title}
             </MKTypography>
             <MKTypography

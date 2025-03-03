@@ -114,15 +114,6 @@ function Home() {
     setLocation(event.target.value);
   };
 
-  useEffect(() => {
-    getTourPackages();
-    getPropertyDetails();
-    getPropertyText();
-    getPropertyImages();
-    getBlogCategories();
-    setSelected(packages[0].key);
-  }, []);
-
   const packages = [
     {
       key: "all ",
@@ -145,6 +136,17 @@ function Home() {
       value: "Multi-day",
     },
   ];
+  
+  useEffect(() => {
+    getTourPackages();
+    getPropertyDetails();
+    getPropertyText();
+    getPropertyImages();
+    getBlogCategories();
+    setSelected(packages[0].key);
+  }, []);
+
+
 
   const travelSolutions = [
     {
@@ -382,6 +384,26 @@ function Home() {
     }
   };
 
+  const handleViewPackageClick = (item) => {
+    //TODO Handle button action seperatly
+    switch (item) {
+      case "Meetings & Conferences":
+        navigate("/pages/meetings#package");
+        return;
+      case "Exhibitions":
+        navigate("/pages/accomadation#package");
+        return;
+      case "Weddings":
+        navigate("/pages/weddings#package");
+        return;
+      case "Incentive Tours":
+        navigate("/pages/mice-tours#package");
+        return;
+      default:
+        return;
+    }
+  };
+
   const handleViewAllClick = () => {
     navigate("/pages/blogs");
   };
@@ -532,6 +554,7 @@ function Home() {
                       size="small"
                       circular
                       color="white"
+                      onClick={() => handleViewPackageClick(item?.title)}
                       sx={{
                         width: "45%",
                         fontFamily: "Poppins, sans-serif",
@@ -547,7 +570,7 @@ function Home() {
           </Grid>
         </Grid>
         {/* Create your own adventure SECTION */}
-        <Grid
+        {/*    <Grid
           container
           sx={{
             display: "flex",
@@ -673,6 +696,7 @@ function Home() {
             </Grid>
           </Container>
         </Grid>
+        */}
         {/* Explore our travel Packages */}
         <Grid
           container
@@ -682,6 +706,7 @@ function Home() {
             paddingLeft: "16px",
             paddingRight: "16px",
             backgroundColor: "#FEFDF5",
+            marginTop: 7,
           }}
         >
           <Container
@@ -867,33 +892,20 @@ function Home() {
                               }}
                             />
                             <Grid container alignItems="center">
-                              <MKTypography variant="subtitle2">
-                                Airport
-                              </MKTypography>
-                              <Icon sx={{ fontWeight: "bold" }}>
-                                arrow_forward
-                              </Icon>
-                              <MKTypography variant="subtitle2">
-                                Yala (2N)
-                              </MKTypography>
-                              <Icon sx={{ fontWeight: "bold" }}>
-                                arrow_forward
-                              </Icon>
-                              <MKTypography variant="subtitle2">
-                                Weligama (1N)
-                              </MKTypography>
-                              <Icon sx={{ fontWeight: "bold" }}>
-                                arrow_forward
-                              </Icon>
-                              <MKTypography variant="subtitle2">
-                                Ahungalle (1N)
-                              </MKTypography>
-                              <Icon sx={{ fontWeight: "bold" }}>
-                                arrow_forward
-                              </Icon>
-                              <MKTypography variant="subtitle2">
-                                Airport
-                              </MKTypography>
+                              {item.tour_itineries && item.tour_itineries.length > 0
+                                ? item.tour_itineries.map((itinery, index) => (
+                                    <>
+                                      <MKTypography id = {index} variant="subtitle2">
+                                        {itinery.iTitle}
+                                      </MKTypography>
+                                      {index !== item.tour_itineries.length - 1 ? 
+                                      <Icon id = {index} sx={{ fontWeight: "bold" }}>
+                                        arrow_forward
+                                      </Icon>
+                                      :null}
+                                    </>
+                                  ))
+                                : null}
                             </Grid>
                             <Divider
                               variant="middle"
