@@ -136,7 +136,16 @@ function Home() {
       value: "Multi-day",
     },
   ];
-  
+
+  const iconMappings = {
+    "fas fa-plane": <UilPlaneDeparture className="hover-icon" />,
+    "fas fa-ticket-alt": <UilTicket className="hover-icon" />,
+    "fas fa-utensils": <UilUtensils className="hover-icon" />,
+    "fas fa-bed": <UilBedDouble className="hover-icon" />,
+    "fas fa-umbrella-beach": (
+      <LiBeach className="hover-svg" sx={{ transition: "stroke 0.3s ease" }} />
+    ),
+  };
   useEffect(() => {
     getTourPackages();
     getPropertyDetails();
@@ -145,8 +154,6 @@ function Home() {
     getBlogCategories();
     setSelected(packages[0].key);
   }, []);
-
-
 
   const travelSolutions = [
     {
@@ -892,20 +899,52 @@ function Home() {
                               }}
                             />
                             <Grid container alignItems="center">
-                              {item.tour_itineries && item.tour_itineries.length > 0
-                                ? item.tour_itineries.map((itinery, index) => (
-                                    <>
-                                      <MKTypography id = {index} variant="subtitle2">
-                                        {itinery.iTitle}
-                                      </MKTypography>
-                                      {index !== item.tour_itineries.length - 1 ? 
-                                      <Icon id = {index} sx={{ fontWeight: "bold" }}>
-                                        arrow_forward
-                                      </Icon>
-                                      :null}
-                                    </>
-                                  ))
-                                : null}
+                              {item.tour_itineries &&
+                                item.tour_itineries?.length > 0 &&
+                                item.tour_itineries.map((element, index) => {
+                                  if (element.iTitle === "Route") {
+                                    return (
+                                      <Grid
+                                        display={"flex"}
+                                        alignItems={"center"}
+                                        flexDirection={"row"}
+                                        key={index}
+                                      >
+                                        {element.tour_sub_itineraries &&
+                                          element.tour_sub_itineraries.length >
+                                            0 &&
+                                          element.tour_sub_itineraries.map(
+                                            (x, i) => {
+                                              return (
+                                                <>
+                                                  <MKTypography variant="subtitle2">
+                                                    {x.subTitle.replace(
+                                                      /\bNights?\b/g,
+                                                      "N"
+                                                    )}
+                                                  </MKTypography>
+                                                  {i <
+                                                    element.tour_sub_itineraries
+                                                      .length -
+                                                      1 && (
+                                                    <Icon
+                                                      sx={{
+                                                        fontWeight: "bold",
+                                                        marginRight: 0.5,
+                                                        marginLeft: 0.5,
+                                                      }}
+                                                    >
+                                                      arrow_forward
+                                                    </Icon>
+                                                  )}
+                                                </>
+                                              );
+                                            }
+                                          )}
+                                      </Grid>
+                                    );
+                                  }
+                                })}
                             </Grid>
                             <Divider
                               variant="middle"
@@ -915,16 +954,25 @@ function Home() {
                                 margin: 1,
                               }}
                             />
-                            <UilPlaneDeparture className="hover-icon" />
-                            <UilTicket className="hover-icon" />
-                            <UilUtensils className="hover-icon" />
-                            <UilBedDouble className="hover-icon" />
-                            <LiBeach
-                              className="hover-svg"
-                              sx={{
-                                transition: "stroke 0.3s ease",
-                              }}
-                            />
+                            {item.textListData &&
+                              item.textListData.length > 0 &&
+                              item.textListData.flatMap((element) => {
+                                if (element.listTitle === "package-icon") {
+                                  return element.text_list_items &&
+                                    element.text_list_items.length > 0
+                                    ? element.text_list_items.map(
+                                        (icon, idx) => (
+                                          <React.Fragment key={idx}>
+                                            {iconMappings[
+                                              icon.listItemTitle
+                                            ] || <span>Unknown Icon</span>}
+                                          </React.Fragment>
+                                        )
+                                      )
+                                    : [];
+                                }
+                                return [];
+                              })}
                             <Divider
                               variant="middle"
                               sx={{

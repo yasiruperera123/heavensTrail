@@ -56,6 +56,16 @@ function TourListing() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [images, setImages] = useState();
 
+  const iconMappings = {
+    "fas fa-plane": <UilPlaneDeparture className="hover-icon" />,
+    "fas fa-ticket-alt": <UilTicket className="hover-icon" />,
+    "fas fa-utensils": <UilUtensils className="hover-icon" />,
+    "fas fa-bed": <UilBedDouble className="hover-icon" />,
+    "fas fa-umbrella-beach": (
+      <LiBeach className="hover-svg" sx={{ transition: "stroke 0.3s ease" }} />
+    ),
+  };
+
   const getPropertyText = async () => {
     // Usage
     fetchPropertyPageTexts(PageIDs.TourListing)
@@ -92,10 +102,12 @@ function TourListing() {
     fetchTourPackages()
       .then((reponse) => {
         console.log("Fetched data: TOUR ", reponse);
+
         const roundTours = reponse?.data
           .filter((item) => item.tType === "Round Tour")
           .slice(0, 6);
         setRoundTours(roundTours);
+
         const dayTours = reponse?.data
           .filter((item) => item.tType === "Day Tour")
           .slice(0, 3);
@@ -111,210 +123,6 @@ function TourListing() {
     getPropertyImages();
     getTourPackages();
   }, []);
-
-  const path = [
-    "Airport",
-    "Yala (2N)",
-    "Weligama (1N)",
-    "Ahungalle (1N)",
-    "Airport",
-  ];
-
-  const iconSet = [
-    <UilPlaneDeparture className="hover-icon" />,
-    <UilTicket className="hover-icon" />,
-    <UilUtensils className="hover-icon" />,
-    <UilBedDouble className="hover-icon" />,
-    <LiBeach
-      className="hover-svg"
-      sx={{
-        transition: "stroke 0.3s ease",
-      }}
-    />,
-  ];
-
-  const travelPcgs = [
-    {
-      title: "Luxury Escape to the Southern Coast",
-      duration: "4 Nights, 6 Days",
-
-      img: TourListingPage.Round_Tour_1,
-    },
-    {
-      title: "Luxury Escape to the Misty Tea Country",
-      duration: "4 Nights, 6 Days",
-      path: [
-        "Airport",
-        "Sigiriya",
-        "Dambulla (2N)",
-        "Kandy",
-        "Hatton (2N)",
-        "Kithulgala",
-        "Colombo",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-        <LiBeach
-          className="hover-svg"
-          sx={{
-            transition: "stroke 0.3s ease",
-          }}
-        />,
-      ],
-      img: TourListingPage.Round_Tour_2,
-    },
-    {
-      title: "Scenic Sri Lanka Trip -Soulmate Special",
-      duration: "6 Nights, 7 Days",
-      path: [
-        "Airport ",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-        <LiBeach
-          className="hover-svg"
-          sx={{
-            transition: "stroke 0.3s ease",
-          }}
-        />,
-      ],
-      img: TourListingPage.Round_Tour_3,
-    },
-    {
-      title: "Hillside Trails in Nuwara Eliya, Ella, & Kandy",
-      duration: "6 Nights, 7 Days",
-      path: [
-        "Airport",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-      ],
-      img: TourListingPage.Round_Tour_4,
-    },
-    {
-      title: "The Archaeological Marvels Package",
-      duration: "6 Nights, 7 Days",
-      path: [
-        "Airport",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-      ],
-      img: TourListingPage.Round_Tour_5,
-    },
-    {
-      title: "Divine Sri Lanka Getaway - Ramayana Edition",
-      duration: "6 Nights, 7 Days",
-      path: [
-        "Airport",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-      ],
-      img: TourListingPage.Round_Tour_6,
-    },
-  ];
-
-  const otherTravelPcgs = [
-    {
-      title: "Galle Day Tour with Heaven's Trail",
-      duration: "4 Nights, 6 Days",
-      path: [
-        "Airport",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-        <LiBeach
-          className="hover-svg"
-          sx={{
-            transition: "stroke 0.3s ease",
-          }}
-        />,
-      ],
-      img: TourListingPage.Day_Tour_1,
-    },
-    {
-      title: "Visit Kandy for Temple of tooth & Vibrant Perahera",
-      duration: "4 Nights, 6 Days",
-      path: ["Airport", "Sigiriya", "Dambulla", "Hatton"],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-        <LiBeach
-          className="hover-svg"
-          sx={{
-            transition: "stroke 0.3s ease",
-          }}
-        />,
-      ],
-      img: TourListingPage.Day_Tour_2,
-    },
-    {
-      title: "Experience the thrill of Colombo's casino scene",
-      duration: "6 Nights, 7 Days",
-      path: [
-        "Airport",
-        "Yala (2N)",
-        "Weligama (1N)",
-        "Ahungalle (1N)",
-        "Airport",
-      ],
-      iconSet: [
-        <UilPlaneDeparture className="hover-icon" />,
-        <UilTicket className="hover-icon" />,
-        <UilUtensils className="hover-icon" />,
-        <UilBedDouble className="hover-icon" />,
-        <LiBeach
-          className="hover-svg"
-          sx={{
-            transition: "stroke 0.3s ease",
-          }}
-        />,
-      ],
-      img: TourListingPage.Day_Tour_3,
-    },
-  ];
 
   const btnArray = [
     {
@@ -518,7 +326,11 @@ function TourListing() {
                                                   .length -
                                                   1 && (
                                                 <Icon
-                                                  sx={{ fontWeight: "bold", marginRight: 0.5, marginLeft: 0.5 }}
+                                                  sx={{
+                                                    fontWeight: "bold",
+                                                    marginRight: 0.5,
+                                                    marginLeft: 0.5,
+                                                  }}
                                                 >
                                                   arrow_forward
                                                 </Icon>
@@ -540,9 +352,22 @@ function TourListing() {
                             margin: 1,
                           }}
                         />
-                        {iconSet &&
-                          iconSet.map((icon) => {
-                            return icon;
+                        {item.textListData &&
+                          item.textListData.length > 0 &&
+                          item.textListData.flatMap((element) => {
+                            if (element.listTitle === "package-icon") {
+                              return element.text_list_items &&
+                                element.text_list_items.length > 0
+                                ? element.text_list_items.map((icon, idx) => (
+                                    <React.Fragment key={idx}>
+                                      {iconMappings[icon.listItemTitle] || (
+                                        <span>Unknown Icon</span>
+                                      )}
+                                    </React.Fragment>
+                                  ))
+                                : [];
+                            }
+                            return [];
                           })}
                         <Divider
                           variant="middle"
@@ -740,49 +565,54 @@ function TourListing() {
                                 margin: 1,
                               }}
                             />
-                        <Grid container alignItems="center">
-                          {item.tour_itineries &&
-                            item.tour_itineries?.length > 0 &&
-                            item.tour_itineries.map((element, index) => {
-                              if (element.iTitle === "Route") {
-                                return (
-                                  <Grid
-                                    display={"flex"}
-                                    alignItems={"center"}
-                                    flexDirection={"row"}
-                                    key={index}
-                                  >
-                                    {element.tour_sub_itineraries &&
-                                      element.tour_sub_itineraries.length > 0 &&
-                                      element.tour_sub_itineraries.map(
-                                        (x, i) => {
-                                          return (
-                                            <>
-                                              <MKTypography variant="subtitle2">
-                                                {x.subTitle.replace(
-                                                  /\bNights?\b/g,
-                                                  "N"
-                                                )}
-                                              </MKTypography>
-                                              {i <
-                                                element.tour_sub_itineraries
-                                                  .length -
-                                                  1 && (
-                                                <Icon
-                                                  sx={{ fontWeight: "bold", marginRight: 0.5, marginLeft: 0.5 }}
-                                                >
-                                                  arrow_forward
-                                                </Icon>
-                                              )}
-                                            </>
-                                          );
-                                        }
-                                      )}
-                                  </Grid>
-                                );
-                              }
-                            })}
-                        </Grid>
+                            <Grid container alignItems="center">
+                              {item.tour_itineries &&
+                                item.tour_itineries?.length > 0 &&
+                                item.tour_itineries.map((element, index) => {
+                                  if (element.iTitle === "Route") {
+                                    return (
+                                      <Grid
+                                        display={"flex"}
+                                        alignItems={"center"}
+                                        flexDirection={"row"}
+                                        key={index}
+                                      >
+                                        {element.tour_sub_itineraries &&
+                                          element.tour_sub_itineraries.length >
+                                            0 &&
+                                          element.tour_sub_itineraries.map(
+                                            (x, i) => {
+                                              return (
+                                                <>
+                                                  <MKTypography variant="subtitle2">
+                                                    {x.subTitle.replace(
+                                                      /\bNights?\b/g,
+                                                      "N"
+                                                    )}
+                                                  </MKTypography>
+                                                  {i <
+                                                    element.tour_sub_itineraries
+                                                      .length -
+                                                      1 && (
+                                                    <Icon
+                                                      sx={{
+                                                        fontWeight: "bold",
+                                                        marginRight: 0.5,
+                                                        marginLeft: 0.5,
+                                                      }}
+                                                    >
+                                                      arrow_forward
+                                                    </Icon>
+                                                  )}
+                                                </>
+                                              );
+                                            }
+                                          )}
+                                      </Grid>
+                                    );
+                                  }
+                                })}
+                            </Grid>
                             <Divider
                               variant="middle"
                               sx={{
@@ -791,9 +621,24 @@ function TourListing() {
                                 margin: 1,
                               }}
                             />
-                            {iconSet &&
-                              iconSet.map((icon) => {
-                                return icon;
+                            {item.textListData &&
+                              item.textListData.length > 0 &&
+                              item.textListData.flatMap((element) => {
+                                if (element.listTitle === "package-icon") {
+                                  return element.text_list_items &&
+                                    element.text_list_items.length > 0
+                                    ? element.text_list_items.map(
+                                        (icon, idx) => (
+                                          <React.Fragment key={idx}>
+                                            {iconMappings[
+                                              icon.listItemTitle
+                                            ] || <span>Unknown Icon</span>}
+                                          </React.Fragment>
+                                        )
+                                      )
+                                    : [];
+                                }
+                                return [];
                               })}
                             <Divider
                               variant="middle"
