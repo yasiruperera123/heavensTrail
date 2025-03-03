@@ -53,8 +53,22 @@ import { MeetingsPage } from "constants/images";
 import breakpoints from "assets/theme/base/breakpoints";
 import { PageIDs } from "constants/pageId";
 import FAQs from "components/FAQs";
+import { useLocation } from "react-router-dom";
 
 function Meetings() {
+  const location = useLocation();
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (location.hash) {
+        const element = document.getElementById(location.hash.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center"});
+        }
+      }
+    }, 100); // Small delay to allow DOM updates
+  }, [location]); 
+
   const cardsData = [
     {
       image: MeetingsPage.Meeting_Card_1,
@@ -680,6 +694,7 @@ function Meetings() {
           }}
         >
           <Container
+            id = "package"
             sx={{
               display: "flex",
               justifyContent: "center",

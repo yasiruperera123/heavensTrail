@@ -15,6 +15,7 @@ import adventureIcon2 from "assets/images/homePage/adventureIcon2.png";
 import adventureIcon3 from "assets/images/homePage/adventureIcon3.png";
 import adventureIcon4 from "assets/images/homePage/adventureIcon4.png";
 import { MiceToursPage } from "constants/images";
+import { useLocation } from "react-router-dom";
 
 import NavBar from "components/NavBar";
 import {
@@ -39,6 +40,18 @@ function MiceTours() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [images, setImages] = useState();
+  const location = useLocation();
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (location.hash) {
+        const element = document.getElementById(location.hash.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center"});
+        }
+      }
+    }, 100); // Small delay to allow DOM updates
+  }, [location]); 
 
   const getPropertyText = async () => {
     // Usage

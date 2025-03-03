@@ -11,6 +11,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Slider from "react-slick";
 import CustomPagination from "components/CustomPagination";
+import { useNavigate } from "react-router-dom";
 import {
   Drawer,
   IconButton,
@@ -40,10 +41,27 @@ function HeaderOne() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [images, setImages] = useState();
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const hello = (item) => {
+    switch(item){
+      case "Destinations":
+        navigate('/pages/destinations');
+        return;
+      case "Tour Packages":
+        navigate('/pages/tour-list#');
+        return;
+      case "Business Tours":
+        navigate('/pages/mice-tours#');
+        return;
+      default:
+        return;
+    }
+  }
 
   const getPropertyText = async () => {
     // Usage
@@ -175,6 +193,7 @@ function HeaderOne() {
                     variant="outlined"
                     color="white"
                     paddingX={"20px"}
+                    onClick = {() => hello(value?.headerButton1)}
                   >
                     {value?.headerButton1}
                   </MKButton>
@@ -184,6 +203,7 @@ function HeaderOne() {
                     variant="outlined"
                     color="white"
                     paddingX={"20px"}
+                    onClick = {() => hello(value?.headerButton2)}
                   >
                     {value?.headerButton2}
                   </MKButton>
@@ -192,6 +212,7 @@ function HeaderOne() {
                     variant="outlined"
                     color="white"
                     paddingX={"20px"}
+                    onClick = {() => hello(value?.headerButton3)}
                   >
                     {value?.headerButton3}
                   </MKButton>

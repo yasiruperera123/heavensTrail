@@ -114,15 +114,6 @@ function Home() {
     setLocation(event.target.value);
   };
 
-  useEffect(() => {
-    getTourPackages();
-    getPropertyDetails();
-    getPropertyText();
-    getPropertyImages();
-    getBlogCategories();
-    setSelected(packages[0].key);
-  }, []);
-
   const packages = [
     {
       key: "all ",
@@ -145,6 +136,24 @@ function Home() {
       value: "Multi-day",
     },
   ];
+
+  const iconMappings = {
+    "fas fa-plane": <UilPlaneDeparture className="hover-icon" />,
+    "fas fa-ticket-alt": <UilTicket className="hover-icon" />,
+    "fas fa-utensils": <UilUtensils className="hover-icon" />,
+    "fas fa-bed": <UilBedDouble className="hover-icon" />,
+    "fas fa-umbrella-beach": (
+      <LiBeach className="hover-svg" sx={{ transition: "stroke 0.3s ease" }} />
+    ),
+  };
+  useEffect(() => {
+    getTourPackages();
+    getPropertyDetails();
+    getPropertyText();
+    getPropertyImages();
+    getBlogCategories();
+    setSelected(packages[0].key);
+  }, []);
 
   const travelSolutions = [
     {
@@ -382,6 +391,26 @@ function Home() {
     }
   };
 
+  const handleViewPackageClick = (item) => {
+    //TODO Handle button action seperatly
+    switch (item) {
+      case "Meetings & Conferences":
+        navigate("/pages/meetings#package");
+        return;
+      case "Exhibitions":
+        navigate("/pages/accomadation#package");
+        return;
+      case "Weddings":
+        navigate("/pages/weddings#package");
+        return;
+      case "Incentive Tours":
+        navigate("/pages/mice-tours#package");
+        return;
+      default:
+        return;
+    }
+  };
+
   const handleViewAllClick = () => {
     navigate("/pages/blogs");
   };
@@ -532,6 +561,7 @@ function Home() {
                       size="small"
                       circular
                       color="white"
+                      onClick={() => handleViewPackageClick(item?.title)}
                       sx={{
                         width: "45%",
                         fontFamily: "Poppins, sans-serif",
@@ -547,7 +577,7 @@ function Home() {
           </Grid>
         </Grid>
         {/* Create your own adventure SECTION */}
-        <Grid
+        {/*    <Grid
           container
           sx={{
             display: "flex",
@@ -673,6 +703,7 @@ function Home() {
             </Grid>
           </Container>
         </Grid>
+        */}
         {/* Explore our travel Packages */}
         <Grid
           container
@@ -682,6 +713,7 @@ function Home() {
             paddingLeft: "16px",
             paddingRight: "16px",
             backgroundColor: "#FEFDF5",
+            marginTop: 7,
           }}
         >
           <Container
@@ -867,33 +899,52 @@ function Home() {
                               }}
                             />
                             <Grid container alignItems="center">
-                              <MKTypography variant="subtitle2">
-                                Airport
-                              </MKTypography>
-                              <Icon sx={{ fontWeight: "bold" }}>
-                                arrow_forward
-                              </Icon>
-                              <MKTypography variant="subtitle2">
-                                Yala (2N)
-                              </MKTypography>
-                              <Icon sx={{ fontWeight: "bold" }}>
-                                arrow_forward
-                              </Icon>
-                              <MKTypography variant="subtitle2">
-                                Weligama (1N)
-                              </MKTypography>
-                              <Icon sx={{ fontWeight: "bold" }}>
-                                arrow_forward
-                              </Icon>
-                              <MKTypography variant="subtitle2">
-                                Ahungalle (1N)
-                              </MKTypography>
-                              <Icon sx={{ fontWeight: "bold" }}>
-                                arrow_forward
-                              </Icon>
-                              <MKTypography variant="subtitle2">
-                                Airport
-                              </MKTypography>
+                              {item.tour_itineries &&
+                                item.tour_itineries?.length > 0 &&
+                                item.tour_itineries.map((element, index) => {
+                                  if (element.iTitle === "Route") {
+                                    return (
+                                      <Grid
+                                        display={"flex"}
+                                        alignItems={"center"}
+                                        flexDirection={"row"}
+                                        key={index}
+                                      >
+                                        {element.tour_sub_itineraries &&
+                                          element.tour_sub_itineraries.length >
+                                            0 &&
+                                          element.tour_sub_itineraries.map(
+                                            (x, i) => {
+                                              return (
+                                                <>
+                                                  <MKTypography variant="subtitle2">
+                                                    {x.subTitle.replace(
+                                                      /\bNights?\b/g,
+                                                      "N"
+                                                    )}
+                                                  </MKTypography>
+                                                  {i <
+                                                    element.tour_sub_itineraries
+                                                      .length -
+                                                      1 && (
+                                                    <Icon
+                                                      sx={{
+                                                        fontWeight: "bold",
+                                                        marginRight: 0.5,
+                                                        marginLeft: 0.5,
+                                                      }}
+                                                    >
+                                                      arrow_forward
+                                                    </Icon>
+                                                  )}
+                                                </>
+                                              );
+                                            }
+                                          )}
+                                      </Grid>
+                                    );
+                                  }
+                                })}
                             </Grid>
                             <Divider
                               variant="middle"
@@ -903,16 +954,25 @@ function Home() {
                                 margin: 1,
                               }}
                             />
-                            <UilPlaneDeparture className="hover-icon" />
-                            <UilTicket className="hover-icon" />
-                            <UilUtensils className="hover-icon" />
-                            <UilBedDouble className="hover-icon" />
-                            <LiBeach
-                              className="hover-svg"
-                              sx={{
-                                transition: "stroke 0.3s ease",
-                              }}
-                            />
+                            {item.textListData &&
+                              item.textListData.length > 0 &&
+                              item.textListData.flatMap((element) => {
+                                if (element.listTitle === "package-icon") {
+                                  return element.text_list_items &&
+                                    element.text_list_items.length > 0
+                                    ? element.text_list_items.map(
+                                        (icon, idx) => (
+                                          <React.Fragment key={idx}>
+                                            {iconMappings[
+                                              icon.listItemTitle
+                                            ] || <span>Unknown Icon</span>}
+                                          </React.Fragment>
+                                        )
+                                      )
+                                    : [];
+                                }
+                                return [];
+                              })}
                             <Divider
                               variant="middle"
                               sx={{

@@ -48,12 +48,26 @@ import {
   fetchPropertyPageImages,
 } from "services/PropertyService";
 import FAQs from "components/FAQs";
+import { useLocation } from "react-router-dom";
 
 function Weddings() {
   const [pageTexts, setPageTexts] = useState();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [images, setImages] = useState();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (location.hash) {
+        const element = document.getElementById(location.hash.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center"});
+        }
+      }
+    }, 100); // Small delay to allow DOM updates
+  }, [location]); 
 
   const getPropertyText = async () => {
     // Usage
@@ -364,6 +378,7 @@ function Weddings() {
           }}
         >
           <Container
+            id = "package"
             sx={{
               display: "flex",
               justifyContent: "center",
