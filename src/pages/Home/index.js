@@ -1628,7 +1628,13 @@ function Home() {
                   [breakpoints.down("md")]: {
                     fontSize: size["3xl"],
                   },
-                  fontFamily: "Playfair Display",
+                  [breakpoints.down("sm")]: {
+                    fontSize: size["xl"],
+                  },
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "60px",
+                  fontWeight: 400,
+                  textAlign: "center",
                 })}
               >
                 {pageTexts?.section7Title || ""}

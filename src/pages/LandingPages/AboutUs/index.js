@@ -687,6 +687,13 @@ function AboutUs() {
                   [breakpoints.down("md")]: {
                     fontSize: size["3xl"],
                   },
+                  [breakpoints.down("sm")]: {
+                    fontSize: size["xl"],
+                  },
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "60px",
+                  fontWeight: 400,
+                  textAlign: "center",
                 })}
               >
                 Your Questions Answered
