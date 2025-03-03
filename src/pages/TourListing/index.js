@@ -836,15 +836,22 @@ function TourListing() {
                 {pageTexts?.section3Button}
               </MKButton>
             </Stack>
-            <MKTypography
-              variant="h1"
-              color="black"
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
-            >
+              <MKTypography
+                variant="h1"
+                color="black"
+                sx={({ breakpoints, typography: { size } }) => ({
+                  [breakpoints.down("md")]: {
+                    fontSize: size["3xl"],
+                  },
+                  [breakpoints.down("sm")]: {
+                    fontSize: size["xl"],
+                  },
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "60px",
+                  fontWeight: 400,
+                  textAlign: "center",
+                })}
+              >
               {pageTexts?.section3Title}
             </MKTypography>
             <MKTypography
