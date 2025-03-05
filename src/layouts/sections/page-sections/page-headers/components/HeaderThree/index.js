@@ -34,6 +34,7 @@ function HeaderThree({
   subHead,
   headerFontSize,
   pageId,
+  duration
 }) {
   const [value, setValue] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -116,7 +117,7 @@ function HeaderThree({
               `${linearGradient(
                 rgba(gradients.dark.main, 0),
                 rgba(gradients.dark.state, 0)
-              )}, url(${images?.headerImage})`,
+              )}, url(${backgroundImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             opacity: 1,
@@ -165,7 +166,11 @@ function HeaderThree({
             >
               {description}
             </MKTypography>
-            {subHead && <hr style={{ width: "100%" }} />}
+            {duration && (
+              <div className="text-with-lines">
+                {duration ? duration : "MICE Tours"}
+              </div>
+            )}
             <Grid justifyContent="center">
               {buttonArray &&
                 buttonArray.length > 0 &&

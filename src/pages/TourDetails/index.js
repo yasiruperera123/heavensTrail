@@ -63,9 +63,36 @@ import Stepper from "components/Test";
 import NavBarTwo from "components/NavBarTwo";
 import HeaderThree from "layouts/sections/page-sections/page-headers/components/HeaderThree";
 import { PageIDs } from "constants/pageId";
+import { useLocation } from "react-router-dom";
+import { fetchTourPackage } from "services/TourServices";
 
 function TourDetails() {
-  useEffect(() => {}, []);
+  const location = useLocation();
+  const [tourDetails, setTourDetails] = useState(null);
+
+  const getTourDetails = async (propCode, tpId) => {
+    fetchTourPackage(propCode, tpId)
+    .then((response)=>{
+      setTourDetails(response.data)
+    })
+    .catch((error)=>{
+      console.error("Fetch failed:", error.message)
+    })
+  }
+
+  useEffect(() => {
+    if (location.hash) {
+      const hashParts = location.hash.substring(1).split("#"); // Remove `#` and split by `#`
+
+      if (hashParts.length >= 2) {
+        const propertyCode = hashParts[0];
+        const tpId = hashParts[1];
+
+        getTourDetails(propertyCode, tpId)
+      }
+    }
+  }, []);
+
   const id = useUID();
 
   const facilities = [
@@ -145,16 +172,17 @@ function TourDetails() {
     "Early check-in or late check-out charges",
     "Expenses of a personal nature",
   ];
-
+  console.log(tourDetails)
   return (
     <div style={{ backgroundColor: "#FEFDF5" }} id={id}>
       <NavBarTwo />
       <div style={{ padding: 15 }}>
         <HeaderThree
-          title="Accommodation Options with Heaven’s Trail"
-          backgroundImage={AccomadationPage.Header}
-          subHead={"Hill Country Destinations"}
+          title={tourDetails?.pageTitle}
+          backgroundImage= {tourDetails?.tour_pkg_image_urls[0].imgUrl}
+          subHead={tourDetails?.tType}
           pageId={PageIDs.TourDetails}
+          duration ={`${tourDetails?.duration} ${tourDetails?.durationUnit}`}
         />
       </div>
       <div style={{ overflowX: "hidden" }}>
@@ -236,16 +264,7 @@ function TourDetails() {
                     color="black"
                     sx={{ textAlign: "left", maxWidth: "90%" }}
                   >
-                    Tea Country Escape offers a serene journey through Sri
-                    Lanka's lush tea plantations and historical landmarks. Begin
-                    with an exploration of the ancient Sigiriya rock fortress
-                    and the tranquil Dambulla Cave Temple. Continue to the
-                    cultural heart of Kandy, home to the revered Temple of the
-                    Tooth Relic, before immersing yourself in the luxury of
-                    Hatton's tea bungalows. Conclude your journey with the
-                    adventure of white water rafting in Kitulgala and the
-                    vibrant sights of Colombo, blending relaxation, adventure,
-                    and rich cultural experiences into one unforgettable tour.
+                    {tourDetails?.longDescription}
                   </MKTypography>
                   <MKTypography
                     variant="h6"
@@ -261,7 +280,7 @@ function TourDetails() {
                     <li>
                       Tour Name:{" "}
                       <span style={{ fontWeight: 400 }}>
-                        A Luxury Escape to the Misty Tea Country
+                        {tourDetails?.pageTitle}
                       </span>
                     </li>
                   </MKTypography>
@@ -277,7 +296,7 @@ function TourDetails() {
                   >
                     <li>
                       Duration:{" "}
-                      <span style={{ fontWeight: 400 }}>6 Days (4 Nights)</span>
+                      <span style={{ fontWeight: 400 }}>{`${tourDetails?.duration} ${tourDetails?.durationUnit}`}</span>
                     </li>
                   </MKTypography>
                   <MKTypography

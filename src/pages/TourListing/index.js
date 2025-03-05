@@ -11,7 +11,7 @@ import HeaderTwo from "layouts/sections/page-sections/page-headers/components/He
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Footer from "components/Footer";
 import { useNavigate } from "react-router-dom";
-import { fetchTourPackages } from "services/TourServices";
+import { fetchTourPackages, fetchTourPackage } from "services/TourServices";
 import {
   UilPlaneDeparture,
   UilTicket,
@@ -65,6 +65,10 @@ function TourListing() {
       <LiBeach className="hover-svg" sx={{ transition: "stroke 0.3s ease" }} />
     ),
   };
+
+  const handleListingSelection = (propertyCode, tpId) => {
+    navigate(`/pages/tour-details#${propertyCode}#${tpId}`)
+  }
 
   const getPropertyText = async () => {
     // Usage
@@ -220,6 +224,7 @@ function TourListing() {
                   sx={{ flexShrink: 0 }}
                 >
                   <Card
+                    onClick = {() => handleListingSelection(item.propertyCode, item.tpId)}
                     sx={{
                       maxHeight: "745px",
                       boxShadow: "none",
@@ -721,17 +726,24 @@ function TourListing() {
                 {pageTexts?.section3Button}
               </MKButton>
             </Stack>
-            <MKTypography
-              variant="h1"
-              color="black"
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
-            >
-              {pageTexts?.section3Title}
-            </MKTypography>
+              <MKTypography
+                variant="h1"
+                color="black"
+                sx={({ breakpoints, typography: { size } }) => ({
+                  [breakpoints.down("md")]: {
+                    fontSize: size["3xl"],
+                  },
+                  [breakpoints.down("sm")]: {
+                    fontSize: size["xl"],
+                  },
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: "60px",
+                  fontWeight: 400,
+                  textAlign: "center",
+                })}
+              >
+                {pageTexts?.section3Title || ""}
+              </MKTypography>
             <MKTypography
               variant="h6"
               fontWeight="regular"
