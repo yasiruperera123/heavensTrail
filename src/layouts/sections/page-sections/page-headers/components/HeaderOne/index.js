@@ -48,20 +48,20 @@ function HeaderOne() {
   };
 
   const hello = (item) => {
-    switch(item){
+    switch (item) {
       case "Destinations":
-        navigate('/pages/destinations');
+        navigate("/pages/destinations");
         return;
       case "Tour Packages":
-        navigate('/pages/tour-list#');
+        navigate("/pages/tour-list#");
         return;
       case "Business Tours":
-        navigate('/pages/mice-tours#');
+        navigate("/pages/mice-tours#");
         return;
       default:
         return;
     }
-  }
+  };
 
   const getPropertyText = async () => {
     // Usage
@@ -177,12 +177,35 @@ function HeaderOne() {
                   color="white"
                   mb={3}
                   sx={({ breakpoints, typography: { size } }) => ({
-                    [breakpoints.down("md")]: {
-                      fontSize: size["3xl"],
-                    },
+                    // Base styles for all screen sizes
                     fontFamily: "Playfair Display, serif",
-                    fontSize: "90px",
                     fontWeight: 400,
+                    lineHeight: 1.2, // Improves readability for large text
+                    wordBreak: "break-word", // Prevents overflow on small screens
+                    textAlign: "center", // Optional: centers text for better aesthetics on smaller screens
+
+                    // Extra-large screens (lg and up, 1280px+)
+                    fontSize: "90px",
+
+                    // Responsive adjustments for smaller screens
+                    [breakpoints.down("lg")]: {
+                      fontSize: "70px", // Slightly smaller for large screens (960px - 1280px)
+                    },
+                    [breakpoints.down("md")]: {
+                      fontSize: size["3xl"] || "50px", // Fallback to 50px if size["3xl"] isn't defined
+                    },
+                    [breakpoints.down("sm")]: {
+                      fontSize: "40px", // Smaller for small screens (600px and below)
+                      lineHeight: 1.3, // Adjust line height for better readability
+                    },
+                    [breakpoints.down("xs")]: {
+                      fontSize: "32px", // Even smaller for extra-small screens (e.g., < 600px)
+                      textAlign: "center", // Ensure centering for very small screens
+                    },
+
+                    // Optional: Use relative units like vw for more dynamic scaling
+                    // Uncomment if you'd prefer a more fluid approach
+                    // fontSize: "clamp(32px, 8vw, 90px)", // Scales between 32px and 90px based on viewport width
                   })}
                 >
                   {value?.headerTitle || ""}
@@ -193,7 +216,7 @@ function HeaderOne() {
                     variant="outlined"
                     color="white"
                     paddingX={"20px"}
-                    onClick = {() => hello(value?.headerButton1)}
+                    onClick={() => hello(value?.headerButton1)}
                   >
                     {value?.headerButton1}
                   </MKButton>
@@ -203,7 +226,7 @@ function HeaderOne() {
                     variant="outlined"
                     color="white"
                     paddingX={"20px"}
-                    onClick = {() => hello(value?.headerButton2)}
+                    onClick={() => hello(value?.headerButton2)}
                   >
                     {value?.headerButton2}
                   </MKButton>
@@ -212,7 +235,7 @@ function HeaderOne() {
                     variant="outlined"
                     color="white"
                     paddingX={"20px"}
-                    onClick = {() => hello(value?.headerButton3)}
+                    onClick={() => hello(value?.headerButton3)}
                   >
                     {value?.headerButton3}
                   </MKButton>

@@ -470,7 +470,7 @@ function TourDetails() {
                   </MKTypography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ backgroundColor: "#FEFDF5" }}>
-                  <CustomItinarary />
+                  <CustomItinarary itinerary = {tourDetails?.tour_itineries}/>
                 </AccordionDetails>
               </Accordion>
               <Accordion

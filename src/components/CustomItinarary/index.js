@@ -29,7 +29,7 @@ import {
 } from "@mui/material";
 import "./Itinerary.css";
 
-const Itinerary = () => {
+const Itinerary = (props) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [heights, setHeights] = useState({}); // Store heights for each accordion
   const detailsRefs = useRef([]);
