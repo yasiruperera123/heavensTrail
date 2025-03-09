@@ -1,84 +1,57 @@
-import React, { useState, useEffect, useRef, useId } from "react";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
-import View from "layouts/sections/components/View";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
-import Icon from "@mui/material/Icon";
-import { ReactComponent as Walking } from "assets/icons/la_walking.svg";
-import HeaderTwo from "layouts/sections/page-sections/page-headers/components/HeaderTwo";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MKBox from "components/MKBox";
-import footerBg from "assets/images/homePage/beach.jpeg";
-import NavBar from "components/NavBar";
-import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
-import { AboutUsPage } from "constants/images";
-import CustomItinarary from "components/CustomItinarary";
-import { useUID } from "react-uid";
-import Badge from "@kiwicom/orbit-components/lib/Badge";
-import FloatingOfferCard from "./FloatingOfferCard";
 import {
-  UilBedDouble,
-  UilParkingSquare,
-  UilUtensils,
   UilBuilding,
-  UilWifi,
-  UilSnowFlake,
-  UilArrowUpRight,
-  UilMountainsSun,
   UilCalender,
-  UilGlassMartini,
-  UilShoppingCart,
+  UilCheck,
   UilDiceFive,
-  UilCamera,
+  UilGlassMartini,
   UilPlaneDeparture,
   UilPresentation,
-  UilTicket,
-  UilAngleLeftB,
-  UilAngleRightB,
-  UilCheck,
+  UilShoppingCart,
   UilTimes,
+  UilUtensils,
 } from "@iconscout/react-unicons";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
-  Card,
-  CardMedia,
-  CardContent,
-  CardActionArea,
-  Box,
   Accordion,
-  AccordionSummary,
   AccordionDetails,
+  AccordionSummary,
   Divider,
-  Typography,
   Rating,
 } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import CustomItinarary from "components/CustomItinarary";
 import Footer from "components/Footer";
-import galleImg from "assets/images/homePage/galle.jpeg";
-import firBall from "assets/images/homePage/fireball.jpeg";
-import { AccomadationPage } from "constants/images";
-import { TourListingPage } from "constants/images";
+import MKBox from "components/MKBox";
+import MKButton from "components/MKButton";
+import MKTypography from "components/MKTypography";
+import { AboutUsPage } from "constants/images";
+import React, { useEffect, useState } from "react";
+import { useUID } from "react-uid";
+import FloatingOfferCard from "./FloatingOfferCard";
 // import Itinerary from "components/Itinerary";
-import Stepper from "components/Test";
 import NavBarTwo from "components/NavBarTwo";
-import HeaderThree from "layouts/sections/page-sections/page-headers/components/HeaderThree";
 import { PageIDs } from "constants/pageId";
+import HeaderThree from "layouts/sections/page-sections/page-headers/components/HeaderThree";
 import { useLocation } from "react-router-dom";
 import { fetchTourPackage } from "services/TourServices";
+import { iconMappings } from "constants/icons";
+import { useMemo } from "react";
 
 function TourDetails() {
   const location = useLocation();
   const [tourDetails, setTourDetails] = useState(null);
+  const [facilities, setFacilities] = useState([]);
 
   const getTourDetails = async (propCode, tpId) => {
     fetchTourPackage(propCode, tpId)
-    .then((response)=>{
-      setTourDetails(response.data)
-    })
-    .catch((error)=>{
-      console.error("Fetch failed:", error.message)
-    })
-  }
+      .then((response) => {
+        setTourDetails(response.data);
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error.message);
+      });
+  };
 
   useEffect(() => {
     if (location.hash) {
@@ -88,47 +61,29 @@ function TourDetails() {
         const propertyCode = hashParts[0];
         const tpId = hashParts[1];
 
-        getTourDetails(propertyCode, tpId)
+        getTourDetails(propertyCode, tpId);
       }
     }
-  }, []);
+  }, [location.hash]);
+
+  const facilitiesData = useMemo(() => {
+    if (!tourDetails) return [];
+    return tourDetails.textListData
+      ?.filter((item) => item.listTitle === "Overview Icon List")
+      .flatMap((item) => item.text_list_items)
+      .map((item, idx) => ({
+        icon: (
+            React.cloneElement(iconMappings[item.listItemTitle], { style: { color: '#AF4D06' } })
+        ),
+        text: item.listItem,
+      }));
+  }, [tourDetails]);
+
+  useEffect(() => {
+    setFacilities(facilitiesData);
+  }, [facilitiesData]);
 
   const id = useUID();
-
-  const facilities = [
-    {
-      icon: <UilPlaneDeparture color="#AF4D06" />,
-      text: "Return Airport Transfers",
-    },
-    {
-      icon: <UilBuilding color="#AF4D06" />,
-      text: "Luxury Hotel Stay",
-    },
-    {
-      icon: <UilUtensils color="#AF4D06" />,
-      text: "Breakfast, Lunch & Dinner for 3 days",
-    },
-    {
-      icon: <UilPresentation color="#AF4D06" />,
-      text: "Meeting facility for 2 hours",
-    },
-    {
-      icon: <UilCalender color="#AF4D06" />,
-      text: "A full day of meeting",
-    },
-    {
-      icon: <UilGlassMartini color="#AF4D06" />,
-      text: "Evening cocktail & gala dinner",
-    },
-    {
-      icon: <UilShoppingCart color="#AF4D06" />,
-      text: "Half day shopping tour of Colombo",
-    },
-    {
-      icon: <UilDiceFive color="#AF4D06" />,
-      text: "Explore casino at Night",
-    },
-  ];
 
   const packages = [
     {
@@ -172,17 +127,17 @@ function TourDetails() {
     "Early check-in or late check-out charges",
     "Expenses of a personal nature",
   ];
-  console.log(tourDetails)
+
   return (
     <div style={{ backgroundColor: "#FEFDF5" }} id={id}>
       <NavBarTwo />
       <div style={{ padding: 15 }}>
         <HeaderThree
           title={tourDetails?.pageTitle}
-          backgroundImage= {tourDetails?.tour_pkg_image_urls[0].imgUrl}
+          backgroundImage={tourDetails?.tour_pkg_image_urls[0].imgUrl}
           subHead={tourDetails?.tType}
           pageId={PageIDs.TourDetails}
-          duration ={`${tourDetails?.duration} ${tourDetails?.durationUnit}`}
+          duration={`${tourDetails?.duration} ${tourDetails?.durationUnit}`}
         />
       </div>
       <div style={{ overflowX: "hidden" }}>
@@ -296,7 +251,9 @@ function TourDetails() {
                   >
                     <li>
                       Duration:{" "}
-                      <span style={{ fontWeight: 400 }}>{`${tourDetails?.duration} ${tourDetails?.durationUnit}`}</span>
+                      <span
+                        style={{ fontWeight: 400 }}
+                      >{`${tourDetails?.duration} ${tourDetails?.durationUnit}`}</span>
                     </li>
                   </MKTypography>
                   <MKTypography
@@ -312,7 +269,11 @@ function TourDetails() {
                     <li>
                       Locations:{" "}
                       <span style={{ fontWeight: 400 }}>
-                        Sigiriya, Dambulla, Kandy, Hatton, Kithulgala, Colombo
+                        {tourDetails?.textListData
+                          ?.filter((item) => item.listTitle === "Location")
+                          .map((item) => item.text_list_items)
+                          .map((item) => item.map((item) => item.listItemTitle))
+                          .join(" , ")}
                       </span>
                     </li>
                   </MKTypography>
@@ -470,7 +431,7 @@ function TourDetails() {
                   </MKTypography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ backgroundColor: "#FEFDF5" }}>
-                  <CustomItinarary />
+                  <CustomItinarary itineries = {tourDetails?.tour_itineries}/>
                 </AccordionDetails>
               </Accordion>
               <Accordion

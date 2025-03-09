@@ -29,7 +29,8 @@ import {
 } from "@mui/material";
 import "./Itinerary.css";
 
-const Itinerary = () => {
+const Itinerary = (props) => {
+  const data = props;
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [heights, setHeights] = useState({}); // Store heights for each accordion
   const detailsRefs = useRef([]);
@@ -230,7 +231,139 @@ const Itinerary = () => {
       </Grid>
     );
   };
-
+  const itineraryData2 = [
+    {
+      day: "Day 01",
+      title: "Bandaranaike International Airport → Sigiriya",
+      description:
+        "Meet and greet by the local representative at Airport Commence the journey to Sigiriya. Lorem ipsum dolor sit amet consectetur. Orci fringilla orci mollis vestibulum eget elementum purus. Nunc viverra hendrerit purus vitae odio. Semper amet nibh eget gravida faucibus tortor semper elit lectus. Ac vitae pellentesque ut quisque dictum placerat interdum aliquam molestie.",
+      details: (
+        <div>
+          <Typography
+            sx={{
+              fontWeight: "500",
+              fontFamily: "Poppins, sans-serif",
+              fontSize: "15px",
+            }}
+            variant="body2"
+          >
+            Visit Dambulla Cave Temple – A UNESCO WORLD HERITAGE SITE
+          </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={4}>
+              <img
+                src={AccomadationPage.Header}
+                alt="Dambulla Cave"
+                style={{ width: "100%" }}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <img
+                src={AccomadationPage.Header}
+                alt="Dambulla Cave"
+                style={{ width: "100%" }}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <img
+                src={AccomadationPage.Header}
+                alt="Dambulla Cave"
+                style={{ width: "100%" }}
+              />
+            </Grid>
+          </Grid>
+          <Grid sx={{ flexDirection: "row", display: "flex" }}>
+            <Typography
+              sx={{
+                fontWeight: "400",
+                fontFamily: "Poppins, sans-serif",
+                fontSize: "12px",
+              }}
+            >
+              Proceed to{" "}
+              <span
+                style={{
+                  fontWeight: "500",
+                  fontFamily: "Poppins, sans-serif",
+                  fontSize: "15px",
+                }}
+              >
+                Minneriya National
+              </span>{" "}
+              Park and do a{" "}
+              <span
+                style={{
+                  fontWeight: "500",
+                  fontFamily: "Poppins, sans-serif",
+                  fontSize: "15px",
+                }}
+              >
+                Jeep Safari
+              </span>
+            </Typography>
+          </Grid>
+          <Grid container spacing={2}>
+            <Grid item xs={4}>
+              <img
+                src={AccomadationPage.Header}
+                alt="Dambulla Cave"
+                style={{ width: "100%" }}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <img
+                src={AccomadationPage.Header}
+                alt="Dambulla Cave"
+                style={{ width: "100%" }}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <img
+                src={AccomadationPage.Header}
+                alt="Dambulla Cave"
+                style={{ width: "100%" }}
+              />
+            </Grid>
+          </Grid>
+          <Typography
+            sx={{
+              fontWeight: "500",
+              fontFamily: "Poppins, sans-serif",
+              fontSize: "15px",
+            }}
+            variant="body2"
+          >
+            Overnight stay at Sigiriya
+          </Typography>
+          <Typography
+            sx={{
+              fontWeight: "400",
+              fontFamily: "Poppins, sans-serif",
+              fontSize: "12px",
+            }}
+            variant="body2"
+          >
+            Check in to the hotel, to rest and relax
+          </Typography>
+          <Grid margin={0} sx={{ width: "100%" }}>
+            <CustomCard item={cardsData[0]} />
+          </Grid>
+        </div>
+      ),
+    },
+    {
+      day: "Day 02",
+      title: "Dambulla → Kandy",
+      description: "With a packed breakfast, chance to proceed...",
+      details: <div>Kandy day details...</div>,
+    },
+    {
+      day: null,
+      title: "Dambulla → Kandy",
+      description: "With a packed breakfast, chance to proceed...",
+      details: <div>Kandy day details...</div>,
+    },
+  ];
   const itineraryData = [
     {
       day: "Day 01",
