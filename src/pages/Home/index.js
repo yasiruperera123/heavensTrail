@@ -1,74 +1,52 @@
-import React, { useRef, useState, useEffect } from "react";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
-import Icon from "@mui/material/Icon";
-import { useNavigate } from "react-router-dom";
-import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
-import HeaderOne from "layouts/sections/page-sections/page-headers/components/HeaderOne";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputAdornment from "@mui/material/InputAdornment";
-import { UilAngleDown } from "@iconscout/react-unicons";
-import { HomePage } from "constants/images";
-import {
-  UilPlaneDeparture,
-  UilTicket,
-  UilUtensils,
-  UilBedDouble,
-} from "@iconscout/react-unicons";
-import Footer from "components/Footer";
-import avatar from "assets/images/avatar/avatar.jpeg";
-import meetingImg from "assets/images/homePage/meetings.jpeg";
-import exhibitionImg from "assets/images/homePage/exhibitions.jpeg";
-import weddingImg from "assets/images/homePage/wedding.jpeg";
-import tourImg from "assets/images/homePage/tours.jpeg";
-import adventureIcon1 from "assets/images/homePage/adventureIcon1.png";
-import adventureIcon2 from "assets/images/homePage/adventureIcon2.png";
-import adventureIcon3 from "assets/images/homePage/adventureIcon3.png";
-import adventureIcon4 from "assets/images/homePage/adventureIcon4.png";
-import coconutHllImg from "assets/images/homePage/coconut_hill.jpeg";
-import sigiriyaImg from "assets/images/homePage/sigiriya.jpeg";
-import soulmateImg from "assets/images/homePage/soulmate.jpeg";
-import yalaImg from "assets/images/homePage/yala.jpeg";
-import tigerImg from "assets/images/homePage/tiger.jpeg";
-import foodImg from "assets/images/homePage/food.jpeg";
-import archImg from "assets/images/homePage/9arch.jpeg";
-import buddhaImg from "assets/images/homePage/buddha.jpeg";
+import './styles.css';
 
+import { UilAngleDown, UilAngleLeft, UilAngleRight } from '@iconscout/react-unicons';
 import {
+  Box,
   Card,
-  CardMedia,
   CardActionArea,
   CardContent,
+  CardMedia,
   Divider,
-  Box,
-  Typography,
-  Avatar,
   FormControl,
   InputLabel,
-  Select,
   MenuItem,
-} from "@mui/material";
-import NavBar from "components/NavBar";
-
-import {
-  fetchPropertyData,
-  fetchPropertyPageTexts,
-  fetchPropertyPageImages,
-} from "services/PropertyService";
-import { fetchTourPackages } from "services/TourServices";
-import { fetchBlogCategories } from "services/BlogsService";
-import FAQs from "components/FAQs";
-import "./styles.css";
-import zIndex from "@mui/material/styles/zIndex";
+  Select,
+  Typography,
+} from '@mui/material';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Icon from '@mui/material/Icon';
+import InputAdornment from '@mui/material/InputAdornment';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Stack from '@mui/material/Stack';
+import zIndex from '@mui/material/styles/zIndex';
+import adventureIcon1 from 'assets/images/homePage/adventureIcon1.png';
+import adventureIcon2 from 'assets/images/homePage/adventureIcon2.png';
+import adventureIcon3 from 'assets/images/homePage/adventureIcon3.png';
+import adventureIcon4 from 'assets/images/homePage/adventureIcon4.png';
+import coconutHllImg from 'assets/images/homePage/coconut_hill.jpeg';
+import sigiriyaImg from 'assets/images/homePage/sigiriya.jpeg';
+import soulmateImg from 'assets/images/homePage/soulmate.jpeg';
+import yalaImg from 'assets/images/homePage/yala.jpeg';
+import FAQs from 'components/FAQs';
+import Footer from 'components/Footer';
+import MKButton from 'components/MKButton';
+import MKTypography from 'components/MKTypography';
+import NavBar from 'components/NavBar';
+import { iconMappings } from 'constants/icons';
+import { HomePage } from 'constants/images';
+import HeaderOne from 'layouts/sections/page-sections/page-headers/components/HeaderOne';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { fetchBlogCategories } from 'services/BlogsService';
+import { fetchPropertyData, fetchPropertyPageImages, fetchPropertyPageTexts } from 'services/PropertyService';
+import { fetchTourPackages } from 'services/TourServices';
 
 function Home() {
   const navigate = useNavigate();
-  const scrollContainerRef = useRef(null);
+  const scrollContainerRef = useRef(null)
+  const containerRefs= useRef([]);
   const [isDragging, setIsDragging] = useState(false);
   const [startPosition, setStartPosition] = useState({ x: 0, scrollLeft: 0 });
   const [propertyData, setPropertyData] = useState(null);
@@ -137,15 +115,6 @@ function Home() {
     },
   ];
 
-  const iconMappings = {
-    "fas fa-plane": <UilPlaneDeparture className="hover-icon" />,
-    "fas fa-ticket-alt": <UilTicket className="hover-icon" />,
-    "fas fa-utensils": <UilUtensils className="hover-icon" />,
-    "fas fa-bed": <UilBedDouble className="hover-icon" />,
-    "fas fa-umbrella-beach": (
-      <LiBeach className="hover-svg" sx={{ transition: "stroke 0.3s ease" }} />
-    ),
-  };
   useEffect(() => {
     getTourPackages();
     getPropertyDetails();
@@ -357,6 +326,20 @@ function Home() {
     const x = e.pageX;
     const walk = (x - startPosition.x) * 2; // Scroll faster with a multiplier (adjust if necessary)
     scrollContainerRef.current.scrollLeft = startPosition.scrollLeft - walk;
+  };
+
+  // Scroll left by a fixed amount (e.g., 200px)
+  const handleScrollLeft = (index) => {
+    if (containerRefs.current[index]) {
+      containerRefs.current[index].scrollBy({ left: -200, behavior: "smooth" });
+    }
+  };
+
+  // Scroll right by a fixed amount (e.g., 200px)
+  const handleScrollRight = (index) => {
+    if (containerRefs.current[index]) {
+      containerRefs.current[index].scrollBy({ left: 200, behavior: "smooth" });
+    }
   };
 
   const handleMouseUp = () => {
@@ -778,11 +761,11 @@ function Home() {
             <Grid
               container
               spacing={2}
-              ref={scrollContainerRef}
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseUp}
+              ref={(el) => (containerRefs.current[0] = el)}
+              // onMouseDown={handleMouseDown}
+              // onMouseMove={handleMouseMove}
+              // onMouseUp={handleMouseUp}
+              // onMouseLeave={handleMouseUp}
               sx={{
                 overflowX: "auto",
                 paddingX: 2,
@@ -1016,7 +999,30 @@ function Home() {
                   ))
                 : null}
             </Grid>
-
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                paddingX: 2,
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
+                scrollbarWidth: "none",
+                flexWrap: "nowrap",
+                width: "100%",
+                gap: 2, // Adds spacing between cards horizontally,
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 1
+              }}
+            >
+              <Grid item>
+                <UilAngleLeft size="2em" onClick = {() => handleScrollLeft(0)} style={{ cursor: 'pointer' }}/>
+              </Grid>
+              <Grid item>
+                <UilAngleRight size="2em" onClick = {() => handleScrollRight(0)} style={{ cursor: 'pointer' }}/>
+              </Grid>
+            </Grid>
             <MKButton
               circular
               variant="contained"
@@ -1176,7 +1182,7 @@ function Home() {
             <Grid
               container
               spacing={2}
-              ref={scrollContainerRef}
+              ref={(el) => containerRefs.current[1] = el}
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
@@ -1293,7 +1299,30 @@ function Home() {
                   ))
                 : null}
             </Grid>
-
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                paddingX: 2,
+                "&::-webkit-scrollbar": {
+                  display: "none",
+                },
+                scrollbarWidth: "none",
+                flexWrap: "nowrap",
+                width: "100%",
+                gap: 2, // Adds spacing between cards horizontally,
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 1
+              }}
+            >
+              <Grid item>
+                <UilAngleLeft size="2em" onClick = {() => handleScrollLeft(1)} style={{ cursor: 'pointer' }}/>
+              </Grid>
+              <Grid item>
+                <UilAngleRight size="2em" onClick = {() => handleScrollRight(1)} style={{ cursor: 'pointer' }}/>
+              </Grid>
+            </Grid>
             <MKButton
               circular
               variant="contained"

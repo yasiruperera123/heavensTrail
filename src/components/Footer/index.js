@@ -60,6 +60,27 @@ function Footer() {
     getPropertyImages();
   }, []);
 
+  const handleNavigation = (text) => {
+    switch (text) {
+      case "Home":
+        navigate("/home");
+        break;
+      case "Tour Packages":
+        navigate("/pages/tour-list");
+        break;
+      case "Business Tours":
+        navigate("/pages/mice-tours");
+        break;
+      case "About Us":
+        navigate("/pages/about-us");
+        break;
+      case "Contact Us":
+        navigate("/pages/contact-us");
+        break;
+      default:
+    }
+  }
+
   const navItems = [
     "Home",
     "Tour Packages",
@@ -238,11 +259,15 @@ function Footer() {
                   variant="h6"
                   fontWeight="regular"
                   color="black"
+                  onClick = {() => handleNavigation(text)}
                   sx={{
                     textAlign: "center",
                     fontFamily: "Playfair Display",
                     mx: 1,
                     my: { xs: 1, sm: 0 },
+                    "&:hover": {
+                      cursor: "pointer"
+                    },
                   }}
                 >
                   {text}
