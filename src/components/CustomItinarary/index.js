@@ -18,6 +18,7 @@ import {
   UilUtensils,
   UilWifi,
   UilSnowFlake,
+  UilArrowRight
 } from "@iconscout/react-unicons";
 import {
   Card,
@@ -32,6 +33,223 @@ import "./Itinerary.css";
 const Itinerary = (props) => {
   const data = props;
   console.log(data);
+  const [x, setX] = useState([]);
+
+  useEffect(()=>{
+    const y = [
+      {
+        iTitle: "Route",
+        description: "",
+        seq: 0,
+        tour_sub_itineraries: [
+          {
+            itenaryTitleId: 90,
+            subTitle: "Airport",
+            seq: 0,
+          },
+          {
+            itenaryTitleId: 91,
+            subTitle: "Galle",
+            seq: 0,
+          },
+          {
+            itenaryTitleId: 92,
+            subTitle: "Mirissa",
+            seq: 0,
+          },
+          {
+            itenaryTitleId: 93,
+            subTitle: "Yala",
+            seq: 0,
+          },
+          {
+            itenaryTitleId: 94,
+            subTitle: "Airport",
+            seq: 0,
+          },
+        ],
+      },
+      {
+        iTitle: "Day 01",
+        description: "Bandaranaike International Airport - Galle ",
+        seq: 0,
+        details: (
+          <div>
+            <Typography
+              sx={{
+                fontWeight: "500",
+                fontFamily: "Poppins, sans-serif",
+                fontSize: "15px",
+              }}
+              variant="body2"
+            >
+              Visit Dambulla Cave Temple – A UNESCO WORLD HERITAGE SITE
+            </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                <img
+                  src={AccomadationPage.Header}
+                  alt="Dambulla Cave"
+                  style={{ width: "100%" }}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <img
+                  src={AccomadationPage.Header}
+                  alt="Dambulla Cave"
+                  style={{ width: "100%" }}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <img
+                  src={AccomadationPage.Header}
+                  alt="Dambulla Cave"
+                  style={{ width: "100%" }}
+                />
+              </Grid>
+            </Grid>
+            <Grid sx={{ flexDirection: "row", display: "flex" }}>
+              <Typography
+                sx={{
+                  fontWeight: "400",
+                  fontFamily: "Poppins, sans-serif",
+                  fontSize: "12px",
+                }}
+              >
+                Proceed to{" "}
+                <span
+                  style={{
+                    fontWeight: "500",
+                    fontFamily: "Poppins, sans-serif",
+                    fontSize: "15px",
+                  }}
+                >
+                  Minneriya National
+                </span>{" "}
+                Park and do a{" "}
+                <span
+                  style={{
+                    fontWeight: "500",
+                    fontFamily: "Poppins, sans-serif",
+                    fontSize: "15px",
+                  }}
+                >
+                  Jeep Safari
+                </span>
+              </Typography>
+            </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                <img
+                  src={AccomadationPage.Header}
+                  alt="Dambulla Cave"
+                  style={{ width: "100%" }}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <img
+                  src={AccomadationPage.Header}
+                  alt="Dambulla Cave"
+                  style={{ width: "100%" }}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <img
+                  src={AccomadationPage.Header}
+                  alt="Dambulla Cave"
+                  style={{ width: "100%" }}
+                />
+              </Grid>
+            </Grid>
+            <Typography
+              sx={{
+                fontWeight: "500",
+                fontFamily: "Poppins, sans-serif",
+                fontSize: "15px",
+              }}
+              variant="body2"
+            >
+              Overnight stay at Sigiriya
+            </Typography>
+            <Typography
+              sx={{
+                fontWeight: "400",
+                fontFamily: "Poppins, sans-serif",
+                fontSize: "12px",
+              }}
+              variant="body2"
+            >
+              Check in to the hotel, to rest and relax
+            </Typography>
+            <Grid margin={0} sx={{ width: "100%" }}>
+              <CustomCard item={cardsData[0]} />
+            </Grid>
+          </div>
+        ),
+        tour_sub_itineraries: [
+          {
+            itenaryTitleId: 107,
+            subTitle: " Welcome to Sri Lanka! ",
+            seq: 0,
+          },
+          {
+            itenaryTitleId: 108,
+            subTitle: "Make a splash and soar",
+            seq: 0,
+          },
+          {
+            itenaryTitleId: 109,
+            subTitle: "A Treasure Trove of Artistry",
+            seq: 0,
+          },
+          {
+            itenaryTitleId: 110,
+            subTitle: "Galle Fort",
+            seq: 0,
+          },
+          {
+            itenaryTitleId: 111,
+            subTitle: "Overnight stay at Galle",
+            seq: 0,
+          },
+        ],
+      },
+      {
+        iTitle: "Day 02",
+        description: "Bandaranaike International Airport - Galle ",
+        seq: 0,
+        tour_sub_itineraries: [
+          {
+            itenaryTitleId: 107,
+            subTitle: " Welcome to Sri Lanka! ",
+            seq: 0,
+          },
+          {
+            itenaryTitleId: 108,
+            subTitle: "Make a splash and soar",
+            seq: 0,
+          },
+          {
+            itenaryTitleId: 109,
+            subTitle: "A Treasure Trove of Artistry",
+            seq: 0,
+          },
+          {
+            itenaryTitleId: 110,
+            subTitle: "Galle Fort",
+            seq: 0,
+          },
+          {
+            itenaryTitleId: 111,
+            subTitle: "Overnight stay at Galle",
+            seq: 0,
+          },
+        ],
+      }
+    ];
+    setX(y)
+  }, [])
+
   const cardsData = [
     {
       title: "2 - 3 Star Accommodations: starting from $200",
@@ -206,217 +424,7 @@ const Itinerary = (props) => {
     );
   };
 
-  const x = [
-    {
-      iTitle: "Route",
-      description: "",
-      seq: 0,
-      tour_sub_itineraries: [
-        {
-          itenaryTitleId: 90,
-          subTitle: "Airport",
-          seq: 0,
-        },
-        {
-          itenaryTitleId: 91,
-          subTitle: "Galle",
-          seq: 0,
-        },
-        {
-          itenaryTitleId: 92,
-          subTitle: "Mirissa",
-          seq: 0,
-        },
-        {
-          itenaryTitleId: 93,
-          subTitle: "Yala",
-          seq: 0,
-        },
-        {
-          itenaryTitleId: 94,
-          subTitle: "Airport",
-          seq: 0,
-        },
-      ],
-    },
-    {
-      iTitle: "Day 01",
-      description: "Bandaranaike International Airport - Galle ",
-      seq: 0,
-      details: (
-        <div>
-          <Typography
-            sx={{
-              fontWeight: "500",
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "15px",
-            }}
-            variant="body2"
-          >
-            Visit Dambulla Cave Temple – A UNESCO WORLD HERITAGE SITE
-          </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
-            </Grid>
-          </Grid>
-          <Grid sx={{ flexDirection: "row", display: "flex" }}>
-            <Typography
-              sx={{
-                fontWeight: "400",
-                fontFamily: "Poppins, sans-serif",
-                fontSize: "12px",
-              }}
-            >
-              Proceed to{" "}
-              <span
-                style={{
-                  fontWeight: "500",
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: "15px",
-                }}
-              >
-                Minneriya National
-              </span>{" "}
-              Park and do a{" "}
-              <span
-                style={{
-                  fontWeight: "500",
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: "15px",
-                }}
-              >
-                Jeep Safari
-              </span>
-            </Typography>
-          </Grid>
-          <Grid container spacing={2}>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
-            </Grid>
-          </Grid>
-          <Typography
-            sx={{
-              fontWeight: "500",
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "15px",
-            }}
-            variant="body2"
-          >
-            Overnight stay at Sigiriya
-          </Typography>
-          <Typography
-            sx={{
-              fontWeight: "400",
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "12px",
-            }}
-            variant="body2"
-          >
-            Check in to the hotel, to rest and relax
-          </Typography>
-          <Grid margin={0} sx={{ width: "100%" }}>
-            <CustomCard item={cardsData[0]} />
-          </Grid>
-        </div>
-      ),
-      tour_sub_itineraries: [
-        {
-          itenaryTitleId: 107,
-          subTitle: " Welcome to Sri Lanka! ",
-          seq: 0,
-        },
-        {
-          itenaryTitleId: 108,
-          subTitle: "Make a splash and soar",
-          seq: 0,
-        },
-        {
-          itenaryTitleId: 109,
-          subTitle: "A Treasure Trove of Artistry",
-          seq: 0,
-        },
-        {
-          itenaryTitleId: 110,
-          subTitle: "Galle Fort",
-          seq: 0,
-        },
-        {
-          itenaryTitleId: 111,
-          subTitle: "Overnight stay at Galle",
-          seq: 0,
-        },
-      ],
-    },
-    {
-      iTitle: "Day 02",
-      description: "Bandaranaike International Airport - Galle ",
-      seq: 0,
-      tour_sub_itineraries: [
-        {
-          itenaryTitleId: 107,
-          subTitle: " Welcome to Sri Lanka! ",
-          seq: 0,
-        },
-        {
-          itenaryTitleId: 108,
-          subTitle: "Make a splash and soar",
-          seq: 0,
-        },
-        {
-          itenaryTitleId: 109,
-          subTitle: "A Treasure Trove of Artistry",
-          seq: 0,
-        },
-        {
-          itenaryTitleId: 110,
-          subTitle: "Galle Fort",
-          seq: 0,
-        },
-        {
-          itenaryTitleId: 111,
-          subTitle: "Overnight stay at Galle",
-          seq: 0,
-        },
-      ],
-    }
-  ];
+
   // console.log(data?.itinerary?.filter((item) => item.iTitle.toLowerCase().includes("day")))
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [heights, setHeights] = useState({}); // Store heights for each accordion
@@ -604,7 +612,12 @@ const Itinerary = (props) => {
               expandIcon={<ExpandMoreIcon />}
             >
               <Grid>
-                <Typography>{item.description}</Typography>
+                <Typography>{item?.description?.split("-").map((item, idx)=>{
+                  if(item.description.split("-").length-1 != idx) {
+                    return item + <UilArrowRight/>;
+                  }else{
+                    return item;
+                  }})}</Typography>
                 <Typography
                   sx={{
                     display: "-webkit-box",
