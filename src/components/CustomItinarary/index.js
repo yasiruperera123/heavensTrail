@@ -8,422 +8,26 @@ import {
   Box,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MKTypography from "components/MKTypography";
-import { AccomadationPage } from "constants/images";
-import MKButton from "components/MKButton";
-import { ReactComponent as NoSmoke } from "assets/icons/tabler_smoking-no.svg";
 import {
-  UilBedDouble,
-  UilParkingSquare,
-  UilUtensils,
-  UilWifi,
-  UilSnowFlake,
-  UilArrowRight
+  UilArrowRight,
 } from "@iconscout/react-unicons";
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  CardActionArea,
-  Divider,
-  Rating,
-} from "@mui/material";
 import "./Itinerary.css";
+import Details from "./details";
 
 const Itinerary = (props) => {
-  const data = props;
-  console.log(data);
-  const [x, setX] = useState([]);
+  const [data, setData] = useState([]);
 
-  useEffect(()=>{
-    const y = [
-      {
-        iTitle: "Route",
-        description: "",
-        seq: 0,
-        tour_sub_itineraries: [
-          {
-            itenaryTitleId: 90,
-            subTitle: "Airport",
-            seq: 0,
-          },
-          {
-            itenaryTitleId: 91,
-            subTitle: "Galle",
-            seq: 0,
-          },
-          {
-            itenaryTitleId: 92,
-            subTitle: "Mirissa",
-            seq: 0,
-          },
-          {
-            itenaryTitleId: 93,
-            subTitle: "Yala",
-            seq: 0,
-          },
-          {
-            itenaryTitleId: 94,
-            subTitle: "Airport",
-            seq: 0,
-          },
-        ],
-      },
-      {
-        iTitle: "Day 01",
-        description: "Bandaranaike International Airport - Galle ",
-        seq: 0,
-        details: (
-          <div>
-            <Typography
-              sx={{
-                fontWeight: "500",
-                fontFamily: "Poppins, sans-serif",
-                fontSize: "15px",
-              }}
-              variant="body2"
-            >
-              Visit Dambulla Cave Temple – A UNESCO WORLD HERITAGE SITE
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={4}>
-                <img
-                  src={AccomadationPage.Header}
-                  alt="Dambulla Cave"
-                  style={{ width: "100%" }}
-                />
-              </Grid>
-              <Grid item xs={4}>
-                <img
-                  src={AccomadationPage.Header}
-                  alt="Dambulla Cave"
-                  style={{ width: "100%" }}
-                />
-              </Grid>
-              <Grid item xs={4}>
-                <img
-                  src={AccomadationPage.Header}
-                  alt="Dambulla Cave"
-                  style={{ width: "100%" }}
-                />
-              </Grid>
-            </Grid>
-            <Grid sx={{ flexDirection: "row", display: "flex" }}>
-              <Typography
-                sx={{
-                  fontWeight: "400",
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: "12px",
-                }}
-              >
-                Proceed to{" "}
-                <span
-                  style={{
-                    fontWeight: "500",
-                    fontFamily: "Poppins, sans-serif",
-                    fontSize: "15px",
-                  }}
-                >
-                  Minneriya National
-                </span>{" "}
-                Park and do a{" "}
-                <span
-                  style={{
-                    fontWeight: "500",
-                    fontFamily: "Poppins, sans-serif",
-                    fontSize: "15px",
-                  }}
-                >
-                  Jeep Safari
-                </span>
-              </Typography>
-            </Grid>
-            <Grid container spacing={2}>
-              <Grid item xs={4}>
-                <img
-                  src={AccomadationPage.Header}
-                  alt="Dambulla Cave"
-                  style={{ width: "100%" }}
-                />
-              </Grid>
-              <Grid item xs={4}>
-                <img
-                  src={AccomadationPage.Header}
-                  alt="Dambulla Cave"
-                  style={{ width: "100%" }}
-                />
-              </Grid>
-              <Grid item xs={4}>
-                <img
-                  src={AccomadationPage.Header}
-                  alt="Dambulla Cave"
-                  style={{ width: "100%" }}
-                />
-              </Grid>
-            </Grid>
-            <Typography
-              sx={{
-                fontWeight: "500",
-                fontFamily: "Poppins, sans-serif",
-                fontSize: "15px",
-              }}
-              variant="body2"
-            >
-              Overnight stay at Sigiriya
-            </Typography>
-            <Typography
-              sx={{
-                fontWeight: "400",
-                fontFamily: "Poppins, sans-serif",
-                fontSize: "12px",
-              }}
-              variant="body2"
-            >
-              Check in to the hotel, to rest and relax
-            </Typography>
-            <Grid margin={0} sx={{ width: "100%" }}>
-              <CustomCard item={cardsData[0]} />
-            </Grid>
-          </div>
-        ),
-        tour_sub_itineraries: [
-          {
-            itenaryTitleId: 107,
-            subTitle: " Welcome to Sri Lanka! ",
-            seq: 0,
-          },
-          {
-            itenaryTitleId: 108,
-            subTitle: "Make a splash and soar",
-            seq: 0,
-          },
-          {
-            itenaryTitleId: 109,
-            subTitle: "A Treasure Trove of Artistry",
-            seq: 0,
-          },
-          {
-            itenaryTitleId: 110,
-            subTitle: "Galle Fort",
-            seq: 0,
-          },
-          {
-            itenaryTitleId: 111,
-            subTitle: "Overnight stay at Galle",
-            seq: 0,
-          },
-        ],
-      },
-      {
-        iTitle: "Day 02",
-        description: "Bandaranaike International Airport - Galle ",
-        seq: 0,
-        tour_sub_itineraries: [
-          {
-            itenaryTitleId: 107,
-            subTitle: " Welcome to Sri Lanka! ",
-            seq: 0,
-          },
-          {
-            itenaryTitleId: 108,
-            subTitle: "Make a splash and soar",
-            seq: 0,
-          },
-          {
-            itenaryTitleId: 109,
-            subTitle: "A Treasure Trove of Artistry",
-            seq: 0,
-          },
-          {
-            itenaryTitleId: 110,
-            subTitle: "Galle Fort",
-            seq: 0,
-          },
-          {
-            itenaryTitleId: 111,
-            subTitle: "Overnight stay at Galle",
-            seq: 0,
-          },
-        ],
-      }
-    ];
-    setX(y)
-  }, [])
-
-  const cardsData = [
-    {
-      title: "2 - 3 Star Accommodations: starting from $200",
-      image1: AccomadationPage.Hotel_Img_1,
-      image2: AccomadationPage.Hotel_Img_2,
-      image3: AccomadationPage.Hotel_Img_3,
-      image4: AccomadationPage.Hotel_Img_4,
-      facilities: [
-        <UilParkingSquare />,
-        <UilBedDouble />,
-        <UilUtensils />,
-        <UilWifi />,
-        <UilSnowFlake />,
-        <NoSmoke />,
-      ],
-      description: "Water Garden Sigiriya",
-      rating: "367 reviews",
-      rateValue: 5,
-      btnText: "View Hotel",
-    },
-  ];
-  const CustomCard = ({ item, index }) => {
-    const isEven = index % 2 === 0;
-
-    return (
-      <Grid>
-        <Grid
-          sx={{
-            backgroundColor: "#FEFDF5",
-          }}
-        >
-          <Grid
-            sx={{
-              border: "solid",
-              borderWidth: 2,
-              borderColor: "#C9C5BA",
-              padding: 1,
-              borderRadius: "15px",
-            }}
-          >
-            <Card
-              sx={({ breakpoints }) => ({
-                display: "flex",
-                flexDirection: "row",
-                borderRadius: "15px",
-                boxShadow: "none",
-                backgroundColor: "#FEFDF5",
-                flex: 1,
-                [breakpoints.down("sm")]: {
-                  flexDirection: "column",
-                  alignItems: "center",
-                },
-              })}
-            >
-              <CardMedia
-                component="img"
-                alt="Image"
-                image={item?.image1}
-                title="title"
-                sx={({ breakpoints }) => ({
-                  borderRadius: "15px",
-                  width: "150px",
-                  height: "150px",
-                  margin: 0,
-                  [breakpoints.down("sm")]: {
-                    width: "100%",
-                    height: "auto",
-                  },
-                })}
-              />
-
-              <CardContent
-                sx={({ breakpoints }) => ({
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignSelf: "center",
-                  backgroundColor: "#FEFDF5",
-                  flex: 1,
-                  height: "150px",
-                  [breakpoints.down("sm")]: {
-                    height: "auto",
-                  },
-                })}
-              >
-                <Grid
-                  container
-                  display="flex"
-                  flexDirection="row"
-                  lg={12}
-                  sx={{
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <MKTypography
-                    color="black"
-                    sx={{
-                      fontSize: "18px",
-                      fontFamily: "Poppins, sans-serif",
-                      lineHeight: "30px",
-                      fontWeight: 500,
-                    }}
-                  >
-                    {item?.description}
-                  </MKTypography>
-                  <Grid
-                    display="flex"
-                    flexDirection="row"
-                    sx={{ alignItems: "center" }}
-                  >
-                    <MKTypography
-                      color="black"
-                      sx={{
-                        fontSize: "16px",
-                        fontFamily: "Poppins, sans-serif",
-                        lineHeight: "30px",
-                      }}
-                    >
-                      {item?.rating}
-                    </MKTypography>
-                    <Rating name="read-only" value={item?.rateValue} readOnly />
-                  </Grid>
-                  <Divider
-                    variant="middle"
-                    sx={{
-                      height: 2,
-                      width: "100%",
-                      backgroundColor: "#C9C5BA",
-                      margin: 1,
-                    }}
-                  />
-                </Grid>
-
-                <Grid container display="flex" flexDirection="row" lg={12}>
-                  {item?.facilities.map((icon) => {
-                    return icon;
-                  })}
-                  <Divider
-                    variant="middle"
-                    sx={{
-                      height: 2,
-                      width: "100%",
-                      backgroundColor: "#C9C5BA",
-                      margin: 1,
-                    }}
-                  />
-                </Grid>
-
-                <Grid
-                  container
-                  display="flex"
-                  justifyContent={"flex-end"}
-                  lg={12}
-                >
-                  <MKButton
-                    circular
-                    variant="contained"
-                    color="black"
-                    sx={{
-                      paddingLeft: 5,
-                      paddingRight: 5,
-                    }}
-                  >
-                    {item?.btnText}
-                  </MKButton>
-                </Grid>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      </Grid>
-    );
-  };
-
+  useEffect(() => {
+    setData(props?.itinerary?.tour_itineries.filter((item) => item.iTitle.toLowerCase().includes("day")).map(
+      (item) => {
+        return {
+          iTitle: item.iTitle,
+          description: item.description,
+          details: <Details subItineraries={item.tour_sub_itineraries} />
+        }
+      })
+    )
+  }, [props?.itinerary?.tour_itineries]);
 
   // console.log(data?.itinerary?.filter((item) => item.iTitle.toLowerCase().includes("day")))
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -451,196 +55,91 @@ const Itinerary = (props) => {
     }
   }, [expandedIndex]);
 
-
-
-  const itineraryData = [
-    {
-      day: "Day 01",
-      title: "Bandaranaike International Airport → Sigiriya",
-      description:
-        "Meet and greet by the local representative at Airport Commence the journey to Sigiriya. Lorem ipsum dolor sit amet consectetur. Orci fringilla orci mollis vestibulum eget elementum purus. Nunc viverra hendrerit purus vitae odio. Semper amet nibh eget gravida faucibus tortor semper elit lectus. Ac vitae pellentesque ut quisque dictum placerat interdum aliquam molestie.",
-      details: (
-        <div>
-          <Typography
-            sx={{
-              fontWeight: "500",
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "15px",
-            }}
-            variant="body2"
-          >
-            Visit Dambulla Cave Temple – A UNESCO WORLD HERITAGE SITE
-          </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
-            </Grid>
-          </Grid>
-          <Grid sx={{ flexDirection: "row", display: "flex" }}>
-            <Typography
-              sx={{
-                fontWeight: "400",
-                fontFamily: "Poppins, sans-serif",
-                fontSize: "12px",
-              }}
-            >
-              Proceed to{" "}
-              <span
-                style={{
-                  fontWeight: "500",
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: "15px",
-                }}
-              >
-                Minneriya National
-              </span>{" "}
-              Park and do a{" "}
-              <span
-                style={{
-                  fontWeight: "500",
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: "15px",
-                }}
-              >
-                Jeep Safari
-              </span>
-            </Typography>
-          </Grid>
-          <Grid container spacing={2}>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
-            </Grid>
-          </Grid>
-          <Typography
-            sx={{
-              fontWeight: "500",
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "15px",
-            }}
-            variant="body2"
-          >
-            Overnight stay at Sigiriya
-          </Typography>
-          <Typography
-            sx={{
-              fontWeight: "400",
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "12px",
-            }}
-            variant="body2"
-          >
-            Check in to the hotel, to rest and relax
-          </Typography>
-          <Grid margin={0} sx={{ width: "100%" }}>
-            <CustomCard item={cardsData[0]} />
-          </Grid>
-        </div>
-      ),
-    },
-    {
-      day: "Day 02",
-      title: "Dambulla → Kandy",
-      description: "With a packed breakfast, chance to proceed...",
-      details: <div>Kandy day details...</div>,
-    },
-  ];
-
   return (
     <Box className="itinerary-container">
-      {x.filter((item) => item.iTitle.toLowerCase().includes("day")).map((item, index) => (
-        <div className="itinerary-day" key={index}>
-          <div className="timeline-container">
-            <div className="day-text">{item.iTitle}</div>
-            <div className={index === 0 ? "dot" : "dot2"}></div>
-            {index !== itineraryData.length - 1 && (
-              <div
-                className="dot-line"
-                style={{
-                  height:
-                    expandedIndex === index
-                      ? `${heights[index] || 70}px`
-                      : "70px",
-                }} /* Adjust heights here */
-              ></div>
-            )}
+      {data?.map((item, index) => (
+          <div className="itinerary-day" key={index}>
+            <div className="timeline-container">
+              <div className="day-text">{item.iTitle}</div>
+              <div className={index === 0 ? "dot" : "dot2"}></div>
+              {index !== data.length - 1 && (
+                <div
+                  className="dot-line"
+                  style={{
+                    height:
+                      expandedIndex === index
+                        ? `${heights[index] || 70}px`
+                        : "70px",
+                  }} /* Adjust heights here */
+                ></div>
+              )}
+            </div>
+            <Accordion
+              sx={{ boxShadow: "none", "&:before": { display: "none" }}}
+              expanded={expandedIndex === index}
+              onChange={() => handleExpand(index)}
+              disableGutters
+            >
+              <AccordionSummary
+                ref={(el) => (summaryRefs.current[index] = el)}
+                sx={{ boxShadow: "none", backgroundColor: "#FEFDF5" }}
+                expandIcon={<ExpandMoreIcon />}
+              >
+                <Grid>
+                  <Typography
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "4px", // Adds spacing between text and arrow
+                    }}
+                  >
+                    {item.description.split(/[-–]/).map((part, index) => (
+                      <span
+                        key={index}
+                        style={{ display: "flex", alignItems: "center" }}
+                      >
+                        {part}{" "} {console.log(index)}
+                        {index < item.description.split(/[-–]/).length - 1 && (
+                          <UilArrowRight />
+                        )}
+                      </span>
+                    ))}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      display: "-webkit-box",
+                      WebkitBoxOrient: "vertical",
+                      WebkitLineClamp: expandedIndex === index ? 4 : 1,
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                    variant="body2"
+                  >
+                    Sprinkled along a 1340km (833-mile) coastline, its
+                    countless, topographically varied beaches, coves and bays
+                    attract sun seekers, fun lovers and surfers throughout the
+                    year. Wildlife plays its part too: beaches are vital nesting
+                    grounds for endangered marine turtles, while majestic blue
+                    whales gather a few miles offshore. While Sri Lanka is a
+                    year-round destination, it’s on the receiving end of two
+                    opposing monsoons that affect the weather, ocean currents
+                    and when and where you should visit. Generally speaking, the
+                    southwest coast is best between November and April, the east
+                    from May to September. As you start crafting your own
+                    itinerary, consider a stop at one (or a few) of these, the
+                    best beaches in Sri Lanka.
+                  </Typography>
+                </Grid>
+              </AccordionSummary>
+              <AccordionDetails
+                ref={(el) => (detailsRefs.current[index] = el)}
+                sx={{ backgroundColor: "#FEFDF5", boxShadow: 0 }}
+              >
+                {item.details}
+              </AccordionDetails>
+            </Accordion>
           </div>
-          <Accordion
-            sx={{ boxShadow: "none", "&:before": { display: "none" } }}
-            expanded={expandedIndex === index}
-            onChange={() => handleExpand(index)}
-            disableGutters
-          >
-            <AccordionSummary
-              ref={(el) => (summaryRefs.current[index] = el)}
-              sx={{ boxShadow: "none", backgroundColor: "#FEFDF5" }}
-              expandIcon={<ExpandMoreIcon />}
-            >
-              <Grid>
-                <Typography>{item?.description?.split("-").map((item, idx)=>{
-                  if(item.description.split("-").length-1 != idx) {
-                    return item + <UilArrowRight/>;
-                  }else{
-                    return item;
-                  }})}</Typography>
-                <Typography
-                  sx={{
-                    display: "-webkit-box",
-                    WebkitBoxOrient: "vertical",
-                    WebkitLineClamp: expandedIndex === index ? 4 : 1,
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                  variant="body2"
-                >
-                  {item.description}
-                </Typography>
-              </Grid>
-            </AccordionSummary>
-            <AccordionDetails
-              ref={(el) => (detailsRefs.current[index] = el)}
-              sx={{ backgroundColor: "#FEFDF5", boxShadow: 0 }}
-            >
-              {item.details}
-            </AccordionDetails>
-          </Accordion>
-        </div>
-      ))}
+        ))}
     </Box>
   );
 };

@@ -96,6 +96,10 @@ function Home() {
     setType(event.target.value);
   };
 
+  const handleListingSelection = (propertyCode, tpId) => {
+    navigate(`/pages/tour-details#${propertyCode}#${tpId}`)
+  }
+
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
   };
@@ -798,6 +802,7 @@ function Home() {
                       }}
                     >
                       <Card
+                        onClick = {() => handleListingSelection(item.propertyCode, item.tpId)}
                         sx={{
                           boxShadow: "none",
                           backgroundColor: "#FEFDF5",
