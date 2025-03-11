@@ -31,32 +31,7 @@ import "./Itinerary.css";
 
 const Itinerary = (props) => {
   const data = props;
-  const [expandedIndex, setExpandedIndex] = useState(null);
-  const [heights, setHeights] = useState({}); // Store heights for each accordion
-  const detailsRefs = useRef([]);
-  const summaryRefs = useRef([]);
-
-  const handleExpand = (index) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
-
-  useEffect(() => {
-    if (
-      expandedIndex !== null &&
-      detailsRefs.current[expandedIndex] &&
-      summaryRefs.current[expandedIndex]
-    ) {
-      const detailsHeight = detailsRefs.current[expandedIndex].scrollHeight;
-      const summaryHeight = summaryRefs.current[expandedIndex].scrollHeight;
-
-      const totalHeight = detailsHeight + summaryHeight; // Combine both heights
-      setHeights((prevHeights) => ({
-        ...prevHeights,
-        [expandedIndex]: totalHeight,
-      }));
-    }
-  }, [expandedIndex]);
-
+  console.log(data);
   const cardsData = [
     {
       title: "2 - 3 Star Accommodations: starting from $200",
@@ -78,7 +53,6 @@ const Itinerary = (props) => {
       btnText: "View Hotel",
     },
   ];
-
   const CustomCard = ({ item, index }) => {
     const isEven = index % 2 === 0;
 
@@ -231,12 +205,44 @@ const Itinerary = (props) => {
       </Grid>
     );
   };
-  const itineraryData2 = [
+
+  const x = [
     {
-      day: "Day 01",
-      title: "Bandaranaike International Airport → Sigiriya",
-      description:
-        "Meet and greet by the local representative at Airport Commence the journey to Sigiriya. Lorem ipsum dolor sit amet consectetur. Orci fringilla orci mollis vestibulum eget elementum purus. Nunc viverra hendrerit purus vitae odio. Semper amet nibh eget gravida faucibus tortor semper elit lectus. Ac vitae pellentesque ut quisque dictum placerat interdum aliquam molestie.",
+      iTitle: "Route",
+      description: "",
+      seq: 0,
+      tour_sub_itineraries: [
+        {
+          itenaryTitleId: 90,
+          subTitle: "Airport",
+          seq: 0,
+        },
+        {
+          itenaryTitleId: 91,
+          subTitle: "Galle",
+          seq: 0,
+        },
+        {
+          itenaryTitleId: 92,
+          subTitle: "Mirissa",
+          seq: 0,
+        },
+        {
+          itenaryTitleId: 93,
+          subTitle: "Yala",
+          seq: 0,
+        },
+        {
+          itenaryTitleId: 94,
+          subTitle: "Airport",
+          seq: 0,
+        },
+      ],
+    },
+    {
+      iTitle: "Day 01",
+      description: "Bandaranaike International Airport - Galle ",
+      seq: 0,
       details: (
         <div>
           <Typography
@@ -350,20 +356,95 @@ const Itinerary = (props) => {
           </Grid>
         </div>
       ),
+      tour_sub_itineraries: [
+        {
+          itenaryTitleId: 107,
+          subTitle: " Welcome to Sri Lanka! ",
+          seq: 0,
+        },
+        {
+          itenaryTitleId: 108,
+          subTitle: "Make a splash and soar",
+          seq: 0,
+        },
+        {
+          itenaryTitleId: 109,
+          subTitle: "A Treasure Trove of Artistry",
+          seq: 0,
+        },
+        {
+          itenaryTitleId: 110,
+          subTitle: "Galle Fort",
+          seq: 0,
+        },
+        {
+          itenaryTitleId: 111,
+          subTitle: "Overnight stay at Galle",
+          seq: 0,
+        },
+      ],
     },
     {
-      day: "Day 02",
-      title: "Dambulla → Kandy",
-      description: "With a packed breakfast, chance to proceed...",
-      details: <div>Kandy day details...</div>,
-    },
-    {
-      day: null,
-      title: "Dambulla → Kandy",
-      description: "With a packed breakfast, chance to proceed...",
-      details: <div>Kandy day details...</div>,
-    },
+      iTitle: "Day 02",
+      description: "Bandaranaike International Airport - Galle ",
+      seq: 0,
+      tour_sub_itineraries: [
+        {
+          itenaryTitleId: 107,
+          subTitle: " Welcome to Sri Lanka! ",
+          seq: 0,
+        },
+        {
+          itenaryTitleId: 108,
+          subTitle: "Make a splash and soar",
+          seq: 0,
+        },
+        {
+          itenaryTitleId: 109,
+          subTitle: "A Treasure Trove of Artistry",
+          seq: 0,
+        },
+        {
+          itenaryTitleId: 110,
+          subTitle: "Galle Fort",
+          seq: 0,
+        },
+        {
+          itenaryTitleId: 111,
+          subTitle: "Overnight stay at Galle",
+          seq: 0,
+        },
+      ],
+    }
   ];
+  // console.log(data?.itinerary?.filter((item) => item.iTitle.toLowerCase().includes("day")))
+  const [expandedIndex, setExpandedIndex] = useState(null);
+  const [heights, setHeights] = useState({}); // Store heights for each accordion
+  const detailsRefs = useRef([]);
+  const summaryRefs = useRef([]);
+  const handleExpand = (index) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
+  useEffect(() => {
+    if (
+      expandedIndex !== null &&
+      detailsRefs.current[expandedIndex] &&
+      summaryRefs.current[expandedIndex]
+    ) {
+      const detailsHeight = detailsRefs.current[expandedIndex].scrollHeight;
+      const summaryHeight = summaryRefs.current[expandedIndex].scrollHeight;
+
+      const totalHeight = detailsHeight + summaryHeight; // Combine both heights
+      setHeights((prevHeights) => ({
+        ...prevHeights,
+        [expandedIndex]: totalHeight,
+      }));
+    }
+  }, [expandedIndex]);
+
+
+
   const itineraryData = [
     {
       day: "Day 01",
@@ -494,10 +575,10 @@ const Itinerary = (props) => {
 
   return (
     <Box className="itinerary-container">
-      {itineraryData.map((item, index) => (
+      {x.filter((item) => item.iTitle.toLowerCase().includes("day")).map((item, index) => (
         <div className="itinerary-day" key={index}>
           <div className="timeline-container">
-            <div className="day-text">{item.day}</div>
+            <div className="day-text">{item.iTitle}</div>
             <div className={index === 0 ? "dot" : "dot2"}></div>
             {index !== itineraryData.length - 1 && (
               <div
@@ -523,7 +604,7 @@ const Itinerary = (props) => {
               expandIcon={<ExpandMoreIcon />}
             >
               <Grid>
-                <Typography>{item.title}</Typography>
+                <Typography>{item.description}</Typography>
                 <Typography
                   sx={{
                     display: "-webkit-box",

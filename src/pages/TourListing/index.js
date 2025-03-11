@@ -1,51 +1,38 @@
-import React, { useState, useEffect } from "react";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
-import View from "layouts/sections/components/View";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
-import Icon from "@mui/material/Icon";
-import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
-import HeaderTwo from "layouts/sections/page-sections/page-headers/components/HeaderTwo";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Footer from "components/Footer";
-import { useNavigate } from "react-router-dom";
-import { fetchTourPackages, fetchTourPackage } from "services/TourServices";
 import {
+  UilBedDouble,
   UilPlaneDeparture,
   UilTicket,
   UilUtensils,
-  UilBedDouble,
 } from "@iconscout/react-unicons";
-import coconutHllImg from "assets/images/homePage/coconut_hill.jpeg";
-import sigiriyaImg from "assets/images/homePage/sigiriya.jpeg";
-import soulmateImg from "assets/images/homePage/soulmate.jpeg";
-import archImg from "assets/images/homePage/9arch.jpeg";
-import buddha2Img from "assets/images/homePage/buddha2.jpeg";
-import hinduImg from "assets/images/homePage/hindu.jpeg";
-import galleImg from "assets/images/homePage/galle.jpeg";
-import firBall from "assets/images/homePage/fireball.jpeg";
-import NavBar from "components/NavBar";
-import { TourListingPage } from "constants/images";
 import {
+  Box,
   Card,
-  CardMedia,
   CardActionArea,
   CardContent,
+  CardMedia,
   Divider,
-  Box,
-  Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
+  Typography
 } from "@mui/material";
-import { PageIDs } from "constants/pageId";
-import {
-  fetchPropertyPageTexts,
-  fetchPropertyPageImages,
-} from "services/PropertyService";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Icon from "@mui/material/Icon";
+import Stack from "@mui/material/Stack";
 import FAQs from "components/FAQs";
+import Footer from "components/Footer";
+import MKButton from "components/MKButton";
+import MKTypography from "components/MKTypography";
+import NavBar from "components/NavBar";
+import { TourListingPage } from "constants/images";
+import { PageIDs } from "constants/pageId";
+import HeaderTwo from "layouts/sections/page-sections/page-headers/components/HeaderTwo";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  fetchPropertyPageImages,
+  fetchPropertyPageTexts,
+} from "services/PropertyService";
+import { fetchTourPackages } from "services/TourServices";
+import { ReactComponent as LiBeach } from "../../assets/icons/li_beach.svg";
 
 function TourListing() {
   const navigate = useNavigate();
@@ -115,6 +102,7 @@ function TourListing() {
         const dayTours = reponse?.data
           .filter((item) => item.tType === "Day Tour")
           .slice(0, 3);
+          
         setDayTours(dayTours);
       })
       .catch((error) => {
