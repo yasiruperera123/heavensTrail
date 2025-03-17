@@ -210,7 +210,7 @@ function Footer() {
       <Grid
         container
         sx={{
-          minHeight: "10rem",
+          minHeight: "15rem",
           display: "flex",
           justifyContent: "space-between",
         }}

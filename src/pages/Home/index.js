@@ -1,10 +1,6 @@
-import "./styles.css";
+import './styles.css';
 
-import {
-  UilAngleDown,
-  UilAngleLeft,
-  UilAngleRight,
-} from "@iconscout/react-unicons";
+import { UilAngleDown, UilAngleLeft, UilAngleRight } from '@iconscout/react-unicons';
 import {
   Box,
   Card,
@@ -17,39 +13,28 @@ import {
   MenuItem,
   Select,
   Typography,
-} from "@mui/material";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Icon from "@mui/material/Icon";
-import InputAdornment from "@mui/material/InputAdornment";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import Stack from "@mui/material/Stack";
-import zIndex from "@mui/material/styles/zIndex";
-import adventureIcon1 from "assets/images/homePage/adventureIcon1.png";
-import adventureIcon2 from "assets/images/homePage/adventureIcon2.png";
-import adventureIcon3 from "assets/images/homePage/adventureIcon3.png";
-import adventureIcon4 from "assets/images/homePage/adventureIcon4.png";
-import coconutHllImg from "assets/images/homePage/coconut_hill.jpeg";
-import sigiriyaImg from "assets/images/homePage/sigiriya.jpeg";
-import soulmateImg from "assets/images/homePage/soulmate.jpeg";
-import yalaImg from "assets/images/homePage/yala.jpeg";
-import FAQs from "components/FAQs";
-import Footer from "components/Footer";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
-import NavBar from "components/NavBar";
-import { iconMappings } from "constants/icons";
-import { HomePage } from "constants/images";
-import HeaderOne from "layouts/sections/page-sections/page-headers/components/HeaderOne";
-import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { fetchBlogCategories } from "services/BlogsService";
-import {
-  fetchPropertyData,
-  fetchPropertyPageImages,
-  fetchPropertyPageTexts,
-} from "services/PropertyService";
-import { fetchTourPackages } from "services/TourServices";
+} from '@mui/material';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Icon from '@mui/material/Icon';
+import InputAdornment from '@mui/material/InputAdornment';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Stack from '@mui/material/Stack';
+import zIndex from '@mui/material/styles/zIndex';
+import FAQs from 'components/FAQs';
+import FloatingWhatsApp from 'components/FloatingWhatsapp';
+import Footer from 'components/Footer';
+import MKButton from 'components/MKButton';
+import MKTypography from 'components/MKTypography';
+import NavBar from 'components/NavBar';
+import { iconMappings } from 'constants/icons';
+import { HomePage } from 'constants/images';
+import HeaderOne from 'layouts/sections/page-sections/page-headers/components/HeaderOne';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { fetchBlogCategories } from 'services/BlogsService';
+import { fetchPropertyData, fetchPropertyPageImages, fetchPropertyPageTexts } from 'services/PropertyService';
+import { fetchTourPackages } from 'services/TourServices';
 
 function Home() {
   const navigate = useNavigate();
@@ -194,63 +179,6 @@ function Home() {
     },
   ];
 
-  const adventures = [
-    {
-      title: pageTexts?.section2Item1Title || "",
-      des: pageTexts?.section2Item1Description || "",
-      img: adventureIcon1,
-    },
-    {
-      title: pageTexts?.section2Item2Title || "",
-      des: pageTexts?.section2Item2Description || "",
-      img: adventureIcon2,
-    },
-    {
-      title: pageTexts?.section2Item3Title || "",
-      des: pageTexts?.section2Item3Description || "",
-      img: adventureIcon3,
-    },
-    {
-      title: pageTexts?.section2Item4Title || "",
-      des: pageTexts?.section2Item4Description || "",
-      img: adventureIcon4,
-    },
-  ];
-
-  const travelPcgs = [
-    {
-      title: "Luxury Escape to the Southern Coast",
-      img: coconutHllImg,
-    },
-    {
-      title: "Luxury Escape to the Misty Tea Country",
-      img: sigiriyaImg,
-    },
-    {
-      title: "Scenic Sri Lanka Trip -Soulmate Special",
-      img: soulmateImg,
-    },
-    {
-      title: "Thrilling Sri Lanka Vacay- Yala National Park Special",
-      img: yalaImg,
-    },
-  ];
-
-  const reviews = [
-    {
-      title:
-        "Sri Lanka is a dream destination come true! The beaches were paradise, the food was amazing, and the people were so friendly. Our tour was perfectly planned, with something for everyone in our group.",
-    },
-    {
-      title:
-        "This trip to Sri Lanka was an adventure I'll never forget. We hiked through stunning mountains, learned about the fascinating culture, and even went on a thrilling safari! ",
-    },
-    {
-      title:
-        "We had the most relaxing and rejuvenating time in Sri Lanka. Our tour focused on wellness and mindfulness, and we had the opportunity to practice yoga, meditation, and Ayurveda treatments. ",
-    },
-  ];
-
   const getPropertyDetails = async () => {
     // Usage
     fetchPropertyData()
@@ -271,6 +199,7 @@ function Home() {
         const filteredItems = reponse?.data
           .filter((item) => item.seq === 0)
           .slice(0, 4);
+        console.log(filteredItems)
         setTourPackages(filteredItems);
       })
       .catch((error) => {
@@ -442,7 +371,7 @@ function Home() {
       </div>
       <div style={{ overflowX: "hidden" }}>
         {/* Explore our travel solutions */}
-
+     
         <Grid
           container
           sx={{
@@ -749,7 +678,7 @@ function Home() {
                   fontWeight: 400,
                 })}
               >
-                {pageTexts?.section3Title || ""}
+               {pageTexts?.section3Title || ""}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -792,9 +721,9 @@ function Home() {
                       item
                       key={index}
                       xs={12}
-                      sm={6}
-                      md={4}
-                      lg={3.5}
+                      sm={12}
+                      md={3}
+                      lg={3}
                       sx={{
                         flexShrink: 0,
                         width: "calc(100% / 3.5)",
@@ -1010,6 +939,7 @@ function Home() {
                   ))
                 : null}
             </Grid>
+            {/** Side scroll bars*/}
             <Grid
               container
               spacing={2}
@@ -1768,8 +1698,10 @@ function Home() {
 
           <FAQs title="Home FAQ" />
           <Footer />
+          <FloatingWhatsApp/>
         </Grid>
       </div>
+
     </div>
   );
 }

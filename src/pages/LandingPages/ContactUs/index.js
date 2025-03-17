@@ -1,36 +1,23 @@
-import React, { useState, useEffect } from "react";
-import MKButton from "components/MKButton";
-import MKTypography from "components/MKTypography";
-import View from "layouts/sections/components/View";
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia
+} from "@mui/material";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
-import { ReactComponent as LiBeach } from "assets/icons/li_beach.svg";
-import HeaderTwo from "layouts/sections/page-sections/page-headers/components/HeaderTwo";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MKBox from "components/MKBox";
-import FormSimple from "layouts/sections/input-areas/forms/components/FormSimple";
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  CardActionArea,
-  Box,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Divider,
-  Typography,
-} from "@mui/material";
 import Footer from "components/Footer";
-import galleImg from "assets/images/homePage/galle.jpeg";
-import firBall from "assets/images/homePage/fireball.jpeg";
+import MKBox from "components/MKBox";
+import MKTypography from "components/MKTypography";
 import NavBar from "components/NavBar";
 import { ContactUsPage } from "constants/images";
 import { PageIDs } from "constants/pageId";
+import FormSimple from "layouts/sections/input-areas/forms/components/FormSimple";
+import HeaderTwo from "layouts/sections/page-sections/page-headers/components/HeaderTwo";
+import React, { useEffect, useState } from "react";
 import {
-  fetchPropertyPageTexts,
   fetchPropertyPageImages,
+  fetchPropertyPageTexts,
 } from "services/PropertyService";
 
 function ContactUs() {

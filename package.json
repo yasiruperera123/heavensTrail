@@ -13,6 +13,7 @@
     "url": "git+https://github.com/creativetimofficial/ct-material-kit-react.git"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@emotion/cache": "11.10.7",
     "@emotion/react": "11.10.6",
     "@emotion/styled": "11.10.6",
@@ -33,6 +34,9 @@
     "d3-geo": "^3.1.1",
     "dayjs": "^1.11.12",
     "flatpickr": "4.6.13",
+    "framer-motion": "^12.5.0",
+    "mailgun.js": "^12.0.1",
+    "mailjs": "^0.1.18",
     "prop-types": "15.8.1",
     "react": "18.2.0",
     "react-copy-to-clipboard": "5.1.0",
