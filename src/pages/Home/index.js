@@ -1341,7 +1341,7 @@ function Home() {
                   fontWeight: 400,
                 })}
               >
-                {pageTexts?.section5Title || ""}
+                {pageTexts?.section5Title || "Reviews & Testimonials"}
               </MKTypography>
               <MKTypography
                 variant="h6"
@@ -1349,7 +1349,7 @@ function Home() {
                 color="black"
                 sx={{ textAlign: "center", maxWidth: "90%" }}
               >
-                {pageTexts?.section5Description || ""}
+                {pageTexts?.section5Description || "Unforgettable experiences await in Sri Lanka, but don’t just take our word for it! See what our past travelers have to say about their incredible Sri Lankan adventures. Dive into their reviews and discover the magic that awaits you"}
               </MKTypography>
             </Grid>
           </Container>
@@ -1372,59 +1372,6 @@ function Home() {
               }}
             >
               <ElfsightWidget />
-              {/* {reviews.map((item, index) => (
-                <Grid
-                  item
-                  key={index}
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={4.4}
-                  sx={{ margin: 1, flexShrink: 0 }}
-                >
-                  <Card
-                    sx={{
-                      height: "100%",
-                      boxShadow: "none",
-                      backgroundColor: "#FEFDF5",
-                      borderWidth: 1,
-                      borderColor: "#C9C5BA",
-                    }}
-                  >
-                    <CardContent>
-                      <MKTypography
-                        sx={{
-                          fontFamily: "Playfair Display, serif",
-                          fontSize: "18px",
-                          fontWeight: 500,
-                        }}
-                        color="#1A1814"
-                        variant="subtitle2"
-                      >
-                        {item?.title}
-                      </MKTypography>
-                      <Grid
-                        item
-                        sx={{
-                          flexDirection: "row",
-                          display: "flex",
-                          alignItems: "center",
-                          marginTop: 4,
-                        }}
-                      >
-                        <Avatar
-                          alt="Remy Sharp"
-                          src={avatar}
-                          sx={{ width: "30px", height: "30px", marginRight: 2 }}
-                        />
-                        <MKTypography color="#1A1814" variant="subtitle2">
-                          Sarah W.
-                        </MKTypography>
-                      </Grid>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))} */}
             </Box>
           </Grid>
           <MKButton
@@ -1437,6 +1384,7 @@ function Home() {
               marginTop: 5,
               marginBottom: 10,
             }}
+            onClick={() => window.open("https://www.google.com/search?sca_esv=11a0cbbb8d287e03&hl=en-LK&gl=lk&si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzW0gzzuMsrEVKeW9xlJx-U2mlbENzq29stJ0qtP-5iDCmuAhAe75ankDle3r7EchNKYklvvzt2iB6TC43rRvlPwwkMw9RmVhoFdem-PAYWyiWM_RXA%3D%3D&q=Heaven%27s+Trail+%28Pvt%29+Ltd+Reviews&sa=X&ved=2ahUKEwj96rOmp4SMAxVXwTgGHYtXDgAQ0bkNegQIJhAE&biw=1536&bih=730&dpr=1.25", "_blank")}
           >
             {pageTexts?.section5Button2 || ""}
           </MKButton>

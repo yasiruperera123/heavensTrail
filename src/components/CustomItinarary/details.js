@@ -17,7 +17,7 @@ export default function Details(props) {
 
   useEffect(() => {
     setData(props?.subItineraries);
-    console.log(data)
+    console.log(props)
   }, [props?.subItineraries]);
 
   const cardsData = [
@@ -55,29 +55,21 @@ export default function Details(props) {
           >
             {item?.subTitle}
           </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
+          {item?.tour_itinery_image_urls?.length > 0 ? (
+            <Grid container spacing={2}>
+              {item?.tour_itinery_image_urls?.map((image) => (
+                <Grid item xs={4}>
+                  <img src={image.imgUrl} alt="Dambulla Cave" style={{ width: "100%" }} />
+              </Grid>
+            ))}
             </Grid>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
+          ) : (
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                <img src={AccomadationPage.Header} alt="Dambulla Cave" style={{ width: "100%" }} />
+              </Grid>
             </Grid>
-            <Grid item xs={4}>
-              <img
-                src={AccomadationPage.Header}
-                alt="Dambulla Cave"
-                style={{ width: "100%" }}
-              />
-            </Grid>
-          </Grid>
+          )}
         </>
       ))}
       <Typography

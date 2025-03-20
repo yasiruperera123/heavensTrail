@@ -107,6 +107,28 @@ function HeaderOne() {
     "About Us",
     "Contact Us",
   ];
+  const onItemClick = (item) => {
+    switch (item) {
+      case "Home":
+        navigate("/home");
+        break;
+      case "Tour Packages":
+        navigate("/pages/tour-list");
+        break;
+      case "Business Tours":
+        navigate("/pages/mice-tours");
+        break;
+      case "About Us":
+        navigate("/pages/about-us");
+        break;
+      case "Contact Us":
+        navigate("/pages/contact-us");
+        break;
+      default:
+        navigate("/home");
+    }
+  };
+
 
   const sliderSettings = {
     dots: false,
@@ -445,7 +467,7 @@ function HeaderOne() {
         <List>
           {navItems.map((text) => (
             <ListItem button key={text}>
-              <ListItemText sx={{ marginY: 1, marginLeft: 1 }} primary={text} />
+              <ListItemText sx={{ marginY: 1, marginLeft: 1 }} primary={text} onClick={() => onItemClick(text)}/>
             </ListItem>
           ))}
         </List>
@@ -456,9 +478,15 @@ function HeaderOne() {
         onClick={handleDrawerToggle}
         sx={{
           display: { xs: "block", lg: "none" },
-          position: "absolute",
+          position: "fixed",
+          zIndex: 1200,
+          borderRadius: "10%",
           top: "16px",
           right: "16px",
+          backgroundColor: "rgba(255, 255, 255, 0.9)",
+          "&:hover": {
+            backgroundColor: "rgba(255, 255, 255, 1)",
+          }
         }}
       >
         <MenuIcon />

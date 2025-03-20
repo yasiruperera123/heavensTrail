@@ -25,6 +25,7 @@ import {
   fetchPropertyPageTexts,
   fetchPropertyPageImages,
 } from "services/PropertyService";
+import { useNavigate } from "react-router-dom";
 
 function HeaderThree({
   title,
@@ -34,11 +35,12 @@ function HeaderThree({
   subHead,
   headerFontSize,
   pageId,
-  duration
+  duration,
 }) {
   const [value, setValue] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [images, setImages] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPropertyText();
@@ -91,6 +93,28 @@ function HeaderThree({
     "About Us",
     "Contact Us",
   ];
+
+  const onItemClick = (item) => {
+    switch (item) {
+      case "Home":
+        navigate("/home");
+        break;
+      case "Tour Packages":
+        navigate("/pages/tour-list");
+        break;
+      case "Business Tours":
+        navigate("/pages/mice-tours");
+        break;
+      case "About Us":
+        navigate("/pages/about-us");
+        break;
+      case "Contact Us":
+        navigate("/pages/contact-us");
+        break;
+      default:
+        navigate("/home");
+    }
+  };
 
   return (
     <div>
@@ -220,6 +244,7 @@ function HeaderThree({
                 <ListItemText
                   sx={{ marginY: 1, marginLeft: 1 }}
                   primary={text}
+                  onClick={() => onItemClick(text)}
                 />
               </ListItem>
             ))}
@@ -231,9 +256,15 @@ function HeaderThree({
           onClick={handleDrawerToggle}
           sx={{
             display: { xs: "block", lg: "none" },
-            position: "absolute",
+            position: "fixed",
+            zIndex: 1200,
+            borderRadius: "10%",
             top: "16px",
             right: "16px",
+            backgroundColor: "rgba(255, 255, 255, 0.9)",
+            "&:hover": {
+              backgroundColor: "rgba(255, 255, 255, 1)",
+            },
           }}
         >
           <MenuIcon />

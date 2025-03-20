@@ -47,6 +47,7 @@ function TourDetails() {
     fetchTourPackage(propCode, tpId)
       .then((response) => {
         setTourDetails(response.data);
+        console.log(response.data); 
       })
       .catch((error) => {
         console.error("Fetch failed:", error.message);
