@@ -197,7 +197,7 @@ function Home() {
       .then((reponse) => {
         console.log("Fetched data: TOUR ", reponse);
         const filteredItems = reponse?.data
-          .filter((item) => item.seq === 0)
+          .filter((item) => item.tType !== "MICE")
           .slice(0, 4);
         console.log(filteredItems)
         setTourPackages(filteredItems);

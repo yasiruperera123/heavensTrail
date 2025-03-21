@@ -59,17 +59,36 @@ export default function Details(props) {
             <Grid container spacing={2}>
               {item?.tour_itinery_image_urls?.map((image) => (
                 <Grid item xs={4}>
-                  <img src={image.imgUrl} alt="Dambulla Cave" style={{ width: "100%" }} />
+                  <img src={image.imgUrl} alt="Dambulla Cave" style={{ height: "163px", width: "auto", objectFit: "cover" }} />
               </Grid>
             ))}
             </Grid>
           ) : (
             <Grid container spacing={2}>
               <Grid item xs={4}>
-                <img src={AccomadationPage.Header} alt="Dambulla Cave" style={{ width: "100%" }} />
+                <img src={AccomadationPage.Header} alt="Dambulla Cave" style={{height: "163px", width: "auto", objectFit: "cover" }} />
               </Grid>
             </Grid>
           )}
+          <Typography
+            sx={{
+              fontWeight: "400",
+              fontFamily: "Poppins, sans-serif",
+              fontSize: "12px",
+            }}
+          >
+                         <Typography
+                    sx={{
+                      display: "-webkit-box",
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                    variant="body2"
+                  >
+                    {item?.description}
+                  </Typography>
+          </Typography>
         </>
       ))}
       <Typography

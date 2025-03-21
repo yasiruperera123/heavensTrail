@@ -105,30 +105,6 @@ const Itinerary = (props) => {
                       </span>
                     ))}
                   </Typography>
-                  <Typography
-                    sx={{
-                      display: "-webkit-box",
-                      WebkitBoxOrient: "vertical",
-                      WebkitLineClamp: expandedIndex === index ? 4 : 1,
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                    variant="body2"
-                  >
-                    Sprinkled along a 1340km (833-mile) coastline, its
-                    countless, topographically varied beaches, coves and bays
-                    attract sun seekers, fun lovers and surfers throughout the
-                    year. Wildlife plays its part too: beaches are vital nesting
-                    grounds for endangered marine turtles, while majestic blue
-                    whales gather a few miles offshore. While Sri Lanka is a
-                    year-round destination, it’s on the receiving end of two
-                    opposing monsoons that affect the weather, ocean currents
-                    and when and where you should visit. Generally speaking, the
-                    southwest coast is best between November and April, the east
-                    from May to September. As you start crafting your own
-                    itinerary, consider a stop at one (or a few) of these, the
-                    best beaches in Sri Lanka.
-                  </Typography>
                 </Grid>
               </AccordionSummary>
               <AccordionDetails

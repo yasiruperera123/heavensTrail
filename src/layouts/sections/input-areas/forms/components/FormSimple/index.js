@@ -42,7 +42,7 @@ function FormSimple() {
       "service_vcs6z5m",
       "template_5vdn41n",
       {
-        from_name: form.fname + " " + form.lname,
+        from_name: form.name,
         to_name: "Heaven's Trails",
         from_email: "",
         to_email: "oshada.rupasinghe@gmail.com",
