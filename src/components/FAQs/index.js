@@ -39,7 +39,7 @@ import CustomSelect from "components/CustomSelect";
 import CustomDateRangePicker from "components/CustomeDateRangerPicker";
 import NavBar from "components/NavBar";
 import { fetchFAQByTitle } from "services/FAQService";
-function FAQs({ title }) {
+function FAQs({ title, showButton = true }) {
   const [value, setValue] = useState(title);
   const [FAQs, setFAQs] = useState([]);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -131,10 +131,10 @@ function FAQs({ title }) {
       container
       item
       xs={12}
-      lg={8}
+      lg={!showButton ? 12 : 8}
       flexDirection="column"
       alignItems="center"
-      sx={{ width: "70%" }}
+      sx={{ width: !showButton ? "100%" : "70%" }}
     >
       <Grid container display={"flex"} flexDirection="column">
         {FAQs && FAQs.length > 0
@@ -158,19 +158,21 @@ function FAQs({ title }) {
       </Grid>
 
       {/* Load More FAQs Button */}
-      <MKButton
-        circular
-        variant="contained"
-        color="black"
-        sx={{
-          paddingLeft: 5,
-          paddingRight: 5,
-          marginTop: 5,
-          marginBottom: 10,
-        }}
-      >
-        Load More FAQs
-      </MKButton>
+      {showButton && (
+        <MKButton
+          circular
+          variant="contained"
+          color="black"
+          sx={{
+            paddingLeft: 5,
+            paddingRight: 5,
+            marginTop: 5,
+            marginBottom: 10,
+          }}
+        >
+          Load More FAQs
+        </MKButton>
+      )}
     </Grid>
   );
 }
